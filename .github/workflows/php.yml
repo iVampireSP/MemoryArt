@@ -29,7 +29,7 @@ jobs:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         
-    - name: Install, init, fetch
+    - name: Install and init
       # 下载 hexo-cli 脚手架及相关安装包
       run: |
         npm install -g hexo-cli
@@ -37,8 +37,7 @@ jobs:
         cd site
         npm install
         rm -rf site/source/_posts/hello-world.md
-        php fetch.php
-        mv contents/* site/source/_posts/
+        mv ../contents/* site/source/_posts/
         hexo g
 
     - name: Generate then push file
