@@ -29,17 +29,21 @@ jobs:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         
-    - name: Install hexo dependencies
+    - name: Install hexo dependencies and init hexo
       # 下载 hexo-cli 脚手架及相关安装包
       run: |
         npm install -g hexo-cli
+        hexo init site
+        cd site
+        rm -rf site/source/_posts/hello-world.md
+        mv contentes/* site/source/_posts
         npm install
 
     - name: Generate then push file
       env:
         GITHUB_REPO: github.com/iVampireSP/MemoryArt/
       run: |
-        cd ./contents && hexo generate && git init . && git add .
+        cd ./site && hexo g && git init . && git add .
         git config user.name "iVampireSP"
         git config user.email "im@ivampiresp.com"
         git add .
