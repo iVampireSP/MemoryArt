@@ -39,6 +39,7 @@ jobs:
         cd site
         npm install
         rm -rf source/_posts/hello-world.md
+        mv ../_config.yml _config.yml
         mv ../contents/* source/_posts/
         hexo g
 
