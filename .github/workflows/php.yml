@@ -47,7 +47,9 @@ jobs:
       env:
         GITHUB_REPO: github.com/iVampireSP/MemoryArt/
       run: |
-        cd ./site/public && git init . && git add .
+        cd ./site/public 
+        echo "memoryart.nwl.im" > CNAME
+        git init . && git add .
         git config user.name "iVampireSP"
         git config user.email "im@ivampiresp.com"
         git add .
