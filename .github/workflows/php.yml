@@ -36,8 +36,8 @@ jobs:
         hexo init site
         cd site
         npm install
-        rm -rf site/source/_posts/hello-world.md
-        mv ../contents/* site/source/_posts/
+        rm -rf source/_posts/hello-world.md
+        mv ../contents/* source/_posts/
         hexo g
 
     - name: Generate then push file
