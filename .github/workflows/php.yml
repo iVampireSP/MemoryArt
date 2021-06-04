@@ -19,7 +19,7 @@ jobs:
     
     - name: Push file
       env:
-        GITHUB_REPO: github.com/yifanzheng/yifanzheng.github.io
+        GITHUB_REPO: github.com/iVampireSP/MemoryArt/
       run: |
         cd ./contents && git init . && git add .
         git config user.name "iVampireSP"
