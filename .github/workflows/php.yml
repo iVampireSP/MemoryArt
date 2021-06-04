@@ -1,4 +1,4 @@
-name: PHP Composer
+name: Fetch Contents
 
 on:
   push:
@@ -16,6 +16,19 @@ jobs:
 
     - name: Run php
       run: php fetch.php
+    
+    - name: Push file
+      env:
+        GITHUB_REPO: github.com/yifanzheng/yifanzheng.github.io
+      run: |
+        cd ./contents && git init . && git add .
+        git config user.name "iVampireSP"
+        git config user.email "im@ivampiresp.com"
+        git add .
+        git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
+        git push --force --quiet "https://${{ secrets.ACCESS_TOKEN }}@$GITHUB_REPO" main:main     
+        
+      
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
