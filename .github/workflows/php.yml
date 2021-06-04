@@ -2,7 +2,7 @@ name: Fetch Contents
 
 on:
   push:
-    branches: [ main ]
+    branches: [ contents ]
   pull_request:
     branches: [ main ]
 
@@ -26,7 +26,7 @@ jobs:
         git config user.email "im@ivampiresp.com"
         git add .
         git commit -m "GitHub Actions Auto Builder at $(date +'%Y-%m-%d %H:%M:%S')"
-        git push --force --quiet "https://${{ secrets.ACCESS_TOKEN }}@$GITHUB_REPO" main:main     
+        git push --force --quiet "https://${{ secrets.ACCESS_TOKEN }}@$GITHUB_REPO" main:contents     
         
       
 
