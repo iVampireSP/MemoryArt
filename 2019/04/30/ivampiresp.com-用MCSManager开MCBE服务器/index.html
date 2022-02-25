@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>用MCSManager开MCBE服务器 由 ivampiresp.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="由于博客重置，图片全没了，文章还是靠wordpress的通知功能恢复的，一点而已。   今天有人托我帮他买了个腾讯云服务器，想开个面板服，要求是MCBE的，于是。。。@G fat   无代码不人生！   1.买服务器（废话）   操作系统选择Ubuntu 版本最好是18.04以上，远程方式就不说了。   2.安装nodejs等环境   键入以下代码   sudo su apt update apt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用MCSManager开MCBE服务器 由 ivampiresp.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2019/04/30/ivampiresp.com-%E7%94%A8MCSManager%E5%BC%80MCBE%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="由于博客重置，图片全没了，文章还是靠wordpress的通知功能恢复的，一点而已。   今天有人托我帮他买了个腾讯云服务器，想开个面板服，要求是MCBE的，于是。。。@G fat   无代码不人生！   1.买服务器（废话）   操作系统选择Ubuntu 版本最好是18.04以上，远程方式就不说了。   2.安装nodejs等环境   键入以下代码   sudo su apt update apt">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-2.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-4.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-3.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-6.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-5.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-7.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-8.png?imageMogr2/interlace/1/quality/80">
+<meta property="article:published_time" content="2019-04-30T14:54:05.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:47.666Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="ivampiresp.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-2.png?imageMogr2/interlace/1/quality/80">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ivampiresp.com-用MCSManager开MCBE服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/04/30/ivampiresp.com-%E7%94%A8MCSManager%E5%BC%80MCBE%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-04-30T14:54:05.000Z" itemprop="datePublished">2019-04-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      用MCSManager开MCBE服务器 由 ivampiresp.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>由于博客重置，图片全没了，文章还是靠wordpress的通知功能恢复的，一点而已。</p>
+
+
+<p>今天有人托我帮他买了个腾讯云服务器，想开个面板服，要求是MCBE的，于是。。。@G fat</p>
+
+
+<h2><em><strong>无代码不人生！</strong></em></h2>
+
+
+<h2>1.买服务器（废话）</h2>
+
+
+<p>操作系统选择Ubuntu 版本最好是18.04以上，远程方式就不说了。</p>
+
+
+<h2>2.安装nodejs等环境</h2>
+
+
+<p>键入以下代码</p>
+
+
+<pre class="wp-block-code"><code>sudo su
+apt update
+apt install nodejs npm -y
+npm install n -g
+n stable -g</code></pre>
+
+
+<p>-g 是全局的意思 n是nodejs版本管理器</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-2.png?imageMogr2/interlace/1/quality/80" alt=""/><figcaption>                      </figcaption></figure>
+
+
+<h2>3.下载MCSManager（mcsm）</h2>
+
+
+<p>安装git</p>
+
+
+<pre class="wp-block-code"><code>apt install git -y</code></pre>
+
+
+<p>克隆mcsm项目</p>
+
+
+<pre class="wp-block-code"><code>git clone https://github.com/Suwings/MCSManager.git
+mv MCSManager /
+cd /MCSManager</code></pre>
+
+
+<p>部署：</p>
+
+
+<pre class="wp-block-code"><code>npm install --production</code></pre>
+
+
+<p>启动</p>
+
+
+<pre class="wp-block-code"><code>npm start</code></pre>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-4.png?imageMogr2/interlace/1/quality/80" alt=""/><figcaption>                      </figcaption></figure>
+
+
+<p>这时你的MCSM面板已经好了，我们先Ctrl + C 终止，并把它加入开机启动。</p>
+
+
+<pre class="wp-block-code"><code>ln -fs /lib/systemd/system/rc-local.service /etc/systemd/system/rc-local.service 
+echo "#!/bin/sh -e" >> /etc/rc.local
+echo "cd /MCSManager &amp;&amp; npm start" >> /etc/rc.local
+echo "exit 0" >> /etc/rc.local</code></pre>
+
+
+<p>输入命令查看rc.local文件</p>
+
+
+<pre class="wp-block-code"><code>cat /etc/rc.local</code></pre>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-3.png?imageMogr2/interlace/1/quality/80" alt=""/><figcaption>                      </figcaption></figure>
+
+
+
+
+<p>重要！卸载防火墙</p>
+
+
+<pre class="wp-block-code"><code>sudo apt autoremove --purge ufw -y</code></pre>
+
+
+<p>个人感觉防火墙很烦，除非你真的为了安全，那么请手动配置。</p>
+
+
+<p>然后输入sudo reboot重新启动你的服务器，并且打开浏览器，输入http://IP:23333 进入面板，默认账号#master，密码123456</p>
+
+
+<h2>4.创建服务器</h2>
+
+
+<p>左侧菜单-服务端管理-直接创建新的服务器</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-6.png?imageMogr2/interlace/1/quality/80" alt=""/><figcaption>                      </figcaption></figure>
+
+
+<p>点击右下角创建服务器，创建完成后，点击新创建服务端右侧的参数，复制服务的那根目录，例如我的是./server/server_core/Minecraft_BE/</p>
+
+
+<p>&#8216;.&#8217;代表MCSM运行目录，本教程中在/MCSManager下，所以真实目录在/MCSManager/server/server_core/Minecraft_BE/</p>
+
+
+<p>重新进入ssh，cd到目录。然后停留在当前目录，进入第五步。</p>
+
+
+<pre class="wp-block-code"><code>cd /MCSManager/server/server_core/Minecraft_BE/</code></pre>
+
+
+<h2>5.安装Bedrock server</h2>
+
+
+<p>进入mc官网：<a target="_blank" rel="noopener" href="https://www.minecraft.net/en-us/download/server/bedrock/">点击进入</a></p>
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-5.png?imageMogr2/interlace/1/quality/80" alt=""/><figcaption>                     </figcaption></figure></div>
+
+
+<p>执行下载命令（此处我的下载链接为）</p>
+
+
+<pre class="wp-block-code"><code>sudo su
+wget https://minecraft.azureedge.net/bin-linux/bedrock-server-1.11.1.2.zip</code></pre>
+
+
+<p>解压</p>
+
+
+<pre class="wp-block-code"><code>apt install -y unzip curl
+unzip bedrock-server-1.11.1.2.zip</code></pre>
+
+
+<p>创建启动脚本</p>
+
+
+<pre class="wp-block-code"><code>echo "LD_LIBRARY_PATH=. ./bedrock_server" > start.sh</code></pre>
+
+
+<p>赋予权限</p>
+
+
+<pre class="wp-block-code"><code>chmod +x start.sh</code></pre>
+
+
+<h2>6.完成部署</h2>
+
+
+<p>回到面板，在自定义命令那一行输入bash start.sh</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-7.png?imageMogr2/interlace/1/quality/80" alt=""/><figcaption>                      </figcaption></figure>
+
+
+<p>保存后，点击终端，右上角开启</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/04/image-8.png?imageMogr2/interlace/1/quality/80" alt=""/><figcaption>                      </figcaption></figure>
+
+
+<p>然后服务器启动成功啦，和你的小伙伴尽情玩耍吧。</p>
+
+
+<p>默认端口19132，IP自己看</p>
+
+
+<p>关于配置文件：<a target="_blank" rel="noopener" href="https://www.minebbs.com/threads/bedrock-dedicated-server-server-properties.1664/">MineBBS</a></p>
+
+
+<p>转载请注明来源谢谢！</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/04/30/using-mcsmanager-to-open-mcbe-server-in-9102">https://ivampiresp.com/2019/04/30/using-mcsmanager-to-open-mcbe-server-in-9102</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/04/30/ivampiresp.com-%E7%94%A8MCSManager%E5%BC%80MCBE%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="cl01oc4xs003rceoyaiep2vya" data-title="用MCSManager开MCBE服务器 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/26/ivampiresp.com-Minecraft%E5%85%AC%E4%BB%94%E5%88%B0%E8%B4%A7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          Minecraft公仔到货 由 ivampiresp.com
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>WireGuard 低成本异地组网 由 ivampiresp.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="来自我的突发奇想   某天训练时没有事干，看着树莓派，逛着淘宝，想买一个M.2拓展板，随后看了看银行卡，笑死，根本没有钱。   于是放弃了。   接着想了又想，突然想起个几年前自己多人联机（指游戏）时用过的蒲公英，所以想搞个和蒲公英差不多的。   解决方案：WireGuard   为什么选WireGuard呢？   听说很好用，所以我也选了，结果真的好用。   总之，是简单，真的简单，真的真的非常">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WireGuard 低成本异地组网 由 ivampiresp.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2021/03/18/ivampiresp.com-WireGuard%20%E4%BD%8E%E6%88%90%E6%9C%AC%E5%BC%82%E5%9C%B0%E7%BB%84%E7%BD%91/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="来自我的突发奇想   某天训练时没有事干，看着树莓派，逛着淘宝，想买一个M.2拓展板，随后看了看银行卡，笑死，根本没有钱。   于是放弃了。   接着想了又想，突然想起个几年前自己多人联机（指游戏）时用过的蒲公英，所以想搞个和蒲公英差不多的。   解决方案：WireGuard   为什么选WireGuard呢？   听说很好用，所以我也选了，结果真的好用。   总之，是简单，真的简单，真的真的非常">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/03/image.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/03/WireGuard-Cheers.png?imageMogr2/interlace/1/quality/80">
+<meta property="article:published_time" content="2021-03-18T11:13:32.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:47.666Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="ivampiresp.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/03/image.png?imageMogr2/interlace/1/quality/80">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ivampiresp.com-WireGuard 低成本异地组网" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/03/18/ivampiresp.com-WireGuard%20%E4%BD%8E%E6%88%90%E6%9C%AC%E5%BC%82%E5%9C%B0%E7%BB%84%E7%BD%91/" class="article-date">
+  <time class="dt-published" datetime="2021-03-18T11:13:32.000Z" itemprop="datePublished">2021-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      WireGuard 低成本异地组网 由 ivampiresp.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>来自我的突发奇想</h2>
+
+
+<p>某天训练时没有事干，看着树莓派，逛着淘宝，想买一个M.2拓展板，随后看了看银行卡，笑死，根本没有钱。</p>
+
+
+<p>于是放弃了。</p>
+
+
+<p>接着想了又想，突然想起个几年前自己多人联机（指游戏）时用过的蒲公英，所以想搞个和蒲公英差不多的。</p>
+
+
+<h2>解决方案：WireGuard</h2>
+
+
+<p>为什么选WireGuard呢？</p>
+
+
+<p>听说很好用，所以我也选了，结果真的好用。</p>
+
+
+<p>总之，是简单，真的简单，真的真的非常简单。</p>
+
+
+<p>只不过WireGuard是通过UDP通信的，可能会被运营商QoS限速。（不过是基于UDP的那是不是改个端口也能绕过校园网呢？）</p>
+
+
+<p>本文章的所有资料收集于互联网并整合本人经验撰写而成，且不会提供客户端的下载直链。</p>
+
+
+<h2>服务器配置</h2>
+
+
+<p>WireGuard<strong>好像</strong>添加到Linux 5.6内核中了，但是这不代表你不需要安装。</p>
+
+
+<h4>安装相关软件</h4>
+
+
+<p>我这里选择Ubuntu 20.04的服务器，无需添加ppa源（你也添加不上），直接apt安装即可</p>
+
+
+<pre class="wp-block-code"><code>apt install wireguard wireguard-tools resolvconf -y
+modprobe wireguard</code></pre>
+
+
+<p>如果你安装时在dkms那边报错了，试试升级系统或者内核吧。</p>
+
+
+<h4>公私钥生成</h4>
+
+
+<p>先执行一段命令，生成公私钥。From <a target="_blank" rel="noopener" href="https://gist.github.com/rmoriz/58f1768218a4fbc4b318615bfb85111d">Github Gist</a></p>
+
+
+<pre class="wp-block-code"><code>// 生成私钥
+wg genkey
+// 生成后复制它,然后生成公钥
+echo '你的私钥' | wg pubkey
+
+// 随后保存私钥和公钥</code></pre>
+
+
+<h4>撰写配置文件</h4>
+
+
+<p>随后，切换到WireGuard目录(/etc/wireguard)，创建一个配置文件，这里我命名为：wg0.conf</p>
+
+
+<pre class="wp-block-code"><code>&#91;Interface]
+PrivateKey = 你的私钥
+Address = 10.0.0.1/24 # 本机IP，24代表着255.255.255.0，当然这IP不能乱填哈
+PostUp   = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+ListenPort = 2083
+# 监听端口
+
+&#91;Peer]
+# 这是客户端的配置
+PublicKey = 客户端公钥
+AllowedIPs = 10.0.0.2/32 # 客户端的IP，不要冲突。我不是很理解/32是什么意思
+</code></pre>
+
+
+<h4>打开内核IP转发</h4>
+
+
+<p>为什么要这步呢？这东西不开Peer之间是不能互通的。</p>
+
+
+<p>来源：<a href="https://www.cnblogs.com/EasonJim/p/7595080.html" target="_blank" rel="noreferrer noopener">Linux下启用IP转发功能（主要针对Ubuntu的使用）</a></p>
+
+
+<pre class="wp-block-code"><code>echo net.ipv4.ip_forward = 1 &gt;&gt; /etc/sysctl.conf
+sysctl -p /etc/sysctl.conf
+/etc/init.d/procps restart</code></pre>
+
+
+<h4>设置开启启动</h4>
+
+
+<p>如果你不需要开机自启，可以忽略这一步。</p>
+
+
+<pre class="wp-block-code"><code>systemctl enable wg-quick@wg0 // wg0是你的配置文件名称，本文中是wg0</code></pre>
+
+
+<h4>启动WireGuard</h4>
+
+
+<pre class="wp-block-code"><code>systemctl start wg-quick@wg0 // wg0是你的配置文件名称，本文中是wg0</code></pre>
+
+
+<p>顺便一提，WirdGuard似乎不支持reload （热加载），实测每次重启后，客户端都会断连一会儿</p>
+
+
+<h2>客户端配置</h2>
+
+
+<h4>生成公私钥</h4>
+
+
+<p>客户端生成公私钥也可以执行下面的命令。Windows客户端会自动生成公私钥，其余客户端没有试过。</p>
+
+
+<pre class="wp-block-code"><code>// 生成私钥
+wp genkey
+// 生成后复制它,然后生成公钥
+echo '你的私钥' | wg pubkey
+
+// 随后保存私钥和公钥</code></pre>
+
+
+<h4>配置文件</h4>
+
+
+<p>创建一个conf文件，名称随意，这里我用Windows当作客户端。你可以在客户端内新建空白配置文件（隧道）。</p>
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2021/03/image.png"><img width="609" height="492" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/03/image.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-2164"/></a><figcaption>WireGuard客户端</figcaption></figure></div>
+
+
+<p>PublicKey是公钥，需要填到服务器的Peer中，PrivateKey是私钥，不用给任何人，也不要修改。</p>
+
+
+<p>然后参考一下格式修补配置文件</p>
+
+
+<pre class="wp-block-code"><code>&#91;Interface]
+PrivateKey = 4ML2bxeApulYMfV24DFVr+vivh6ZCZokQSzO5fCBzmU= # 你的私钥
+Address = 10.0.0.2/24 # 客户端IP，和在服务端Peer中的IP保持一致
+DNS = 114.114.114.114 # 如果你要绕过校园网的话，可能还要再指定一个上游DNS
+
+&#91;Peer] 
+PublicKey = 1fCduxAW1ilmeQqNzMF13qudRPjbc1aDpOG8GrJ2Bmc= # 服务器的公钥
+AllowedIPs = 10.0.0.0/24, ::/1, 8000::/1 # 允许的IP，这里10.0.0.0/24是只允许这个网段的IP走WireGuard，其余的直连。
+Endpoint = 服务器IP:端口</code></pre>
+
+
+<h2>多客户端</h2>
+
+
+<p>如果要创建多客户端，则每个客户端公私钥，IP不能相同，然后在服务端上增加Peer即可。只需要修改PublicKey。</p>
+
+
+<p>下面是服务器端多Peer例子</p>
+
+
+<pre class="wp-block-code"><code>&#91;Interface]
+PrivateKey = 你的私钥
+Address = 10.0.0.1/24 # 本机IP，24代表着255.255.255.0，当然这IP不能乱填哈
+PostUp   = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+ListenPort = 2083
+# 监听端口
+
+&#91;Peer]
+# 这是客户端的配置
+PublicKey = 客户端公钥
+AllowedIPs = 10.0.0.2/32 # 客户端的IP，不要冲突。我不是很理解/32是什么意思
+
+&#91;Peer]
+# 这是客户端2的配置
+PublicKey = 客户端2的公钥
+AllowedIPs = 10.0.0.3/32 # 客户端的IP，不要冲突。
+</code></pre>
+
+
+<p>可以看到，只需要增加一个Peer即可。增加客户端不需要修改原有客户端的配置。</p>
+
+
+<p>完成后，重启WireGuard，不过可能会造成其余客户端的几秒钟连接中断。</p>
+
+
+<pre class="wp-block-code"><code>systemctl restart wg-quick@wg0</code></pre>
+
+
+<h2>Cheers!</h2>
+
+
+<figure class="wp-block-image size-large is-style-default" id="cheers-img"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2021/03/WireGuard-Cheers.png"><img width="1920" height="1032" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/03/WireGuard-Cheers.png?imageMogr2/interlace/1/quality/80" alt="成功异地组网" class="wp-image-2165" srcset="https://ivampiresp.com/wp-content/uploads/2021/03/WireGuard-Cheers.png 1920w, https://ivampiresp.com/wp-content/uploads/2021/03/WireGuard-Cheers-1536x826.png 1536w" sizes="(max-width: 1920px) 100vw, 1920px" /></a></figure>
+
+
+<p>此时，多增加一些客户端，来试试能否互相ping通。如果还有一些疑问，欢迎评论。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2021/03/18/wireguard">https://ivampiresp.com/2021/03/18/wireguard</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/03/18/ivampiresp.com-WireGuard%20%E4%BD%8E%E6%88%90%E6%9C%AC%E5%BC%82%E5%9C%B0%E7%BB%84%E7%BD%91/" data-id="cl01oc4x5002bceoy7jk0fkig" data-title="WireGuard 低成本异地组网 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/03/21/imcys.com-Android%20%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%95%B0%E5%8C%96%E5%AD%A6%E9%AA%8C%E8%AF%81%E9%A2%98%E7%9B%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          Android 自动生成数化学验证题目 由 imcys.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/02/19/imcys.com-B%E7%AB%99%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AD%E5%BB%BA%20LastOrderBot/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">B站机器人搭建 LastOrderBot 由 imcys.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

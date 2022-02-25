@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>使用mcpe-ping(mping)在线查询MCBE服务器状态 由 ivampiresp.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="纯JSON版    因*腐竹的请求，所以CodeHz给了个查询MCBE的接口（不知道是不是他做的）。全名叫mcpe-ping GitHub上有个，估计是CodeHz二开的，原项目：mcpe-ping        同样，先嫖一台服务器，并用最快的速度部署。我用Ubuntu做演示，Debian的apt里没npm包 ，下面是CodeHz大大给的接口。    1560946758-mping下载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用mcpe-ping(mping)在线查询MCBE服务器状态 由 ivampiresp.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2019/06/19/ivampiresp.com-%E4%BD%BF%E7%94%A8mcpe-ping(mping)%E5%9C%A8%E7%BA%BF%E6%9F%A5%E8%AF%A2MCBE%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8A%B6%E6%80%81/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="纯JSON版    因*腐竹的请求，所以CodeHz给了个查询MCBE的接口（不知道是不是他做的）。全名叫mcpe-ping GitHub上有个，估计是CodeHz二开的，原项目：mcpe-ping        同样，先嫖一台服务器，并用最快的速度部署。我用Ubuntu做演示，Debian的apt里没npm包 ，下面是CodeHz大大给的接口。    1560946758-mping下载">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/1560440522-O3L0B1C76XY14V6R.jpg?imageMogr2/thumbnail/!144x144r|imageMogr2/gravity/Center/crop/144x144/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/image-6.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/image-5-1024x548.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/1560440534-EGTX_16W@AP5VQGIP56.jpg?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/1559600765-7fb61b0c7458de03.jpg?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/1560090244-6b4e7904535d6079.jpg?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/1560952774-6.jpg?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/04B475C01FBE1625B65E4E6A1A16A00B.jpg?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/image-5-1024x548.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/image-8.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/image-9-1024x552.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/image-10.png?imageMogr2/interlace/1/quality/80">
+<meta property="article:published_time" content="2019-06-19T22:02:36.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:47.666Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="ivampiresp.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/1560440522-O3L0B1C76XY14V6R.jpg?imageMogr2/thumbnail/!144x144r|imageMogr2/gravity/Center/crop/144x144/interlace/1/quality/80">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ivampiresp.com-使用mcpe-ping(mping)在线查询MCBE服务器状态" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/06/19/ivampiresp.com-%E4%BD%BF%E7%94%A8mcpe-ping(mping)%E5%9C%A8%E7%BA%BF%E6%9F%A5%E8%AF%A2MCBE%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8A%B6%E6%80%81/" class="article-date">
+  <time class="dt-published" datetime="2019-06-19T22:02:36.000Z" itemprop="datePublished">2019-06-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      使用mcpe-ping(mping)在线查询MCBE服务器状态 由 ivampiresp.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>纯JSON版</h2>
+
+
+
+<p>因*腐竹的请求，所以CodeHz给了个查询MCBE的接口（不知道是不是他做的）。全名叫mcpe-ping GitHub上有个，估计是CodeHz二开的，原项目：<a target="_blank" rel="noopener" href="https://github.com/falkirks/mcpe-ping">mcpe-ping</a></p>
+
+
+
+<div class="wp-block-image"><figure class="alignright size-large is-resized"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2019/06/1560440522-O3L0B1C76XY14V6R.jpg"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/1560440522-O3L0B1C76XY14V6R.jpg?imageMogr2/thumbnail/!144x144r|imageMogr2/gravity/Center/crop/144x144/interlace/1/quality/80" alt="" width="72" height="72"/></a></figure></div>
+
+
+
+<p>同样，先嫖一台服务器，并用最快的速度部署。我用Ubuntu做演示，Debian的apt里没npm包 ，下面是CodeHz大大给的接口。</p>
+
+
+
+<div class="wp-block-file"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2019/06/1560946758-mping.zip">1560946758-mping</a><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2019/06/1560946758-mping.zip" class="wp-block-file__button" download>下载</a></div>
+
+
+
+<p>第一步，登录到服务器并su，更新软件源（废话）</p>
+
+
+
+<pre class="wp-block-code"><code>apt update</code></pre>
+
+
+
+<p>然后，部署nodejs环境</p>
+
+
+
+<p>把mping.zip解压到你喜欢的位置，然后cd进去搞事情</p>
+
+
+
+<pre class="wp-block-code"><code>apt install nodejs npm -y
+npm install n -g
+n stable -g</code></pre>
+
+
+
+<p>然后cd到mping的目录，确保是解压后的，有两个文件，分别是main.js和package.json，使用下面命令安装依赖。</p>
+
+
+
+<pre class="wp-block-code"><code>npm install --production</code></pre>
+
+
+
+<p>然后执行</p>
+
+
+
+<pre class="wp-block-code"><code>screen nodejs main.js</code></pre>
+
+
+
+<p>然后浏览器输入http://IP:1234/要查看的mcbe服务器ip/端口 如果打不开，请行通1234端口，端口可以到main.js最后一行更改。然而根据我的习惯，在纯服务器系统上，肯定要改成80。但是为了下面步骤，我还是选择了1234</p>
+
+
+
+<figure class="wp-block-image"><img width="1000" height="594" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/image-6.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-699" srcset="https://ivampiresp.com/wp-content/uploads/2019/06/image-6.png 1000w, https://ivampiresp.com/wp-content/uploads/2019/06/image-6-300x178.png 300w, https://ivampiresp.com/wp-content/uploads/2019/06/image-6-768x456.png 768w" sizes="(max-width: 1000px) 100vw, 1000px" /><figcaption>修改端口</figcaption></figure>
+
+
+
+<figure class="wp-block-image"><img width="1024" height="548" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/image-5-1024x548.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-689" srcset="https://ivampiresp.com/wp-content/uploads/2019/06/image-5-1024x548.png 1024w, https://ivampiresp.com/wp-content/uploads/2019/06/image-5-300x160.png 300w, https://ivampiresp.com/wp-content/uploads/2019/06/image-5-768x411.png 768w, https://ivampiresp.com/wp-content/uploads/2019/06/image-5.png 1144w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>例如lbsg的，我们只要在你的浏览器网址栏输入 http://xxxx:1234/ping/sg.lbsg.net/19132 </p>
+
+
+
+<p>然后你会惊喜的发现查出来了<img width="396" height="224" loading="lazy" class="wp-image-655" style="width: 150px;" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/1560440534-EGTX_16W@AP5VQGIP56.jpg?imageMogr2/interlace/1/quality/80" alt="" srcset="https://ivampiresp.com/wp-content/uploads/2019/06/1560440534-EGTX_16W@AP5VQGIP56.jpg 396w, https://ivampiresp.com/wp-content/uploads/2019/06/1560440534-EGTX_16W@AP5VQGIP56-300x170.jpg 300w" sizes="(max-width: 396px) 100vw, 396px" /></p>
+
+
+
+<p>但是有个问题，为什么是json格式？<img loading="lazy" class="wp-image-614" style="width: 150px;" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/1559600765-7fb61b0c7458de03.jpg?imageMogr2/interlace/1/quality/80" alt=""></p>
+
+
+
+<p>因为，，脚本就这样的。你可以使用json阅读器或者把json转成JavaScript对象输出在网页上，或者用酷Q  Httpapi插件来显示json。对于这些，，我也不会 :huaji: <img width="640" height="640" loading="lazy" class="wp-image-645" style="width: 150px;" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/1560090244-6b4e7904535d6079.jpg?imageMogr2/interlace/1/quality/80" alt="" srcset="https://ivampiresp.com/wp-content/uploads/2019/06/1560090244-6b4e7904535d6079.jpg 640w, https://ivampiresp.com/wp-content/uploads/2019/06/1560090244-6b4e7904535d6079-150x150.jpg 150w, https://ivampiresp.com/wp-content/uploads/2019/06/1560090244-6b4e7904535d6079-300x300.jpg 300w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+
+
+
+<p>不过，这里有个 <a target="_blank" rel="noopener" href="https://www.bejson.com/jsonviewernew/">json在线视图查看器</a></p>
+
+
+
+<p>如果你开发出来了显示json对象的工具，别忘开源哈。好东西要分享嘛。一定要告诉我~</p>
+
+
+
+<h2>JSON+明文输出版</h2>
+
+
+
+<div class="wp-block-media-text alignwide has-media-on-the-right"><figure class="wp-block-media-text__media"><img width="592" height="512" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/1560952774-6.jpg?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-690" srcset="https://ivampiresp.com/wp-content/uploads/2019/06/1560952774-6.jpg 592w, https://ivampiresp.com/wp-content/uploads/2019/06/1560952774-6-300x259.jpg 300w" sizes="(max-width: 592px) 100vw, 592px" /></figure><div class="wp-block-media-text__content">
+<p class="has-large-font-size"></p>
+</div></div>
+
+
+
+<p>因*腐竹的再次要求，CodeHz重写了一遍代码，不仅保留了json格式，在新加了直接以文本型式输出的功能。</p>
+
+
+
+<p><strong><em>注意，需要重新npm install &#8211;production</em></strong> !!</p>
+
+
+
+<div class="wp-block-file"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2019/06/1561092443-mping-2.zip">1561092443-mping-2</a><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2019/06/1561092443-mping-2.zip" class="wp-block-file__button" download>下载</a></div>
+
+
+
+<figure class="wp-block-image"><img width="581" height="184" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/04B475C01FBE1625B65E4E6A1A16A00B.jpg?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-695" srcset="https://ivampiresp.com/wp-content/uploads/2019/06/04B475C01FBE1625B65E4E6A1A16A00B.jpg 581w, https://ivampiresp.com/wp-content/uploads/2019/06/04B475C01FBE1625B65E4E6A1A16A00B-300x95.jpg 300w" sizes="(max-width: 581px) 100vw, 581px" /><figcaption>使用方法<br>name<br>currentPlayers<br>maxPlayers<br></figcaption></figure>
+
+
+
+<p>如果想要显示json格式，那么只要把网址端口后面的去掉就行。</p>
+
+
+
+<figure class="wp-block-image"><img width="1024" height="548" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/image-5-1024x548.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-689" srcset="https://ivampiresp.com/wp-content/uploads/2019/06/image-5-1024x548.png 1024w, https://ivampiresp.com/wp-content/uploads/2019/06/image-5-300x160.png 300w, https://ivampiresp.com/wp-content/uploads/2019/06/image-5-768x411.png 768w, https://ivampiresp.com/wp-content/uploads/2019/06/image-5.png 1144w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>不过，这里遇到个问题：如果是https的网页嵌套一个IP，那iframe岂不是会被chrome拦截？如果url自动重写为https那么直接拒绝访问，这咋办呢？</p>
+
+
+
+<p>这时候，就要看万能的反向代理了，我选则宝塔，因为申请ssl很方便，配置起来也很简单（就是懒，少走弯路）。编译安装nginx（推荐）</p>
+
+
+
+<p>签发ssl证书，没备案的用dns验证</p>
+
+
+
+<figure class="wp-block-image"><img width="640" height="462" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/image-8.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-702" srcset="https://ivampiresp.com/wp-content/uploads/2019/06/image-8.png 640w, https://ivampiresp.com/wp-content/uploads/2019/06/image-8-300x217.png 300w" sizes="(max-width: 640px) 100vw, 640px" /><figcaption> 添加反向代理，并到防火墙放行1234端口 （改成你的端口）</figcaption></figure>
+
+
+
+<h2>代码示例 lbsg</h2>
+
+
+
+<p>HTML：</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;html>
+&lt;head>
+&lt;title>xxx服务器状态&lt;/title>
+&lt;/head>
+&lt;body>
+&lt;p>服务器名称&lt;/p>
+&lt;iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=20 height=12 scrolling="no" src="https://proxy.loliday.cn/mping/ping/sg.lbsg.net/19132/name">&lt;/iframe>
+&lt;p>服务器当前在线&lt;/p>
+&lt;iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=20 height=12 scrolling="no" src="https://proxy.loliday.cn/mping/ping/sg.lbsg.net/19132/currentPlayers">&lt;/iframe>
+&lt;p>服务器最大人数&lt;/p>
+&lt;iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=20 height=12 scrolling="no" src="https://proxy.loliday.cn/mping/ping/sg.lbsg.net/19132/maxPlayers">&lt;/iframe>
+&lt;/body>
+&lt;/html></code></pre>
+
+
+
+<p>效果</p>
+
+
+
+<p>服务器名称</p>
+<iframe loading="lazy" frameborder="no" border="0" marginwidth="0" marginheight="0" width="30" height="15" scrolling="no" src="https://proxy.loliday.cn/mping/ping/sg.lbsg.net/19132/name"></iframe>
+<p>服务器当前在线</p>
+<iframe loading="lazy" frameborder="no" border="0" marginwidth="0" marginheight="0" width="30" height="15" scrolling="no" src="https://proxy.loliday.cn/mping/ping/sg.lbsg.net/19132/currentPlayers"></iframe>
+<p>服务器最大人数</p>
+<iframe loading="lazy" frameborder="no" border="0" marginwidth="0" marginheight="0" width="30" height="15" scrolling="no" src="https://proxy.loliday.cn/mping/ping/sg.lbsg.net/19132/maxPlayers"></iframe>
+
+
+
+<p><s>因原腐竹要求，不公开接口。</s></p>
+
+
+
+<p>你们可爱的博主已经公开的自己的接口，不要乱攻击就行~</p>
+
+
+
+<figure class="wp-block-embed-wordpress wp-block-embed is-type-wp-embed is-provider-ivampirespの物語"><div class="wp-block-embed__wrapper">
+<blockquote class="wp-embedded-content" data-secret="CBICkX5QLV"><a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/16/%e5%85%ac%e5%bc%80%e4%b8%80%e4%b8%aamcpe-ping%e6%8e%a5%e5%8f%a3%ef%bc%88%e8%87%aa%e5%bb%ba%ef%bc%89.html">公开一个mcpe-ping接口（自建）</a></blockquote><iframe title="《公开一个mcpe-ping接口（自建）》—iVampireSPの物語" class="wp-embedded-content" sandbox="allow-scripts" security="restricted" style="position: absolute; clip: rect(1px, 1px, 1px, 1px);" src="https://ivampiresp.com/2019/07/16/%e5%85%ac%e5%bc%80%e4%b8%80%e4%b8%aamcpe-ping%e6%8e%a5%e5%8f%a3%ef%bc%88%e8%87%aa%e5%bb%ba%ef%bc%89.html/embed#?secret=CBICkX5QLV" data-secret="CBICkX5QLV" width="500" height="282" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div></figure>
+
+
+
+<h2>mping 自带ui+隐藏IP版</h2>
+
+
+
+<p>没错，因为*腐竹的再再再次要求，CodeHz大大又又又开发了一个版本，并且开源啦（好像我擅自放源码了），仓库地址：<a target="_blank" rel="noopener" href="https://github.com/codehz/mcpe-ping-dashboard">GitHub</a> 为他Star吧！</p>
+
+
+
+<p>使用方法：git项目，然后重新npm install 然后再nodejs main.js</p>
+
+
+
+<p>如果是安装了宝塔的ubuntu18.04的话，你会发现：npm没了！</p>
+
+
+
+<p>这是为什么呢，因为他和宝塔安装的软件包起冲突了。有libssl啥的，反正我没管它，强制安装！</p>
+
+
+
+<p class="has-text-align-center">(推荐你们不要这么干，就算干了出事也别找我)</p>
+
+
+
+<p>上述命令如下</p>
+
+
+
+<pre class="wp-block-code"><code>git clone https://github.com/codehz/mcpe-ping-dashboard
+cd mcpe-ping-dashboard
+apt install npm -y //慎重
+npm install</code></pre>
+
+
+
+<p>然后呢？看看效果图</p>
+
+
+
+<figure class="wp-block-image"><img width="1024" height="552" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/image-9-1024x552.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-715" srcset="https://ivampiresp.com/wp-content/uploads/2019/06/image-9-1024x552.png 1024w, https://ivampiresp.com/wp-content/uploads/2019/06/image-9-300x162.png 300w, https://ivampiresp.com/wp-content/uploads/2019/06/image-9-768x414.png 768w, https://ivampiresp.com/wp-content/uploads/2019/06/image-9.png 1366w" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption> 实例效果图（https动态标题可用，只是chrome报不安全而已，http正常） </figcaption></figure>
+
+
+
+<p>CodeHz给的教程：</p>
+
+
+
+<p>配置文件内容大概这样：</p>
+
+
+
+<pre class="wp-block-code"><code>[
+  &#123;
+    "src": "nether games",
+    "logo": "https://minecraftpocket-servers.com/server/36864/banner-36864-1492604878.png",
+    "host": "play.nethergames.org",
+    "port": 19132
+  &#125;,
+  &#123;
+    "src": "Hangout",
+    "logo": "https://minecraftpocket-servers.com/server/82568/banner-82568-1557693365.gif",
+    "host": "play.hangout.pe",
+    "port": 19132
+  &#125;
+]
+</code></pre>
+
+
+
+<pre class="wp-block-verse">CodeHz&nbsp;⟁,&nbsp;[2019/6/21&nbsp;下午8:02]<br>src其实是标题（<br><br>CodeHz&nbsp;⟁,&nbsp;[2019/6/21&nbsp;下午8:02]<br>因为有些时候motd不是名字（还有加载失败的情况（<br><br>CodeHz&nbsp;⟁,&nbsp;[2019/6/21&nbsp;下午7:59]<br>用法<br><br>CodeHz&nbsp;⟁,&nbsp;[2019/6/21&nbsp;下午7:59]<br>改config/example.json&nbsp;(或者自己新建一个）<br><br>CodeHz&nbsp;⟁,&nbsp;[2019/6/21&nbsp;下午7:59]<br>然后安装（npm&nbsp;install）运行后，访问&nbsp;/servers/example</pre>
+
+
+
+<p>附加（废话）：</p>
+
+
+
+<pre class="wp-block-verse">logo是图片文件url<br>host是服务器IP<br>port是服务器端口</pre>
+
+
+
+<p>其实吧，这个不能算真正的隐藏IP，毕竟暴露了查询服务器的IP，除非用cf反向代理下。但是这样总比我那个iframe的好。</p>
+
+
+
+<p>附：用MD或MDUI的卡片写更好看。</p>
+
+
+
+<h2>自动刷新</h2>
+
+
+
+<p> 到<strong>mping目录下的view文件夹</strong>里，编辑里面<strong>唯一的一个文件</strong>，在&lt;title&gt;&lt;/title&gt;下一行输入</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;meta http-equiv="refresh" content="5"> //5是秒数</code></pre>
+
+
+
+<figure class="wp-block-image"><img width="512" height="48" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/image-10.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-720" srcset="https://ivampiresp.com/wp-content/uploads/2019/06/image-10.png 512w, https://ivampiresp.com/wp-content/uploads/2019/06/image-10-300x28.png 300w" sizes="(max-width: 512px) 100vw, 512px" /></figure>
+
+
+
+<h2>解决https报不安全</h2>
+
+
+
+<p>到<strong>mping目录下的view文件夹</strong>里，编辑里面<strong>唯一的一个文件</strong>，把里面的<strong>所有http</strong><em><strong>改成</strong></em><strong>https</strong></p>
+
+
+
+<h2>apache反向代理</h2>
+
+
+
+<p>是的，你没看错，是阿帕奇，不是EngineX。为什么呢？因为我不会EngineX。</p>
+
+
+
+<p>是这样的，那位腐竹不小心重装了系统，所以又要重新配置了。这次不用宝塔，用apache2</p>
+
+
+
+<p class="has-text-align-center"><strong><em>注意，请确保是纯净环境！否则不要使用该步骤</em></strong>！</p>
+
+
+
+<p>安装阿帕奇，启用反向代理，ssl模组，启用ssl站点。编辑ssl站点</p>
+
+
+
+<pre class="wp-block-code"><code>sudo apt install apache2 -y
+sudo a2enmod proxy proxy_ajp proxy_balancer proxy_connect proxy_express proxy_fcgi proxy_fdpass proxy_ftp proxy_hcheck proxy_html proxy_http proxy_http2 proxy_scgi proxy_wstunnel ssl
+sudo a2ensite default-ssl.conf
+sudo vim /etc/apache2/site-enabled/default-ssl.conf</code></pre>
+
+
+
+<p>把&lt;VirtualHost _DEFAULT:443&gt;(好像是这个)中的_DEFALUT改成*，在下面插入这个下面的代码</p>
+
+
+
+<pre class="wp-block-code"><code>ServerName 你的域名
+        &lt;Proxy *>
+                Order deny,allow
+                Allow from all
+        &lt;/Proxy>
+        &lt;Location />
+          ProxyPass http://localhost:1234/
+          ProxyPassReverse http://localhost:1234/
+        &lt;/Location>
+</code></pre>
+
+
+
+<p> http://localhost:1234/ 是反向代理的域名和目录。改成你自己的。</p>
+
+
+
+<p>接着往下翻，找到类似下面代码，把pem和key目录输入为自己的，例子如下：</p>
+
+
+
+<pre class="wp-block-code"><code>            SSLCertificateFile      /home/ssl/123.pem
+            SSLCertificateKeyFile /home/ssl/123.key</code></pre>
+
+
+
+<p>最后，重启apache2。</p>
+
+
+
+<pre class="wp-block-code"><code>systemctl restart apache2</code></pre>
+
+
+
+<p>体验吧！</p>
+
+
+
+<p>好了，不管你有没有看懂。我，，累了。</p>
+
+
+
+<h3>对接到机器人</h3>
+
+
+
+<p>就以晨风为例子，怎么用我想你应该也知道的。</p>
+
+
+
+<pre class="wp-block-code"><code>查询 FantasySky&amp;SakuraPuare.Tech服务器当前在线【换行】【显示网址内容http://mping.sp.mchim.cn/ping/dx.fs.happy-friends.ga/19132/currentPlayers】/【显示网址内容http://mping.sp.mchim.cn/ping/dx.fs.happy-friends.ga/19132/maxPlayers】【换行】（当前在线/最大玩家；缓存1分钟.）</code></pre>
+
+
+
+<h2>实例</h2>
+
+
+
+<p>最后放上实例：<a target="_blank" rel="noopener" href="https://ivampiresp.com/example-status">点击进入</a></p>
+
+
+
+<p>教程就到这里，感谢各位支持！感谢那位腐竹和CodeHz!转载请注明来源，谢谢合作。</p>
+
+
+
+<p>[toc]</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/06/19/%e4%bd%bf%e7%94%a8mping%e5%9c%a8%e7%ba%bf%e6%9f%a5%e8%af%a2mcbe%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%8a%b6%e6%80%81">https://ivampiresp.com/2019/06/19/%e4%bd%bf%e7%94%a8mping%e5%9c%a8%e7%ba%bf%e6%9f%a5%e8%af%a2mcbe%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%8a%b6%e6%80%81</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/06/19/ivampiresp.com-%E4%BD%BF%E7%94%A8mcpe-ping(mping)%E5%9C%A8%E7%BA%BF%E6%9F%A5%E8%AF%A2MCBE%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8A%B6%E6%80%81/" data-id="cl01oc4y30047ceoy7zmoggfr" data-title="使用mcpe-ping(mping)在线查询MCBE服务器状态 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/27/ivampiresp.com-%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E3%80%8A%E9%82%BB%E5%AE%B6%E7%B4%A2%E8%8F%B2%E3%80%8B%EF%BC%88%E9%9A%94%E5%A3%81%E7%9A%84%E5%90%B8%E8%A1%80%E9%AC%BC%E7%BE%8E%E7%9C%89%EF%BC%89%E7%9A%84%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87API/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          制作一个《邻家索菲》（隔壁的吸血鬼美眉）的随机图片API 由 ivampiresp.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/18/ivampiresp.com-%E4%B8%AA%E6%80%A7%E5%8C%96%E4%BD%A0%E7%9A%84WP%E5%90%8E%E5%8F%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">个性化你的WP后台 由 ivampiresp.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

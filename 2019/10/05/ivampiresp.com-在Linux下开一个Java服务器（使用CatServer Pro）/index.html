@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>在Linux下开一个Java服务器（使用CatServer Pro） 由 ivampiresp.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="引言   Linux开服具有快速，高效，性能等特点，而Windows虽然简单，但是不具备Linux良好的性能。   本教程就说明一下简单的Linux开服方式（@需要教程的人，如果你学会后，请无偿帮助更多的人。）   服务器准备   首先。先准备一个Linux服务器（废话），出于习惯，我就使用Ubuntu操作系统，版本18.04。   本教程就拿腾讯云cvm做测试吧。由于Java服吃起来比较大，建议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Linux下开一个Java服务器（使用CatServer Pro） 由 ivampiresp.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2019/10/05/ivampiresp.com-%E5%9C%A8Linux%E4%B8%8B%E5%BC%80%E4%B8%80%E4%B8%AAJava%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E4%BD%BF%E7%94%A8CatServer%20Pro%EF%BC%89/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="引言   Linux开服具有快速，高效，性能等特点，而Windows虽然简单，但是不具备Linux良好的性能。   本教程就说明一下简单的Linux开服方式（@需要教程的人，如果你学会后，请无偿帮助更多的人。）   服务器准备   首先。先准备一个Linux服务器（废话），出于习惯，我就使用Ubuntu操作系统，版本18.04。   本教程就拿腾讯云cvm做测试吧。由于Java服吃起来比较大，建议">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/10/image.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/10/image-1.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/10/image-2.png?imageMogr2/interlace/1/quality/80">
+<meta property="article:published_time" content="2019-10-05T10:38:25.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:47.666Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="ivampiresp.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/10/image.png?imageMogr2/interlace/1/quality/80">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ivampiresp.com-在Linux下开一个Java服务器（使用CatServer Pro）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/05/ivampiresp.com-%E5%9C%A8Linux%E4%B8%8B%E5%BC%80%E4%B8%80%E4%B8%AAJava%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E4%BD%BF%E7%94%A8CatServer%20Pro%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2019-10-05T10:38:25.000Z" itemprop="datePublished">2019-10-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      在Linux下开一个Java服务器（使用CatServer Pro） 由 ivampiresp.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>引言</h2>
+
+
+<p>Linux开服具有快速，高效，性能等特点，而Windows虽然简单，但是不具备Linux良好的性能。</p>
+
+
+<p>本教程就说明一下简单的Linux开服方式（@需要教程的人，如果你学会后，请无偿帮助更多的人。）</p>
+
+
+<h2>服务器准备</h2>
+
+
+<p>首先。先准备一个Linux服务器（废话），出于习惯，我就使用Ubuntu操作系统，版本18.04。</p>
+
+
+<p>本教程就拿腾讯云cvm做测试吧。由于Java服吃起来比较大，建议2c2g。</p>
+
+
+<h2>关于MC服务端</h2>
+
+
+<p>如果你是要开Java版1.12的服务器的话，那么恭喜你，你可以使用CatServer Pro了。CatServer在不久前已经完全开源，并且完全免费了。</p>
+
+
+<p>本文就拿CatServer做测试，其他服务端相同。</p>
+
+
+<h2>开始搭建</h2>
+
+
+<p>1.登录ssh，为了安全，请不要切换到root。(ssh软件我推荐<a target="_blank" rel="noopener" href="https://www.putty.org/">putty</a>,win10自带ssh，cmd/powershell 直接用户名@ip即可）</p>
+
+
+<p>2.更新软件包数据库</p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">sudo apt update
+</code></pre>
+</div>
+
+
+<figure class="wp-block-image"><img width="557" height="141" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/10/image.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1175"/><figcaption>apt update</figcaption></figure>
+
+
+<p>3.下载Java8环境</p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code>sudo apt install openjdk-8-jre openjdk-8-jdk -y
+</code></pre>
+</div>
+
+
+<p>觉得太慢？试试apt-fast!</p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">sudo add-apt-repository ppa:apt-fast/stable
+sudo apt-get update
+sudo apt-get -y install apt-fast
+</code></pre>
+</div>
+
+
+<p class="has-text-align-center"><strong><em>安装期间一路回车就行</em></strong></p>
+
+
+<p>使用apt-fast安装java8环境</p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">sudo apt-fast install openjdk-8-jre openjdk-8-jdk -y
+</code></pre>
+</div>
+
+
+<p>等命令执行完后，Java8环境就安装好了。是不是比Windows简单？安装Java8只需要一条命令，而不是去Java.com找（如果你乐意）。</p>
+
+
+<p>你还可以校验下你的Java8</p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">java -version
+</code></pre>
+</div>
+
+
+<p>它应该反馈出类似如下结果</p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">ubuntu@VM-0-3-ubuntu:~$ java -version
+openjdk version "1.8.0_222"
+OpenJDK Runtime Environment (build 1.8.0_222-8u222-b10-1ubuntu1~18.04.1-b10)
+OpenJDK 64-Bit Server VM (build 25.222-b10, mixed mode)
+ubuntu@VM-0-3-ubuntu:~$
+</code></pre>
+</div>
+
+
+<p>4.下载CatServer</p>
+
+
+<p>虽然我不知道CatServer和CatServer Pro的区别，但是我看到CatServer仓库里有Readme.md并且CatServer Pro还是预览版本，所以我就选CatServer了。</p>
+
+
+<p>仓库地址：<a target="_blank" rel="noopener" href="https://github.com/CatServer/CatServer/">CatServer</a> <a target="_blank" rel="noopener" href="https://github.com/CatServer/CatServer-Pro">CatServer Pro</a></p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">wget -O CatServer.jar https://github.com/CatServer/CatServer/releases/download/3.0/CatServer-3c5e7d0-universal.jar</code></pre>
+</div>
+
+
+<p>下载太慢？用aria2！</p>
+
+
+<p>安装aria2。如果安装了apt-fast，请忽略此步骤。 </p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">sudo apt install aria2 -y
+</code></pre>
+</div>
+
+
+<p>使用aria2下载</p>
+
+
+<blockquote class="wp-block-quote"> -s 表示split，将源文件拆分成8份下载，-x表示使用多少个线程 </p><cite> <a target="_blank" rel="noopener" href="https://blog.csdn.net/jaye16/article/details/74942839">https://blog.csdn.net/jaye16/article/details/74942839</a> </cite></blockquote>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">aria2c -s 8 -x 10 https://github.com/CatServer/CatServer/releases/download/3.0/CatServer-3c5e7d0-universal.jar
+</code></pre>
+</div>
+
+
+<p>重命名服务端文件
+
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">mv CatServer-3c5e7d0-universal.jar CatServer.jar
+</code></pre>
+</div>
+
+
+
+<p>创建MC服务器工作文件夹&amp;#8221;mc&amp;#8221;。并将&amp;#8221;CatServer.jar&amp;#8221;移动到&amp;#8221;mc&amp;#8221;，然后切换到mc目录中。</p>
+<p>觉得太难打？试试按&lt;Tab&gt;补全!</p>
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">mkdir mc
+mv CatServer.jar mc
+cd mc
+</code></pre>
+</div>
+
+
+
+<p>启动服务端</p>
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">java -jar CatServer.jar
+</code></pre>
+</div>
+
+
+
+<p>想要自定义内存？使用下面的命令。Xms是最小内存，Xmx是最大内存。</p>
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">java -Xms1024MB -Xmx2048MB -jar CatServer.jar
+</code></pre>
+</div>
+
+
+
+<p>等待服务端启动</p>
+<figure class="wp-block-image"><img width="661" height="419" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/10/image-1.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1178"/></figure>
+
+
+
+<figure class="wp-block-image"><img width="658" height="418" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/10/image-2.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1179"/></figure>
+
+
+
+<p>此时，你可以打开MC，输入ip:端口就可以和小伙伴畅玩了！</p>
+<p>但是，有个问题。</p>
+<p>关闭ssh后服务器停止运行了咋办？此时我们需要&amp;#8221;screen&amp;#8221;</p>
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">sudo apt install screen -y
+screen java -jar CatServer.jar
+</code></pre>
+</div>
+
+
+
+<p>如果要退出Screen，可以按Ctrl+A+D就行。</p>
+<p>这时关闭终端，服务器是不是还在运行呢？如果需要回到screen，键入screen -r (在一个screen会话下）</p>
+<p>如果你需要管理文件，你可以使用sftp。这里给大家推荐个SFTP软件：<a target="_blank" rel="noopener" href="https://winscp.net/eng/download.php">WinSCP</a></p>
+<p>在软件中输入和你的ssh一样的信息即可，如果你会玩ssh的话，你可以用ssh管理文件。</p>
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/10/05/%e5%9c%a8linux%e4%b8%8b%e5%bc%80%e4%b8%80%e4%b8%aajava%e6%9c%8d%e5%8a%a1%e5%99%a8">https://ivampiresp.com/2019/10/05/%e5%9c%a8linux%e4%b8%8b%e5%bc%80%e4%b8%80%e4%b8%aajava%e6%9c%8d%e5%8a%a1%e5%99%a8</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/10/05/ivampiresp.com-%E5%9C%A8Linux%E4%B8%8B%E5%BC%80%E4%B8%80%E4%B8%AAJava%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E4%BD%BF%E7%94%A8CatServer%20Pro%EF%BC%89/" data-id="cl01oc4xj0037ceoy7o429h3j" data-title="在Linux下开一个Java服务器（使用CatServer Pro） 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/20/ivampiresp.com-%E3%80%8A%E5%9F%83%E7%BD%97%E8%8A%92%E9%98%BF%E8%80%81%E5%B8%88%E3%80%8B-%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87API%E6%8E%A5%E5%8F%A3%E4%B8%8A%E7%BA%BF!/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          《埃罗芒阿老师》-随机图片API接口上线! 由 ivampiresp.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/06/ivampiresp.com-%E3%80%8A%E5%8F%AF%E5%A1%91%E6%80%A7%E8%AE%B0%E5%BF%86%E3%80%8B%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87%E6%8E%A5%E5%8F%A3%E4%B8%8A%E7%BA%BF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">《可塑性记忆》随机图片接口上线 由 ivampiresp.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

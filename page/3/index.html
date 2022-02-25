@@ -1,0 +1,2259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="让你的文章不再被时间长河埋没">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MemoryArt">
+<meta property="og:url" content="http://memoryart.nwl.im/page/3/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="让你的文章不再被时间长河埋没">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="MemoryArt">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-imcys.com-B站机器人搭建 LastOrderBot" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/02/19/imcys.com-B%E7%AB%99%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AD%E5%BB%BA%20LastOrderBot/" class="article-date">
+  <time class="dt-published" datetime="2021-02-19T17:49:28.000Z" itemprop="datePublished">2021-02-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/02/19/imcys.com-B%E7%AB%99%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AD%E5%BB%BA%20LastOrderBot/">B站机器人搭建 LastOrderBot 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+
+
+
+<p>本文将教你去搭建一个B站的机器人，具备私信文本和图片的功能，下面本文将教大家完成自己的机器人。</p>
+
+
+
+<p>首先我先来说我们用的开源项目 <strong>LastOrderBot</strong> 这个是我在最近写的一个开源项目，算是一个B站私信机器人框架吧，项目介绍你可以去B站看。</p>
+
+
+
+<div class="wp-container-6218220d32302 wp-block-buttons aligncenter">
+<div class="wp-block-button is-style-fill"><a class="wp-block-button__link has-text-color has-background" href="https://www.bilibili.com/read/cv9892251" style="border-radius:50px;background:linear-gradient(135deg,rgb(135,9,53) 0%,rgb(179,22,22) 100%);color:#fffffa" target="_blank" rel="noreferrer noopener">前往了解</a></div>
+</div>
+
+
+
+<h3>搭建准备</h3>
+
+
+
+<p>首先让我们先下载源码，这次语言是python</p>
+
+
+
+<div class="wp-block-mdx-github mdx-github-cot" data-mdxgithuba="1250422131" data-mdxgithubp="LastOrderBot"><div class="mdx-github-wait-out-c2"><div class="mdx-github-wait-out-c mdui-valign"><div class="mdx-github-wait-out"><div class="mdx-github-wait"><a target="_blank" rel="noopener" href="https://github.com/1250422131/LastOrderBot"><div class="mdui-spinner"></div></a></div></div></div></div></div>
+
+
+
+<p>进入GitHub，下载最新的项目源码，我们进行使用</p>
+
+
+
+<p>在这里求一个Star星星</p>
+
+
+
+<p>下载源码后让我们首先打开 config文件夹下的 config.py</p>
+
+
+
+<pre class="wp-block-code"><code>#在这里配置你的机器人操作类中需要的东西，图方便就不写JSON了，大家这样也好理解
+class Config:
+
+    #机器人发信headers
+    headers = &#123;
+    "referer": "https://message.bilibili.com/",
+    'User-Agent' : 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; InfoPath.3)',
+    'cookie' : "cookie"
+    &#125;
+    #B站账号鉴权 -&gt; cookie 的 bili_jct
+    csrf_token = 'bili_jct'
+
+    #机器人UID
+    robot_uid = 10086
+
+    # TODO 消息刷新心跳 -&gt; 秒数 建议 在 0.5 ~ 3 之内 如果设置为 1 代表每位用户1秒内最多可以发送1条消息，可以同时发送 根据需求加快心跳 太低可能会给B站造成负担，请不要低于0.5
+    heartbeat_interval = 1
+
+</code></pre>
+
+
+
+<p>根据注释填写，如果你不会找csrf_token，也就是bili_jct，请看下图，在网页按F12出现调试台，找到bili_jct的值输入。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="432" src="https://imcys.com/wp-content/uploads/2021/02/image-1024x432.png" alt="" class="wp-image-390" srcset="https://imcys.com/wp-content/uploads/2021/02/image-1024x432.png 1024w, https://imcys.com/wp-content/uploads/2021/02/image-300x127.png 300w, https://imcys.com/wp-content/uploads/2021/02/image-768x324.png 768w, https://imcys.com/wp-content/uploads/2021/02/image-1536x648.png 1536w, https://imcys.com/wp-content/uploads/2021/02/image.png 1916w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<h3>运行机器人</h3>
+
+
+
+<p>下面我介绍两种系统运行方式</p>
+
+
+
+<h4>Windows</h4>
+
+
+
+<p>下载源码后，请确认自己安装了python环境，版本在3.7及以上，我们这里推荐使用VSCODE来进行编写机器人</p>
+
+
+
+<p>我们使用了如下模块</p>
+
+
+
+<p><strong>requests demjson PIL</strong> 请自行使用pip下载补全模块，如果不会，请百度，我有可能漏写，按照确少的模块自行安装。</p>
+
+
+
+<p>我们回到文件根目录 LastOrderBot 在这个目录下，有<strong><strong><strong>_init_</strong>.py</strong></strong>，运行这个文件，你的机器人就大功告成，并且在运行了，下面我会讲机器人词库如何匹配用户命令。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="350" src="https://imcys.com/wp-content/uploads/2021/02/image-1-1024x350.png" alt="" class="wp-image-391" srcset="https://imcys.com/wp-content/uploads/2021/02/image-1-1024x350.png 1024w, https://imcys.com/wp-content/uploads/2021/02/image-1-300x103.png 300w, https://imcys.com/wp-content/uploads/2021/02/image-1-768x263.png 768w, https://imcys.com/wp-content/uploads/2021/02/image-1.png 1520w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<h4>宝塔 ->CentOS->Linux</h4>
+
+
+
+<p>我们来看看，首先确定你是CentOS系统，接下来在宝塔应用商店安装 <em><strong><span class="has-inline-color has-vivid-cyan-blue-color">Python项目管理器</span></strong></em>  ，接着请去安装python3.7及以上的版本。</p>
+
+
+
+<p>如果完成了这些操作，请上传下载的源代码到你的一个文件夹，在这个文件夹下新建一个文件，名为 <strong><em><span class="has-inline-color has-vivid-red-color">requirements.txt</span></em></strong> </p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="570" src="https://imcys.com/wp-content/uploads/2021/02/image-2-1024x570.png" alt="" class="wp-image-392" srcset="https://imcys.com/wp-content/uploads/2021/02/image-2-1024x570.png 1024w, https://imcys.com/wp-content/uploads/2021/02/image-2-300x167.png 300w, https://imcys.com/wp-content/uploads/2021/02/image-2-768x428.png 768w, https://imcys.com/wp-content/uploads/2021/02/image-2.png 1147w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>这个文件里需要填写我们使用的第三方模块，也就是让大家使用pip下载的模块</p>
+
+
+
+<p>我给大家写个我用的</p>
+
+
+
+<pre class="wp-block-code"><code>altgraph==0.17     
+autopep8==1.5.4    
+certifi==020.12.5
+chardet==4.0.0    
+demjson==2.2.4    
+et-xmlfile==1.0.1    
+future==0.18.2
+idna==2.10
+jdcal==1.4.1
+pefile==019.4.18
+Pillow==8.1.0
+pip==21.0.1
+pycodestyle==2.6.0
+pyinstaller==4.1
+pyinstaller-hooks-contrib==2020.11
+pywin32-ctypes==0.2.0
+requests==2.25.1
+selenium==3.141.0
+setuptools==49.2.1
+toml==0.10.2
+urllib3==1.26.2</code></pre>
+
+
+
+<p>这里面有许多可能你用不上，后面可以删掉</p>
+
+
+
+<p>如果完成了这些步骤，回到python项目管理器</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="605" src="https://imcys.com/wp-content/uploads/2021/02/image-3-1024x605.png" alt="" class="wp-image-393" srcset="https://imcys.com/wp-content/uploads/2021/02/image-3-1024x605.png 1024w, https://imcys.com/wp-content/uploads/2021/02/image-3-300x177.png 300w, https://imcys.com/wp-content/uploads/2021/02/image-3-768x454.png 768w, https://imcys.com/wp-content/uploads/2021/02/image-3.png 1203w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>新建项目，按照要求填写，这个目录就是 LastOrderBot ，启动文件为LastOrderBot目录里的<strong><strong>_init_.py</strong></strong></p>
+
+
+
+<p>完成后你的机器人就在运行当中了</p>
+
+
+
+<h3>机器人识别用户消息</h3>
+
+
+
+<p>请找到plugin文件夹里的dic.py，在这里是机器人的词库，匹配用户消息，并且做出回应。</p>
+
+
+
+<pre class="wp-block-code"><code>#-*-coding:utf-8-*-
+import re
+import requests
+from plugin.msgutil import MsgUtil
+from config.config import Config
+from plugin.fileutil import FileUtil
+
+headers = Config.headers
+csrf_token = Config.csrf_token
+robotUid = Config.robot_uid
+msgutil = MsgUtil(headers,csrf_token,robotUid)
+fileutil = FileUtil()
+
+#DIC词库内容
+def sendText(userMsg,robotUid,senderUid):
+
+    if userMsg == "菜单":
+        Msg = '来份萝莉\n你好 聊天内容'
+        print(msgutil.sendMsg(Msg,robotUid,senderUid))
+        msgutil.updateAck(senderUid,csrf_token)
+
+        
+    #字符串匹配
+    if userMsg == "你好":
+        Msg = "你也好"
+        #发送者UID 接受UID
+        print(msgutil.sendMsg(Msg,robotUid,senderUid))
+        msgutil.updateAck(senderUid,csrf_token)
+
+    if userMsg == "你是不是萝莉":
+        Msg = '不不不，我想不是'
+        print(msgutil.sendMsg(Msg,robotUid,senderUid))
+        msgutil.updateAck(senderUid,csrf_token)
+
+    if userMsg =="来份萝莉":
+        imageUrl = msgutil.captureIamgeUrl("https://api.dongmanxingkong.com/suijitupian/acg/1080p/index.php")
+        imageFormat = msgutil.getImageFormat(imageUrl)
+        imageWidth = imageFormat&#91;0]
+        imageHeight = imageFormat&#91;1]
+        imageFormat = imageFormat&#91;2]
+        print(msgutil.sendImage(imageUrl,robotUid,senderUid,imageWidth,imageHeight,imageFormat))
+        msgutil.updateAck(senderUid,csrf_token)
+
+    
+
+    #正则表达式区域
+    re1 = re.search('^你好 ?(.*?)$', userMsg)
+    if re1:
+        MsgRe = re.compile('^你好 ?(.*?)$')
+        MsgReArray = MsgRe.findall(userMsg)
+        print(MsgReArray&#91;0])
+        getMsg = requests.get("http://i.itpk.cn/api.php?question="+str(MsgReArray&#91;0])+"&amp;api_key=45c0866382610cbee9bbbffaef5aa943&amp;api_secret=ffnzr6hrzzaj&amp;limit=8")
+        getMsg.encoding = 'utf-8'
+        getMsg = getMsg.text
+        print(msgutil.sendMsg(getMsg,robotUid,senderUid))
+        msgutil.updateAck(senderUid,csrf_token)
+        pass
+
+
+    re2 = re.search('^写入 .*? .*? .*?$', userMsg)
+    if re2:
+        MsgRe = re.compile('^写入 (.*?) (.*?) (.*?)$')
+        MsgReArray = MsgRe.match(userMsg)
+        fileutil.write(MsgReArray.group(1),MsgReArray.group(2),MsgReArray.group(3))
+        print(msgutil.sendMsg("写入成功",robotUid,senderUid))
+        msgutil.updateAck(senderUid,csrf_token)
+
+
+    re3 = re.search('^读出 .*? .*?$', userMsg)
+    if re3:
+        MsgRe = re.compile('^读出 (.*?) (.*?)$')
+        MsgReArray = MsgRe.match(userMsg)
+        Msg = fileutil.read(MsgReArray.group(1),MsgReArray.group(2))
+        print(msgutil.sendMsg(Msg,robotUid,senderUid))
+        msgutil.updateAck(senderUid,csrf_token)
+    pass
+
+</code></pre>
+
+
+
+<p>这里我写了一些简单的处理，你可以参照扩充。</p>
+
+
+
+<h3>文末</h3>
+
+
+
+<p>这里就教到这个地方了，请大家自己摸索，我的python瞎玩的，没有系统学，写的烂，当你规范后请毫不犹豫的提交分支到GitHub，我将学习大家的经验。</p>
+
+
+
+<p>使用请参照  GitHub项目里的开源协议 严禁滥用 使用者自行承担后果。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2021/02/19/b%e7%ab%99%e6%9c%ba%e5%99%a8%e4%ba%ba%e6%90%ad%e5%bb%ba-lastorderbot.html">https://imcys.com/2021/02/19/b%e7%ab%99%e6%9c%ba%e5%99%a8%e4%ba%ba%e6%90%ad%e5%bb%ba-lastorderbot.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/02/19/imcys.com-B%E7%AB%99%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AD%E5%BB%BA%20LastOrderBot/" data-id="cl01oc4vq0006ceoy3v3g3d9m" data-title="B站机器人搭建 LastOrderBot 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-抓取WordPress文章转为Hexo并自动发布" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/31/ivampiresp.com-%E6%8A%93%E5%8F%96WordPress%E6%96%87%E7%AB%A0%E8%BD%AC%E4%B8%BAHexo%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/" class="article-date">
+  <time class="dt-published" datetime="2021-01-31T15:34:29.000Z" itemprop="datePublished">2021-01-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/31/ivampiresp.com-%E6%8A%93%E5%8F%96WordPress%E6%96%87%E7%AB%A0%E8%BD%AC%E4%B8%BAHexo%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/">抓取WordPress文章转为Hexo并自动发布 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>起因</h2>
+
+
+<p>由于最近填坑时没有什么好点子，也算是填累了。然后看了看我的树莓派，打算整点活。</p>
+
+
+<p>很快啊，我就想起了Hexo。于是立马新建文件夹，开始了这个简单的项目</p>
+
+
+<h2>流程</h2>
+
+
+<h3>分析WordPress的REST API</h3>
+
+
+<p>具体看这：<a href="https://developer.wordpress.org/rest-api/" target="_blank" rel="noreferrer noopener"><a target="_blank" rel="noopener" href="https://developer.wordpress.org/rest-api/"><a target="_blank" rel="noopener" href="https://developer.wordpress.org/rest-api/">https://developer.wordpress.org/rest-api/</a></a></a></p>
+
+
+<p>我们这里只要用到这种API就行：</p>
+
+
+<pre id="block-44cbc40d-0f1f-4b5d-8f34-9f6b17f45594" class="wp-block-preformatted">xxx.com/wp-json/wp/v2/posts?per_page=10&amp;page=1</pre>
+
+
+<p>意为：获取第一页，每页10篇。</p>
+
+
+<p>接着分析一下JSON</p>
+
+
+<figure class="wp-block-image size-large"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2021/01/image.png"><img width="1894" height="919" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/01/image.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-2125" srcset="https://ivampiresp.com/wp-content/uploads/2021/01/image.png 1894w, https://ivampiresp.com/wp-content/uploads/2021/01/image-1536x745.png 1536w" sizes="(max-width: 1894px) 100vw, 1894px" /></a></figure>
+
+
+<figure class="wp-block-table"><table><tbody><tr><td>id</td><td>文章ID</td></tr><tr><td>date</td><td>发布时间</td></tr><tr><td>slug</td><td>固定链接名称（？）</td></tr><tr><td>link</td><td>原文链接</td></tr><tr><td>title.rendered</td><td>文章标题</td></tr><tr><td>content.rendered</td><td>文章内容</td></tr><tr><td>excerpt.rendered</td><td>文章概要</td></tr></tbody></table></figure>
+
+
+<p>大概我们就用到这么多，接下来我们来分析一下<strong><em>hexo new &quot;Post&quot;</em></strong>时生成的文件</p>
+
+
+<pre class="wp-block-preformatted">---
+title:&nbsp;Post # 文章标题
+date:&nbsp;2021-01-30&nbsp;23:09:20 # 发布时间
+tags: # 标签
+---
+# 正文
+</pre>
+
+
+<p>由于标签名称的获取方法比较复杂，可能会调用到很多的API。所以这里就不做这个功能了，可能会被防火墙gank。</p>
+
+
+<h2>代码: PHP</h2>
+
+
+<h3>获取文章并写入到文件</h3>
+
+
+<p>这里我就简单粗暴的解决一下获取并解析JSON</p>
+
+
+<pre class="wp-block-code"><code>// 获取并解析JSON
+$json = json_decode(file_get_contents('https://ivampiresp.com/wp-json/wp/v2/posts?per_page=10&amp;page=1'), true);</code></pre>
+
+
+<p>然后使用foreach遍历数组，在将内容输入到文件即可</p>
+
+
+<pre class="wp-block-code"><code>
+foreach ($json as $array) &#123;
+    $title = $array&#91;'title']&#91;'rendered'];
+    $date = str_replace("T", " ", $array&#91;'date']);
+    $content = $array&#91;'content']&#91;'rendered'];
+    $write_content = &lt;&lt;&lt;EOF
+---
+title: $title
+date: $date
+tags: Fetch
+---
+$content
+EOF;
+    file_put_contents("_posts/$title.md", $write_content);
+&#125;
+</code></pre>
+
+
+<p>这是最终的代码</p>
+
+
+<pre class="wp-block-code"><code>&lt;?php
+/**
+ * 抓取WordPress文章转为hexo
+ * Author iVampireSP.com
+ * Blog iVampireSP.com
+ */
+
+// 获取并解析JSON
+$json = json_decode(file_get_contents('json.json'), true);
+foreach ($json as $array) &#123;
+    $title = $array&#91;'title']&#91;'rendered'];
+    $date = str_replace("T", " ", $array&#91;'date']);
+    $content = $array&#91;'content']&#91;'rendered'];
+    $write_content = &lt;&lt;&lt;EOF
+---
+title: $title
+date: $date
+tags: Fetch
+---
+$content
+EOF;
+    file_put_contents("_posts/$title.md", $write_content);
+&#125;
+</code></pre>
+
+
+<p>如果你仔细看我的代码的话，你会发现获取json从文件中获取了。因为这样在开发时可以更快点。</p>
+
+
+<h3>自动部署</h3>
+
+
+<p>将该文件置于hexo同级目录或上级目录下（路径不同，代码也不同）。这里我置于了上级目录，Hexo 的文件夹名称为“Hexo”</p>
+
+
+<p>其实自动部署非常简单，因为也就是一句命令的事，加个exec函数就行。</p>
+
+
+<pre class="wp-block-code"><code>// 部署
+exec("cd Hexo &amp;&amp; hexo g");</code></pre>
+
+
+<h2>完成</h2>
+
+
+<p>至此几乎已经完成了，接下来只要做亿些优化即可</p>
+
+
+<pre class="wp-block-code"><code>&lt;?php
+
+/**
+ * 抓取WordPress文章转为hexo
+ * Author iVampireSP.com
+ * Blog iVampireSP.com
+ */
+
+# Hexo 目录
+$hexo_path = "Hexo";
+
+/* 站点列表 */
+$site_list = json_decode(file_get_contents('sites.json'), true);
+
+echo '本次要抓取' . count($site_list) . "个站点。\n";
+foreach ($site_list as $site_list) &#123;
+    echo "正在抓取: $site_list ...\n";
+    $json = json_decode(file_get_contents("https://$site_list/wp-json/wp/v2/posts?per_page=20&amp;page=1"), true);
+    foreach ($json as $array) &#123;
+        $title = str_replace("|", "-", $array&#91;'title']&#91;'rendered']);
+        $date = str_replace("T", " ", $array&#91;'date']);
+        $content = $array&#91;'content']&#91;'rendered'];
+        $link = $array&#91;'link'];
+        $filename = md5($site_list) . '-' . md5($title) . '.md';
+        $write_content = &lt;&lt;&lt;EOF
+---
+title: $title 由 $site_list
+date: $date
+tags: $site_list
+---
+$content
+
+**该文章来自&#91;$link]($link)**
+
+**原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。**
+EOF;
+        echo &lt;&lt;&lt;EOF
+-------------------------------------
+             操作文件
+    $site_list  -&gt; $title
+                ↓
+$filename \n
+EOF;
+        file_put_contents("$hexo_path/source/_posts/$filename", $write_content);
+    &#125;
+&#125;
+
+/* 全部完成后开始部署 */
+echo "#####################################\n抓取写入完成，正在生成Hexo静态文件中... \n";
+exec("cd $hexo_path &amp;&amp; hexo g");
+echo "全部完成！\n";
+</code></pre>
+
+
+<figure class="wp-block-image size-large"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2021/01/image-1.png"><img width="698" height="785" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/01/image-1.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-2132"/></a></figure>
+
+
+<figure class="wp-block-image size-large"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2021/01/image-2.png"><img width="1261" height="926" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/01/image-2.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-2133"/></a></figure>
+
+
+<p>这些站点都是我熟人的站点，并且也和他们说过了。大家千万不能随意爬取别人站点的文章。</p>
+
+
+<p>Github: <a href="https://github.com/iVampireSP/Fetch_WordPress_To_Hexo" target="_blank" rel="noreferrer noopener"><a target="_blank" rel="noopener" href="https://github.com/iVampireSP/Fetch_WordPress_To_Hexo"><a target="_blank" rel="noopener" href="https://github.com/iVampireSP/Fetch_WordPress_To_Hexo">https://github.com/iVampireSP/Fetch_WordPress_To_Hexo</a></a></a></p>
+
+
+<p>这是我的新项目：<a href="http://memoryart.nwl.im"><a href="http://memoryart.nwl.im">http://memoryart.nwl.im</a></a></p>
+
+
+<p>尽快代码还有一些不完善的地方，这里就需要大家自由发挥啦</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2021/01/31/grab-wordpress-articles-turn-them-into-hexo-and-publish">https://ivampiresp.com/2021/01/31/grab-wordpress-articles-turn-them-into-hexo-and-publish</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/01/31/ivampiresp.com-%E6%8A%93%E5%8F%96WordPress%E6%96%87%E7%AB%A0%E8%BD%AC%E4%B8%BAHexo%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/" data-id="cl01oc4xp003jceoy9q9thx1d" data-title="抓取WordPress文章转为Hexo并自动发布 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-sakurapuare.com-【一】使用OpenCV、Pillow库分类图片【Python】" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/31/sakurapuare.com-%E3%80%90%E4%B8%80%E3%80%91%E4%BD%BF%E7%94%A8OpenCV%E3%80%81Pillow%E5%BA%93%E5%88%86%E7%B1%BB%E5%9B%BE%E7%89%87%E3%80%90Python%E3%80%91/" class="article-date">
+  <time class="dt-published" datetime="2021-01-31T00:00:57.000Z" itemprop="datePublished">2021-01-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/31/sakurapuare.com-%E3%80%90%E4%B8%80%E3%80%91%E4%BD%BF%E7%94%A8OpenCV%E3%80%81Pillow%E5%BA%93%E5%88%86%E7%B1%BB%E5%9B%BE%E7%89%87%E3%80%90Python%E3%80%91/">【一】使用OpenCV、Pillow库分类图片【Python】 由 sakurapuare.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <div id="toc_container" class="toc_transparent no_bullets"><p class="toc_title">目录</p><ul class="toc_list"><li><a href="#api"><span class="toc_number toc_depth_1">1</span> 「论一个随机图片api的养成计划」</a><ul><li><a href="#i"><span class="toc_number toc_depth_2">1.1</span> 序言</a></li></ul></li><li><a href="#i-2"><span class="toc_number toc_depth_1">2</span> 分类</a><ul><li><a href="#i-3"><span class="toc_number toc_depth_2">2.1</span> 思路</a></li><li><a href="#i-4"><span class="toc_number toc_depth_2">2.2</span> 算法</a></li><li><a href="#i-5"><span class="toc_number toc_depth_2">2.3</span> 代码</a></li></ul></li><li><a href="#i-6"><span class="toc_number toc_depth_1">3</span> 测试</a></li><li><a href="#i-7"><span class="toc_number toc_depth_1">4</span> 总结</a></li><li><a href="#i-8"><span class="toc_number toc_depth_1">5</span> 参考资料</a></li></ul></div>
+<h2><span id="api">「论一个随机图片api的养成计划」</span></h2>
+<blockquote><p>
+  前段时间，书樱用Python稍微抓取了 Pixiv 的图片，总共大概有三万张左右。因为爬取时的爬虫只负责下载了，出现了很多重复的图片以及图片缩略图。最近想搞个图片api，正好可以用上这些二次元图片，所以这个系列暂且叫做「论一个随机图片api的养成计划，于是便有了这篇文章。
+</p></blockquote>
+<div class="mdui-panel mdui-panel-gapless" mdui-panel>
+    <div class="mdui-panel-item mdui-panel-item-open">
+      <div class="mdui-panel-item-header">
+        <div class="mdui-panel-item-title">提示</div>
+        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-panel-item-body">
+        <p>您正在阅读的是一个系列文章，此系列书樱将会持续更新，敬请关注。</p>
+      </div>
+    </div>
+  </div>
+<p>如果您觉得我写的东西对您有所帮助的话，不妨请我喝杯咖啡。=> <a class="wp-editor-md-post-content-link" href="/support" title="赞助">赞助</a></p>
+<h3><span id="i">序言</span></h3>
+<p>这是这个系列文章的第一篇，因为下一篇涉及的内容会非常多，信息量太大（完全不是因为想水文章），今天把相对简单的内容单独列成一篇，作为开胃小菜。</p>
+<p>话不宜迟，进入正题。</p>
+<blockquote class="mdx-warning"><p><i class="mdui-icon material-icons">&#xe002;</i> 温馨提示<br><strong>由于个人水平及能力有限，通常书樱只会分享思路和讲述原理，如因此造成的眩晕、头痛、恶心等不适症状概不负责，如果您有更好的建议或者想法，欢迎联系我。</strong></p></blockquote>
+<h2><span id="i-2">分类</span></h2>
+<h3><span id="i-3">思路</span></h3>
+<p>图片分类，顾名思义，就是根据各自在图像信息中所反映的不同特征，把不同类别的目标区分开来的图像处理方法。它利用计算机对图像进行定量分析，把图像或图像中的每个像元或区域划归为若干个类别中的某一种，以代替人的视觉判读。<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/5199331" title="图像分类_百度百科">[1]</a> 所以，自然而然，能供我们分类的信息也有很多。</p>
+<p><del>有机会用DL写一个识别天依的程序</del></p>
+<p>当然，和广泛定义中的图片分类不一样，这将近三万张图片的分类呢，书樱只想按照长宽比来分类，原因很简单。首先，因为都是来自 Pixiv 的图片，所以不需要对图片内容进行分类。其次，不同设备屏幕长宽比不同，所需要显示图片的长宽比也不同，书樱希望在 api 中设置一个参数，来规范图片返回的长宽比，以适应不同的设备。因此，按尺寸分类图片也就顺理成章了。</p>
+<h3><span id="i-4">算法</span></h3>
+<p>很好，现在想法有了，让我们来构思下这个小程序。</p>
+<ul>
+<li>首先，我们需要从一个文件夹里读取出图片。</li>
+<li>接着，读取出图片的长宽信息并计算出长宽比。</li>
+<li>然后，再按照长宽比对图片进行分类。</li>
+<li>最后，把分类好的图片转移到新文件夹，按照长宽比分类。</li>
+</ul>
+<h3><span id="i-5">代码</span></h3>
+<p>下面是根据我们想法写代码。</p>
+<p>分类图片中，书樱使用到了<code>os</code>、<code>shutil</code>和<code>Opencv/Pillow</code>这两（三）个模块。</p>
+<p><code>os</code>（多种操作系统接口）这个模块不用多说，<code>os</code>提供了非常丰富的方法用来处理文件和目录，功能可以说是非常强大。<a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/os.html" title="os --- 多种操作系统接口 — Python 3.10.2 文档">[2]</a></p>
+<p><code>shutil</code>（高阶文件操作）模块提供了一系列对文件和文件集合的高阶操作。特别是提供了一些支持文件拷贝和删除的函数。<a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/shutil.html" title="shutil --- 高阶文件操作 — Python 3.10.2 文档">[3]</a></p>
+<p>关于<code>Opencv</code>和<code>Pillow (PIL)</code>，这里我选择的是<code>Opencv</code>，因为<code>Opencv</code>在各方面速度都比<code>PIL</code>要快上不少，对于庞大数量的图片，这可以给我们省下很多时间，不过对于单线程读取来说，瓶颈在这，当然我也留下<code>PIL</code>的代码。<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30383580" title="0.伏笔：图像读取方式以及效率对比 - 知乎">[4]</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/91078855" title="Python Pillow 和 cv2 图片 resize 速度的比较 - 知乎">[5]</a></p>
+<p><code>Opencv</code>和<code>PIL</code>本身就是非常强大的媒体处理库，这方面的内容可谓是相当丰富，特别是在深度学习方面。书樱在这里也只是使用了一些非常简单的功能，只是“冰山半角”，如果有兴趣的朋友可以Google搜索相关文档阅读。</p>
+<p>下面是导入 Python 模块，<code>import cv2</code>是导入<code>Opencv</code>模块。如果是使用<code>PIL</code>，因为我们使用的函数在<code>Image</code>中，则需要<code>from PIL import Image</code>从<code>PIL</code>库中导入我们需要的<code>Image</code>模块（可选）。</p>
+<pre><code class="language-python line-numbers"># 导入模块
+import os
+import cv2
+import shutil
+# from PIL import Image
+</code></pre>
+<p>请根据你使用的图片处理库导入相应的模块。</p>
+<p>导入了我们所需要的模块之后，是时候来处理图片了。</p>
+<p>首先，我们需要让Python从文件夹中读取图片。</p>
+<pre><code class="language-python line-numbers"># 修改这里的路径
+path = 'path\to\pic'
+# 对于 path 里的每一个 file 文件
+for file in os.listdir(path):
+    print(file)
+    os.chdir(path) # 此处的os.chdir()是必要的
+</code></pre>
+<p>我们使用<code>os.listdir()</code>这个函数，传递一个路径<code>path</code>，程序将会依次输出当前目录下的所有文件（夹）。</p>
+<div class="mdui-panel mdui-panel-gapless" mdui-panel>
+    <div class="mdui-panel-item">
+      <div class="mdui-panel-item-header">
+        <div class="mdui-panel-item-title">提示</div>
+        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-panel-item-body">
+        <p>对于os.listdir()本身是无法区分文件和文件夹的，必须使用os.path.isdir()判断是否为文件夹或使用os.path.isfile()判断是否是文件。为了代码的简便，建议您将待分类的图片单独放在一个文件夹中。</p>
+      </div>
+    </div>
+  </div>
+<p>首先，定义一个<code>path</code>，用来存储我们待分类的图片的路径。</p>
+<pre><code class="language-python line-numbers"># 修改这里的路径，此路径为绝对路径
+path = 'path\to\pic'
+</code></pre>
+<p>利用<code>for</code>可以依次将读取出文件名存入<code>file</code>中</p>
+<pre><code class="language-python line-numbers"># 对于 path 里的每一个 file 文件
+for file in os.listdir(path):
+    print(file)
+    os.chdir(path) # 此处的os.chdir()是必要的
+</code></pre>
+<p>我们先打印出文件名，以便让我们知道系统当前处理的文件。</p>
+<p>我们使用了<code>os.chdir()</code>改变当前Python的工作目录，此处的<code>os.chdir()</code>是必要的，原因我会在后文讲到。</p>
+<p><strong>注意</strong>：<code>os.chdir()</code>中的路径必须存在，否则会丢出<code>FileNotFoundError</code>错误。</p>
+<p>有了文件名，现在可以让Opencv读取图片了。</p>
+<pre><code class="language-python line-numbers"># 修改这里的路径
+path = 'path\to\pic'
+# 对于 path 里的每一个 file 文件
+for file in os.listdir(path):
+    print(file)
+    os.chdir(path) # 此处的os.chdir()是必要的
+    im = cv2.imread(file)   # Opencv代码
+    h, w = im.shape[0:2]
+    # im = Image.open(file) # Pillow代码
+    # h, w = im.size[0:2]
+</code></pre>
+<p>使用<code>cv2.imread(file)</code>让Opencv读取图片为对象并保存到<code>im</code>中。</p>
+<p><code>im.shape[0:2]</code>读取出该文件的图片信息，并返回一个元组。我们将返回的数据存入h,w变量中。</p>
+<div class="mdui-panel mdui-panel-gapless" mdui-panel>
+    <div class="mdui-panel-item">
+      <div class="mdui-panel-item-header">
+        <div class="mdui-panel-item-title">cv2.shape</div>
+        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-panel-item-body">
+        <p>cv.shape操作返回的是一个元组，(h, w, c)，三个参数分别是图片的高度、图片的宽度、颜色通道数，所以在这里我们只需要前两个参数即可</p>
+      </div>
+    </div>
+  </div>
+<p>对于<code>PIL</code>，只需要把<code>cv2.imread()</code>改成<code>Image.open()</code>，<code>im.shape</code>改成<code>im.size</code>。原理不变。</p>
+<p>接着是计算长宽比。所谓长宽比，即一个影像的宽度除以高度的比例。<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%95%B7%E5%AF%AC%E6%AF%94_(%E5%BD%B1%E5%83%8F)" title="长宽比 (影像) - 维基百科，自由的百科全书">[6]</a></p>
+<p>所以，很自然的，长宽比就是<code>w/h</code>。不过大部分长宽比都是无限小数，所以书樱用了<code>round()</code>函数四舍五入，此函数基本用法为：<code>round (数字,保留位数)</code>。</p>
+<p>当然<code>round()</code>保留之后输出的是浮点数，所以还需要用<code>str()</code>转化成字符串。</p>
+<pre><code class="language-python line-numbers"># 修改这里的路径
+path = 'path\to\pic'
+# 对于 path 里的每一个 file 文件
+for file in os.listdir(path):
+    print(file)
+    os.chdir(path) # 此处的os.chdir()是必要的
+    im = cv2.imread(file)   # Opencv代码
+    h, w = im.shape[0:2]
+    # im = Image.open(file) # Pillow代码
+    # h, w = im.size[0:2]
+    size = str(round(w/h, 1)) # 计算长宽比并保留一位小数
+</code></pre>
+<p>对于分类好的图片，我们需要让 Python 自动创建文件夹并把图片复制进来。</p>
+<p>所以我们定义一个函数<code>mkdir()</code>，传递一个参数<code>name</code>作为文件夹名，让Python自动创建文件夹。</p>
+<p>这里书樱直接使用图片长宽比<code>size</code>做为文件夹名。</p>
+<p><code>os.path.exists()</code>用于判断路径是否存在并返回布尔值。</p>
+<pre><code class="language-python line-numbers">def mkdir(name):
+    # 修改这里的路径，为保存分类后图片的路径
+    os.chdir('path\to\save\pic')
+    if os.path.exists(name):
+        os.chdir(name)
+    else:
+        os.mkdir(name)
+        os.chdir(name)
+</code></pre>
+<p>我们先用<code>os.chdir()</code>切换到我们保存图片的路径，请修改此路径为你自己的路径。</p>
+<p>如果传入的<code>name</code>目录存在，我们则直接切换到该路径下；如果传入的<code>name</code>路径不存在，Python将会使用<code>os.mkdir()</code>创建名为<code>name</code>的文件夹，并用<code>os.chdir()</code>切换到该路径下。</p>
+<div class="mdui-panel mdui-panel-gapless" mdui-panel>
+    <div class="mdui-panel-item mdui-panel-item-open">
+      <div class="mdui-panel-item-header">
+        <div class="mdui-panel-item-title">还记得吗？</div>
+        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-panel-item-body">
+        <p>上文提到「os.chdir()是必要的」的原因是：我们在mkdir()函数中切换了文件路径到我们保存分类后图片的文件夹路径，若在程序一开始不切换路径，那么在下一次循环的开始就会出现因为路径不对而读取不到图片导致的错误。不过为了规避这个问题，您也可以使用绝对路径。</p>
+      </div>
+    </div>
+  </div>
+<p>函数创建好了，我们直接调用并创建一个名字为size的文件夹，不过注意此函数要在程序入口之前定义。</p>
+<pre><code class="language-python line-numbers"># 修改这里的路径
+path = 'path\to\pic'
+# 对于 path 里的每一个 file 文件
+for file in os.listdir(path):
+    print(file)
+    os.chdir(path) # 此处的os.chdir()是必要的
+    im = cv2.imread(file)   # Opencv代码
+    h, w = im.shape[0:2]
+    # im = Image.open(file) # Pillow代码
+    # h, w = im.size[0:2]
+    size = str(round(w/h, 1)) # 计算并保留一位小数
+    mkdir(size)
+</code></pre>
+<p>最后则将图片按长宽比分类，这里使用的是<code>shutil.copy()</code>复制图片，此函数的用法是<code>shutil.copy(路径前, 路径后)</code>，把<code>copy</code>方法替换成<code>move</code>则是移动此图片。</p>
+<pre><code class="language-python line-numbers">import shutil
+import os
+import cv2
+
+
+<h1 id="修改这里的路径"><a href="#修改这里的路径" class="headerlink" title="修改这里的路径"></a>修改这里的路径</h1><p>path &#x3D; ‘path\to\pic’</p>
+<h1 id="对于-path-里的每一个-file-文件"><a href="#对于-path-里的每一个-file-文件" class="headerlink" title="对于 path 里的每一个 file 文件"></a>对于 path 里的每一个 file 文件</h1><p>for file in os.listdir(path):<br>    print(file)<br>    os.chdir(path) # 此处的os.chdir()是必要的<br>    im &#x3D; cv2.imread(file)   # Opencv代码<br>    h, w &#x3D; im.shape[0:2]<br>    # im &#x3D; Image.open(file) # Pillow代码<br>    # h, w &#x3D; im.size[0:2]<br>    size &#x3D; str(round(w&#x2F;h, 1)) # 计算并保留一位小数<br>    mkdir(size)<br>    shutil.copy(path + ‘\‘ + file, file)<br>    # 当操作为移动是此处为shutil.move<br></code></pre></p>
+<p>大功告成！程序会在目标文件夹下生成一系列文件夹。</p>
+<p>下面是完整的代码</p>
+<pre><code class="language-python line-numbers"># 导入模块
+# from PIL import Image
+
+
+<p>def mkdir(name):<br>    # 修改这里的路径，为保存分类后图片的路径<br>    os.chdir(‘path\to\save\pic’)<br>    if os.path.exists(name):<br>        os.chdir(name)<br>    else:<br>        os.mkdir(name)<br>        os.chdir(name)</p>
+<p>path &#x3D; ‘path\to\pic’</p>
+<h1 id="对于-path-里的每一个-file-文件-1"><a href="#对于-path-里的每一个-file-文件-1" class="headerlink" title="对于 path 里的每一个 file 文件"></a>对于 path 里的每一个 file 文件</h1><p>for file in os.listdir(path):<br>    print(file)<br>    os.chdir(path)  # 此处的os.chdir()是必要的<br>    im &#x3D; cv2.imread(file)   # Opencv代码<br>    h, w &#x3D; im.shape[0:2]<br>    # im &#x3D; Image.open(file) # Pillow代码<br>    # h, w &#x3D; im.size[0:2]<br>    size &#x3D; str(round(w&#x2F;h, 1))  # 计算并保留一位小数<br>    mkdir(size)<br>    shutil.copy(path + ‘\‘ + file, file)<br>    # 当操作为移动是此处为shutil.move<br></code></pre></p>
+<h2><span id="i-6">测试</span></h2>
+<p>关于<code>PIL</code>和<code>Opencv</code>对于图片的处理速度，书樱做了个简单的测试，此为测试图片，来自Pixiv，画师id：<a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://www.pixiv.net/users/418969">418969</a>，作品：<a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://www.pixiv.net/artworks/82910218">#VOCALOIDCHINA Espejo</a><a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://www.pixiv.net/artworks/82910218"><img src="https://ae01.alicdn.com/kf/Hc784f57058ed4c4f8187461c3d5a999aE.png" alt="" /></a></p>
+<p>图片放置在内存盘中，所以应该不存在所谓的读取瓶颈，测试十次，每次读取图片100次，求得平均值。</p>
+<p>下面是<code>Opencv</code>的测试代码</p>
+<pre><code class="language-python line-numbers">import time
+import cv2
+import numpy
+
+<p>times &#x3D; 100<br>data &#x3D; []<br>for i in range(0, 10):<br>    start &#x3D; time.time()<br>    for j in range(0, times):<br>        cv2.imread(‘Z:\0.png’)<br>    t &#x3D; times &#x2F; (time.time() - start)<br>    data.append(t)<br>    print(f”第&#123;i+1&#125;次测试,时间:&#123;t&#125;”)<br>print(numpy.average(data))<br></code></pre></p>
+<p>输出如下：</p>
+<pre><code class="line-numbers">第1次测试,时间:11.179286012576398
+第2次测试,时间:11.03766301872993
+第3次测试,时间:10.768910462691446
+第4次测试,时间:11.260747744295276
+第5次测试,时间:11.387417728544236
+第6次测试,时间:11.409427301319251
+第7次测试,时间:11.391379203206606
+第8次测试,时间:11.386520601823856
+第9次测试,时间:11.26953684781443
+第10次测试,时间:11.196677950982393
+11.228756687198382
+</code></pre>
+<p>所以对于<code>Opencv</code>来说，每秒读取了11.2张图片，此测试图片像素为2048*1152，所以<code>Opencv</code>，每秒读取了大约26,491,960个像素。</p>
+<p>再来看看<code>Pillow</code>的测试，以下为<code>Pillow</code>的测试代码</p>
+<pre><code class="language-python line-numbers">import time
+from PIL import Image
+import numpy
+
+<p>times &#x3D; 100<br>data &#x3D; []<br>for i in range(0, 10):<br>    start &#x3D; time.time()<br>    for j in range(0, times):<br>        Image.open(‘Z:\0.png’)<br>    t &#x3D; times &#x2F; (time.time() - start)<br>    data.append(t)<br>    print(f”第&#123;i+1&#125;次测试,时间:&#123;t&#125;”)<br>print(numpy.average(data))<br></code></pre></p>
+<p>输出如下：</p>
+<pre><code class="line-numbers">第1次测试,时间:968.2477463439408
+第2次测试,时间:1785.6384450660094
+第3次测试,时间:1886.9801508035055
+第4次测试,时间:1724.1211483442403
+第5次测试,时间:1886.7255044848093
+第6次测试,时间:1850.8501202479977
+第7次测试,时间:1814.4200030281402
+第8次测试,时间:1818.2426662158236
+第9次测试,时间:1886.8358427840733
+第10次测试,时间:1886.8867725058146
+1750.8948399824355
+</code></pre>
+<p>所以对于<code>Pillow</code>来说，每秒读取了1750张图片，所以<code>Pillow</code>，每秒读取了大约4,130,879,192个像素。</p>
+<p>结果让人有点出乎意料，看来<code>Pillow</code>完胜<code>Opencv</code>啊，不过这个数据有点太离谱了，数据大约差了一千倍。这部分内容待定，欢迎纠正。</p>
+<h2><span id="i-7">总结</span></h2>
+<p>总结一下，简单来说，运行顺序如下：</p>
+<ul>
+<li>程序从文件夹里读取出文件名如<code>114514.png</code>，存入<code>file</code>中，并打印出来。</li>
+<li>切换工作目录至<code>path</code>下，使用<code>cv2.imread()</code>让<code>Opencv</code>读取图片，此时的<code>im</code>是个类。</li>
+<li>使用<code>im.shape[0:2]</code>将<code>Opencv</code>读取出<code>cv2.shape</code>元组赋值到<code>h</code>，<code>w</code>。</li>
+<li>计算出图片长宽比（宽度/高度）<code>size</code>，使用<code>round()</code>保留一位小数，并用<code>str()</code>转化为字符串，此时的<code>size</code>是个字符串。</li>
+<li>调用函数<code>mkdir()</code>创建并切换至<code>size</code>文件夹，将图片复制(移动)到新文件夹。</li>
+<li>循环以上步骤直到所有文件都被处理完成。</li>
+</ul>
+<p>这样一个分类的小程序算是写好了，还算是比较简单的一个Python程序。因为需要进行IO操作，为了能简单一点，所以书樱在这里也没有使用多线程运行，不过以上操作的速度还是很快的，除非是巨量图片，否则多线程的提升应该也不会很大，那时候瓶颈应该是在IO读写上了而不是CPU上了。</p>
+<div class="mdui-panel mdui-panel-gapless" mdui-panel>
+    <div class="mdui-panel-item mdui-panel-item-open">
+      <div class="mdui-panel-item-header">
+        <div class="mdui-panel-item-title">提示</div>
+        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-panel-item-body">
+        <p>代码运行过程中，可能会出现libpng warning: iCCP: known incorrect sRGB profile提示。此提示对于程序没有任何影响，可以忽略。</p>
+      </div>
+    </div>
+  </div>
+<h2><span id="i-8">参考资料</span></h2>
+<ol>
+<li><a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/5199331" title="图像分类_百度百科">图像分类_百度百科</a></li>
+<li><a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/os.html">os &#8212; 多种操作系统接口 — Python 3.10.2 文档</a></li>
+<li><a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/shutil.html">shutil &#8212; 高阶文件操作 — Python 3.10.2 文档</a></li>
+<li><a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30383580">0.伏笔：图像读取方式以及效率对比 &#8211; 知乎</a></li>
+<li><a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/91078855">Python Pillow 和 cv2 图片 resize 速度的比较 &#8211; 知乎</a></li>
+<li><a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%95%B7%E5%AF%AC%E6%AF%94_(%E5%BD%B1%E5%83%8F)">长宽比 (影像) &#8211; 维基百科，自由的百科全书</a></li>
+</ol>
+<p>To be continue -></p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://sakurapuare.com/archives/2021/01/resort-pic-with-opencv-and-pillow/">https://sakurapuare.com/archives/2021/01/resort-pic-with-opencv-and-pillow/</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/01/31/sakurapuare.com-%E3%80%90%E4%B8%80%E3%80%91%E4%BD%BF%E7%94%A8OpenCV%E3%80%81Pillow%E5%BA%93%E5%88%86%E7%B1%BB%E5%9B%BE%E7%89%87%E3%80%90Python%E3%80%91/" data-id="cl01oc4y40048ceoy81s90jq1" data-title="【一】使用OpenCV、Pillow库分类图片【Python】 由 sakurapuare.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-2020 年度总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/01/ivampiresp.com-2020%20%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2021-01-01T01:55:00.000Z" itemprop="datePublished">2021-01-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/01/ivampiresp.com-2020%20%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/">2020 年度总结 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>？？？</h2>
+
+
+<p>（只要我将发布时间改为1月1日，那我就是在1月1日发布的</p>
+
+
+<p>（（是的是的，这就是骗过自己</p>
+
+
+
+
+<h2>2020年上半年</h2>
+
+
+<p>由于疫情的原因嘛。。。</p>
+
+
+<p>我至今还记的我买了一个耳机，中通快递给我卡了一个月才拿到。。结果到现在却想换AirPods了。（（（</p>
+
+
+<p>当时升级服务器时，从晚上买配件，凭单子出村子（不得不说街上几乎没有车），然后到街上安装。</p>
+
+
+<p>我还记得当时在用服务器挖XMR，结果最后钱包丢了，挖个寂寞，还白交了电费。</p>
+
+
+<p>其实吧，就算不丢电费也回不来本。</p>
+
+
+<h2>2020年中半年</h2>
+
+
+<p>中半年可算开学了，虽说上两个月又放假了。</p>
+
+
+<p>上学期间我也忘了发生了什么，所以就不说了吧23333</p>
+
+
+<p>暑假里发生了以下这几个大事：</p>
+
+
+<ol><li>自写了WordPress主题：物语如书(White-iVampireSP)</li><li>ArkManager重写，和Bing_Yanchi一起推出了ArkManager</li><li>在哥们的帮助下，白嫖了GCP，搭建了Mastodon（虽然现在我的实例不在了）</li><li>好像有段时间入坑Sky了！</li></ol>
+
+
+
+
+<div class="wp-block-image"><figure class="alignright size-large"><img width="280" height="280" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/12/suofei-question.jpg?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-2108"/></figure></div>
+
+
+<p>话说，我输入法打yq(一起)时，第一个推荐给我的是“幼妻”</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>2020年下半年</h2>
+
+
+<p>这个期间算是最疯狂的时候。</p>
+
+
+<ol><li>我参加了技能大赛</li><li>当个“感情管理带师”</li><li>我获得了市赛一等奖</li><li>我买了个键盘</li><li>我想要卖掉服务器换个新的1U服务器</li><li>我在Sky里捡到一个萌新，后来变成了固玩。曾经我带着他，现在他带着我。</li><li>咕咕咕咕咕咕咕咕</li></ol>
+
+
+<p>感觉下半年是2020年最精彩的时候</p>
+
+
+
+
+<p>最后期待2021年，是个美好而又有干劲的一年。</p>
+
+
+
+
+<p>新年快乐！</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2021/01/01/2020">https://ivampiresp.com/2021/01/01/2020</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/01/01/ivampiresp.com-2020%20%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" data-id="cl01oc4wt001mceoy4imlhm27" data-title="2020 年度总结 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-【萌新杰少】关于我的年终总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/12/31/imcys.com-%E3%80%90%E8%90%8C%E6%96%B0%E6%9D%B0%E5%B0%91%E3%80%91%E5%85%B3%E4%BA%8E%E6%88%91%E7%9A%84%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2020-12-31T23:45:07.000Z" itemprop="datePublished">2020-12-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/12/31/imcys.com-%E3%80%90%E8%90%8C%E6%96%B0%E6%9D%B0%E5%B0%91%E3%80%91%E5%85%B3%E4%BA%8E%E6%88%91%E7%9A%84%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">【萌新杰少】关于我的年终总结 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+
+
+
+<p>一转眼就又过去了一年呢，本站的创建时间也即将到1年了，这一年里我的收获也不少，在2020年我们也经历了严峻的考验——<em><span class="has-inline-color has-vivid-red-color">新冠疫情</span></em>。</p>
+
+
+
+<p>回望一年，不是我说呀，今年确实过的太快了，不知道是不是因为疫情影响，现在马上要春节了，感觉上次过就在前几天一样，啊这，太恐怖了。</p>
+
+
+
+<h3>一年的收获</h3>
+
+
+
+<p>这个，谈起收获，就不得不说今年一年的经历啦，今年因为疫情，我的高一下学期生活飞快的过去了，我也在这半年收获了许多的朋友，只是现在分班了，很可惜，其实也舍不得出来。但是，我以后想学计算机方面的专业，和能有更多可能考上大学，我不得不选择理科，走出自己最早的班级。</p>
+
+
+
+<p>下半年，我认识了许多新的同学，也结识了许多新朋友，新的班级我也很快的适应了，这也是我开始最担心的事情，现在看来是多虑了。能结识到新的朋友，这也是一件不错的事情，只是现在要上晚自习了，嗯，到了理科班，学习emmm其实我感觉自己学的很菜，但这次排名大概就是在班上中上，最好的一次考过班上第8呢。</p>
+
+
+
+<p>这一年，我也进行了学业水平考试，也就是会考，计算机是A，剩下的理化这些目前还不知道，现在还是比较紧张的。</p>
+
+
+
+<p>除过这些收获呢，我在B站也有了更多的粉丝，而且自己的PHP和Android技术都有大的提升，这可以从今年发布的项目看到，下面我就要提及这些项目。</p>
+
+
+
+<h3>创建的项目</h3>
+
+
+
+<p>2020年，随着不断对PHP的了解，我也做了一些配合APP和QQ机器人运行的工具，那么现在来回顾一下我们制作了WEB端的哪些项目？</p>
+
+
+
+<h4>萌字号</h4>
+
+
+
+<p><strong><span class="has-inline-color has-vivid-cyan-blue-color">https://mzh.mxjs.xyz/html/cx.php</span></strong></p>
+
+
+
+<p>emmm首先来说一下萌字号吧，嘶，虽然这个他，，，，，</p>
+
+
+
+<p>萌字号，是一款在WEB端和APP端运行的群员违规记录备案系统，我们可以利用萌字号来为自己的群进行信息的备份，目前正在我自己的粉丝群使用。</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="410" height="729" src="https://imcys.com/wp-content/uploads/2020/12/image.png" alt="" class="wp-image-368" srcset="https://imcys.com/wp-content/uploads/2020/12/image.png 410w, https://imcys.com/wp-content/uploads/2020/12/image-169x300.png 169w" sizes="(max-width: 410px) 100vw, 410px" /><figcaption>萌字号网页端</figcaption></figure></div>
+
+
+
+<p>这个也是我第一个做的较为完整的一套项目，尽管它有非常多的不足，但这也是我接触PHP后第一个处女作程序，哈哈，现在看起来好菜啊。</p>
+
+
+
+<h4>御坂妹妹API</h4>
+
+
+
+<div class="wp-block-mdx-post mdx-post-cot" data-mdxposturl="https://imcys.com/%e5%be%a1%e5%9d%82%e5%a6%b9%e5%a6%b9api"><div class="mdx-post-wait-out-c2"><div class="mdx-post-wait-out-c mdui-valign"><div class="mdx-github-wait-out"><div class="mdx-github-wait"><a target="_blank" rel="noopener" href="https://imcys.com/%e5%be%a1%e5%9d%82%e5%a6%b9%e5%a6%b9api"><div class="mdui-spinner"></div></a></div></div></div></div></div>
+
+
+
+<p>御坂妹妹API，是我目前较为骄傲的一个项目，因为目前有不少人在用。这个项目是我今年后半年搞的一个项目，其实感觉自己学的PHP现在就一直用到了程序后端上面，写了不少爬虫，哈哈，但是也挺有成就感的。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="486" src="https://imcys.com/wp-content/uploads/2020/12/image-1-1024x486.png" alt="" class="wp-image-369" srcset="https://imcys.com/wp-content/uploads/2020/12/image-1-1024x486.png 1024w, https://imcys.com/wp-content/uploads/2020/12/image-1-300x143.png 300w, https://imcys.com/wp-content/uploads/2020/12/image-1-768x365.png 768w, https://imcys.com/wp-content/uploads/2020/12/image-1-1536x730.png 1536w, https://imcys.com/wp-content/uploads/2020/12/image-1.png 1920w" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption>御坂妹妹API</figcaption></figure>
+
+
+
+<p>目前这个项目正在前往 Misaka API上，emmm这个项目我等一下会介绍到它，御坂妹妹目前也是免费开放，供大家调用和使用，能帮上其他人我也很激动。</p>
+
+
+
+<h4>Misaka API</h4>
+
+
+
+<p><span class="has-inline-color has-vivid-cyan-blue-color"><strong>https://api.misakaloli.com</strong></span></p>
+
+
+
+<p>Misaka API是我后半年的作品，是一套准备写完整的API管理系统程序，也是MDUI的框架，后端这次是由我个人完全编写的，也涉及到了大量的数据库操作，并且支持了用户登录和调用统计，这个也是我目前PHP总水平的一个体现项目。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="511" src="https://imcys.com/wp-content/uploads/2020/12/image-2-1024x511.png" alt="" class="wp-image-370" srcset="https://imcys.com/wp-content/uploads/2020/12/image-2-1024x511.png 1024w, https://imcys.com/wp-content/uploads/2020/12/image-2-300x150.png 300w, https://imcys.com/wp-content/uploads/2020/12/image-2-768x384.png 768w, https://imcys.com/wp-content/uploads/2020/12/image-2-1536x767.png 1536w, https://imcys.com/wp-content/uploads/2020/12/image-2.png 1920w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="516" src="https://imcys.com/wp-content/uploads/2020/12/image-3-1024x516.png" alt="" class="wp-image-371" srcset="https://imcys.com/wp-content/uploads/2020/12/image-3-1024x516.png 1024w, https://imcys.com/wp-content/uploads/2020/12/image-3-300x151.png 300w, https://imcys.com/wp-content/uploads/2020/12/image-3-768x387.png 768w, https://imcys.com/wp-content/uploads/2020/12/image-3-1536x774.png 1536w, https://imcys.com/wp-content/uploads/2020/12/image-3.png 1918w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="469" src="https://imcys.com/wp-content/uploads/2020/12/image-4-1024x469.png" alt="" class="wp-image-372" srcset="https://imcys.com/wp-content/uploads/2020/12/image-4-1024x469.png 1024w, https://imcys.com/wp-content/uploads/2020/12/image-4-300x137.png 300w, https://imcys.com/wp-content/uploads/2020/12/image-4-768x352.png 768w, https://imcys.com/wp-content/uploads/2020/12/image-4-1536x703.png 1536w, https://imcys.com/wp-content/uploads/2020/12/image-4.png 1920w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>这个其实也是一个比较大的技术提升和实践锻炼，因为之前的项目都是零零散散，很少写这样一套的东西，所有觉得这个项目的意义很大。</p>
+
+
+
+<p>另外也是因为它，我才加强了BILIBILI AS的WEB端API接口功能，写了一套B站的爬虫程序，目前也在给粉丝群的机器人使用，可以来体验哦。</p>
+
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<p>剩下的WEB端项目，就是一些小的，比如TG电报机器人的PHP程序，或者发信程序。</p>
+
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<p>WEB端的项目就介绍到这里了，下面我们来看看Android端发生了什么，按时间顺序来吧？</p>
+
+
+
+<h4>萌新云动漫</h4>
+
+
+
+<div class="wp-block-mdx-post mdx-post-cot" data-mdxposturl="https://imcys.com/%e3%80%90%e8%87%aa%e5%bc%80%e5%8f%91%e3%80%91%e8%90%8c%e6%96%b0%e4%ba%91%e5%8a%a8%e6%bc%ab"><div class="mdx-post-wait-out-c2"><div class="mdx-post-wait-out-c mdui-valign"><div class="mdx-github-wait-out"><div class="mdx-github-wait"><a target="_blank" rel="noopener" href="https://imcys.com/%e3%80%90%e8%87%aa%e5%bc%80%e5%8f%91%e3%80%91%e8%90%8c%e6%96%b0%e4%ba%91%e5%8a%a8%e6%bc%ab"><div class="mdui-spinner"></div></a></div></div></div></div></div>
+
+
+
+<p>这个是今年IAPP写的程序，主要是可以免费无广告的观看番剧和电影，写这个的时候我还不会Java，所以就想把鸡肋的网页端写出个APP，然后让大家使用，写的比较菜，但这个程序也是有整体框架，写的也比较用心的。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="576" height="1024" src="https://imcys.com/wp-content/uploads/2020/03/壳图2020-02-21-17-03-40-576x1024.jpeg" alt="萌新云动漫" class="wp-image-120" srcset="https://imcys.com/wp-content/uploads/2020/03/壳图2020-02-21-17-03-40-576x1024.jpeg 576w, https://imcys.com/wp-content/uploads/2020/03/壳图2020-02-21-17-03-40-169x300.jpeg 169w, https://imcys.com/wp-content/uploads/2020/03/壳图2020-02-21-17-03-40-768x1365.jpeg 768w, https://imcys.com/wp-content/uploads/2020/03/壳图2020-02-21-17-03-40-864x1536.jpeg 864w, https://imcys.com/wp-content/uploads/2020/03/壳图2020-02-21-17-03-40.jpeg 1080w" sizes="(max-width: 576px) 100vw, 576px" /><figcaption>萌新云动漫</figcaption></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="576" height="1024" src="https://imcys.com/wp-content/uploads/2020/03/壳图2020-02-21-17-03-48-576x1024.jpeg" alt="萌新云动漫" class="wp-image-121" srcset="https://imcys.com/wp-content/uploads/2020/03/壳图2020-02-21-17-03-48-576x1024.jpeg 576w, https://imcys.com/wp-content/uploads/2020/03/壳图2020-02-21-17-03-48-169x300.jpeg 169w, https://imcys.com/wp-content/uploads/2020/03/壳图2020-02-21-17-03-48-768x1365.jpeg 768w, https://imcys.com/wp-content/uploads/2020/03/壳图2020-02-21-17-03-48-864x1536.jpeg 864w, https://imcys.com/wp-content/uploads/2020/03/壳图2020-02-21-17-03-48.jpeg 1080w" sizes="(max-width: 576px) 100vw, 576px" /><figcaption>萌新云动漫</figcaption></figure>
+
+
+
+<p>但是这个APP现在停更了，我后面把源码发出来吧，现在也弃坑IAPP了，只要是用Java去写Android了。</p>
+
+
+
+<h4><strong>发现酱</strong></h4>
+
+
+
+<div class="wp-block-mdx-post mdx-post-cot" data-mdxposturl="https://imcys.com/2020/03/18/%e3%80%90%e5%8f%91%e7%8e%b0%e9%85%b1%e3%80%91%e4%bb%a5%e5%9b%be%e6%90%9c%e5%9b%be%ef%bc%8c%e5%8f%91%e7%8e%b0%e4%bd%a0%e7%9a%84%e8%80%81%e5%a9%86%ef%bc%81%e5%8f%88%e4%b8%80%e4%b8%aaapp.html"><div class="mdx-post-wait-out-c2"><div class="mdx-post-wait-out-c mdui-valign"><div class="mdx-github-wait-out"><div class="mdx-github-wait"><a target="_blank" rel="noopener" href="https://imcys.com/2020/03/18/%e3%80%90%e5%8f%91%e7%8e%b0%e9%85%b1%e3%80%91%e4%bb%a5%e5%9b%be%e6%90%9c%e5%9b%be%ef%bc%8c%e5%8f%91%e7%8e%b0%e4%bd%a0%e7%9a%84%e8%80%81%e5%a9%86%ef%bc%81%e5%8f%88%e4%b8%80%e4%b8%aaapp.html"><div class="mdui-spinner"></div></a></div></div></div></div></div>
+
+
+
+<p>它可以识别同人图片，精确的找到图片原作来源，锁定作品链接，以及作者链接。</p>
+
+
+
+<p>这个项目其实也是一个爬虫项目，对接其他接口完成的一个鉴别，给粉丝做视频的时候写的一个，我就不再多提啦。</p>
+
+
+
+<h4>BILIBILI AS</h4>
+
+
+
+<p><strong><span class="has-inline-color has-vivid-cyan-blue-color">https://api.misakaloli.com/app/</span></strong></p>
+
+
+
+<p>BILIBILI AS，是今年后半年写的一个主打Android项目，也是我真正意义上的处女作，因为它是用Java写的，如今写文章的时候已经迭代到了1.0.7版本的APP，这在之前文章里提到过。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="325" src="https://imcys.com/wp-content/uploads/2020/12/image-5-1024x325.png" alt="" class="wp-image-373" srcset="https://imcys.com/wp-content/uploads/2020/12/image-5-1024x325.png 1024w, https://imcys.com/wp-content/uploads/2020/12/image-5-300x95.png 300w, https://imcys.com/wp-content/uploads/2020/12/image-5-768x244.png 768w, https://imcys.com/wp-content/uploads/2020/12/image-5-1536x488.png 1536w, https://imcys.com/wp-content/uploads/2020/12/image-5.png 1888w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>这个项目的伟大之处就在于它是Java写的Android项目，这也意味着我真正开始去做Android的项目程序，也希望大家能多多支持这个程序。</p>
+
+
+
+<hr class="wp-block-separator"/>
+
+
+
+<h4>python</h4>
+
+
+
+<p>接下来就是python了，其实python是8月份玩的，会的不多，就是写写简单的爬虫项目。</p>
+
+
+
+<div class="wp-block-mdx-github mdx-github-cot" data-mdxgithuba="1250422131" data-mdxgithubp="Python-Comic-Workstation"><div class="mdx-github-wait-out-c2"><div class="mdx-github-wait-out-c mdui-valign"><div class="mdx-github-wait-out"><div class="mdx-github-wait"><a target="_blank" rel="noopener" href="https://github.com/1250422131/Python-Comic-Workstation"><div class="mdui-spinner"></div></a></div></div></div></div></div>
+
+
+
+<p>这个大家可以自己看一下，我就不多介绍啦。</p>
+
+
+
+<h3>文末</h3>
+
+
+
+<p>啊，马上就要2021了，不如今年再立上个flge</p>
+
+
+
+<ul><li>B站达到5W粉丝</li><li>制作一个动态壁纸APP</li><li>高二下学期会考全部通过</li><li>追到喜欢的女生？？？</li></ul>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/12/31/%e3%80%90%e8%90%8c%e6%96%b0%e6%9d%b0%e5%b0%91%e3%80%91%e5%85%b3%e4%ba%8e%e6%88%91%e7%9a%84%e5%b9%b4%e7%bb%88%e6%80%bb%e7%bb%93.html">https://imcys.com/2020/12/31/%e3%80%90%e8%90%8c%e6%96%b0%e6%9d%b0%e5%b0%91%e3%80%91%e5%85%b3%e4%ba%8e%e6%88%91%e7%9a%84%e5%b9%b4%e7%bb%88%e6%80%bb%e7%bb%93.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/12/31/imcys.com-%E3%80%90%E8%90%8C%E6%96%B0%E6%9D%B0%E5%B0%91%E3%80%91%E5%85%B3%E4%BA%8E%E6%88%91%E7%9A%84%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" data-id="cl01oc4w80014ceoy9nu130lv" data-title="【萌新杰少】关于我的年终总结 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-【Android】利用Scheme在网页唤起APP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/12/27/imcys.com-%E3%80%90Android%E3%80%91%E5%88%A9%E7%94%A8Scheme%E5%9C%A8%E7%BD%91%E9%A1%B5%E5%94%A4%E8%B5%B7APP/" class="article-date">
+  <time class="dt-published" datetime="2020-12-27T17:25:07.000Z" itemprop="datePublished">2020-12-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/12/27/imcys.com-%E3%80%90Android%E3%80%91%E5%88%A9%E7%94%A8Scheme%E5%9C%A8%E7%BD%91%E9%A1%B5%E5%94%A4%E8%B5%B7APP/">【Android】利用Scheme在网页唤起APP 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+
+
+
+<p>相信你在看此文之前已经发现有不少APP可以在网页被唤起，比如我们所见的<span class="has-inline-color has-vivid-cyan-blue-color">QQ，我的世界，拼多多，支付宝，微信</span>等程序，可以被外部网页拉起响应。没错，我就是因为这个才做这个文章，因为我也在自己的APP里实现了它。因为我也刚学Android，许多东西不懂，如果说错了欢迎指正，有缺失欢迎补全。</p>
+
+
+
+<h3>教程</h3>
+
+
+
+<h4><strong><span class="has-inline-color has-vivid-red-color">Scheme</span></strong></h4>
+
+
+
+<p>Android中的Scheme是一种页面跳转协议，和网站通过URL的形式访问一样，APP同样可以通过这种方式进行跳转，它可以很方便的满足我们在一些场景中的需求。</p>
+
+
+
+<p>有了上面的解释，想必大家已经迫不及待的为自己的APP加入这个功能，因为它的应用场景较为广，来看看我们应该如何配置这一个功能。</p>
+
+
+
+<h4><strong><span class="has-inline-color has-vivid-cyan-blue-color">AndroidManifest.xml</span></strong></h4>
+
+
+
+<p>我们需要在这里配置一下<strong><span class="has-inline-color has-pale-pink-color"><em>intent-filter</em></span></strong>，这样我们可以实现一个过滤器，下面以我的程序BILIBILI AS的配置方法来作为例子。</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;activity
+            android:name=".as.VideoAsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait">
+            &lt;intent-filter>
+                &lt;action android:name="android.intent.action.SEND"/>
+                &lt;category android:name="android.intent.category.DEFAULT"/>
+                &lt;data android:mimeType="text/*"/>
+            &lt;/intent-filter>
+            &lt;intent-filter>
+                &lt;action android:name="android.intent.action.VIEW"/>
+                &lt;category android:name="android.intent.category.DEFAULT"/>
+                &lt;category android:name="android.intent.category.BROWSABLE"/>
+                &lt;data
+                    android:host="imcys"
+                    android:path="/main"
+                    android:port="2333"
+                    android:scheme="bilibilias"/>
+            &lt;/intent-filter>
+        &lt;/activity></code></pre>
+
+
+
+<p>让我们再细化</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;intent-filter>
+                &lt;action android:name="android.intent.action.VIEW"/>
+                &lt;category android:name="android.intent.category.DEFAULT"/>
+                &lt;category android:name="android.intent.category.BROWSABLE"/>
+                &lt;data
+                    android:host="imcys"
+                    android:path="/main"
+                    android:port="2333"
+                    android:scheme="bilibilias"/>
+            &lt;/intent-filter></code></pre>
+
+
+
+<p>intent-filter里的action，category是必须要带的，而data可以帮助我们过滤网页中的启动链接。如果按上方法写，那么你的链接应该是下面的</p>
+
+
+
+<p><strong><em>bilibilias://imcys:2333/main</em></strong></p>
+
+
+
+<p>我们不难发现，上面data中配置的属性和链接是对应的，通过查询网页，我发现data可以配置下面的东西。</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;data android:host=""
+      android:mimeType=""
+      android:path=""
+      android:pathPattern=""
+      android:pathPrefix=""
+      android:port=""
+      android:scheme=""
+      android:ssp=""
+      android:sspPattern=""
+      android:sspPrefix=""/></code></pre>
+
+
+
+<p>这个就需要你自己去摸索了</p>
+
+
+
+<h4><strong><span class="has-inline-color has-vivid-cyan-blue-color">Activity</span></strong></h4>
+
+
+
+<p>接下来我们写Java文件，获取在网页传回的内容</p>
+
+
+
+<pre class="wp-block-code"><code>if (null != intent &amp;&amp; null != intent.getData()) &#123;
+            // uri 就相当于 web 页面中的链接
+            //下面是获取刚刚data的配置
+            Uri uri = intent.getData();
+            String scheme = uri.getScheme();
+            String host = uri.getHost();
+            int port = uri.getPort();
+            String path = uri.getPath();
+            //video相当于在链接当中的键（key）
+            String bvid = uri.getQueryParameter("video");
+        &#125;</code></pre>
+
+
+
+<p>如果我们的链接是这样的</p>
+
+
+
+<p><strong><em>bilibilias://imcys:2333/main?video=av10086</em></strong></p>
+
+
+
+<p>那么按上代码bvid就为<strong><em>av10086</em></strong></p>
+
+
+
+<p>我们在网页这样写，就可以轻松跳转APP的activity</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;a href="bilibilias://imcys:2333/main?video=av10086">跳转到AV10086&lt;/a></code></pre>
+
+
+
+<h3>尾巴</h3>
+
+
+
+<p>不知道你有没有看懂，如果没有看懂可以去看看网上其他的教程。</p>
+
+
+
+<p>下面我们来测试这一成果，点击下面按钮，跳转BILIBILI AS，当然这需要1.0.8版本，过两天我可能在这里发布链接。</p>
+
+
+
+<div class="wp-container-6218220d4179c wp-block-buttons aligncenter">
+<div class="wp-block-button"><a class="wp-block-button__link" href="bilibilias://imcys:2333/main?video=av10086">点击跳转</a></div>
+</div>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/12/27/%e3%80%90android%e3%80%91%e5%88%a9%e7%94%a8scheme%e5%9c%a8%e7%bd%91%e9%a1%b5%e5%94%a4%e8%b5%b7app.html">https://imcys.com/2020/12/27/%e3%80%90android%e3%80%91%e5%88%a9%e7%94%a8scheme%e5%9c%a8%e7%bd%91%e9%a1%b5%e5%94%a4%e8%b5%b7app.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/12/27/imcys.com-%E3%80%90Android%E3%80%91%E5%88%A9%E7%94%A8Scheme%E5%9C%A8%E7%BD%91%E9%A1%B5%E5%94%A4%E8%B5%B7APP/" data-id="cl01oc4vx000gceoy0y2lfh1i" data-title="【Android】利用Scheme在网页唤起APP 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-简易的服务器监控程序：Server Monitor" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/12/08/ivampiresp.com-%E7%AE%80%E6%98%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%91%E6%8E%A7%E7%A8%8B%E5%BA%8F%EF%BC%9AServer%20Monitor/" class="article-date">
+  <time class="dt-published" datetime="2020-12-08T22:02:53.000Z" itemprop="datePublished">2020-12-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/12/08/ivampiresp.com-%E7%AE%80%E6%98%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%91%E6%8E%A7%E7%A8%8B%E5%BA%8F%EF%BC%9AServer%20Monitor/">简易的服务器监控程序：Server Monitor 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>简要概述</h2>
+
+
+<p>Server Monitor是我的一个款能称得上使用工具人软件，它的php和监控端由iVampireSP.com和冰砚炽共同编写。</p>
+
+
+<h2>示例页面</h2>
+
+
+<p>示例页面：<a target="_blank" rel="noopener" href="https://status.lo-li.art/"><a target="_blank" rel="noopener" href="https://status.lo-li.art/"><a target="_blank" rel="noopener" href="https://status.lo-li.art/">https://status.lo-li.art/</a></a></a></p>
+
+
+<h2>截图</h2>
+
+
+<figure class="wp-block-image size-large"><img width="1910" height="936" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/12/image.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-2056" srcset="https://ivampiresp.com/wp-content/uploads/2020/12/image.png 1910w, https://ivampiresp.com/wp-content/uploads/2020/12/image-1536x753.png 1536w" sizes="(max-width: 1910px) 100vw, 1910px" /><figcaption>监控页面（还是熟悉的MDUI）</figcaption></figure>
+
+
+<h2>功能</h2>
+
+
+<ol><li>列出监控的服务器</li><li>服务器负载判断</li><li>绘制图表</li></ol>
+
+
+<h2>特色功能</h2>
+
+
+<ol><li>直观的展示资源占用情况</li><li>直观的展示监控林中的服务器</li><li>可自定义的页面</li><li>自动删除过多的条目</li><li>昼夜配色切换</li><li>拥有Shell脚本，甚至可以不用下载客户端，也不需要服务器的认证信息（如账号密码）</li><li>安装简单</li><li>自动添加服务器</li></ol>
+
+
+<h2>注意事项</h2>
+
+
+<ol><li>图标顺序是由右向左，即左边是最新的监控数据。</li><li>虽然监控程序会自动删除数据库，但是我们还是建议您挂一个Cron脚本定时执行清除表命令。这样做是为了清除一些没有发送资源占用的服务器。即使服务器被清除了，当他们发送数据时会再次重新添加。</li></ol>
+
+
+<h2>Readme</h2>
+
+
+<pre class="wp-block-preformatted"><strong><strong>#&nbsp;Server_Monitor</strong>
+A&nbsp;Server&nbsp;Monitor&nbsp;By&nbsp;PHP
+
+<strong>##&nbsp;必读</strong>
+监控界面阅读顺序：从右到左
+最左边是最新的时间，最右边的最旧的时间
+
+为了防止数据库占用过大，监控程序会自动清理超过10条以上的数据，但是我们还是建议你挂一个监控以便在特定的时间清除所有配置。
+
+<strong>##&nbsp;安装</strong>
+将所有文件上传到你的Web服务器对应的根目录下，在config.php中配置数据库信息和清除时的Token。
+
+<strong>##&nbsp;监控</strong>
+挂一个Cron来每隔一段时间（最好一星期）访问一次url
+https://your_server_address/clear.php?token=your_token
+将your_server_address改为你的服务器的URL,your_token改为你在config.php设置的Token。
+
+<strong>##&nbsp;接口</strong>
+Get&amp;Post均可以：
+https://your_server_address/update.php?type=update&servername=服务器名称&cpu=CPU占用率（不包含百分号）&mem=内存占用率（不包含百分号）
+
+<strong>##&nbsp;安装客户端</strong>
+
+1.&nbsp;Linux
+&nbsp;&nbsp;&nbsp;```bash
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#!bin/bash
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cpu=<code>top&nbsp;-b&nbsp;-n1&nbsp;|&nbsp;fgrep&nbsp;"Cpu(s)"&nbsp;|&nbsp;tail&nbsp;-1&nbsp;|&nbsp;awk&nbsp;-F'id,'&nbsp;'&#123;split($1,&nbsp;vs,&nbsp;",");&nbsp;v=vs[length(vs)];&nbsp;sub(/\s+/,&nbsp;"",&nbsp;v);sub(/\s+/,&nbsp;"",&nbsp;v);&nbsp;printf&nbsp;"%d",&nbsp;100-v;&#125;'</code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#echo&nbsp;$cpu
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mem_used_persent=<code>free&nbsp;-m&nbsp;|&nbsp;awk&nbsp;-F&nbsp;'[&nbsp;:]+'&nbsp;'NR==2&#123;printf&nbsp;"%d",&nbsp;($2-$7)/$2*100&#125;'</code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#echo&nbsp;$mem_used_persent
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;curl&nbsp;"https://your_server_address/update.php?type=update&amp;servername=<code>hostname</code>&amp;cpu=$cpu&amp;mem=$mem_used_persent"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;'Submit&nbsp;success!'
+&nbsp;&nbsp;&nbsp;```
+&nbsp;&nbsp;&nbsp;你可以将上述脚本保存为一个sh文件，并赋予权限，定时执行。
+&nbsp;&nbsp;&nbsp;将your_server_address改为你的服务器的URL。
+
+2.&nbsp;通用（依赖Python3）
+&nbsp;&nbsp;&nbsp;这是一个Python写的监控程序，由冰砚炽编写。在此表示非常感谢！
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;https://github.com/yistars/Monitor-For-lo-li.art
+&nbsp;&nbsp;&nbsp;打开并克隆上方仓库，一定要查阅Readme文件！
+&nbsp;&nbsp;&nbsp;
+3.&nbsp;Windows
+&nbsp;&nbsp;&nbsp;https://github.com/yistars/Monitor-For-lo-li.art
+&nbsp;&nbsp;&nbsp;请到上方网址的Release界面下载，其中附带了一个Windows版的监控程序
+
+<strong>##&nbsp;iVampireSP.com</strong>
+<blockquote class="wp-embedded-content" data-secret="bMCsgIMtEm"><a target="_blank" rel="noopener" href="https://ivampiresp.com/2020/12/08/%e7%ae%80%e6%98%93%e7%9a%84%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9b%91%e6%8e%a7%e7%a8%8b%e5%ba%8f%ef%bc%9aserver-monitor.html">简易的服务器监控程序：Server Monitor</a></blockquote><iframe class="wp-embedded-content" sandbox="allow-scripts" security="restricted" style="position: absolute; clip: rect(1px, 1px, 1px, 1px);" title="《简易的服务器监控程序：Server Monitor》—iVampireSP的物语" src="https://ivampiresp.com/2020/12/08/%e7%ae%80%e6%98%93%e7%9a%84%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9b%91%e6%8e%a7%e7%a8%8b%e5%ba%8f%ef%bc%9aserver-monitor.html/embed#?secret=bMCsgIMtEm" data-secret="bMCsgIMtEm" width="500" height="282" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+<strong>##&nbsp;Bing_Yanchi</strong>
+https://www.yistars.cn</strong></pre>
+
+
+<div class="wp-block-mdx-github mdx-github-cot" data-mdxgithuba="iVampireSP" data-mdxgithubp="Server_Monitor"><div class="mdx-github-wait-out-c2"><div class="mdx-github-wait-out-c mdui-valign"><div class="mdx-github-wait-out"><div class="mdx-github-wait"><a target="_blank" rel="noopener" href="https://github.com/iVampireSP/Server_Monitor"><div class="mdui-spinner"></div></a></div></div></div></div></div>
+
+
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2020/12/08/%e7%ae%80%e6%98%93%e7%9a%84%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9b%91%e6%8e%a7%e7%a8%8b%e5%ba%8f%ef%bc%9aserver-monitor">https://ivampiresp.com/2020/12/08/%e7%ae%80%e6%98%93%e7%9a%84%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9b%91%e6%8e%a7%e7%a8%8b%e5%ba%8f%ef%bc%9aserver-monitor</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/12/08/ivampiresp.com-%E7%AE%80%E6%98%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%91%E6%8E%A7%E7%A8%8B%E5%BA%8F%EF%BC%9AServer%20Monitor/" data-id="cl01oc4xu003vceoydjcadl3h" data-title="简易的服务器监控程序：Server Monitor 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-简要概述 CSS3媒体查询" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/11/18/ivampiresp.com-%E7%AE%80%E8%A6%81%E6%A6%82%E8%BF%B0%20CSS3%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/" class="article-date">
+  <time class="dt-published" datetime="2020-11-18T20:27:19.000Z" itemprop="datePublished">2020-11-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/11/18/ivampiresp.com-%E7%AE%80%E8%A6%81%E6%A6%82%E8%BF%B0%20CSS3%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/">简要概述 CSS3媒体查询 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在不同分辨率下我们想让页面呈现不同效果，可以用CSS3 媒体查询来实现</p>
+<p style="text-align: justify">
+<h2>让你的网页适配移动端</h2>
+<p>这可以使用HTML的meta标签来实现：声明一个viewport</p>
+<p>代码示例</p>
+<p><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/11/111820_1227_CSS31-1.png?imageMogr2/interlace/1/quality/80" alt=""></p>
+<p>参考文档：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Mobile/Viewport_meta_tag"><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Mobile/Viewport_meta_tag">https://developer.mozilla.org/zh-CN/docs/Mobile/Viewport_meta_tag</a></a></p>
+<p>如果对该属性有些疑问，可以参考上方的网址来查看详细文档。</p>
+<p>为什么要适配移动端？</p>
+<ol style="margin-left: 42pt">
+<li>
+<div style="text-align: justify"><span style="font-size:10pt">你的用户不一定全部是桌面端用户<br />
+</span></div>
+</li>
+<li>
+<div style="text-align: justify"><span style="font-size:10pt">多设备的兼容性<br />
+</span></div>
+</li>
+<li>
+<div style="text-align: justify"><span style="font-size:10pt; text-decoration:line-through">高大上（确实）<br />
+</span></div>
+</li>
+<li>
+<div style="text-align: justify"><span style="font-size:10pt">增加拓展性<br />
+</span></div>
+</li>
+</ol>
+<p>如果不加该meta属性，则移动端会不缩放，显示PC端的界面</p>
+<p style="text-align: justify">
+<h2>媒体查询</h2>
+<p>我们先写一个示例div，然后给他样式</p>
+<p>代码：</p>
+<p><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/11/111820_1227_CSS32-1.png?imageMogr2/interlace/1/quality/80" alt=""></p>
+<p>效果图：</p>
+<p><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/11/111820_1227_CSS33-1.png?imageMogr2/interlace/1/quality/80" alt=""></p>
+<p>此时我们缩放视图</p>
+<p><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/11/111820_1227_CSS34-1.png?imageMogr2/interlace/1/quality/80" alt=""></p>
+<p>可见这个div溢出了，所以出现了滑动条。</p>
+<p>但是我们想让视图缩小时div的样式跟着改变，此时我们可以用到媒体查询</p>
+<p><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/11/111820_1227_CSS35-1.png?imageMogr2/interlace/1/quality/80" alt=""></p>
+<p>@media是声明一个媒体查询，括号中加上条件，如max（最大宽度）和min（最小宽度），再加上花括号，里面加上选择器。</p>
+<p>上图代码的意思是：在默认情况下#test选择器的宽度为1000px，高度为10000px，背景颜色为红色；当视图最大宽度为600时，#test选择器的宽度为500px，高度为500px，背景颜色为绿色。</p>
+<p>此时我们缩放页面：</p>
+<p>最大宽度为600（小于等于600）：<img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/11/111820_1227_CSS36-1.png?imageMogr2/interlace/1/quality/80" alt=""></p>
+<p>大于600像素：<img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/11/111820_1227_CSS37-1.png?imageMogr2/interlace/1/quality/80" alt=""></p>
+<p>可以看到样式发生了变化</p>
+<p>Author: iVampireSP.com</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2020/11/18/%e7%ae%80%e8%a6%81%e6%a6%82%e8%bf%b0-css3%e5%aa%92%e4%bd%93%e6%9f%a5%e8%af%a2">https://ivampiresp.com/2020/11/18/%e7%ae%80%e8%a6%81%e6%a6%82%e8%bf%b0-css3%e5%aa%92%e4%bd%93%e6%9f%a5%e8%af%a2</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/11/18/ivampiresp.com-%E7%AE%80%E8%A6%81%E6%A6%82%E8%BF%B0%20CSS3%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/" data-id="cl01oc4xv003xceoybrcw907x" data-title="简要概述 CSS3媒体查询 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-JavaScript 朗读文本，播放声音" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/11/17/ivampiresp.com-JavaScript%20%E6%9C%97%E8%AF%BB%E6%96%87%E6%9C%AC%EF%BC%8C%E6%92%AD%E6%94%BE%E5%A3%B0%E9%9F%B3/" class="article-date">
+  <time class="dt-published" datetime="2020-11-17T23:10:56.000Z" itemprop="datePublished">2020-11-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/11/17/ivampiresp.com-JavaScript%20%E6%9C%97%E8%AF%BB%E6%96%87%E6%9C%AC%EF%BC%8C%E6%92%AD%E6%94%BE%E5%A3%B0%E9%9F%B3/">JavaScript 朗读文本，播放声音 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1>前言</h1>
+
+
+
+<p>由于网页设计大赛的事，想要搞点高级货，但是这周五就要交稿了，所以折腾一点没那么难的却很酷炫的功能。</p>
+
+
+
+<h2>设定文本</h2>
+
+
+
+<p>你可以预先设定待会要被播放的文本。<br><a id="textarea"></a></p>
+
+
+
+<script type="text/javascript">
+fetch('https://v1.hitokoto.cn')
+.then(response => response.json())
+.then(data => {
+const hitokoto = document.getElementById('textarea-1')
+hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+hitokoto.innerText = data.hitokoto
+})
+.catch(console.error)
+</script>
+<div class="mdui-textfield"><textarea id="textarea-1" class="mdui-textfield-input" rows="4">天使坠落之时&#8230;</textarea></div>
+
+
+
+<h2>使用浏览器合成声音</h2>
+
+
+
+<p>这里一个除了IE以外的主流浏览器可以使用的功能</p>
+
+
+
+<pre class="wp-block-code"><code>var sound = window.speechSynthesis; // 定义局部变量
+var read_text = new SpeechSynthesisUtterance(text); // 实例化
+sound.speak(read_text); // 朗读</code></pre>
+
+
+
+<p>其中将text改成你所需要朗读的文本，或者取变量里面的值。</p>
+
+
+
+<h3>使用JQuery 做个示例</h3>
+
+
+
+<pre class="wp-block-code"><code>var sound = window.speechSynthesis;
+var read_text = new SpeechSynthesisUtterance($("#textarea").text());
+sound.speak(read_text);</code></pre>
+
+
+
+<script type="text/javascript">
+      function read_1() {
+      var sound = window.speechSynthesis;
+      var read_text = new SpeechSynthesisUtterance($('#textarea-1').text());
+      sound.speak(read_text);
+}
+</script><br /><button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" onclick="read_1()">阅读</button>
+
+
+
+<p>但是这样你会发现一个问题：播放时浏览器并不会提示，甚至可能无法方便的暂停。<br>但是也不是没有好处的，因为这不需要白嫖API接口，就是兼容性有些差。</p>
+
+
+
+<h2>使用百度TTS播放自定义文本语音</h2>
+
+
+
+<p>所以我们可以白嫖百度TTS接口啊（滑稽）</p>
+
+
+
+<pre class="wp-block-code"><code>audio = document.createElement('audio'); // 声明audio全局变量并创建元素
+source = document.createElement('source'); // 声明source全局变量并创建元素
+source.type = "audio/mpeg"; // source类型
+source.src = 'https://tts.baidu.com/text2audio?lan=zh&amp;ie=UTF-8&amp;spd=8&amp;text=' + $('#textarea').text(); // 拼接URL并读取要朗读的内容，设定src地址
+source.autoplay = "autoplay"; // 自动播放
+source.controls = "controls"; // 显示控件（其实没必要）
+audio.appendChild(source); // 作为source的父元素
+audio.play(); // 播放</code></pre>
+
+
+
+<h4>使用jQuery做个示例</h4>
+
+
+
+<pre class="wp-block-code"><code>audio = document.createElement(&amp;#039;audio&amp;#039;);
+source = document.createElement(&amp;#039;source&amp;#039;);
+source.type = &amp;quot;audio/mpeg&amp;quot;;
+source.src = 'https://tts.baidu.com/text2audio?lan=zh&amp;ie=UTF-8&amp;spd=8&amp;text=' + $('#textarea').text();
+source.autoplay = "autoplay";
+audio.appendChild(source);
+audio.play();</code></pre>
+
+
+
+<script type="text/javascript">
+      function read_2() {
+        audio = document.createElement('audio');
+        source = document.createElement('source');
+        source.type = "audio/mpeg";
+        source.src = 'https://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=8&text=' + $('#textarea-1').text();
+        source.autoplay = "autoplay";
+        audio.appendChild(source);
+        audio.play();
+      }
+</script><button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" onclick="read_2()">阅读</button>
+
+
+
+<p>优点：使用audio标签，可控音频播放。<br>缺点：需要联网。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2020/11/17/javascript-%e6%9c%97%e8%af%bb%e6%96%87%e6%9c%ac%ef%bc%8c%e6%92%ad%e6%94%be%e5%a3%b0%e9%9f%b3">https://ivampiresp.com/2020/11/17/javascript-%e6%9c%97%e8%af%bb%e6%96%87%e6%9c%ac%ef%bc%8c%e6%92%ad%e6%94%be%e5%a3%b0%e9%9f%b3</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/11/17/ivampiresp.com-JavaScript%20%E6%9C%97%E8%AF%BB%E6%96%87%E6%9C%AC%EF%BC%8C%E6%92%AD%E6%94%BE%E5%A3%B0%E9%9F%B3/" data-id="cl01oc4wx001tceoyez5y3jng" data-title="JavaScript 朗读文本，播放声音 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-自学Python爬取P站图片" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/08/24/imcys.com-%E8%87%AA%E5%AD%A6Python%E7%88%AC%E5%8F%96P%E7%AB%99%E5%9B%BE%E7%89%87/" class="article-date">
+  <time class="dt-published" datetime="2020-08-24T14:51:08.000Z" itemprop="datePublished">2020-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/08/24/imcys.com-%E8%87%AA%E5%AD%A6Python%E7%88%AC%E5%8F%96P%E7%AB%99%E5%9B%BE%E7%89%87/">自学Python爬取P站图片 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>前言</h2>
+
+
+
+<p>emmm，学了一点点，啊不对，乱摸索了下python，写了一个简单的爬P站图片的脚本，哈哈最近也没什么可以发的教程视频，欸嘿嘿嘿嘿，就用它吧，这里我简单的文字描述一下爬取过程。</p>
+
+
+
+<h2>接口爬取</h2>
+
+
+
+<p>首先，我们来说一下F12工具抓包，这个东西非常重要，也是我们筛选接口的必要工具。</p>
+
+
+
+<h4>搜索接口爬取</h4>
+
+
+
+<p>按F12，搜索内容，注意右边抓获的数据内容，利用它，我们就可以的抓到P站的数据接口。</p>
+
+
+
+<p>搜索接口 <strong><span class="has-inline-color has-vivid-cyan-blue-color">https://www.pixiv.net/ajax/search/top/内容?lang=zh</span></strong></p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="498" src="https://imcys.com/wp-content/uploads/2020/08/image-3-1024x498.png" alt="" class="wp-image-324" srcset="https://imcys.com/wp-content/uploads/2020/08/image-3-1024x498.png 1024w, https://imcys.com/wp-content/uploads/2020/08/image-3-300x146.png 300w, https://imcys.com/wp-content/uploads/2020/08/image-3-768x373.png 768w, https://imcys.com/wp-content/uploads/2020/08/image-3-1536x746.png 1536w, https://imcys.com/wp-content/uploads/2020/08/image-3.png 1920w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>有了简单的接口，我们就可以定位我们需要的数据位置</p>
+
+
+
+<p><strong><span class="has-inline-color has-vivid-red-color">[&#8216;body&#8217;][&#8216;illust&#8217;][&#8216;data&#8217;]</span></strong></p>
+
+
+
+<p>这个就是我们需要定位的数组，它下面有许多的搜索接口内容，我们通过它来递归循环获取每一组ID。</p>
+
+
+
+<h4>接口分析</h4>
+
+
+
+<p>我们发现上面接口的图片不能直接使用，因为他是缩略图，我们现在需要找到正式图片的接口返回地址，因为我们通过上接口可以获取ID，那么我们就先保留ID获取。</p>
+
+
+
+<p>个人作品信息接口<strong><span class="has-inline-color has-vivid-cyan-blue-color"> https://www.pixiv.net/ajax/illust/ID?lang=zh</span></strong></p>
+
+
+
+<p>有了这个接口我们就可以获取一下这个作品的图片链接</p>
+
+
+
+<p><strong><span class="has-inline-color has-vivid-red-color">[&#8216;body&#8217;][&#8216;urls&#8217;][&#8216;original&#8217;]</span></strong></p>
+
+
+
+<p>上面的对象就是我们需要的链接，有了链接我们现在就要应对反爬，P站也有爬虫检测，需要传入几个特殊的请求头才能获取到图片，否则403禁止访问。</p>
+
+
+
+<blockquote class="wp-block-quote"><p><strong>request.add_header(&#8216;referer&#8217;,&#8217;https://www.pixiv.net/tags/%E7%BA%B1%E9%9B%BE&#8217;)</strong></p><cite>添加<strong>referer</strong>信息</cite></blockquote>
+
+
+
+<p>只要有它，代表我是从P站内部来的，我要下载，这样就可以正常下载，下面代码里展示了这个函数。</p>
+
+
+
+<p>接下来我们万事俱备，就可以直接编写代码了，我们直接看下面。</p>
+
+
+
+<h2>代码展示</h2>
+
+
+
+<pre class="wp-block-code"><code>import urllib.request, urllib.error, urllib.parse
+import urllib
+import demjson
+import json
+import requests
+import time
+import socket
+
+
+
+def SaveImage(url, path):   # 传入的url是图片url地址
+    request = urllib.request.Request(url)   # 模拟浏览器头部信息
+    request.add_header('accept','image/webp,image/apng,*/*;q=0.8')
+    request.add_header('accept-encoding','gzip, deflate, br')
+    request.add_header('accept-language','zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-TW;q=0.6')
+    request.add_header('sec-fetch-dest','image')
+    request.add_header('sec-fetch-mode','no-cors')
+    request.add_header('sec-fetch-site','cross-site')
+    request.add_header('referer','https://www.pixiv.net/tags/%E7%BA%B1%E9%9B%BE')
+    request.add_header('user-agent','Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; InfoPath.3)')
+    try:
+        response = urllib.request.urlopen(request)  # 打开该url得到响应
+        img = response.read()   # read读取出来
+        f = open(path, 'wb')    # 以二进制写入的格式打开
+        f.write(img)    # 写入
+        f.close()       # 关闭
+    except urllib.error.URLError as ue:  # 捕获urlerror
+        if hasattr(ue, 'code'):  # 如果ue中包含'code'字段, 则打印出来
+            print(ue.code)
+        if hasattr(ue, "reason"):# 如果ue中包含'reason'字段, 则打印出来
+            print(ue.reason)
+    except IOError as ie:
+        print(ie)
+
+
+    return 
+
+
+if __name__ == "__main__":
+    word = input('输入搜索内容')
+    p = input('输入抓取页码')
+    s = requests.session()
+    headers = &#123;
+        'User-Agent' : 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; InfoPath.3)'
+    &#125;
+    res = s.get("https://www.pixiv.net/ajax/search/illustrations/"+word+"?word="+word+"&amp;p="+p+"&amp;lang=zh",headers=headers)
+    string = res.text
+    list1 = demjson.decode(string)
+    i = 0
+    while i &lt; len(list1&#91;'body']&#91;'illust']&#91;'data']) - 1:
+        id = list1&#91;'body']&#91;'illust']&#91;'data']&#91;i]&#91;'id']
+        headers = &#123;
+            'User-Agent' : 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; InfoPath.3)'
+        &#125;
+        s.keep_alive = False # 关闭多余连接
+        Str = s.get("https://www.pixiv.net/ajax/illust/"+id+"?lang=zh",headers=headers)
+        string = Str.text
+        Strjson = demjson.decode(string)
+        imgurl = Strjson&#91;'body']&#91;'urls']&#91;'original']
+        print(imgurl)
+        name = list1&#91;'body']&#91;'illust']&#91;'data']&#91;i]&#91;'title']+id
+        print(name)
+        path = "F:\下载文件\图片\大马明文版\\"+ name + ".png"
+        SaveImage(imgurl, path)
+        i= i + 1
+        print(i)
+        time.sleep(5)</code></pre>
+
+
+
+<h2>文末</h2>
+
+
+
+<p>其实我写的这也是微不足道的，没有很大的参考价值，发文文章和视频也是为了鼓励一下自己学习，展示一下成果而已，当然，我也希望这篇文章和视频可以帮助到你。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/08/24/%e8%87%aa%e5%ad%a6python%e7%88%ac%e5%8f%96p%e7%ab%99%e5%9b%be%e7%89%87.html">https://imcys.com/2020/08/24/%e8%87%aa%e5%ad%a6python%e7%88%ac%e5%8f%96p%e7%ab%99%e5%9b%be%e7%89%87.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/08/24/imcys.com-%E8%87%AA%E5%AD%A6Python%E7%88%AC%E5%8F%96P%E7%AB%99%E5%9B%BE%E7%89%87/" data-id="cl01oc4wr001gceoyet5zfujf" data-title="自学Python爬取P站图片 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; zurück</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

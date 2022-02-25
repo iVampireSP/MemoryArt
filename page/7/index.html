@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="让你的文章不再被时间长河埋没">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MemoryArt">
+<meta property="og:url" content="http://memoryart.nwl.im/page/7/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="让你的文章不再被时间长河埋没">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="MemoryArt">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-ivampiresp.com-在Linux下开一个Java服务器（使用CatServer Pro）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/05/ivampiresp.com-%E5%9C%A8Linux%E4%B8%8B%E5%BC%80%E4%B8%80%E4%B8%AAJava%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E4%BD%BF%E7%94%A8CatServer%20Pro%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2019-10-05T10:38:25.000Z" itemprop="datePublished">2019-10-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/05/ivampiresp.com-%E5%9C%A8Linux%E4%B8%8B%E5%BC%80%E4%B8%80%E4%B8%AAJava%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E4%BD%BF%E7%94%A8CatServer%20Pro%EF%BC%89/">在Linux下开一个Java服务器（使用CatServer Pro） 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>引言</h2>
+
+
+<p>Linux开服具有快速，高效，性能等特点，而Windows虽然简单，但是不具备Linux良好的性能。</p>
+
+
+<p>本教程就说明一下简单的Linux开服方式（@需要教程的人，如果你学会后，请无偿帮助更多的人。）</p>
+
+
+<h2>服务器准备</h2>
+
+
+<p>首先。先准备一个Linux服务器（废话），出于习惯，我就使用Ubuntu操作系统，版本18.04。</p>
+
+
+<p>本教程就拿腾讯云cvm做测试吧。由于Java服吃起来比较大，建议2c2g。</p>
+
+
+<h2>关于MC服务端</h2>
+
+
+<p>如果你是要开Java版1.12的服务器的话，那么恭喜你，你可以使用CatServer Pro了。CatServer在不久前已经完全开源，并且完全免费了。</p>
+
+
+<p>本文就拿CatServer做测试，其他服务端相同。</p>
+
+
+<h2>开始搭建</h2>
+
+
+<p>1.登录ssh，为了安全，请不要切换到root。(ssh软件我推荐<a target="_blank" rel="noopener" href="https://www.putty.org/">putty</a>,win10自带ssh，cmd/powershell 直接用户名@ip即可）</p>
+
+
+<p>2.更新软件包数据库</p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">sudo apt update
+</code></pre>
+</div>
+
+
+<figure class="wp-block-image"><img width="557" height="141" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/10/image.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1175"/><figcaption>apt update</figcaption></figure>
+
+
+<p>3.下载Java8环境</p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code>sudo apt install openjdk-8-jre openjdk-8-jdk -y
+</code></pre>
+</div>
+
+
+<p>觉得太慢？试试apt-fast!</p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">sudo add-apt-repository ppa:apt-fast/stable
+sudo apt-get update
+sudo apt-get -y install apt-fast
+</code></pre>
+</div>
+
+
+<p class="has-text-align-center"><strong><em>安装期间一路回车就行</em></strong></p>
+
+
+<p>使用apt-fast安装java8环境</p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">sudo apt-fast install openjdk-8-jre openjdk-8-jdk -y
+</code></pre>
+</div>
+
+
+<p>等命令执行完后，Java8环境就安装好了。是不是比Windows简单？安装Java8只需要一条命令，而不是去Java.com找（如果你乐意）。</p>
+
+
+<p>你还可以校验下你的Java8</p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">java -version
+</code></pre>
+</div>
+
+
+<p>它应该反馈出类似如下结果</p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">ubuntu@VM-0-3-ubuntu:~$ java -version
+openjdk version "1.8.0_222"
+OpenJDK Runtime Environment (build 1.8.0_222-8u222-b10-1ubuntu1~18.04.1-b10)
+OpenJDK 64-Bit Server VM (build 25.222-b10, mixed mode)
+ubuntu@VM-0-3-ubuntu:~$
+</code></pre>
+</div>
+
+
+<p>4.下载CatServer</p>
+
+
+<p>虽然我不知道CatServer和CatServer Pro的区别，但是我看到CatServer仓库里有Readme.md并且CatServer Pro还是预览版本，所以我就选CatServer了。</p>
+
+
+<p>仓库地址：<a target="_blank" rel="noopener" href="https://github.com/CatServer/CatServer/">CatServer</a> <a target="_blank" rel="noopener" href="https://github.com/CatServer/CatServer-Pro">CatServer Pro</a></p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">wget -O CatServer.jar https://github.com/CatServer/CatServer/releases/download/3.0/CatServer-3c5e7d0-universal.jar</code></pre>
+</div>
+
+
+<p>下载太慢？用aria2！</p>
+
+
+<p>安装aria2。如果安装了apt-fast，请忽略此步骤。 </p>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">sudo apt install aria2 -y
+</code></pre>
+</div>
+
+
+<p>使用aria2下载</p>
+
+
+<blockquote class="wp-block-quote"> -s 表示split，将源文件拆分成8份下载，-x表示使用多少个线程 </p><cite> <a target="_blank" rel="noopener" href="https://blog.csdn.net/jaye16/article/details/74942839">https://blog.csdn.net/jaye16/article/details/74942839</a> </cite></blockquote>
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">aria2c -s 8 -x 10 https://github.com/CatServer/CatServer/releases/download/3.0/CatServer-3c5e7d0-universal.jar
+</code></pre>
+</div>
+
+
+<p>重命名服务端文件
+
+
+
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">mv CatServer-3c5e7d0-universal.jar CatServer.jar
+</code></pre>
+</div>
+
+
+
+<p>创建MC服务器工作文件夹&amp;#8221;mc&amp;#8221;。并将&amp;#8221;CatServer.jar&amp;#8221;移动到&amp;#8221;mc&amp;#8221;，然后切换到mc目录中。</p>
+<p>觉得太难打？试试按&lt;Tab&gt;补全!</p>
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">mkdir mc
+mv CatServer.jar mc
+cd mc
+</code></pre>
+</div>
+
+
+
+<p>启动服务端</p>
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">java -jar CatServer.jar
+</code></pre>
+</div>
+
+
+
+<p>想要自定义内存？使用下面的命令。Xms是最小内存，Xmx是最大内存。</p>
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">java -Xms1024MB -Xmx2048MB -jar CatServer.jar
+</code></pre>
+</div>
+
+
+
+<p>等待服务端启动</p>
+<figure class="wp-block-image"><img width="661" height="419" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/10/image-1.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1178"/></figure>
+
+
+
+<figure class="wp-block-image"><img width="658" height="418" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/10/image-2.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1179"/></figure>
+
+
+
+<p>此时，你可以打开MC，输入ip:端口就可以和小伙伴畅玩了！</p>
+<p>但是，有个问题。</p>
+<p>关闭ssh后服务器停止运行了咋办？此时我们需要&amp;#8221;screen&amp;#8221;</p>
+<div class="wp-block-jetpack-markdown"><pre><code class="language-bash">sudo apt install screen -y
+screen java -jar CatServer.jar
+</code></pre>
+</div>
+
+
+
+<p>如果要退出Screen，可以按Ctrl+A+D就行。</p>
+<p>这时关闭终端，服务器是不是还在运行呢？如果需要回到screen，键入screen -r (在一个screen会话下）</p>
+<p>如果你需要管理文件，你可以使用sftp。这里给大家推荐个SFTP软件：<a target="_blank" rel="noopener" href="https://winscp.net/eng/download.php">WinSCP</a></p>
+<p>在软件中输入和你的ssh一样的信息即可，如果你会玩ssh的话，你可以用ssh管理文件。</p>
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/10/05/%e5%9c%a8linux%e4%b8%8b%e5%bc%80%e4%b8%80%e4%b8%aajava%e6%9c%8d%e5%8a%a1%e5%99%a8">https://ivampiresp.com/2019/10/05/%e5%9c%a8linux%e4%b8%8b%e5%bc%80%e4%b8%80%e4%b8%aajava%e6%9c%8d%e5%8a%a1%e5%99%a8</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/10/05/ivampiresp.com-%E5%9C%A8Linux%E4%B8%8B%E5%BC%80%E4%B8%80%E4%B8%AAJava%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E4%BD%BF%E7%94%A8CatServer%20Pro%EF%BC%89/" data-id="cl01oc4xj0037ceoy7o429h3j" data-title="在Linux下开一个Java服务器（使用CatServer Pro） 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-《可塑性记忆》随机图片接口上线" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/09/06/ivampiresp.com-%E3%80%8A%E5%8F%AF%E5%A1%91%E6%80%A7%E8%AE%B0%E5%BF%86%E3%80%8B%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87%E6%8E%A5%E5%8F%A3%E4%B8%8A%E7%BA%BF/" class="article-date">
+  <time class="dt-published" datetime="2019-09-06T22:37:36.000Z" itemprop="datePublished">2019-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/09/06/ivampiresp.com-%E3%80%8A%E5%8F%AF%E5%A1%91%E6%80%A7%E8%AE%B0%E5%BF%86%E3%80%8B%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87%E6%8E%A5%E5%8F%A3%E4%B8%8A%E7%BA%BF/">《可塑性记忆》随机图片接口上线 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>军训回来我就开始找图片了。我从群友那边听到这部番，然后我就默默了下载了。</p>
+
+
+<p>看番时我内心波动挺大，也曾思考过一些问题。艾拉是司重要的人，但艾拉终究被回收。如果在现实生活中，重要的人离你而去。你会怎么办呢？</p>
+
+
+<p>这个问题我没有思考过，我也不知道如何思考。往哪个方便想都找不到答案。当然最直接的方法就是：“让他（她）离去”。</p>
+
+
+<p>看完这部番我虽然没有哭，但是真的很虐。。。</p>
+
+
+<p>“希望有一天你能与珍爱的人重逢”（大切な人と、いつかまた巡り会えますように） </p>
+
+
+<p>图片来源：<a target="_blank" rel="noopener" href="http://www.plastic-memories.jp/">《可塑性记忆》官网</a></p>
+
+
+<figure class="wp-block-image size-large"><a target="_blank" rel="noopener" href="https://api.lo-li.art/kesuxingjiyi/index.php"><img src="https://api.lo-li.art/kesuxingjiyi/index.php" alt=""/></a><figcaption>可塑性记忆随机图片</figcaption></figure>
+
+
+<p>接口制作教程：<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/03/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e3%80%8a%e5%a4%a9%e4%bd%bf%e9%99%8d%e4%b8%b4%e5%88%b0%e6%88%91%e8%ba%ab%e8%be%b9%e3%80%8b%e7%9a%84%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api.html">《天使降临到我身边》</a></p>
+
+
+<p>其他接口：<a target="_blank" rel="noopener" href="https://ivampiresp.com/tag/%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api/">随机图片API</a></p>
+
+
+<p>感谢mashiro大佬的代码~</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/09/06/plastic-memory-random-picture-interface-online">https://ivampiresp.com/2019/09/06/plastic-memory-random-picture-interface-online</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/09/06/ivampiresp.com-%E3%80%8A%E5%8F%AF%E5%A1%91%E6%80%A7%E8%AE%B0%E5%BF%86%E3%80%8B%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87%E6%8E%A5%E5%8F%A3%E4%B8%8A%E7%BA%BF/" data-id="cl01oc4x8002hceoy9s9z51vv" data-title="《可塑性记忆》随机图片接口上线 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-搭建一个泰拉瑞亚手机版服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/08/30/ivampiresp.com-%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%B3%B0%E6%8B%89%E7%91%9E%E4%BA%9A%E6%89%8B%E6%9C%BA%E7%89%88%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-08-30T16:10:31.000Z" itemprop="datePublished">2019-08-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/08/30/ivampiresp.com-%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%B3%B0%E6%8B%89%E7%91%9E%E4%BA%9A%E6%89%8B%E6%9C%BA%E7%89%88%E6%9C%8D%E5%8A%A1%E5%99%A8/">搭建一个泰拉瑞亚手机版服务器 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote class="wp-block-mdx-warning mdx-warning"><i class="mdui-icon material-icons"></i> 注意<br/><strong>由于文章发布有了一段时间，其中一部分内容或者所有内容可能已经发生了改变。</strong></p></blockquote>
+
+
+<p>表示有人在群里谈到泰拉瑞亚了。。。。于是我闲着没事干开了一个服务器。
+
+
+
+<figure class="wp-block-image size-large"><img width="1085" height="158" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/05/image.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1665"/></figure>
+
+
+
+<p>按照你的需求来，不过我这里要搭建的是手机版服务器，所以点击：“ <a target="_blank" rel="noopener" href="http://terraria.org/server/MobileTerrariaServer.zip">Mobile Dedicated Server for Windows</a> ”进行下载。</p>
+<p>注意，这是Windows版本的，如果你需要在Linux上启动，需要安装mono。以Ubuntu为例：“sudo apt install mono-complete”，这里不再细说了吧。</p>
+<p>下载完后先解压到文件夹里，双击TerrariaServer.exe</p>
+<p>如果不能正常运行。请先安装net4.0和xna4.0，百度就有。</p>
+<p>然后选n新建地图</p>
+<figure class="wp-block-image"><img width="289" height="159" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/image-10.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1090"/><figcaption>创建地图</figcaption></figure>
+
+
+
+<p>由于我之前创建了一个地图，所以就会显示一个（废话）</p>
+<p>这里选择地图大小，不用我说了吧。。。</p>
+<figure class="wp-block-image"><img width="324" height="170" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/image-11.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1092"/><figcaption>选择地图大小</figcaption></figure>
+
+
+
+<figure class="wp-block-image"><img width="298" height="146" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/image-12.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1093"/><figcaption>选择地图难度</figcaption></figure>
+
+
+
+<figure class="wp-block-image"><img width="316" height="113" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/image-13.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1094"/><figcaption>填写地图名称</figcaption></figure>
+
+
+
+<figure class="wp-block-image"><img width="430" height="524" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/image-14.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1095"/><figcaption>少女祈祷中</figcaption></figure>
+
+
+
+<p>不得不说占用是真的高</p>
+<figure class="wp-block-image"><img width="572" height="77" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/image-15.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1096"/><figcaption>资源占用</figcaption></figure>
+
+
+
+<p>然后地图前面的数字，我创建的是test，所以输入2，回车。</p>
+<figure class="wp-block-image"><img width="285" height="131" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/image-16.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1097"/><figcaption>选择地图</figcaption></figure>
+
+
+
+<p>填写最大人数。注意一下，由于服务端问题，无论你在线玩家输入多少，最多也只支持16人！</p>
+<figure class="wp-block-image"><img width="348" height="98" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/image-17.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1098"/><figcaption>填写最大人数</figcaption></figure>
+
+
+
+<figure class="wp-block-image"><img width="334" height="115" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/image-18.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1099"/><figcaption>设置端口</figcaption></figure>
+
+
+
+<p>下面这个是转发端口，我建议选n，不然万一内外网端口不一样会发生什么奇怪的事情</p>
+<figure class="wp-block-image"><img width="334" height="96" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/image-19.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1100"/><figcaption>自动转发端口</figcaption></figure>
+
+
+
+<p>键入服务器密码</p>
+<figure class="wp-block-image"><img width="385" height="125" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/image-20.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1101"/></figure>
+
+
+
+<p>启动成功</p>
+<figure class="wp-block-image"><img width="354" height="200" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/image-21.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1102"/></figure>
+
+
+
+<p>开始享受游戏吧</p>
+<figure class="wp-block-image"><img width="1920" height="960" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/4W2Q_I862P0153OOQQ9L.jpg?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1103"/></figure>
+
+
+
+<p>（又水了一篇，真好</p>
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/08/30/%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aa%e6%b3%b0%e6%8b%89%e7%91%9e%e4%ba%9a%e6%89%8b%e6%9c%ba%e7%89%88%e6%9c%8d%e5%8a%a1%e5%99%a8">https://ivampiresp.com/2019/08/30/%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aa%e6%b3%b0%e6%8b%89%e7%91%9e%e4%ba%9a%e6%89%8b%e6%9c%ba%e7%89%88%e6%9c%8d%e5%8a%a1%e5%99%a8</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/08/30/ivampiresp.com-%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%B3%B0%E6%8B%89%E7%91%9E%E4%BA%9A%E6%89%8B%E6%9C%BA%E7%89%88%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="cl01oc4xq003lceoyb1h8hl24" data-title="搭建一个泰拉瑞亚手机版服务器 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-使用无盘系统修好了小破机" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/08/23/ivampiresp.com-%E4%BD%BF%E7%94%A8%E6%97%A0%E7%9B%98%E7%B3%BB%E7%BB%9F%E4%BF%AE%E5%A5%BD%E4%BA%86%E5%B0%8F%E7%A0%B4%E6%9C%BA/" class="article-date">
+  <time class="dt-published" datetime="2019-08-23T12:52:36.000Z" itemprop="datePublished">2019-08-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/08/23/ivampiresp.com-%E4%BD%BF%E7%94%A8%E6%97%A0%E7%9B%98%E7%B3%BB%E7%BB%9F%E4%BF%AE%E5%A5%BD%E4%BA%86%E5%B0%8F%E7%A0%B4%E6%9C%BA/">使用无盘系统修好了小破机 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>找到</h2>
+
+
+<p>由于最近在搬家，翻出了一年左右没用的小破机 -ASUS F83VF</p>
+
+
+<h2>经历</h2>
+
+
+<p>这个电脑之前我爸说修好后是给我的，但是由于一些原因不让我玩了，于是让我送回去。</p>
+
+
+<p>不过这个电脑拿到手硬盘就是坏的，自己还买了个二手盘。于是我是不会把硬盘送回去的。</p>
+
+
+<p>但是硬盘在我这里也没用，那时处于废物状态的我，把盘送给了别人，我就在家里半混吃等死了。</p>
+
+
+<p>再后来，派也送走了。于是我完全进入了混吃等死阶段。</p>
+
+
+<p>不过我还是攒钱买了个电脑棒，用了一年多。</p>
+
+
+<p>应该也算没有白买，至少让我生活充实了一会，不像之前那么混死了，至少能敲敲代码。</p>
+
+
+<p>总之就是 充实-半混死-完全混死-半充实</p>
+
+
+<h2>开始拯救</h2>
+
+
+<p>而现在呢，这小破机回来了。</p>
+
+
+<p>没有硬盘，咋办呢？</p>
+
+
+<p>用无盘系统呗。但是不会搭建。</p>
+
+
+<p>于是我到Pandownload里面搜了搜百度网盘，搜索了下无盘系统，结果还真出来了。</p>
+
+
+<p>下载地址 <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1znA7qau2SlV5CgYxxE1r1Q">https://pan.baidu.com/s/1znA7qau2SlV5CgYxxE1r1Q</a> 提取码: kdhq</p>
+
+
+<p>我推荐用CCBoot，因为这个有破解版（滑稽） :huaji:</p>
+
+
+<p>于是我就开了一个server2008 （这个好用）虚拟机，关闭了光猫的DHCP。（关了之后好累，又得重新配置IP。</p>
+
+
+<p>下面安装CCboot，这个不用多说了吧，破解版谷歌一下就行。这里就不放出了（律师函警告）</p>
+
+
+<p>使用教程上面的链接里全有。</p>
+
+
+<h2>总结</h2>
+
+
+<p>最后总结下我的小破机</p>
+
+
+<p>百兆网卡是真的卡。开机得好几分钟。</p>
+
+
+<p>然后就是DHCP，由于我不会共存，所以只能让CCBoot做DHCP服务器。其他设备和虚拟机得手动分配IP</p>
+
+
+<p>这个小破机硬件问题挺多，坏的不止是硬盘。显卡还有点问题，比如突然黑屏，首次开机出问题等。</p>
+
+
+<p>不过换上网启全解决了，但是声卡又出问题了。</p>
+
+
+<p class="has-text-align-left">还有就是。。服务器硬盘不是SSD，只是7200转的SAS而已。用电脑的时候服务器硬盘简直爆炸。<img loading="lazy" width="540" height="404" class="wp-image-1085" style="width: 150px;" src="https://私の.萝莉酱.我爱你/2019/08/72ce1ca8dc7ec6b6.jpg" alt=""></p>
+
+
+<p>又由于网线不够长的原因，我用上了电力猫（这是电力猫唯一一次派上用场），但是用了之后变得有点乱。。。</p>
+
+
+<p>但是这样也好，把笔记本的WOL打开，盖子打开，能从外地远程唤醒就很爽了（前提是网线不能拔，还得开机一次。不知道你们的需不需要）</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/08/23/%e4%bd%bf%e7%94%a8%e6%97%a0%e7%9b%98%e7%b3%bb%e7%bb%9f%e4%bf%ae%e5%a5%bd%e4%ba%86%e5%b0%8f%e7%a0%b4%e6%9c%ba">https://ivampiresp.com/2019/08/23/%e4%bd%bf%e7%94%a8%e6%97%a0%e7%9b%98%e7%b3%bb%e7%bb%9f%e4%bf%ae%e5%a5%bd%e4%ba%86%e5%b0%8f%e7%a0%b4%e6%9c%ba</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/08/23/ivampiresp.com-%E4%BD%BF%E7%94%A8%E6%97%A0%E7%9B%98%E7%B3%BB%E7%BB%9F%E4%BF%AE%E5%A5%BD%E4%BA%86%E5%B0%8F%E7%A0%B4%E6%9C%BA/" data-id="cl01oc4xf002xceoy56upemzs" data-title="使用无盘系统修好了小破机 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-漫展那些事&amp;amp;#038;服务器到了" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/08/07/ivampiresp.com-%E6%BC%AB%E5%B1%95%E9%82%A3%E4%BA%9B%E4%BA%8B&amp;#038;%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%B0%E4%BA%86/" class="article-date">
+  <time class="dt-published" datetime="2019-08-07T20:07:15.000Z" itemprop="datePublished">2019-08-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/08/07/ivampiresp.com-%E6%BC%AB%E5%B1%95%E9%82%A3%E4%BA%9B%E4%BA%8B&amp;#038;%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%B0%E4%BA%86/">漫展那些事&amp;#038;服务器到了 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>我才发现我鸽了好长时间了，于是赶紧来补一下文章。</p>
+
+
+
+<h2><strong><em>漫展</em></strong></h2>
+
+
+
+<figure class="wp-block-image"><img width="3264" height="2448" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/15651780371801.jpg?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1041"/></figure>
+
+
+
+<p>漫展现场，就买了两把扇子（血小板那个是后来淘宝买的）。总计三把。当然这三把里我还是最喜欢血小板啦<img width="72" height="72" loading="lazy" class="wp-image-652" style="width: 72px;" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/1560440522-O3L0B1C76XY14V6R.jpg?imageMogr2/interlace/1/quality/80" alt=""></p>
+
+
+
+<p>早上去漫展那可叫一个劲的等，我同学因为要女装，并且一定还要化妆，于是上午+下午一段时间就在等他化妆了。</p>
+
+
+
+<p>中午是最刺激的。我和我另一位同学要去买午餐，但是由于漫展在体育馆附近，体育馆附近没卖吃的，咋办呢？漫展现场买太贵，所以这时候Siri就派上用场了。</p>
+
+
+
+<p>“嘿Siri，用步行的方式导航到最近的麦当劳。”</p>
+
+
+
+<p>由于肯德基实在是太远，所以你懂的了。</p>
+
+
+
+<h2><em><strong>服务器</strong></em></h2>
+
+
+
+<p>服务器是漫展后面好几天才到的，这服务器拿回来大得很，还特别重。</p>
+
+
+
+<p>这个服务器的配置呢是16c16g 2T SAS硬盘，7200转。内存是ddr3</p>
+
+
+
+<p>我给他安装的系统是Proxmox VE，专门开小机用，就是开windows实在是太卡。</p>
+
+
+
+<figure class="wp-block-image"><img width="3264" height="2448" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/1565177951330.jpg?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1040"/></figure>
+
+
+
+<figure class="wp-block-image"><img width="3264" height="2448" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/08/1565177978195.jpg?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1042"/></figure>
+
+
+
+<p>噪音呢，的确有点大的，自从它到我房间来，我就睡了两天沙发（今天也是）。</p>
+
+
+
+<p>我打算买个电力猫，将它移出我的房间。</p>
+
+
+
+<p>不过我至少得打4天工才能买到啊，快递还要几天呢。</p>
+
+
+
+<p>算了吧，忍忍。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/08/07/%e6%bc%ab%e5%b1%95%e9%82%a3%e4%ba%9b%e4%ba%8b%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%88%b0%e4%ba%86">https://ivampiresp.com/2019/08/07/%e6%bc%ab%e5%b1%95%e9%82%a3%e4%ba%9b%e4%ba%8b%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%88%b0%e4%ba%86</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/08/07/ivampiresp.com-%E6%BC%AB%E5%B1%95%E9%82%A3%E4%BA%9B%E4%BA%8B&amp;#038;%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%B0%E4%BA%86/" data-id="cl01oc4xr003pceoy3ew10htp" data-title="漫展那些事&amp;#038;服务器到了 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-手动搭建一个frp服务器。" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/23/ivampiresp.com-%E6%89%8B%E5%8A%A8%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAfrp%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%82/" class="article-date">
+  <time class="dt-published" datetime="2019-07-23T20:51:40.000Z" itemprop="datePublished">2019-07-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/23/ivampiresp.com-%E6%89%8B%E5%8A%A8%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAfrp%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%82/">手动搭建一个frp服务器。 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>这个文章呢。。其实我去年写过。。</p>
+
+
+<p>但就是因为原博客删除了所以啥都没有。</p>
+
+
+<p>PS：图片这事，我随便找了个，23333</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/0072Vf1pgy1foxk751epdj31kw0w07qt.jpg?imageMogr2/interlace/1/quality/80" alt=""/></figure>
+
+
+<p>所以呢，我打算补一下文章（其实是有人来找我的，所以我就顺便补下文章）</p>
+
+
+<p>服务器要求：任何Linux/Windows操作系统。</p>
+
+
+<p>教程中 Ubuntu 18.04 64位。FRP版本： <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases/tag/v0.27.1">v0.27.1</a> </p>
+
+
+<p>FRP Releases： <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases"><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a></a> </p>
+
+
+<p>FRP是一个高性能的反向代理工具，可以帮你穿透NAT网络并且绕过防火墙。</p>
+
+
+<h2>服务器</h2>
+
+
+<h4>下载&amp;配置</h4>
+
+
+<p>wget并解压最新版frp，请将命令替换为适合你当前环境的，如果不知道，可以评论区留言。 </p>
+
+
+<pre class="wp-block-code"><code>apt install wget screen -y
+wget https://github.com/fatedier/frp/releases/download/v0.27.1/frp_0.27.1_linux_amd64.tar.gz
+tar -zxvf frp_0.27.1_linux_amd64.tar.gz
+cd frp_0.27.1_linux_amd64
+rm -rf frpc*</code></pre>
+
+
+<h4>配置文件</h4>
+
+
+<p>下面来解析下frps.ini文件，你可以ssh或者sftp编辑它。原文件没有这么多，你可以根据下面示例添加。完整的配置的文件在frps_full.ini</p>
+
+
+<pre class="wp-block-code"><code>[common]
+bind_port = 7000   ## 绑定端口
+vhost_http_port = 80 ## 虚拟主机http协议的端口
+vhost_https_port = 443 ## 虚拟主机https协议的端口
+dashboard_port = 7500 ## dashboard端口
+# dashboard 用户名密码，默认都为 admin
+dashboard_user = admin
+dashboard_pwd = admin</code></pre>
+
+
+<h2>客户端</h2>
+
+
+<h4>下载&amp;配置</h4>
+
+
+<p>wget并解压最新版frp，请将命令替换为适合你当前环境的，如果不知道，可以评论区留言。</p>
+
+
+<pre class="wp-block-code"><code>apt install wget screen -y
+wget https://github.com/fatedier/frp/releases/download/v0.27.1/frp_0.27.1_linux_amd64.tar.gz
+tar -zxvf frp_0.27.1_linux_amd64.tar.gz
+cd frp_0.27.1_linux_amd64
+rm -rf frps*</code></pre>
+
+
+<h4>配置文件</h4>
+
+
+<p>下面来解析下frpc.ini文件，你可以ssh或者sftp编辑它。原文件没有这么多，你可以根据下面示例添加。  完整的配置的文件在frpc_full.ini </p>
+
+
+<pre class="wp-block-code"><code>[common]
+server_addr = 0.0.0.0   ## frps服务器地址
+server_port = 7000 ## frps服务器端口
+admin_addr = 127.0.0.1 ## frpc admin地址
+admin_port = 7400 ## frpc admin端口
+
+[ssh]  ## 代理名称
+type = tcp ## 代理协议
+local_port = 22 ## 代理本地端口
+remote_port = 6000 ## 代理远程端口（frps开放的端口）
+use_encryption = true ## 加密
+use_compression = true ## 压缩</code></pre>
+
+
+<h2>运行</h2>
+
+
+<h4>frps</h4>
+
+
+
+
+<p>现在，运行你的<strong>frps服务端</strong>。</p>
+
+
+<pre class="wp-block-code"><code>screen -S frps ./frps -c frps.ini</code></pre>
+
+
+<p>如果<strong><em>没有错误提示</em></strong>，他<strong>运行起来应该是<em>类似</em>这样</strong>：</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/image-3.png?imageMogr2/interlace/1/quality/80" alt=""/></figure>
+
+
+
+
+<h4>frpc</h4>
+
+
+<p>同时按住<strong><em>Ctrl+A+D</em></strong>挂起screen。接着，连接到需要映射的服务器并运行你的<strong>frpc客户端</strong>。</p>
+
+
+<pre class="wp-block-code"><code>screen -S frpc ./frpc -c frpc.ini</code></pre>
+
+
+<p>如果<strong><em>没有错误提示</em></strong>，他<strong>运行起来应该是<em>类似</em>这样</strong>： </p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/image-4.png?imageMogr2/interlace/1/quality/80" alt=""/><figcaption>frpc</figcaption></figure>
+
+
+<p>同时按住<strong><em>Ctrl+A+</em></strong>D挂起screen。这样你的frpc和frps都能后台运行了。如果你需要开机启动，可以使用service方式或者rc.local。</p>
+
+
+<h2>搭建完成</h2>
+
+
+<p>好了，本次教程就到这里结束了。</p>
+
+
+<p>FRP中文文档： <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/blob/master/README_zh.md"><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/blob/master/README_zh.md">https://github.com/fatedier/frp/blob/master/README_zh.md</a></a> </p>
+
+
+<p>FRP发行版： <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases"><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a></a></p>
+
+
+<p>有何不懂的可以看上面的，原作者的更详细~ :huaji:</p>
+
+
+<p>如果教程有错误，欢迎指正！</p>
+
+
+<p>享受吧~</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/23/%e6%89%8b%e5%8a%a8%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aafrp%e6%9c%8d%e5%8a%a1%e5%99%a8%e3%80%82">https://ivampiresp.com/2019/07/23/%e6%89%8b%e5%8a%a8%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aafrp%e6%9c%8d%e5%8a%a1%e5%99%a8%e3%80%82</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/07/23/ivampiresp.com-%E6%89%8B%E5%8A%A8%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAfrp%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%82/" data-id="cl01oc4xo003hceoy7qhtd5ih" data-title="手动搭建一个frp服务器。 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-Menhera酱表情包API已上线！" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/17/ivampiresp.com-Menhera%E9%85%B1%E8%A1%A8%E6%83%85%E5%8C%85API%E5%B7%B2%E4%B8%8A%E7%BA%BF%EF%BC%81/" class="article-date">
+  <time class="dt-published" datetime="2019-07-17T16:18:53.000Z" itemprop="datePublished">2019-07-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/17/ivampiresp.com-Menhera%E9%85%B1%E8%A1%A8%E6%83%85%E5%8C%85API%E5%B7%B2%E4%B8%8A%E7%BA%BF%EF%BC%81/">Menhera酱表情包API已上线！ 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Menhera酱表情包之前是很火的（不知道现在是不是）。并且我在写机器人时也想搞点事情，就把Menhera酱表情包挂api里了。</p>
+
+
+<p>图片下载：<a target="_blank" rel="noopener" href="http://api.ivampire.firadio.net/download/menhera.zip"><a target="_blank" rel="noopener" href="http://api.ivampire.firadio.net/download/menhera.zip">http://api.ivampire.firadio.net/download/menhera.zip</a></a></p>
+
+
+<p>图片预览</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/ab42f8e79ce5890370ea4320cfbd646f.png?imageMogr2/interlace/1/quality/80" alt="menhera" width="740" height="640" class="alignnone size-full wp-image-1435" /></figure>
+
+
+<p>由于menhera比较特殊，所以我就不加到mix和index中了。需要单独调用。</p>
+
+
+<p>搭建方法及其他API：</p>
+
+
+<p>搭建方法</p>
+
+
+<figure class="wp-block-embed-wordpress wp-block-embed is-type-wp-embed is-provider-ivampirespの物語"><div class="wp-block-embed__wrapper">
+<blockquote class="wp-embedded-content" data-secret="IUjuZNSAPF"><a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/03/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e3%80%8a%e5%a4%a9%e4%bd%bf%e9%99%8d%e4%b8%b4%e5%88%b0%e6%88%91%e8%ba%ab%e8%be%b9%e3%80%8b%e7%9a%84%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api.html">制作一个《天使降临到我身边》的随机图片API</a></blockquote><iframe title="《制作一个《天使降临到我身边》的随机图片API》—iVampireSPの物語" class="wp-embedded-content" sandbox="allow-scripts" security="restricted" style="position: absolute; clip: rect(1px, 1px, 1px, 1px);" src="https://ivampiresp.com/2019/07/03/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e3%80%8a%e5%a4%a9%e4%bd%bf%e9%99%8d%e4%b8%b4%e5%88%b0%e6%88%91%e8%ba%ab%e8%be%b9%e3%80%8b%e7%9a%84%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api.html/embed#?secret=IUjuZNSAPF" data-secret="IUjuZNSAPF" width="500" height="282" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div></figure>
+
+
+<p>其他API</p>
+
+
+<figure class="wp-block-embed-wordpress wp-block-embed is-type-wp-embed is-provider-ivampirespの物語"><div class="wp-block-embed__wrapper">
+<blockquote class="wp-embedded-content" data-secret="0AMm4eV7Gc"><a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/04/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e7%9b%be%e4%b9%8b%e5%8b%87%e8%80%85%e6%88%90%e5%90%8d%e5%bd%95%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api.html">制作一个盾之勇者成名录随机图片API</a></blockquote><iframe title="《制作一个盾之勇者成名录随机图片API》—iVampireSPの物語" class="wp-embedded-content" sandbox="allow-scripts" security="restricted" style="position: absolute; clip: rect(1px, 1px, 1px, 1px);" src="https://ivampiresp.com/2019/07/04/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e7%9b%be%e4%b9%8b%e5%8b%87%e8%80%85%e6%88%90%e5%90%8d%e5%bd%95%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api.html/embed#?secret=0AMm4eV7Gc" data-secret="0AMm4eV7Gc" width="500" height="282" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div></figure>
+
+
+<figure class="wp-block-embed-wordpress wp-block-embed is-type-wp-embed is-provider-ivampirespの物語"><div class="wp-block-embed__wrapper">
+<blockquote class="wp-embedded-content" data-secret="bjdCyhxNqu"><a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/06/27/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e9%82%bb%e5%ae%b6%e7%b4%a2%e8%8f%b2%ef%bc%88%e9%9a%94%e5%a3%81%e7%9a%84%e5%90%b8%e8%a1%80%e9%ac%bc%e7%be%8e%e7%9c%89%ef%bc%89%e7%9a%84%e9%9a%8f.html">制作一个邻家索菲（隔壁的吸血鬼美眉）的随机图片API</a></blockquote><iframe title="《制作一个邻家索菲（隔壁的吸血鬼美眉）的随机图片API》—iVampireSPの物語" class="wp-embedded-content" sandbox="allow-scripts" security="restricted" style="position: absolute; clip: rect(1px, 1px, 1px, 1px);" src="https://ivampiresp.com/2019/06/27/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e9%82%bb%e5%ae%b6%e7%b4%a2%e8%8f%b2%ef%bc%88%e9%9a%94%e5%a3%81%e7%9a%84%e5%90%b8%e8%a1%80%e9%ac%bc%e7%be%8e%e7%9c%89%ef%bc%89%e7%9a%84%e9%9a%8f.html/embed#?secret=bjdCyhxNqu" data-secret="bjdCyhxNqu" width="500" height="282" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div></figure>
+
+
+<p>非图片API</p>
+
+
+<figure class="wp-block-embed-wordpress wp-block-embed is-type-wp-embed is-provider-ivampirespの物語"><div class="wp-block-embed__wrapper">
+<blockquote class="wp-embedded-content" data-secret="znGO1PORsr"><a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/16/%e5%85%ac%e5%bc%80%e4%b8%80%e4%b8%aamcpe-ping%e6%8e%a5%e5%8f%a3%ef%bc%88%e8%87%aa%e5%bb%ba%ef%bc%89.html">公开一个mcpe-ping接口（自建）</a></blockquote><iframe title="《公开一个mcpe-ping接口（自建）》—iVampireSPの物語" class="wp-embedded-content" sandbox="allow-scripts" security="restricted" style="position: absolute; clip: rect(1px, 1px, 1px, 1px);" src="https://ivampiresp.com/2019/07/16/%e5%85%ac%e5%bc%80%e4%b8%80%e4%b8%aamcpe-ping%e6%8e%a5%e5%8f%a3%ef%bc%88%e8%87%aa%e5%bb%ba%ef%bc%89.html/embed#?secret=znGO1PORsr" data-secret="znGO1PORsr" width="500" height="282" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</div></figure>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/17/menhera%e9%85%b1%e8%a1%a8%e6%83%85%e5%8c%85api%e5%b7%b2%e4%b8%8a%e7%ba%bf%ef%bc%81">https://ivampiresp.com/2019/07/17/menhera%e9%85%b1%e8%a1%a8%e6%83%85%e5%8c%85api%e5%b7%b2%e4%b8%8a%e7%ba%bf%ef%bc%81</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/07/17/ivampiresp.com-Menhera%E9%85%B1%E8%A1%A8%E6%83%85%E5%8C%85API%E5%B7%B2%E4%B8%8A%E7%BA%BF%EF%BC%81/" data-id="cl01oc4x10021ceoyg3x5hhw9" data-title="Menhera酱表情包API已上线！ 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-公开一个mcpe-ping接口（自建）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/16/ivampiresp.com-%E5%85%AC%E5%BC%80%E4%B8%80%E4%B8%AAmcpe-ping%E6%8E%A5%E5%8F%A3%EF%BC%88%E8%87%AA%E5%BB%BA%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2019-07-16T16:34:03.000Z" itemprop="datePublished">2019-07-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/16/ivampiresp.com-%E5%85%AC%E5%BC%80%E4%B8%80%E4%B8%AAmcpe-ping%E6%8E%A5%E5%8F%A3%EF%BC%88%E8%87%AA%E5%BB%BA%EF%BC%89/">公开一个mcpe-ping接口（自建） 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>我可没有鸽掉，23333</p>
+
+
+<p>这次呢我发现我手头还有个服务器（当然还是白嫖过来的），于是用之前嫖来的3级域名，弄了个mping免费公开的api</p>
+
+
+<p>接口地址：  <a target="_blank" rel="noopener" href="https://proxy.loliday.cn/mping"><a target="_blank" rel="noopener" href="https://proxy.loliday.cn/mping">https://proxy.loliday.cn/mping</a></a> </p>
+
+
+<p>用法。。</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/04B475C01FBE1625B65E4E6A1A16A00B.jpg?imageMogr2/interlace/1/quality/80" alt=""/><figcaption>MPing使用方法<br> name<br>currentPlayers<br>maxPlayers </figcaption></figure>
+
+
+<p>格式： <a target="_blank" rel="noopener" href="https://proxy.loliday.cn/mping/ping/服务器ip/端口/参数">https://proxy.loliday.cn/mping/ping/服务器ip/端口/参数</a> </p>
+
+
+<p>例如：  </p>
+
+
+<p>JSON：<a target="_blank" rel="noopener" href="https://proxy.loliday.cn/mping/ping/play.lbsg.net/19132">https://proxy.loliday.cn/mping/ping/play.lbsg.net/19132</a></p>
+
+
+<p>服务器名称： <a target="_blank" rel="noopener" href="https://proxy.loliday.cn/mping/ping/play.lbsg.net/19132/name">https://proxy.loliday.cn/mping/ping/play.lbsg.net/19132/name</a></p>
+
+
+<p>当前在线 <a target="_blank" rel="noopener" href="https://mping.kawayi.ml/ping/play.lbsg.net/19132/currentPlayers"><a target="_blank" rel="noopener" href="https://mping.kawayi.ml/ping/play.lbsg.net/19132/currentPlayers">https://mping.kawayi.ml/ping/play.lbsg.net/19132/currentPlayers</a></a></p>
+
+
+<p>最大人数： <a target="_blank" rel="noopener" href="https://proxy.loliday.cn/mping/ping/play.lbsg.net/19132/maxPlayers">https://proxy.loliday.cn/mping/ping/play.lbsg.net/19132/maxPlayers</a>  </p>
+
+
+<p>json</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/06/image-5-1024x548.png?imageMogr2/interlace/1/quality/80" alt=""/></figure>
+
+
+<p>搭建方法/使用实例</p>
+
+
+<figure class="wp-block-embed-wordpress wp-block-embed is-type-wp-embed is-provider-ivampirespの物語"><div class="wp-block-embed__wrapper">
+<blockquote class="wp-embedded-content"><a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/06/19/%e4%bd%bf%e7%94%a8mping%e5%9c%a8%e7%ba%bf%e6%9f%a5%e8%af%a2mcbe%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%8a%b6%e6%80%81.html">使用mcpe-ping(mping)在线查询MCBE服务器状态</a></blockquote><script type='text/javascript'><!--//--><![CDATA[//><!--        !function(a,b){"use strict";function c(){if(!e){e=!0;var a,c,d,f,g=-1!==navigator.appVersion.indexOf("MSIE 10"),h=!!navigator.userAgent.match(/Trident.*rv:11./),i=b.querySelectorAll("iframe.wp-embedded-content");for(c=0;c<i.length;c++){if(d=i[c],!d.getAttribute("data-secret"))f=Math.random().toString(36).substr(2,10),d.src+="#?secret="+f,d.setAttribute("data-secret",f);if(g||h)a=d.cloneNode(!0),a.removeAttribute("security"),d.parentNode.replaceChild(a,d)}}}var d=!1,e=!1;if(b.querySelector)if(a.addEventListener)d=!0;if(a.wp=a.wp||{},!a.wp.receiveEmbedMessage)if(a.wp.receiveEmbedMessage=function(c){var d=c.data;if(d)if(d.secret||d.message||d.value)if(!/[^a-zA-Z0-9]/.test(d.secret)){var e,f,g,h,i,j=b.querySelectorAll('iframe[data-secret="'+d.secret+'"]'),k=b.querySelectorAll('blockquote[data-secret="'+d.secret+'"]');for(e=0;e<k.length;e++)k[e].style.display="none";for(e=0;e<j.length;e++)if(f=j[e],c.source===f.contentWindow){if(f.removeAttribute("style"),"height"===d.message){if(g=parseInt(d.value,10),g>1e3)g=1e3;else if(~~g<200)g=200;f.height=g}if("link"===d.message)if(h=b.createElement("a"),i=b.createElement("a"),h.href=f.getAttribute("src"),i.href=d.value,i.host===h.host)if(b.activeElement===f)a.top.location.href=d.value}else;}},d)a.addEventListener("message",a.wp.receiveEmbedMessage,!1),b.addEventListener("DOMContentLoaded",c,!1),a.addEventListener("load",c,!1)}(window,document);//--><!]]></script><iframe loading="lazy" title="《使用mcpe-ping(mping)在线查询MCBE服务器状态》—iVampireSPの物語" sandbox="allow-scripts" security="restricted" src="https://ivampiresp.com/2019/06/19/%e4%bd%bf%e7%94%a8mping%e5%9c%a8%e7%ba%bf%e6%9f%a5%e8%af%a2mcbe%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%8a%b6%e6%80%81.html/embed" width="500" height="282" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" class="wp-embedded-content"></iframe>
+</div><figcaption>iVampireSPの物语</figcaption></figure>
+
+
+<p>旧实例</p>
+
+
+<figure class="wp-block-embed-wordpress wp-block-embed is-type-wp-embed is-provider-ivampirespの物語"><div class="wp-block-embed__wrapper">
+<blockquote class="wp-embedded-content"><a target="_blank" rel="noopener" href="https://ivampiresp.com/example-status">MCBE Server Status</a></blockquote><script type='text/javascript'><!--//--><![CDATA[//><!--        !function(a,b){"use strict";function c(){if(!e){e=!0;var a,c,d,f,g=-1!==navigator.appVersion.indexOf("MSIE 10"),h=!!navigator.userAgent.match(/Trident.*rv:11./),i=b.querySelectorAll("iframe.wp-embedded-content");for(c=0;c<i.length;c++){if(d=i[c],!d.getAttribute("data-secret"))f=Math.random().toString(36).substr(2,10),d.src+="#?secret="+f,d.setAttribute("data-secret",f);if(g||h)a=d.cloneNode(!0),a.removeAttribute("security"),d.parentNode.replaceChild(a,d)}}}var d=!1,e=!1;if(b.querySelector)if(a.addEventListener)d=!0;if(a.wp=a.wp||{},!a.wp.receiveEmbedMessage)if(a.wp.receiveEmbedMessage=function(c){var d=c.data;if(d)if(d.secret||d.message||d.value)if(!/[^a-zA-Z0-9]/.test(d.secret)){var e,f,g,h,i,j=b.querySelectorAll('iframe[data-secret="'+d.secret+'"]'),k=b.querySelectorAll('blockquote[data-secret="'+d.secret+'"]');for(e=0;e<k.length;e++)k[e].style.display="none";for(e=0;e<j.length;e++)if(f=j[e],c.source===f.contentWindow){if(f.removeAttribute("style"),"height"===d.message){if(g=parseInt(d.value,10),g>1e3)g=1e3;else if(~~g<200)g=200;f.height=g}if("link"===d.message)if(h=b.createElement("a"),i=b.createElement("a"),h.href=f.getAttribute("src"),i.href=d.value,i.host===h.host)if(b.activeElement===f)a.top.location.href=d.value}else;}},d)a.addEventListener("message",a.wp.receiveEmbedMessage,!1),b.addEventListener("DOMContentLoaded",c,!1),a.addEventListener("load",c,!1)}(window,document);//--><!]]></script><iframe loading="lazy" title="《MCBE Server Status》—iVampireSPの物語" sandbox="allow-scripts" security="restricted" src="https://ivampiresp.com/example-status/embed" width="500" height="282" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" class="wp-embedded-content"></iframe>
+</div><figcaption> iVampireSPの物语 </figcaption></figure>
+
+
+<p>然后你就可以对接到你的网页中/应用中啦~</p>
+
+
+<p>公益接口，请为他人着想，不要攻击。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/16/%e5%85%ac%e5%bc%80%e4%b8%80%e4%b8%aamcpe-ping%e6%8e%a5%e5%8f%a3%ef%bc%88%e8%87%aa%e5%bb%ba%ef%bc%89">https://ivampiresp.com/2019/07/16/%e5%85%ac%e5%bc%80%e4%b8%80%e4%b8%aamcpe-ping%e6%8e%a5%e5%8f%a3%ef%bc%88%e8%87%aa%e5%bb%ba%ef%bc%89</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/07/16/ivampiresp.com-%E5%85%AC%E5%BC%80%E4%B8%80%E4%B8%AAmcpe-ping%E6%8E%A5%E5%8F%A3%EF%BC%88%E8%87%AA%E5%BB%BA%EF%BC%89/" data-id="cl01oc4xg002zceoyhus9hdwc" data-title="公开一个mcpe-ping接口（自建） 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-制作一个盾之勇者成名录随机图片API" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/04/ivampiresp.com-%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%9B%BE%E4%B9%8B%E5%8B%87%E8%80%85%E6%88%90%E5%90%8D%E5%BD%95%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87API/" class="article-date">
+  <time class="dt-published" datetime="2019-07-04T16:34:00.000Z" itemprop="datePublished">2019-07-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/04/ivampiresp.com-%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%9B%BE%E4%B9%8B%E5%8B%87%E8%80%85%E6%88%90%E5%90%8D%E5%BD%95%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87API/">制作一个盾之勇者成名录随机图片API 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>看到这篇文章你可能要问：为什么不做百合番的了？</p>
+
+
+<p>我换个口味不行吗？<s>再说了这个番里面又不是没有卡哇伊的人物</s></p>
+
+
+<p>（其实我就是奔着菲落来的</p>
+
+
+<p>图片还是到番剧官网找的，一共125张。然而我这里150张，在这之前还挑出6张一样的。。不过不玩找相同，直接上传到服务器！</p>
+
+
+<p>官网：<a target="_blank" rel="noopener" href="http://shieldhero-anime.jp/">http://shieldhero-anime.jp/</a></p>
+
+
+<p>预览</p>
+
+
+<figure class="wp-block-image"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/828e0013b8f3bc1bb22b4f57172b019d.jpg?imageMogr2/interlace/1/quality/80" alt="index" width="1280" height="720" class="alignnone size-full wp-image-1426" /><figcaption>https://api.lo-li.art/dunzhiyongzhechengminlu/index.php</figcaption></figure>
+
+
+<p>制作方法看：<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/03/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e3%80%8a%e5%a4%a9%e4%bd%bf%e9%99%8d%e4%b8%b4%e5%88%b0%e6%88%91%e8%ba%ab%e8%be%b9%e3%80%8b%e7%9a%84%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api.html">这个文章</a></p>
+
+
+<p>这是我的其他API，后面对应的是接口地址：</p>
+
+
+<p><a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/03/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e3%80%8a%e5%a4%a9%e4%bd%bf%e9%99%8d%e4%b8%b4%e5%88%b0%e6%88%91%e8%ba%ab%e8%be%b9%e3%80%8b%e7%9a%84%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api.html">《天使降临到我身边》</a>   <a target="_blank" rel="noopener" href="https://api.lo-li.art/tianshijianglindaowoshenbian"><a target="_blank" rel="noopener" href="https://api.lo-li.art/tianshijianglindaowoshenbian/index.php">https://api.lo-li.art/tianshijianglindaowoshenbian</a></a><a target="_blank" rel="noopener" href="https://api.lo-li.art/tianshijianglindaowoshenbian/index.php">/index.php</a></p>
+
+
+<figure class="wp-block-image"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/828e0013b8f3bc1bb22b4f57172b019d-1.jpg?imageMogr2/interlace/1/quality/80" alt="index" width="1000" height="563" class="alignnone size-full wp-image-1427" /></figure>
+
+
+<p><a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/06/27/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e9%82%bb%e5%ae%b6%e7%b4%a2%e8%8f%b2%ef%bc%88%e9%9a%94%e5%a3%81%e7%9a%84%e5%90%b8%e8%a1%80%e9%ac%bc%e7%be%8e%e7%9c%89%ef%bc%89%e7%9a%84%e9%9a%8f.html">《隔壁的吸血鬼美眉》</a>  <a target="_blank" rel="noopener" href="https://api.lo-li.art/gebidexixueguimeimei"></a><a target="_blank" rel="noopener" href="https://api.lo-li.art/gebidexixueguimeimei/index.php">https://api.lo-li.art/gebidexixueguimeimei/index.php</a></p>
+
+
+<figure class="wp-block-image"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/828e0013b8f3bc1bb22b4f57172b019d-2.jpg?imageMogr2/interlace/1/quality/80" alt="index" width="1920" height="1080" class="alignnone size-full wp-image-1428" /></figure>
+
+
+<p>将本篇与上述动漫合在一起的API： <a target="_blank" rel="noopener" href="https://api.lo-li.art/index.php">https://api.lo-li.art/index.php</a></p>
+
+
+<figure class="wp-block-image"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/828e0013b8f3bc1bb22b4f57172b019d-3.jpg?imageMogr2/interlace/1/quality/80" alt="index" width="1280" height="720" class="alignnone size-full wp-image-1429" /></figure>
+
+
+<p>问：为啥没有https？</p>
+
+
+<p>答：因为空间不支持~</p>
+
+
+<p>好了，水就水到这里，如果你要所有API打包文件，可以通过QQ联系我：2596048743。</p>
+
+
+<p>如果你喜欢，欢迎评论分享或打赏。</p>
+
+
+<p>附：项目已经开源： <a target="_blank" rel="noopener" href="https://github.com/ivampiresp/random-image">https://github.com/ivampiresp/random-image</a> </p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/04/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e7%9b%be%e4%b9%8b%e5%8b%87%e8%80%85%e6%88%90%e5%90%8d%e5%bd%95%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api">https://ivampiresp.com/2019/07/04/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e7%9b%be%e4%b9%8b%e5%8b%87%e8%80%85%e6%88%90%e5%90%8d%e5%bd%95%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/07/04/ivampiresp.com-%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%9B%BE%E4%B9%8B%E5%8B%87%E8%80%85%E6%88%90%E5%90%8D%E5%BD%95%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87API/" data-id="cl01oc4xi0035ceoy7td5e1pz" data-title="制作一个盾之勇者成名录随机图片API 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-制作一个《天使降临到我身边》的随机图片API" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/03/ivampiresp.com-%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E3%80%8A%E5%A4%A9%E4%BD%BF%E9%99%8D%E4%B8%B4%E5%88%B0%E6%88%91%E8%BA%AB%E8%BE%B9%E3%80%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87API/" class="article-date">
+  <time class="dt-published" datetime="2019-07-03T15:57:16.000Z" itemprop="datePublished">2019-07-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/03/ivampiresp.com-%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E3%80%8A%E5%A4%A9%E4%BD%BF%E9%99%8D%E4%B8%B4%E5%88%B0%E6%88%91%E8%BA%AB%E8%BE%B9%E3%80%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87API/">制作一个《天使降临到我身边》的随机图片API 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote class="wp-block-mdx-warning mdx-warning"><i class="mdui-icon material-icons"></i> 内容可能已经失效<br/><strong>本文章对应的实际内容可能已经发生改变，部分链接可能失效。</strong></p></blockquote>
+
+
+<figure class="wp-block-image size-large"><a target="_blank" rel="noopener" href="https://api.lo-li.art/tianshijianglindaowoshenbian"><img loading="lazy" src="https://api.lo-li.art/tianshijianglindaowoshenbian" alt="index" width="1000" height="563" class="alignnone size-full wp-image-1454" /></a></figure>
+
+
+<p>俗话说的好：“百合三连，彻夜难眠。”<br>
+《天使降临到我身边》这部百合番我并没有看完，就到wikipedia上找到了官网http://watatentv.com 然后就开始抓图片了http://watatentv.com/story01.html<br>
+每集6张，一共70张。<br>
+预览图：<br>
+<br>
+难度：十分简单<br>
+这次我并不用之前一个一个复制文件的方法，还是从Sakura主题cover目录中提取了1个文件，就用它来做随机图片吧。<br>
+这次不用找图床，直接找个免费虚拟主机(如果你主机带宽够大可以搭建到你自己服务器上)，我用的是https://infinityfree.net/ 建议用它的子域名，然后再建一个，最后搭建API。<br>
+把ftp工具准备好，然后到后台获取ftp用户名密码还有服务器。
+
+
+
+<figure class="wp-block-image"><img loading="lazy" src="https://api.lo-li.art/tianshijianglindaowoshenbian" alt="5d1c5b6c0622b68262" width="1366" height="736" class="alignnone size-full wp-image-1455" /></figure>
+
+
+
+<p>紧接着下载上传并解压这个文件到新建子域名目录的htdocs下<br><br><a target="_blank" rel="noopener" href="https://happy-friends.ga/2019/07/Sakura-cover.zip"><a target="_blank" rel="noopener" href="https://happy-friends.ga/2019/07/Sakura-cover.zip">https://happy-friends.ga/2019/07/Sakura-cover.zip</a></a></p>
+<figure class="wp-block-image size-large"><img src="https://api.lo-li.art/tianshijianglindaowoshenbian" alt="5d1c5cd5af2fc95295"/></figure>
+
+
+
+<p>我上传到了子目录，因为主目录我要做两个API之间自动切换，代码我会放下来。<br><br>最后把下载到的图片放gallery文件夹即可。<br><br>图片我已经打包好了，下载链接：<br><br><a target="_blank" rel="noopener" href="http://ivampiresp.loveslife.biz/download/天使降临到我身边.zip"></a><a target="_blank" rel="noopener" href="http://ivampiresp.loveslife.biz/download/天使降临到我身边.zip">http://ivampiresp.loveslife.biz/download/天使降临到我身边.zip</a><br><br>如果你还要对接其他图片API的话可以试试这个代码，</p>
+<pre class="wp-block-code"><code>&lt;?php
+$urls = &#91;
+  'https://ivampiresp.com/wp-content/random.php',
+  'https://api.lo-li.art/tianshijianglindaowoshenbian/index.php',
+];
+header('Location: '.$urls&#91;mt_rand(0, count($urls)-1)]);
+</code></pre>
+
+
+
+<figure class="wp-block-image size-large"><a target="_blank" rel="noopener" href="http://ivampiresp.loveslife.biz/index.php"><img src="https://api.lo-li.art/tianshijianglindaowoshenbian" alt="index"/></a></figure>
+
+
+
+<p>把上面代码保存为一个php文件即可，上面内容改成你的或者用我的。<br> 这样就可以随机显示两个随机图片API中的随机图片啦。<br> 预览图：<br> <br> 注：新接口，国内主机<br> 图片下载地址：<a target="_blank" rel="noopener" href="http://api.ivampire.firadio.net/download/天使降临到我身边.zip">http://api.ivampire.firadio.net/download/天使降临到我身边.zip</a><br> 图片接口：</p><a target="_blank" rel="noopener" href="https://api.lo-li.art/tianshijianglindaowoshenbian/index.php">https://api.lo-li.art/tianshijianglindaowoshenbian/index.php</a>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/03/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e3%80%8a%e5%a4%a9%e4%bd%bf%e9%99%8d%e4%b8%b4%e5%88%b0%e6%88%91%e8%ba%ab%e8%be%b9%e3%80%8b%e7%9a%84%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api">https://ivampiresp.com/2019/07/03/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e3%80%8a%e5%a4%a9%e4%bd%bf%e9%99%8d%e4%b8%b4%e5%88%b0%e6%88%91%e8%ba%ab%e8%be%b9%e3%80%8b%e7%9a%84%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/07/03/ivampiresp.com-%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E3%80%8A%E5%A4%A9%E4%BD%BF%E9%99%8D%E4%B8%B4%E5%88%B0%E6%88%91%E8%BA%AB%E8%BE%B9%E3%80%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87API/" data-id="cl01oc4xh0031ceoyeu96gnk6" data-title="制作一个《天使降临到我身边》的随机图片API 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

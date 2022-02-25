@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="让你的文章不再被时间长河埋没">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MemoryArt">
+<meta property="og:url" content="http://memoryart.nwl.im/page/5/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="让你的文章不再被时间长河埋没">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="MemoryArt">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-imcys.com-【PHP教程】利用QR机器人获取IP地址" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/02/imcys.com-%E3%80%90PHP%E6%95%99%E7%A8%8B%E3%80%91%E5%88%A9%E7%94%A8QR%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%8E%B7%E5%8F%96IP%E5%9C%B0%E5%9D%80/" class="article-date">
+  <time class="dt-published" datetime="2020-05-02T20:34:34.000Z" itemprop="datePublished">2020-05-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/02/imcys.com-%E3%80%90PHP%E6%95%99%E7%A8%8B%E3%80%91%E5%88%A9%E7%94%A8QR%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%8E%B7%E5%8F%96IP%E5%9C%B0%E5%9D%80/">【PHP教程】利用QR机器人获取IP地址 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+
+
+
+<p>在不少时候，我们或多或少，都能在不少群里看到，有人利用了某种手段获取了我们的IP地址。</p>
+
+
+
+<p>实际上，在我们多次实验后发现这并不难实现，在这里我来讲讲原理。</p>
+
+
+
+<p>我们不难发现，当用户发送了一个XML和JSON时，QQ会向卡片内资源进行请求，这样就使得危险度上升，因为，假设，图片资源是个PHP来输出的，那么，在这个过程当中，你就泄露了自己的IP。</p>
+
+
+
+<p>下面是我编写的PHP代码和使用教程视频</p>
+
+
+
+<iframe loading="lazy" src="https://ycx.mxjs.xyz/?url=https://cdn.jsdelivr.net/gh/zxy678/Misakaloli/mxjs.mp4" frameborder="0" width="100%" scrolling="No" height="300dp" leftmargin="0" topmargin="0"></iframe>
+
+
+
+<h3>PHP代码</h3>
+
+
+
+<p>首先我们需要一个kp.php</p>
+
+
+
+<p>它会记录访问者的IP和时间这些，函数<strong>getIp()</strong>，是为了准确获取地址，因为如果你是cf加速用户用<strong><span class="has-inline-color has-pale-pink-color">[&#8216;REMOTE_ADDR&#8217;]</span></strong>，那么这个地址将会是cf的。</p>
+
+
+
+<p>下面你可以用JSON或者单纯文本方法记录来访者IP</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;?php
+
+function getIp()&#123; 
+    $onlineip=''; 
+    if(getenv('HTTP_CLIENT_IP')&amp;&amp;strcasecmp(getenv('HTTP_CLIENT_IP'),'unknown'))&#123; 
+        $onlineip=getenv('HTTP_CLIENT_IP'); 
+    &#125; elseif(getenv('HTTP_X_FORWARDED_FOR')&amp;&amp;strcasecmp(getenv('HTTP_X_FORWARDED_FOR'),'unknown'))&#123; 
+        $onlineip=getenv('HTTP_X_FORWARDED_FOR'); 
+    &#125; elseif(getenv('REMOTE_ADDR')&amp;&amp;strcasecmp(getenv('REMOTE_ADDR'),'unknown'))&#123; 
+        $onlineip=getenv('REMOTE_ADDR'); 
+    &#125; elseif(isset($_SERVER&#91;'REMOTE_ADDR'])&amp;&amp;$_SERVER&#91;'REMOTE_ADDR']&amp;&amp;strcasecmp($_SERVER&#91;'REMOTE_ADDR'],'unknown'))&#123; 
+        $onlineip=$_SERVER&#91;'REMOTE_ADDR']; 
+    &#125; 
+    return $onlineip; 
+&#125; 
+
+
+
+//获取访问ip
+$ip = getIp();
+
+$dot = strripos($ip,"."); //查找“.”最后出现的位置
+$ip = substr($ip,0,$dot).".*"; //输出“.”最后出现位置之前的字符串并加上*号
+
+
+//获取当前时间
+$data = date("Y年m月d日 H时i分m秒");
+$xh = xh($_SERVER&#91;'HTTP_USER_AGENT']);
+$arr = "IP地址".$ip."\n时间".$data."\n设备".$xh;
+
+
+/*
+//数组化
+$arr=&#91;'ip'=>$ip,'时间'=>$data];
+//json转换
+$json = json_encode($arr,JSON_UNESCAPED_UNICODE) ;
+*/
+
+//图片地址
+$img = "https://mxjs-1252309123.cos.ap-chengdu.myqcloud.com/wp-content/uploads/2020/03/%E5%A3%B3%E5%9B%BE2020-02-21-17-03-40-576x1024.jpeg";
+//访问图片资源
+$img1 = file_get_contents($img,true);
+//设置编码
+header("Content-Type: image/png;text/html;charset=utf-8");
+//显示图片
+echo $img1;
+$data = file_get_contents('ip.txt',true);
+//文件操作，如果没有文件则创建，覆盖上次文件
+$file = fopen('ip.txt',"w+");
+//倒序保存数据
+fwrite($file,$arr."\n".$data);
+//关闭资源
+fclose($file);
+
+
+ /**
+ * 获取客户端手机型号
+ * @param $agent    //$_SERVER&#91;'HTTP_USER_AGENT']
+ * @return array&#91;mobile_brand]      手机品牌
+ * @return array&#91;mobile_ver]        手机型号
+ */
+    function xh($user_agent)&#123;
+    if (stripos($user_agent, "iPhone")!==false) &#123;
+        $brand = 'iPhone';
+    &#125; else if (stripos($user_agent, "SAMSUNG")!==false || stripos($user_agent, "Galaxy")!==false || strpos($user_agent, "GT-")!==false || strpos($user_agent, "SCH-")!==false || strpos($user_agent, "SM-")!==false) &#123;
+        $brand = '三星';
+    &#125; else if (stripos($user_agent, "Huawei")!==false || stripos($user_agent, "Honor")!==false || stripos($user_agent, "H60-")!==false || stripos($user_agent, "H30-")!==false) &#123;
+        $brand = '华为';
+    &#125; else if (stripos($user_agent, "Lenovo")!==false) &#123;
+        $brand = '联想';
+    &#125; else if (strpos($user_agent, "MI-ONE")!==false || strpos($user_agent, "MI 1S")!==false || strpos($user_agent, "MI 2")!==false || strpos($user_agent, "MI 3")!==false || strpos($user_agent, "MI 4")!==false || strpos($user_agent, "MI-4")!==false) &#123;
+        $brand = '小米';
+    &#125; else if (strpos($user_agent, "HM NOTE")!==false || strpos($user_agent, "HM201")!==false) &#123;
+        $brand = '红米';
+    &#125; else if (stripos($user_agent, "Coolpad")!==false || strpos($user_agent, "8190Q")!==false || strpos($user_agent, "5910")!==false) &#123;
+        $brand = '酷派';
+    &#125; else if (stripos($user_agent, "ZTE")!==false || stripos($user_agent, "X9180")!==false || stripos($user_agent, "N9180")!==false || stripos($user_agent, "U9180")!==false) &#123;
+        $brand = '中兴';
+    &#125; else if (stripos($user_agent, "OPPO")!==false || strpos($user_agent, "X9007")!==false || strpos($user_agent, "X907")!==false || strpos($user_agent, "X909")!==false || strpos($user_agent, "R831S")!==false || strpos($user_agent, "R827T")!==false || strpos($user_agent, "R821T")!==false || strpos($user_agent, "R811")!==false || strpos($user_agent, "R2017")!==false) &#123;
+        $brand = 'OPPO';
+    &#125; else if (strpos($user_agent, "HTC")!==false || stripos($user_agent, "Desire")!==false) &#123;
+        $brand = 'HTC';
+    &#125; else if (stripos($user_agent, "vivo")!==false) &#123;
+        $brand = 'vivo';
+    &#125; else if (stripos($user_agent, "K-Touch")!==false) &#123;
+        $brand = '天语';
+    &#125; else if (stripos($user_agent, "Nubia")!==false || stripos($user_agent, "NX50")!==false || stripos($user_agent, "NX40")!==false) &#123;
+        $brand = '努比亚';
+    &#125; else if (strpos($user_agent, "M045")!==false || strpos($user_agent, "M032")!==false || strpos($user_agent, "M355")!==false) &#123;
+        $brand = '魅族';
+    &#125; else if (stripos($user_agent, "DOOV")!==false) &#123;
+        $brand = '朵唯';
+    &#125; else if (stripos($user_agent, "GFIVE")!==false) &#123;
+        $brand = '基伍';
+    &#125; else if (stripos($user_agent, "Gionee")!==false || strpos($user_agent, "GN")!==false) &#123;
+        $brand = '金立';
+    &#125; else if (stripos($user_agent, "HS-U")!==false || stripos($user_agent, "HS-E")!==false) &#123;
+        $brand = '海信';
+    &#125; else if (stripos($user_agent, "Nokia")!==false) &#123;
+        $brand = '诺基亚';
+    &#125; else &#123;
+        $brand = '其他手机';
+    &#125;
+return $brand;
+&#125;
+?>
+?></code></pre>
+
+
+
+<p>有了kp你还需要一个给机器人或者你来返回窥屏信息的文件</p>
+
+
+
+<p>kp1.php，这个php是用来返回给机器人数据的，因为机器人一次性没办法读这么多信息，所以输出15行/5个人的信息。</p>
+
+
+
+<blockquote class="wp-block-mdx-warning mdx-warning"><p><i class="mdui-icon material-icons"></i> 注意事项<br/><strong>注意，请自己创建一个ip.txt的文件，否则会报错</strong></p></blockquote>
+
+
+
+<pre class="wp-block-code"><code>&lt;?php
+//获取ip.txt的0——15行内容输出
+echo get_lines('ip.txt', 0 , 15 );
+
+function get_lines( $file_name , $start , $limit )
+&#123;
+$f = new SplFileObject( $file_name,'r');
+$f->seek( $start );
+$ret = "";
+for( $i = 0 ; $i &lt; $limit ; $i++ )
+&#123;
+  $ret .= $f->current();
+  $f->next();
+&#125;
+return $ret;
+&#125;
+
+?></code></pre>
+
+
+
+<p>词库编写</p>
+
+
+
+<pre class="wp-block-code"><code>kpPHP
+card:1
+&lt;?xml version='1.0' encoding='UTF-8' standalone='yes' ?>&lt;msg serviceID="1" templateID="1" action="web" brief="新消息" sourceMsgId="2" url="" flag="3" adverSign="0" multiMsgflag="2">&lt;item layout="5">&lt;picture cover="http://你的服务器路径/kp.php" w="0" h="0" />&lt;/item>&lt;item layout="6" bg="1">&lt;summary size="25" color="#6FB7B7" style="1">php探针&lt;/summary>&lt;/item>&lt;source name="php探针" icon="http://baidu.com" action="" appid="0" />&lt;/msg>
+$调用 600 kp1$
+
+kp1
+$访问 https://ycx.mxjs.xyz/sqv8/tq/kp1.php$</code></pre>
+
+
+
+<p>这样就完成啦，如果喜欢，请持续关注博客哦</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/05/02/%e3%80%90php%e6%95%99%e7%a8%8b%e3%80%91%e5%88%a9%e7%94%a8qr%e6%9c%ba%e5%99%a8%e4%ba%ba%e8%8e%b7%e5%8f%96ip%e5%9c%b0%e5%9d%80.html">https://imcys.com/2020/05/02/%e3%80%90php%e6%95%99%e7%a8%8b%e3%80%91%e5%88%a9%e7%94%a8qr%e6%9c%ba%e5%99%a8%e4%ba%ba%e8%8e%b7%e5%8f%96ip%e5%9c%b0%e5%9d%80.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/05/02/imcys.com-%E3%80%90PHP%E6%95%99%E7%A8%8B%E3%80%91%E5%88%A9%E7%94%A8QR%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%8E%B7%E5%8F%96IP%E5%9C%B0%E5%9D%80/" data-id="cl01oc4vz000kceoy9fs11nvk" data-title="【PHP教程】利用QR机器人获取IP地址 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-Minecraft BE,PE的的URL Scheme，以URL方式快速启动minecraft" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/02/ivampiresp.com-Minecraft%20BE,PE%E7%9A%84%E7%9A%84URL%20Scheme%EF%BC%8C%E4%BB%A5URL%E6%96%B9%E5%BC%8F%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8minecraft/" class="article-date">
+  <time class="dt-published" datetime="2020-05-02T14:53:37.000Z" itemprop="datePublished">2020-05-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/05/02/ivampiresp.com-Minecraft%20BE,PE%E7%9A%84%E7%9A%84URL%20Scheme%EF%BC%8C%E4%BB%A5URL%E6%96%B9%E5%BC%8F%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8minecraft/">Minecraft BE,PE的的URL Scheme，以URL方式快速启动minecraft 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>其实这个是我最近意外发现的，并且感觉挺好用的。内容借鉴于<a target="_blank" rel="noopener" href="https://wiki.biligame.com/mc/%E6%95%99%E7%A8%8B/Minecraft_URL_Scheme"></a><a target="_blank" rel="noopener" href="https://wiki.biligame.com/mc/%E6%95%99%E7%A8%8B/Minecraft_URL_Scheme"><a target="_blank" rel="noopener" href="https://wiki.biligame.com/mc/%E6%95%99%E7%A8%8B/Minecraft_URL_Scheme"><a target="_blank" rel="noopener" href="https://wiki.biligame.com/mc/%E6%95%99%E7%A8%8B/Minecraft_URL_Scheme">https://wiki.biligame.com/mc/%E6%95%99%E7%A8%8B/Minecraft_URL_Scheme</a></a></a></p>
+
+
+<p><a target="_blank" rel="noopener" href="https://minecraft-zh.gamepedia.com/index.php?title=%E6%95%99%E7%A8%8B/Minecraft_URL_Scheme&variant=zh"><a target="_blank" rel="noopener" href="https://minecraft-zh.gamepedia.com/index.php?title=%E6%95%99%E7%A8%8B/Minecraft_URL_Scheme&amp;amp;variant=zh"><a target="_blank" rel="noopener" href="https://minecraft-zh.gamepedia.com/index.php?title=%E6%95%99%E7%A8%8B/Minecraft_URL_Scheme&amp;amp;amp;variant=zh">https://minecraft-zh.gamepedia.com/index.php?title=%E6%95%99%E7%A8%8B/Minecraft_URL_Scheme&amp;amp;variant=zh</a></a></a></p>
+
+
+<figure class="wp-block-image size-large"><img width="1195" height="556" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/05/image-1.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1680"/></figure>
+
+
+<h2>快速启动游戏</h2>
+
+
+<p><a href="minecraft://">minecraft://</a></p>
+
+
+<p>你只要单机上面的链接，就会唤起电脑/手机上的Minecraft BE/PE</p>
+
+
+<h2>启动教育版</h2>
+
+
+<p><a href="minecraft://?edu=1">minecraft://?edu=1</a></p>
+
+
+<p>这个链接的具体效果我还没试过，可能需要买个教育版吧。</p>
+
+
+<h2>添加外部服务器</h2>
+
+
+<p>如果你想让玩家通过一个链接快速添加你的服务器的话，你可以这样写：</p>
+
+
+<p>以下是以Lifeboat为例的，添加后服务器的名字为&quot;Lifeboat&quot;，IP地址为sg.lbsg.net，端口为19132。</p>
+
+
+<p>minecraft://?addExternalServer=Lifeboat|sg.lbsg.net:19132</p>
+
+
+<p>需要注意下，是<strong><em>服务器名称|IP:端口</em></strong></p>
+
+
+<p>但是你点进去后会发现一个问题，他会跳转到好友选项卡，并非服务器，但是服务器是已经添加了的。</p>
+
+
+<h2>直接启动基岩版商城</h2>
+
+
+<p>我寻思这没什么实际用途，所以就不多做解释直接照搬吧。</p>
+
+
+<p>下面的链接会直接启动Minecraft的商城界面。</p>
+
+
+<p>链接：<code>minecraft://?showStoreHomeScreen=1</code></p>
+
+
+<p>“showStoreOffer”参数似乎与“showStoreHomeScreen”有同样效果，也可以作为替代。</p>
+
+
+<h2>同意领域邀请</h2>
+
+
+<p>我寻思这也没什么实际用途，所以就不多做解释直接照搬吧。</p>
+
+
+<p>有两个方法从浏览器加入领域。第一种实际上仍然用到第二种的机制，但界面更友好些。</p>
+
+
+<h3>方法一</h3>
+
+
+<p>访问<code><a rel="noreferrer noopener" href="http://game.bilibili.com/linkfilter/?url=https://open.minecraft.net/pocket/realms/invite/&#123;id&#125;" target="_blank"><a target="_blank" rel="noopener" href="https://open.minecraft.net/pocket/realms/invite/&#123;id"><a target="_blank" rel="noopener" href="https://open.minecraft.net/pocket/realms/invite/&#123;id"><a target="_blank" rel="noopener" href="https://open.minecraft.net/pocket/realms/invite/&#123;id">https://open.minecraft.net/pocket/realms/invite/&#123;id</a></a></a>&#125;</a></code>。<code>&#123;id&#125;</code>就是领域的邀请码，例如<code>lpomEvbo88E</code>。</p>
+
+
+<h3>方法二</h3>
+
+
+<p>如果想跳过界面直接加入领域，使用这个<code>minecraft://acceptRealmInvite?inviteID=&#123;id&#125;</code>。同样，<code>&#123;id&#125;</code>就是领域的邀请码。</p>
+
+
+
+
+<h2>实际用途</h2>
+
+
+<p>知道了这些，该如何使用呢？</p>
+
+
+<p>我个人觉得最有用的还是直接添加外部服务器，如以下网址:</p>
+
+
+<p><a href="minecraft://?addExternalServer=FantasySky|play.owofs.top:19132">点此快速启动</a></p>
+
+
+<h2>Github</h2>
+
+
+<p>这是mcpe-docs的Github</p>
+
+
+<p>Github:<a target="_blank" rel="noopener" href="https://github.com/lukeeey/mcpe-docs/blob/master/docs/UrlScheme.md"><a target="_blank" rel="noopener" href="https://github.com/lukeeey/mcpe-docs/blob/master/docs/UrlScheme.md"><a target="_blank" rel="noopener" href="https://github.com/lukeeey/mcpe-docs/blob/master/docs/UrlScheme.md"><a target="_blank" rel="noopener" href="https://github.com/lukeeey/mcpe-docs/blob/master/docs/UrlScheme.md">https://github.com/lukeeey/mcpe-docs/blob/master/docs/UrlScheme.md</a></a></a></a></p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2020/05/02/minecraft-be-pe-url-scheme-to-quickly-start-minecraft-in">https://ivampiresp.com/2020/05/02/minecraft-be-pe-url-scheme-to-quickly-start-minecraft-in</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/05/02/ivampiresp.com-Minecraft%20BE,PE%E7%9A%84%E7%9A%84URL%20Scheme%EF%BC%8C%E4%BB%A5URL%E6%96%B9%E5%BC%8F%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8minecraft/" data-id="cl01oc4x20023ceoy5wfbeo1x" data-title="Minecraft BE,PE的的URL Scheme，以URL方式快速启动minecraft 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-【QR教程】教你用QR对接QQ官方机器人" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/09/imcys.com-%E3%80%90QR%E6%95%99%E7%A8%8B%E3%80%91%E6%95%99%E4%BD%A0%E7%94%A8QR%E5%AF%B9%E6%8E%A5QQ%E5%AE%98%E6%96%B9%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="article-date">
+  <time class="dt-published" datetime="2020-04-09T20:52:05.000Z" itemprop="datePublished">2020-04-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/09/imcys.com-%E3%80%90QR%E6%95%99%E7%A8%8B%E3%80%91%E6%95%99%E4%BD%A0%E7%94%A8QR%E5%AF%B9%E6%8E%A5QQ%E5%AE%98%E6%96%B9%E6%9C%BA%E5%99%A8%E4%BA%BA/">【QR教程】教你用QR对接QQ官方机器人 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+
+
+
+<p>最近我发现了QQ有一个代理发送消息的官方QQ群机器人，诶这有什么呢？当然是白嫖的机会，既然他能代理发送消息，是不是就可以代替我们QR机器人发送消息了呢？答案：完全OK</p>
+
+
+
+<p>当然这里的消息暂时仅仅限于字符串即文本消息，也就是不能发图片语音，当然，我会持续关注的，如果有大佬知道提交什么参数可以发送图片，求在评论区留言。</p>
+
+
+
+<h3>接入教程</h3>
+
+
+
+<p>这个QQ机器人，被官方起名为HOO!K，不知道是什么用意，在我发文章的时候，他似乎还是在测试，并没有被展示在QQ机器人队列里，当然粉丝在群里告诉了我引入方法，接下来看下图。</p>
+
+
+
+<h4>引入自己的群</h4>
+
+
+
+<p><span class="has-inline-color has-pale-pink-color">请将下面QQ号先发到你管理或者你创建的群</span></p>
+
+
+
+<p><strong><em><span class="has-inline-color has-pale-pink-color">2854196399</span></em></strong></p>
+
+
+
+<p><strong>如下图进行操作，将机器人添加到你的群，然后打开消息推送，并且选择推送消息那里的已设置。</strong></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="465" height="932" src="https://imcys.com/wp-content/uploads/2020/04/image.png" alt="QR对接hoo!k机器人" class="wp-image-187" srcset="https://imcys.com/wp-content/uploads/2020/04/image.png 465w, https://imcys.com/wp-content/uploads/2020/04/image-150x300.png 150w" sizes="(max-width: 465px) 100vw, 465px" /><figcaption>QR对接hoo!k机器人</figcaption></figure></div>
+
+
+
+<p>接下来选择生成接口复制 <strong><span class="has-inline-color has-vivid-red-color">key=</span></strong> 后面的参数记录保存，<strong><span class="has-inline-color has-vivid-red-color">千万不可泄露</span></strong></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="470" height="817" src="https://imcys.com/wp-content/uploads/2020/04/image-1.png" alt="接口" class="wp-image-188" srcset="https://imcys.com/wp-content/uploads/2020/04/image-1.png 470w, https://imcys.com/wp-content/uploads/2020/04/image-1-173x300.png 173w" sizes="(max-width: 470px) 100vw, 470px" /><figcaption>qr对接QQ机器人</figcaption></figure></div>
+
+
+
+<h4>后台的搭建</h4>
+
+
+
+<p>这里我们需要一个虚拟主机搭建一个简单的后台，就一个php文件，下面是代码，命名为qq.php</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;?php
+
+$key = $_GET&#91;"key"];
+$n = $_GET&#91;"n"];
+//判断是否GET传入
+if($key==""|$n=="")
+&#123;
+    $key = $_POST&#91;"key"];
+    $n = $_POST&#91;"n"];
+   //判断是否POST传入
+    if($key==""|$n=="")
+    &#123;
+      echo "失败请检查参数";
+    &#125;
+
+&#125;
+//封装好的POST提交json的函数，不要动
+function http_post_json($url, $jsonStr)
+&#123;
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonStr);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json; charset=utf-8',
+            'Content-Length: ' . strlen($jsonStr)
+        )
+    );
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+ 
+    return array($httpCode, $response);
+&#125;
+//执行函数提交数据，不返回数据
+//key的值就是你记录的key而n是QQ机器人要发送的消息
+$url = "https://app.qun.qq.com/cgi-bin/api/hookrobot_send?key=".$key;
+$jsonStr = "&#123;\"content\": &#91; &#123;\"type\":0,\"data\":\"".$n."\"&#125;]&#125;";
+$daatfh = http_post_json($url, $jsonStr);
+?></code></pre>
+
+
+
+<h4>QRDIC词库进行对接</h4>
+
+
+
+<p>下面我做一个简单的例子</p>
+
+
+
+<pre class="wp-block-code"><code>/**
+* 这里我简单的说一下，下面我们先从一个api获取ping的数据
+* 然后记录给A，再让qr机器人访问我们刚刚的接口，帮助我们完成发布消息
+* 这里我们不把访问的返回数据发出，首先如果正确没有返回数据，其次没有返回必要
+* 这个是简单的接口引用对接
+*/
+
+ping .*
+A:$访问 http://glapi.cn/ping/api.php?msg=%参数1%$
+B:$访问 http://域名地址/qq.php?key=你的key&amp;n=%A%$
+
+/**
+* 下面是一个本地词库运行的例子
+* 运算结束后，将返回文字放在一行，然后给我们的后台
+*/
+
+签到
+D:$读 签到时间/%群号%/%QQ% a 0$
+如果:%D%==%时间d%
+你今天已经签过到了
+返回
+如果尾
+A:%随机数500-2000%
+B:$读 签到好感度/%群号%/%QQ% a 0$
+C:&#91;%A%+%B%]
+$写 签到好感度/%群号%/%QQ% a %C%$
+$写 签到时间/%群号%/%QQ% a %时间d%$
+返:签到成功\r奖励你%A%好感度QwQ\r你现在有%C%的好感度\r用户：\r【%昵称%（%QQ%）】\r签到时间:%时间yy年mm月dd日yy时hh分钟%
+访:$访问 http://域名地址/qq.php?key=你的key&amp;n=%返%$</code></pre>
+
+
+
+<h3>文末</h3>
+
+
+
+<p>请不要用于其他违规，我可以告诉你，在任何机器人提交的过程，QQ都会记录IP，希望能帮到你，我会在B站发布视频教程。</p>
+
+
+
+<p>机器人就是一个工具重要的是你这么用它</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/04/09/qr%e5%af%b9%e6%8e%a5hook.html">https://imcys.com/2020/04/09/qr%e5%af%b9%e6%8e%a5hook.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/04/09/imcys.com-%E3%80%90QR%E6%95%99%E7%A8%8B%E3%80%91%E6%95%99%E4%BD%A0%E7%94%A8QR%E5%AF%B9%E6%8E%A5QQ%E5%AE%98%E6%96%B9%E6%9C%BA%E5%99%A8%E4%BA%BA/" data-id="cl01oc4w1000oceoyalw1efhy" data-title="【QR教程】教你用QR对接QQ官方机器人 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-使用nginx的rtmp模块搭建一个流式媒体（直播）服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/05/ivampiresp.com-%E4%BD%BF%E7%94%A8nginx%E7%9A%84rtmp%E6%A8%A1%E5%9D%97%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%B5%81%E5%BC%8F%E5%AA%92%E4%BD%93%EF%BC%88%E7%9B%B4%E6%92%AD%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2020-04-05T19:27:46.000Z" itemprop="datePublished">2020-04-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/05/ivampiresp.com-%E4%BD%BF%E7%94%A8nginx%E7%9A%84rtmp%E6%A8%A1%E5%9D%97%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%B5%81%E5%BC%8F%E5%AA%92%E4%BD%93%EF%BC%88%E7%9B%B4%E6%92%AD%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用nginx的rtmp模块搭建一个流式媒体（直播）服务器 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>近期在家里闲着没事干，然后和群员聊着聊着，突然想起了之前想要搭建的流式媒体服务器，但是没有搭建成功。然而在这个超长的寒假中，我成功实现了（后来发现很简单）</p>
+
+
+<h2>结构</h2>
+
+
+<p>在搭建后不久，我做了很多修改，大概是这个样子</p>
+
+
+<p>前端：完全静态，因为是自己的流式媒体服务器，自己播着玩玩也用不到动态。</p>
+
+
+<p>流式媒体服务器：Nginx 的rtmp模块。</p>
+
+
+<p>后端：Nodejs，做实时评论用，关于为啥不用php等。。我觉得nodejs来的更快。当然代码都是Ctrl+C，Ctrl+V来的</p>
+
+
+<h2>前端</h2>
+
+
+<p>这里我推荐使用hls.js，因为hls流的话很方便，就是有点延时。。。代码可以自由发挥了。</p>
+
+
+<h2>搭建</h2>
+
+
+<p>我这里建议使用Debian系的Linux系统，当然Windows也不是不可以，我都会在后面放出。</p>
+
+
+<p>为什么建议使用Debian系的Linux系统呢？因为apt一下很方便。其他可以可以自行搜索了，编译安装。</p>
+
+
+<p>请额外放行端口：1935,3000（可能）,80,443</p>
+
+
+<p>PS：树莓派也可以</p>
+
+
+<h3>安装必要的软件包</h3>
+
+
+<p>首先准备一个纯净的系统（不是纯净的自己看着改代码）</p>
+
+
+<pre class="wp-block-code"><code># 更新系统
+sudu apt update
+# 安装nginx和rtmp模块及wget（万一没有）
+sudo apt install nginx-full libnginx-mod-rtmp wget -y</code></pre>
+
+
+<h3>设置nginx.conf</h3>
+
+
+<pre class="wp-block-code"><code>sudo vim /etc/nginx/nginx.conf</code></pre>
+
+
+<p>你需要在第一个server 前加一段</p>
+
+
+<pre class="wp-block-code"><code>rtmp &#123;
+    server &#123;
+        listen 1935;
+        application live &#123;
+            live on;
+        &#125;
+        application hls &#123;
+            live on;
+            hls on;
+            hls_path /var/www/html/hls;
+            hls_fragment 2s;
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+
+<p>他看上去应该像这样：</p>
+
+
+<figure class="wp-block-image size-large"><img width="644" height="380" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/04/image.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1635"/></figure>
+
+
+<p>hls_path你可以修改，但是建议放在和前端文件同级的一个目录下。</p>
+
+
+<p>然后重启nginx</p>
+
+
+<pre class="wp-block-code"><code>sudo systemctl restart nginx</code></pre>
+
+
+<p>此时rtmp服务器你就搭建完成了</p>
+
+
+<p>就这么简单</p>
+
+
+<p>现在你可以推个流试试了，串流密钥随便写。</p>
+
+
+<p>使用OBS推流，服务器地址为：rtmp://IP:1935/live/，密钥随便</p>
+
+
+<p>拉流：rtmp://IP:1935/live/你的密钥</p>
+
+
+<p>HLS流：使用OBS推流，服务器地址为：rtmp://IP:1935/hls/，密钥随便</p>
+
+
+<p>拉流：rtmp://IP:1935/hls/你的密钥</p>
+
+
+<p>或者用浏览器播放hls的m3u8</p>
+
+
+<p>http(s)://IP/hls/密钥.m3u8</p>
+
+
+<h2>实时评论</h2>
+
+
+<p>这里就直接用nodejs实现了</p>
+
+
+<p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4"><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4"><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4"><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4"><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4"><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4"><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4"><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4">https://www.jianshu.com/p/5539ccd8d9c4</a></a></a></a></a></a></a></a></p>
+
+
+<p>首先安装nodejs和npm以及创建目录，安装依赖</p>
+
+
+<pre class="wp-block-code"><code>sudo apt install nodejs npm -y
+cd ~
+mkdir livechat
+cd livechat
+npm install express socket.io</code></pre>
+
+
+<p>apt里的nodejs的版本是足够了的</p>
+
+
+<p>创建一个目录，然后开始安装软件，代码在上面的URL里。</p>
+
+
+<p>全部弄完后启动就行，然后试试能不能访问。能访问的话就可以配置nginx的反向代理了。</p>
+
+
+<h2>配置反向代理</h2>
+
+
+<p>为何要反向代理？因为支持https并且利用nginx的rtmp模块。</p>
+
+
+<p>那为什么不直接用nodejs搭建rtmp服务器呢？因为我没尝试过，既然nginx都跑起来了，那顺便用nginx搭建其他网站也不是问题。</p>
+
+
+<p>接下来你需要在现有的http{}中添加一个sever，你可以新建配置文件，或者直接在nginx.conf中写，如果你还要架设多个网站的话，我还是推荐新建配置文件，这里我就直接在nginx.conf中写了。</p>
+
+
+<pre class="wp-block-code"><code>vim /etc/nginx/nginx.conf</code></pre>
+
+
+<pre class="wp-block-code"><code>server &#123;
+        listen   8081;
+    server_name live.nwl.im;
+        location / &#123;
+            proxy_pass http://127.0.0.1:3000/;
+        add_header Access-Control-Allow-Origin *;
+add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+        add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+
+            if ($request_method = 'OPTIONS') &#123;
+                return 204;
+            &#125;
+        &#125;       
+        # 为什么需要下面这段呢？因为我的教程里是设置的反代，如果不加这段是直接从nodejs那里读取，但是nodejs那里是没有ts和m3u8文件的。
+        location /hls &#123;  
+            #server hls fragments  
+            types&#123;  
+                application/vnd.apple.mpegurl m3u8;  
+                video/mp2t ts;  
+            &#125;  
+            # 把下面的alias后面的目录改成和hls_path相同的目录。
+            alias temp/hls;  
+            expires -1;  
+            # 设置CORS，如果不需要将下面那一段删除
+            add_header 'Access-Control-Allow-Origin' '*'; 
+        &#125;
+    &#125;</code></pre>
+
+
+<p>他看起来应该像这样（可能会和我的不一样，<strong><em>我的配置文件也许和你的环境不符合，请按照你的实际环境修改</em></strong>），当然我这里是加了ssl的。如果你更改了nodejs的端口，你也需要在上方配置文件中修改一下proxy_pass部分。</p>
+
+
+<figure class="wp-block-image size-large"><img width="858" height="466" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/04/image-1.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1638"/></figure>
+
+
+<p>然后检查nginx的配置文件是否有误</p>
+
+
+<pre class="wp-block-code"><code>sudo nginx -t</code></pre>
+
+
+<p>如果返回类似如下消息，你的流式媒体服务器搭建完成了，接下来就是前端。</p>
+
+
+<pre class="wp-block-code"><code>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful</code></pre>
+
+
+<p>重启nginx</p>
+
+
+<pre class="wp-block-code"><code>sudo systemctl nginx restart</code></pre>
+
+
+<h2>前端</h2>
+
+
+<p>这里我推荐前端使用nodejs，因为。。需要依靠socket.io</p>
+
+
+<p>打开你按照上方URL中创建的index.html，你可以在里面加入如下视频标签和hls.js</p>
+
+
+<pre class="wp-block-code"><code>&lt;video muted="muted" preload="auto" id="video" controls>&lt;/video>
+        &lt;script src="https://cdn.bootcss.com/hls.js/0.13.2/hls.min.js">&lt;/script>
+        &lt;script>
+            var video = document.getElementById('video');
+            if (Hls.isSupported()) &#123;
+                var hls = new Hls();
+                hls.loadSource('http(s)://你的IP或者域名/密钥.m3u8');
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() &#123;
+                    video.play();
+                &#125;);
+            &#125; else if (video.canPlayType('application/vnd.apple.mpegurl')) &#123;
+                video.src = 'http(s)://你的IP或者域名/hls/密钥.m3u8';
+                video.addEventListener('loadedmetadata', function() &#123;
+                    video.play();
+                &#125;);
+            &#125;
+        &lt;/script></code></pre>
+
+
+<p>然后做些适当的修改，就完成了，接下来你可以把评论区整合进去。</p>
+
+
+<p>我这放一下我的index.html，如果你喜欢的话，可以拿去用。</p>
+
+
+<pre class="wp-block-code"><code>&lt;!DOCTYPE html>
+&lt;html>
+
+&lt;head>
+    &lt;meta charset="utf-8" />
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    &lt;meta name="renderer" content="webkit">
+    &lt;link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css" />
+    &lt;link rel="icon" href="https://ivampiresp.com/wp-content/uploads/2020/02/cropped-illust_78879291_20200207_181713-32x32.jpg" sizes="32x32" />
+    &lt;link rel="icon" href="https://ivampiresp.com/wp-content/uploads/2020/02/cropped-illust_78879291_20200207_181713-192x192.jpg" sizes="192x192" />
+    &lt;link rel="apple-touch-icon" href="https://ivampiresp.com/wp-content/uploads/2020/02/cropped-illust_78879291_20200207_181713-180x180.jpg" />
+    &lt;script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js">&lt;/script>
+    &lt;title>iVampireSPのLive&lt;/title>
+&lt;/head>
+
+&lt;body class="mdui-drawer-body-left mdui-appbar-with-toolbar  mdui-theme-primary-indigo mdui-theme-accent-pink">
+    &lt;header class="mdui-appbar mdui-appbar-fixed">
+        &lt;div class="mdui-toolbar mdui-color-theme">
+            &lt;span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-drawer="&#123;target: '#main-drawer', swipe: true&#125;">&lt;i class="mdui-icon material-icons">menu&lt;/i>&lt;/span>
+            &lt;a href="#" class="mdui-typo-headline mdui-typo-title">iVampireSPのLive&lt;/a>
+
+            &lt;div class="mdui-toolbar-spacer">&lt;/div>
+        &lt;/div>
+    &lt;/header>
+    &lt;div class="mdui-drawer" id="main-drawer">
+        &lt;div class="mdui-list" mdui-collapse="&#123;accordion: true&#125;" style="margin-bottom: 76px;">
+            &lt;div class="mdui-collapse-item ">
+                &lt;div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    &lt;i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">near_me&lt;/i>
+                    &lt;div class="mdui-list-item-content">菜单&lt;/div>
+                    &lt;i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down&lt;/i>
+                &lt;/div>
+                &lt;div class="mdui-collapse-item-body mdui-list">
+                    &lt;a href="./" class="mdui-list-item mdui-ripple ">刷新&lt;/a>
+                    &lt;a href="https://ivampiresp.com" class="mdui-list-item mdui-ripple ">博客&lt;/a>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    &lt;/div>
+    &lt;div class="mdui-container" style="float: left;">
+        &lt;br />
+        &lt;video muted="muted" preload="auto" class="mdui-video-fluid" poster="https://i.loli.net/2020/04/01/ylL1nsNXDdBxwMT.jpg" id="video" controls>&lt;/video>
+        &lt;script src="https://cdn.bootcss.com/hls.js/0.13.2/hls.min.js">&lt;/script>
+        &lt;script>
+            var video = document.getElementById('video');
+            if (Hls.isSupported()) &#123;
+                var hls = new Hls();
+                hls.loadSource('http(s)://你的IP或者域名/hls/iVampireSP.com.m3u8');
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() &#123;
+                    video.play();
+                &#125;);
+            &#125; else if (video.canPlayType('application/vnd.apple.mpegurl')) &#123;
+                video.src = 'http(s)://你的IP或者域名/hls/iVampireSP.com.m3u8';
+                video.addEventListener('loadedmetadata', function() &#123;
+                    video.play();
+                &#125;);
+            &#125;
+        &lt;/script>
+        &lt;h1 class="mdui-text-color-theme">实时评论区&lt;/h1>
+        &lt;ul id="messages">&lt;/ul>
+
+        &lt;form name="chat" action="">
+            &lt;div class="mdui-textfield">
+                &lt;label class="mdui-textfield-label">昵称&lt;/label>
+                &lt;input class="mdui-textfield-input" id="username" type="text" placeholder="昵称" oninput="getUser()" autocomplete="on" required />
+
+            &lt;/div>
+            &lt;div class="mdui-textfield">
+                &lt;label class="mdui-textfield-label">实时评论&lt;/label>
+                &lt;input class="mdui-textfield-input" id="comment" type="text" onclick="echoUser()" placeholder="请遵守格式，谢谢! 格式为：“昵称：内容”（不包括引号）" autocomplete="off" maxlength="35" required />
+                &lt;br />
+                &lt;button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">发送&lt;/button>
+            &lt;/div>
+        &lt;/form>
+
+        &lt;script src="/socket.io/socket.io.js">&lt;/script>
+        &lt;script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js">&lt;/script>
+        &lt;script type="text/javascript">
+            function getUser() &#123;
+                userName = ($("#username").val());
+            &#125;
+
+            function echoUser() &#123;
+                $("#comment").attr("value", userName + '：');
+            &#125;
+            var socket = io();
+            $('form').submit(function() &#123;
+                //点击发送按钮，提交输入的信息
+                socket.emit('chat message', $('#comment').val());
+                $('#comment').val(userName + '：');
+                return false;
+            &#125;);
+            //接收到chat message时
+            socket.on('chat message', function(msg) &#123;
+                //将chat message显示在页面
+                $('#messages').append($('&lt;li>').text(msg));
+            &#125;);
+        &lt;/script>
+
+        &lt;p>本直播页面是使用Nginx RTMP模块实现的，并且使用了hls.js和socket.io做到的接收流和实时评论，缺点是不能查看以前的评论。后端：nodejs。搭建教程：&lt;a href="https://ivampiresp.com/2020/04/05/%e4%bd%bf%e7%94%a8nginx%e7%9a%84rtmp%e6%a8%a1%e5%9d%97%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aa%e6%b5%81%e5%bc%8f%e5%aa%92%e4%bd%93%ef%bc%88%e7%9b%b4%e6%92%ad%ef%bc%89%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%b9%b6.html">点我查看&lt;/a>&lt;/p>
+    &lt;/div>
+&lt;/body>
+
+&lt;/html></code></pre>
+
+
+<p>接下来就是Windows端，Windows端nodejs部分和上面是一样的，nginx.conf少做修改也可以。</p>
+
+
+<p>带rtmp的nginx Windows端：<a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32"><a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32"><a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32"><a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32"><a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32"><a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32"><a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32"><a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32">https://github.com/illuspas/nginx-rtmp-win32</a></a></a></a></a></a></a></a></p>
+
+
+<p>接下来你可以随心所欲的修改了，比如添加一些功能。</p>
+
+
+<p>希望你使用愉快~</p>
+
+
+<p>我的博客即将同步至腾讯云+社区，邀请大家一同入驻：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/support-plan?invite_code=u06zxiwvgd12">https://cloud.tencent.com/developer/support-plan?invite_code=u06zxiwvgd12</a></p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2020/04/05/%e4%bd%bf%e7%94%a8nginx%e7%9a%84rtmp%e6%a8%a1%e5%9d%97%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aa%e6%b5%81%e5%bc%8f%e5%aa%92%e4%bd%93%ef%bc%88%e7%9b%b4%e6%92%ad%ef%bc%89%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%b9%b6">https://ivampiresp.com/2020/04/05/%e4%bd%bf%e7%94%a8nginx%e7%9a%84rtmp%e6%a8%a1%e5%9d%97%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aa%e6%b5%81%e5%bc%8f%e5%aa%92%e4%bd%93%ef%bc%88%e7%9b%b4%e6%92%ad%ef%bc%89%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%b9%b6</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/04/05/ivampiresp.com-%E4%BD%BF%E7%94%A8nginx%E7%9A%84rtmp%E6%A8%A1%E5%9D%97%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%B5%81%E5%BC%8F%E5%AA%92%E4%BD%93%EF%BC%88%E7%9B%B4%E6%92%AD%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="cl01oc4xe002vceoy649hh4sf" data-title="使用nginx的rtmp模块搭建一个流式媒体（直播）服务器 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-也许你我只认识到这是愚人节" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/01/imcys.com-%E4%B9%9F%E8%AE%B8%E4%BD%A0%E6%88%91%E5%8F%AA%E8%AE%A4%E8%AF%86%E5%88%B0%E8%BF%99%E6%98%AF%E6%84%9A%E4%BA%BA%E8%8A%82/" class="article-date">
+  <time class="dt-published" datetime="2020-04-01T14:13:39.000Z" itemprop="datePublished">2020-04-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/04/01/imcys.com-%E4%B9%9F%E8%AE%B8%E4%BD%A0%E6%88%91%E5%8F%AA%E8%AE%A4%E8%AF%86%E5%88%B0%E8%BF%99%E6%98%AF%E6%84%9A%E4%BA%BA%E8%8A%82/">也许你我只认识到这是愚人节 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+
+
+
+<p>今天是4月1人，我的空间有许多是关于愚人节的消息，或许你觉得这是很正常的事情。我们是不是忽略了什么？？？</p>
+
+
+
+<p>在4月1日凌晨，我在粉丝群里看到这样一篇文章，呱太发布了一则在2001年4月1日发生的事情，是的你没有看错，下文来看看究竟发生了什么。</p>
+
+
+
+<iframe loading="lazy" frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&amp;id=531786601&amp;auto=1&amp;height=66"></iframe>
+
+
+
+<figure class="wp-block-pullquote"><blockquote><p>返航</p><cite>十八年来，4月1日，不变的口令！ 口令：呼叫81192，请返航回家！ 王伟（1968年4月6日—2001年4月1日），男，浙江湖州人，中国海军航空兵飞行员，烈士，毕业于长春市中国人民解放军空军航空大学 。 2001年4月1日8时55分，美国海军的EP-3型侦察机在中国海南岛东南70海里（110公里）的中国专属经济区上空，与王伟驾驶的歼-8II战斗机发生碰撞，歼-8II战斗机坠毁。在此次中美撞机事件中，王伟跳伞下落不明，后被确认牺牲。 81192，81192。立刻返航。 2001年4月1日，美国一架侦察机侵犯我南海领空，我军随后派出两架飞机跟踪拦截。 当日上午9时07分，美军飞机撞毁我机一架。 编号81192飞行员王伟壮烈牺牲。 他，是当时世界上最负盛名的影视歌三栖华人巨星。 他是一个能坦荡荡地说出“我是中国人”的香港海归。 2003年4月1日晚18点43分，因严重抑郁症，他选择一跃而下。 一代天王张国荣就此陨落。 你在何地？ 你在祖国的海与天！ 谨以此片 献给两位逝去的中国偶像 又是4月1日，请返航！</cite></blockquote></figure>
+
+
+
+<div class="wp-container-6218220d71f60 wp-block-buttons aligncenter">
+<div class="wp-block-button is-style-fill"><a class="wp-block-button__link" href="https://user.qzone.qq.com/208075801" target="_blank" rel="noreferrer noopener">点击跳转至上文</a></div>
+</div>
+
+
+
+<h3>感想</h3>
+
+
+
+<p>我们怎么了？在这个日子里，我们是笑嘻嘻的？是什么改变了？很可惜愚人节是西方的节日，我们做为一代青年，未来社会的主人，应该是去关注自己的事情，我感到很羞愧，直至今日我才知道4月1日发生这种事情。</p>
+
+
+
+<p>面对西方文化入侵，我们应该认清楚现状，也许今天其他国家都可以有欢笑，但唯独我们中国不应该嬉笑。我们笑什么？</p>
+
+
+
+<p>朋友们，我认为，我们应该是去维护中国的权益，在今天这个日子，更多的是宣传这件事，让更多人知道！！！</p>
+
+
+
+<blockquote class="wp-block-quote"><p>勿忘国耻</p><cite>中华人民</cite></blockquote>
+
+
+
+<p>当年我们落后，没有能力去保护捍卫我们的权益，尊严，仅仅得到了一份带有屈辱的赔款，如今时隔多年，新时代的我们不知道这样的事情，可能只会注意到今天是愚人节。</p>
+
+
+
+<p>我们现在强大了，更应该去维护自己国家的权益，有国才有家，我们应该不断的壮大自己的祖国，杜绝这种事情发生！！！我们是未来社会的主人，未来的中国的命运就在我们手上！！！我们应该团结一心，一致对外，就如同这次疫情，团结的力量大于一切。</p>
+
+
+
+<p>我希望，如果你看到这篇文章，以后应该去指引更多人，告诉他们，我们今天，应该是纪念英雄，向英雄致敬！！！</p>
+
+
+
+<p><strong>呼叫81192，请返航回家！</strong></p>
+
+
+
+<p>接下来我们看看中央共青团的宣传视频</p>
+
+
+
+<h3>视频</h3>
+
+
+
+<iframe src="//player.bilibili.com/player.html?aid=412586300&amp;bvid=BV11V411f74t&amp;cid=172355088&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/04/01/%e4%b9%9f%e8%ae%b8%e4%bd%a0%e6%88%91%e5%8f%aa%e8%ae%a4%e8%af%86%e5%88%b0%e8%bf%99%e6%98%af%e6%84%9a%e4%ba%ba%e8%8a%82.html">https://imcys.com/2020/04/01/%e4%b9%9f%e8%ae%b8%e4%bd%a0%e6%88%91%e5%8f%aa%e8%ae%a4%e8%af%86%e5%88%b0%e8%bf%99%e6%98%af%e6%84%9a%e4%ba%ba%e8%8a%82.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/04/01/imcys.com-%E4%B9%9F%E8%AE%B8%E4%BD%A0%E6%88%91%E5%8F%AA%E8%AE%A4%E8%AF%86%E5%88%B0%E8%BF%99%E6%98%AF%E6%84%9A%E4%BA%BA%E8%8A%82/" data-id="cl01oc4w90016ceoy25y17qge" data-title="也许你我只认识到这是愚人节 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-就QQ隐私安全而论" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/28/imcys.com-%E5%B0%B1QQ%E9%9A%90%E7%A7%81%E5%AE%89%E5%85%A8%E8%80%8C%E8%AE%BA/" class="article-date">
+  <time class="dt-published" datetime="2020-03-28T18:12:40.000Z" itemprop="datePublished">2020-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/28/imcys.com-%E5%B0%B1QQ%E9%9A%90%E7%A7%81%E5%AE%89%E5%85%A8%E8%80%8C%E8%AE%BA/">就QQ隐私安全而论 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+<p>在昨天晚上，有粉丝问我，通过QQ电话获取对方IP的办法，实际上我是不认可的，理论上QQ不可能返回对方IP，因为这很危险，也是泄露我们的个人隐私。</p>
+<p>经过一番查询资料，我们发现QQ电话的确可以获取到对方个人IP【有条件的】</p>
+<p>因为也有人在服务器登录QQ，使用机器人等，这样会大大降低安全度，对于个人公网组的小服务器。</p>
+<p>为此，我们很快，通过各种程序端进行抓包测试，得到了一些有意思的结论。</p>
+<p>当然，我会在下面解释抓包过程。</p>
+<h3>项目测试成员</h3>
+<p>&nbsp;</p>
+<div class="mdui-container">
+<div class="mdui-row-xs-4 mdui-row-sm-4 mdui-row-md-4 mdui-row-lg-4 mdui-row-xl-4 mdui-grid-list">
+<div class="mdui-col">
+<div class="mdui-grid-tile">
+<p><img src="//api.loli.rocks/情色漫画老师"></p>
+<div class="mdui-grid-tile-actions mdui-grid-tile-actions-transparent">
+<div class="mdui-grid-tile-text">
+<div class="mdui-grid-tile-title">iVampireSPの物語</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mdui-col">
+<div class="mdui-grid-tile">
+<p><img src="//api.loli.rocks/情色漫画老师"></p>
+<div class="mdui-grid-tile-actions mdui-grid-tile-actions-transparent">
+<div class="mdui-grid-tile-text">
+<div class="mdui-grid-tile-title">Wenshuang Lin</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mdui-col">
+<div class="mdui-grid-tile">
+<p><img src="//api.loli.rocks/情色漫画老师"></p>
+<div class="mdui-grid-tile-actions mdui-grid-tile-actions-transparent">
+<div class="mdui-grid-tile-text">
+<div class="mdui-grid-tile-title">sakurapuare</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mdui-col">
+<div class="mdui-grid-tile">
+<p><img src="//api.loli.rocks/情色漫画老师"></p>
+<div class="mdui-grid-tile-actions mdui-grid-tile-actions-transparent">
+<div class="mdui-grid-tile-text">
+<div class="mdui-grid-tile-title">萌新杰少</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h3></h3>
+<h3></h3>
+<h3>结论与感想</h3>
+<h4>结论</h4>
+<p>什么时候我的IP会被QQ电话这种方法抓到？</p>
+<blockquote><p>手机QQ在线【程序后台运行且有网络】</p>
+<p>极速版QQ在线【程序后台运行且有网络】</p>
+<p>HDQQ在线【程序后台运行且有网络】</p>
+<p>TIM在线【程序后台运行且有网络】</p></blockquote>
+<p>上述情况将会导致你的IP暴露，当然，我们也有解决方案</p>
+<blockquote><p>电脑端在线</p>
+<p>HD和手机QQ或者任意两种QQ同时在线</p>
+<p>常见的QQ机器人在线</p>
+<p>TIM电脑端在线</p>
+<p>任意一种电脑端和手机端同时在线</p></blockquote>
+<p>这样可以保证你的IP安全</p>
+<h4>感想</h4>
+<p>从这次测试，QQ隐私安全问题暴露，在现在这个大数据时代，隐私几乎透明。</p>
+<p>APP对外安全策略也就成了问题，是的QQ并没有公开展示我们的IP，但是我认为，优秀的APP就应该保护个人隐私。</p>
+<p>我相信绝大部分用户没有恶意，但是网络上仍然有不少窃取信息赚钱的人。</p>
+<blockquote><p>技术无罪</p></blockquote>
+<p>重要的是你怎么去用它，其实大家都有自己的小九九，有的人没有恶意，只是想炫耀自己有这个能力。</p>
+<p>你觉得自己有这个能力就可以乱炫耀？你认为你的能力是足够炫耀的？</p>
+<p>我对这类人就呵呵，当然，我认为，你可以换个方法炫耀，网络上有很多初来乍到的人，他们有的就遭受了诈骗，我们可以去帮帮他们，锁定骗子啊？</p>
+<p>社工——他们是专门搜索个人信息的人，当一个有道德准则的社工，我认为它不会去乱去嫖取人的信息，优秀的社工更多的是去社工骗子，减少更多人上当。</p>
+<p>随着各大工具上架，个人素质与社工原则不符合的人也开始出现，他们出售个人信息，网上横行霸道，我们应该一致反对。</p>
+<p>讨论这些，就是想告诉大家，就是呼吁大家保护自己的隐私，以免被人利用。</p>
+<p>有能力的人，请做正确的事情，而不是去乱传播其他人的信息。</p>
+<h3>抓取过程</h3>
+<p>为了不被心存不轨的人利用，这里就两张图。</p>
+<p><a target="_blank" rel="noopener" href="https://i.loli.net/2020/03/28/Esa6x7bcmA2BC5Z.jpg"><img loading="lazy" class="size-large" src="https://i.loli.net/2020/03/28/Esa6x7bcmA2BC5Z.jpg" alt="IP抓包" width="1280" height="699"></a></p>
+<p>选择网卡双击开始抓获</p>
+<p><a target="_blank" rel="noopener" href="https://i.loli.net/2020/03/28/9zj1SAmOru4J57x.jpg"><img loading="lazy" class="size-large" src="https://i.loli.net/2020/03/28/9zj1SAmOru4J57x.jpg" alt="" width="1280" height="699"></a></p>
+<p>&nbsp;</p>
+<blockquote><p>查询码020048 列表详情 字符串</p>
+<p>进行搜索筛选，记得按图进行配置过滤条件</p></blockquote>
+<p><strong>如果你成功的进行抓取，那么请你用到真正合理的地方，算是我的小心愿，如果用于不轨，请不要再支持我的B站视频，不要当我粉丝，永远不要打开我的主页和博客。</strong></p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/03/28/%e5%b0%b1qq%e9%9a%90%e7%a7%81%e5%ae%89%e5%85%a8%e8%80%8c%e8%ae%ba.html">https://imcys.com/2020/03/28/%e5%b0%b1qq%e9%9a%90%e7%a7%81%e5%ae%89%e5%85%a8%e8%80%8c%e8%ae%ba.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/03/28/imcys.com-%E5%B0%B1QQ%E9%9A%90%E7%A7%81%E5%AE%89%E5%85%A8%E8%80%8C%E8%AE%BA/" data-id="cl01oc4wf001cceoyfkk5f2zm" data-title="就QQ隐私安全而论 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-观大佬讨论CND网站防御一事有感" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/24/imcys.com-%E8%A7%82%E5%A4%A7%E4%BD%AC%E8%AE%A8%E8%AE%BACND%E7%BD%91%E7%AB%99%E9%98%B2%E5%BE%A1%E4%B8%80%E4%BA%8B%E6%9C%89%E6%84%9F/" class="article-date">
+  <time class="dt-published" datetime="2020-03-24T23:31:33.000Z" itemprop="datePublished">2020-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/24/imcys.com-%E8%A7%82%E5%A4%A7%E4%BD%AC%E8%AE%A8%E8%AE%BACND%E7%BD%91%E7%AB%99%E9%98%B2%E5%BE%A1%E4%B8%80%E4%BA%8B%E6%9C%89%E6%84%9F/">观大佬讨论CND网站防御一事有感 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+<p>今天，在我的粉丝群我发现大家在讨论自己网站的防御，参与的人员，都有自己对CND防御的办法，有不同的办法。</p>
+<p>但是在这里，我看到的是，大家似乎把防御看太重了，我不反对大家加强防御，但是我觉得，我们应该反思自己，你有这个被打的价值吗?</p>
+<p>当然，你不去招惹大佬炫耀自身，我觉得在我们价值不足的时候，不会有被打的风险。</p>
+<h3>个人观点</h3>
+<p>无论是CC还是DDOS都是规模化的，去打一个网站需要耗费的是精力，没有人会去打对自身无意义的网站。</p>
+<p>提高自身防御力固然重要，但是我认为与其空谈依赖别人的防御。</p>
+<p>不如自身去提高网站内容价值，创造更多有用的东西。</p>
+<h3>个人建议</h3>
+<p>小杰在这里就今晚各位大佬的讨论，提出一点建议</p>
+<p>无论是备案或者没有备案，无论是裸连还是cdn嵌套。</p>
+<p>我相信大家都有着自己的防护策略，我也深信你们的防御可以抵挡大部分攻击。</p>
+<p>在如今互联网时代，数据是透明的。我们从一开始没有域名，到现在有域名，从一无所知到入门皮毛，每个人都付出了许多的代价。</p>
+<p>面对新的同学，我们应该做的是谦虚对待，相互学习，而不是去攀比什么。</p>
+<p>我们现在创造的东西，不过是冰山一角，没有什么是可以去攀比的，我们没有资本。</p>
+<p>在这里，我们应该是团结起来一致对外，我相信，群里大佬们很愿意对诚恳的同学，朋友提供帮助。</p>
+<p>今天我们所做的，只不过是为了在如今飞速发展大数据时代的外来可以混口饭，以至于说不被快速淘汰。</p>
+<p>我们没有骄傲的代价，在这里，我相信，有学习非常好的人，我也明白，也有和我一样，成绩差的人。</p>
+<p>上帝每关上一扇门，就会打开一扇窗。</p>
+<p>我们不过是在和自己命运做斗争，我们不过是想在外来对国家对人类科技发展有所贡献。</p>
+<p>也许有些话不好听，但很现实。</p>
+<p>我们可以花钱买防御，但我们买不到自己智慧结晶的数据。</p>
+<p>有人说，钱是不是万能的，但没钱是万万不能的，我赞同这种看法</p>
+<p>我们应该是秉着一颗纯正的，谦虚的心态去请教，去学习。</p>
+<p>现在我们年轻，我们应该是提升自我价值，而不是虚空攀比。</p>
+<p>我们也希望大家能团结在一起，疫情也是被团结所打到的。</p>
+<p>这次的讨论引人反思</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/03/24/%e8%a7%82%e5%a4%a7%e4%bd%ac%e8%ae%a8%e8%ae%bacnd%e7%bd%91%e7%ab%99%e9%98%b2%e5%be%a1%e4%b8%80%e4%ba%8b%e6%9c%89%e6%84%9f.html">https://imcys.com/2020/03/24/%e8%a7%82%e5%a4%a7%e4%bd%ac%e8%ae%a8%e8%ae%bacnd%e7%bd%91%e7%ab%99%e9%98%b2%e5%be%a1%e4%b8%80%e4%ba%8b%e6%9c%89%e6%84%9f.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/03/24/imcys.com-%E8%A7%82%E5%A4%A7%E4%BD%AC%E8%AE%A8%E8%AE%BACND%E7%BD%91%E7%AB%99%E9%98%B2%E5%BE%A1%E4%B8%80%E4%BA%8B%E6%9C%89%E6%84%9F/" data-id="cl01oc4wr001iceoybxx75rgu" data-title="观大佬讨论CND网站防御一事有感 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-哔哩哔哩AV编号转BV小工具" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/23/imcys.com-%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9AV%E7%BC%96%E5%8F%B7%E8%BD%ACBV%E5%B0%8F%E5%B7%A5%E5%85%B7/" class="article-date">
+  <time class="dt-published" datetime="2020-03-23T22:11:05.000Z" itemprop="datePublished">2020-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/23/imcys.com-%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9AV%E7%BC%96%E5%8F%B7%E8%BD%ACBV%E5%B0%8F%E5%B7%A5%E5%85%B7/">哔哩哔哩AV编号转BV小工具 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>前言</h2>
+<p>在3月23日，哔哩哔哩突然宣布我们的视频AV编号变成BV编号了？</p>
+<p>我也是很震惊，但是我发现AV还是可以导向之前的视频。</p>
+<p>而且在B站评论区我看到有大佬写了BV转换AV的工具，以此来找到你的视频。</p>
+<p>现在我自己也写了这样的一个小工具</p>
+<p>项目地址</p>
+<p><a target="_blank" rel="noopener" href="https://mzh.mxjs.xyz/html/bilibili/bv.php">https://mzh.mxjs.xyz/html/bilibili/bv.php</a></p>
+<h2>个人观点</h2>
+<p>我各人认为，B站对视频序列进行改动，为的是我们这些UP的权益。你能看到有很多视频是有关自己视频被盗，UP们不也想有保护自己知识产权的东西吗？</p>
+<p>B站也许从今天少了个梗，但是回报的是在同一时间内，更少的视频被盗流出。</p>
+<p>B站现在还采取了视频和音频分离的方法，这样来增大盗视频的代价付出的时间。</p>
+<p>但是我们有许多用户不理解这些行为，觉得B站在变味？</p>
+<p>我可以说，这是不会的，B站在做的是去维护我们up的权益。我支持这一做法，B站的社区环境需要靠大家去维护，我相信B站会越来越好。</p>
+<p>B站也做了准备，你会发现，你仍然可以用av编号去找到视频，你仍然可以拿av编号去刷一些旧梗，所以，我们B站应该团结一心，一致对外。</p>
+<h2>为什么转换BV？</h2>
+<p>B站给出的解释是出于安全考虑。【我很认同】</p>
+<p>那么评论区却一直在说，换个编号和我们安全有什么关系？</p>
+<p>在这里简单的说一下，AV号是有序的，而BV是打乱这些规则的。</p>
+<p>AV号是可以无限延展，但会不方便统计，BV字母和数字混合使得同样长度有更多的视频。</p>
+<p>规律的AV号非常容易被爬虫抓取，这也就是你为什么看到营销号几分钟投稿4，5个视频。</p>
+<p>所以请不要说个问题了。</p>
+<p><a target="_blank" rel="noopener" href="https://imcys.com/wp-content/uploads/2020/03/fcd12ef8a9fc23c2abb2afb973c3593835a9d05e.png"><img loading="lazy" class=" wp-image-153" src="https://imcys.com/wp-content/uploads/2020/03/fcd12ef8a9fc23c2abb2afb973c3593835a9d05e-1024x466.png" alt="哔哩哔哩AV编号转BV编号" width="853" height="388" srcset="https://imcys.com/wp-content/uploads/2020/03/fcd12ef8a9fc23c2abb2afb973c3593835a9d05e-1024x466.png 1024w, https://imcys.com/wp-content/uploads/2020/03/fcd12ef8a9fc23c2abb2afb973c3593835a9d05e-300x136.png 300w, https://imcys.com/wp-content/uploads/2020/03/fcd12ef8a9fc23c2abb2afb973c3593835a9d05e-768x349.png 768w, https://imcys.com/wp-content/uploads/2020/03/fcd12ef8a9fc23c2abb2afb973c3593835a9d05e-1536x698.png 1536w, https://imcys.com/wp-content/uploads/2020/03/fcd12ef8a9fc23c2abb2afb973c3593835a9d05e.png 1920w" sizes="(max-width: 853px) 100vw, 853px" /></a></p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/03/23/%e5%93%94%e5%93%a9%e5%93%94%e5%93%a9av%e7%bc%96%e5%8f%b7%e8%bd%acbv%e5%b0%8f%e5%b7%a5%e5%85%b7.html">https://imcys.com/2020/03/23/%e5%93%94%e5%93%a9%e5%93%94%e5%93%a9av%e7%bc%96%e5%8f%b7%e8%bd%acbv%e5%b0%8f%e5%b7%a5%e5%85%b7.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/03/23/imcys.com-%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9AV%E7%BC%96%E5%8F%B7%E8%BD%ACBV%E5%B0%8F%E5%B7%A5%E5%85%B7/" data-id="cl01oc4wa0018ceoye5sj55xf" data-title="哔哩哔哩AV编号转BV小工具 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-【发现酱】以图搜图，发现你的老婆！|又一个APP!" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/18/imcys.com-%E3%80%90%E5%8F%91%E7%8E%B0%E9%85%B1%E3%80%91%E4%BB%A5%E5%9B%BE%E6%90%9C%E5%9B%BE%EF%BC%8C%E5%8F%91%E7%8E%B0%E4%BD%A0%E7%9A%84%E8%80%81%E5%A9%86%EF%BC%81%7C%E5%8F%88%E4%B8%80%E4%B8%AAAPP!/" class="article-date">
+  <time class="dt-published" datetime="2020-03-18T21:42:18.000Z" itemprop="datePublished">2020-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/18/imcys.com-%E3%80%90%E5%8F%91%E7%8E%B0%E9%85%B1%E3%80%91%E4%BB%A5%E5%9B%BE%E6%90%9C%E5%9B%BE%EF%BC%8C%E5%8F%91%E7%8E%B0%E4%BD%A0%E7%9A%84%E8%80%81%E5%A9%86%EF%BC%81%7C%E5%8F%88%E4%B8%80%E4%B8%AAAPP!/">【发现酱】以图搜图，发现你的老婆！|又一个APP! 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+<p>咕咕咕，鸽子来了，又来写博客了，经过几次调整，我终于解决了这个判断问题，现在，一款新的APP正式问世。</p>
+<p>发现酱——以图搜图app，正如它的名字一样，他可以识别同人图片，精确的找到图片原作来源，锁定作品链接，以及作者链接。</p>
+<p>怎么样？如果你有一个不清楚的壁纸想找来源，那么你就可以使用它。</p>
+<p>如果你有一张在网络流传加压很多次的同人图，那么你可以用它找到原画下载。</p>
+<h3>为什么想做APP？它的优势在哪？</h3>
+<p>实际上，我在几天前，想找一个原画，但是非常的困难，我选择了百度识图，但是发现这些图片的确在百度可以识别到。没等我高兴1秒，就发现问题了，首先他们不是来自原作，也是被压缩过了，其次因为百度快照原因，大部分的这个链接以及失效，这就气的我不行，找半天没法弄，我就去其他高智商的识图网站了。</p>
+<p>在使用网站，这的确不错，但是弊端也很严重，什么问题？第一个多余的东西太多，加载缓慢，第二个，网站网址复杂，记起来费劲，添加书签，又得找半天。</p>
+<p>然后我就想，为什么不做个APP？这样搜索不就简单起来了吗？说干就干，因为这次代码不是很多，主要是对返回数据的分析，也就是用了1天左右，写了这个软件。</p>
+<p>然后我还在B站发了视频，但是现在还在审核，emmmm，问题不大，我先写个博客吧？</p>
+<h4>优势</h4>
+<p>发现酱的优势，相对方面可以和百度识图相媲美。这里的相对是相对于同人图而言，因为发现酱是专门搜索同人图的，它的数据来自P站，N站，B站，半次元等优秀的ACG网站，你可以搜索到很多的数据。</p>
+<p>而百度，是面向收录的各大网站，但是弊端是被墙的网站不能搜索，而我们的P站就在其中，这就导致找不到原作信息，而发现酱，就是弥补这个点。</p>
+<p>相对网站而言，发现酱不会有这么长时间的加载，因为其他搜图网站的主机速度在国内而言速度不快，相比之下，发现酱速度更快，一旦捕捉数据，毫秒级响应。’</p>
+<h3>截图与下载链接</h3>
+<p>&nbsp;</p>
+<p><a target="_blank" rel="noopener" href="https://imcys.com/wp-content/uploads/2020/03/QQ图片20200318213417.png"><img loading="lazy" class=" wp-image-146" src="https://imcys.com/wp-content/uploads/2020/03/QQ图片20200318213417.png" alt="发现酱APP" width="303" height="539" srcset="https://imcys.com/wp-content/uploads/2020/03/QQ图片20200318213417.png 489w, https://imcys.com/wp-content/uploads/2020/03/QQ图片20200318213417-169x300.png 169w" sizes="(max-width: 303px) 100vw, 303px" /></a></p>
+<p><a target="_blank" rel="noopener" href="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200318213500.png"><img loading="lazy" class=" wp-image-145" src="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200318213500.png" alt="发现酱APP1" width="302" height="538" srcset="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200318213500.png 490w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200318213500-169x300.png 169w" sizes="(max-width: 302px) 100vw, 302px" /></a></p>
+<h5>下载链接：<a target="_blank" rel="noopener" href="https://www.lanzous.com/iadlhmd">点击下载</a></h5>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/03/18/%e3%80%90%e5%8f%91%e7%8e%b0%e9%85%b1%e3%80%91%e4%bb%a5%e5%9b%be%e6%90%9c%e5%9b%be%ef%bc%8c%e5%8f%91%e7%8e%b0%e4%bd%a0%e7%9a%84%e8%80%81%e5%a9%86%ef%bc%81%e5%8f%88%e4%b8%80%e4%b8%aaapp.html">https://imcys.com/2020/03/18/%e3%80%90%e5%8f%91%e7%8e%b0%e9%85%b1%e3%80%91%e4%bb%a5%e5%9b%be%e6%90%9c%e5%9b%be%ef%bc%8c%e5%8f%91%e7%8e%b0%e4%bd%a0%e7%9a%84%e8%80%81%e5%a9%86%ef%bc%81%e5%8f%88%e4%b8%80%e4%b8%aaapp.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/03/18/imcys.com-%E3%80%90%E5%8F%91%E7%8E%B0%E9%85%B1%E3%80%91%E4%BB%A5%E5%9B%BE%E6%90%9C%E5%9B%BE%EF%BC%8C%E5%8F%91%E7%8E%B0%E4%BD%A0%E7%9A%84%E8%80%81%E5%A9%86%EF%BC%81|%E5%8F%88%E4%B8%80%E4%B8%AAAPP!/" data-id="cl01oc4w2000qceoygwenchbs" data-title="【发现酱】以图搜图，发现你的老婆！|又一个APP! 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-【开新坑了】萌字号——双端群员违规备案系统" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/06/imcys.com-%E3%80%90%E5%BC%80%E6%96%B0%E5%9D%91%E4%BA%86%E3%80%91%E8%90%8C%E5%AD%97%E5%8F%B7%E2%80%94%E2%80%94%E5%8F%8C%E7%AB%AF%E7%BE%A4%E5%91%98%E8%BF%9D%E8%A7%84%E5%A4%87%E6%A1%88%E7%B3%BB%E7%BB%9F/" class="article-date">
+  <time class="dt-published" datetime="2020-03-06T21:36:00.000Z" itemprop="datePublished">2020-03-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/06/imcys.com-%E3%80%90%E5%BC%80%E6%96%B0%E5%9D%91%E4%BA%86%E3%80%91%E8%90%8C%E5%AD%97%E5%8F%B7%E2%80%94%E2%80%94%E5%8F%8C%E7%AB%AF%E7%BE%A4%E5%91%98%E8%BF%9D%E8%A7%84%E5%A4%87%E6%A1%88%E7%B3%BB%E7%BB%9F/">【开新坑了】萌字号——双端群员违规备案系统 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4>什么是萌字号？</h4>
+<p>萌字号，由来是我们群风纪委员在统计违规用户的时候，受启发才做的，而名字也是由风纪委员<a target="_blank" rel="noopener" href="https://misakaloli.com/">御坂呱太</a>在统计文件中启发的，其中特别感谢由大佬<a target="_blank" rel="noopener" href="http://mcp.ee">Ruok233</a>对后台问题大力分析帮助。</p>
+<p>萌字号是双端，具备Android端和web端，你可以用它将违规人员的信息记录备案，形成规范的群员管理日志。</p>
+<p>萌字号和云动漫前端一样，利用数据流更新信息，Android保障会非常好。</p>
+<p>而web前端，之前没有做过，所以旧的前端是复制别人的模板，为了解决这个问题，我在昨天开始试着写前端，也就在今天晚上改造出了新的前端。</p>
+<p>此次我们采用到了数据库和mdui的框架，当然，因为昨天才开始试着写前端，以及接触php时间不长，实现的效果不是很好，不过我自己觉得还看到过眼。</p>
+<p>为了在未来面向大众，也就是你可以对接萌字号后台，搭建你自己的群管系统，我正在努力实现这一点，萌字号已经在我自己群运行了一段时间，效果还可以。</p>
+<h4>萌字号的具体功能</h4>
+<p>WEB端</p>
+<ul>
+<li>提交违规成员信息</li>
+<li>查询违规群员信息</li>
+<li>删除记录信息</li>
+<li>上传违规图片</li>
+<li>数据库加载，储存数据</li>
+</ul>
+<blockquote><p>更多功能正在编写</p></blockquote>
+<p>Android端</p>
+<ul>
+<li>提交违规成员信息</li>
+<li>查询违规群员信息</li>
+<li>删除记录信息</li>
+<li>上传违规图片</li>
+<li>申诉系统</li>
+<li>审核系统</li>
+<li>PHP驱动数据库后台</li>
+<li>全程Json返回数据</li>
+</ul>
+<h4>什么时候能让我的群也使用到萌字号？</h4>
+<p>萌字号的项目实际上正在马不停蹄的抽空开发，我也正在向大佬们询问着，一点一点的实现萌字号的功能。</p>
+<p>相信在不久之后就能让大家投放使用，如果有兴趣，可以持续关注我的博客。</p>
+<h4>萌字号截图</h4>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://mzh.mxjs.xyz/">点击进入</a></p>
+<p><a target="_blank" rel="noopener" href="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204632.png"><img loading="lazy" class=" wp-image-132" src="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204632-1024x537.png" alt="萌字号" width="561" height="294" srcset="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204632-1024x537.png 1024w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204632-300x157.png 300w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204632-768x402.png 768w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204632-1536x805.png 1536w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204632.png 1920w" sizes="(max-width: 561px) 100vw, 561px" /></a></p>
+<p><a target="_blank" rel="noopener" href="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204647.png"><img loading="lazy" class=" wp-image-133" src="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204647-1024x518.png" alt="萌字号" width="556" height="281" srcset="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204647-1024x518.png 1024w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204647-300x152.png 300w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204647-768x388.png 768w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204647-1536x777.png 1536w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204647.png 1920w" sizes="(max-width: 556px) 100vw, 556px" /></a></p>
+<p><a target="_blank" rel="noopener" href="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204702.png"><img loading="lazy" class=" wp-image-134" src="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204702-1024x519.png" alt="萌字号" width="560" height="284" srcset="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204702-1024x519.png 1024w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204702-300x152.png 300w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204702-768x390.png 768w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204702-1536x779.png 1536w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204702.png 1920w" sizes="(max-width: 560px) 100vw, 560px" /></a></p>
+<p><a target="_blank" rel="noopener" href="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204715.png"><img loading="lazy" class=" wp-image-135" src="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204715-1024x517.png" alt="萌字号" width="562" height="284" srcset="https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204715-1024x517.png 1024w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204715-300x152.png 300w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204715-768x388.png 768w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204715-1536x776.png 1536w, https://imcys.com/wp-content/uploads/2020/03/QQ截图20200306204715.png 1920w" sizes="(max-width: 562px) 100vw, 562px" /></a></p>
+<p><a target="_blank" rel="noopener" href="https://imcys.com/wp-content/uploads/2020/03/Screenshot_2020_0306_102616.jpg"><img loading="lazy" class=" wp-image-136" src="https://imcys.com/wp-content/uploads/2020/03/Screenshot_2020_0306_102616-371x1024.jpg" alt="萌字号" width="261" height="720" srcset="https://imcys.com/wp-content/uploads/2020/03/Screenshot_2020_0306_102616-371x1024.jpg 371w, https://imcys.com/wp-content/uploads/2020/03/Screenshot_2020_0306_102616-109x300.jpg 109w, https://imcys.com/wp-content/uploads/2020/03/Screenshot_2020_0306_102616-556x1536.jpg 556w, https://imcys.com/wp-content/uploads/2020/03/Screenshot_2020_0306_102616.jpg 720w" sizes="(max-width: 261px) 100vw, 261px" /></a></p>
+<p><a target="_blank" rel="noopener" href="https://imcys.com/wp-content/uploads/2020/03/Screenshot_20200306_204837.jpg"><img loading="lazy" class=" wp-image-137" src="https://imcys.com/wp-content/uploads/2020/03/Screenshot_20200306_204837-512x1024.jpg" alt="萌字号" width="255" height="510" srcset="https://imcys.com/wp-content/uploads/2020/03/Screenshot_20200306_204837-512x1024.jpg 512w, https://imcys.com/wp-content/uploads/2020/03/Screenshot_20200306_204837-150x300.jpg 150w, https://imcys.com/wp-content/uploads/2020/03/Screenshot_20200306_204837.jpg 720w" sizes="(max-width: 255px) 100vw, 255px" /></a></p>
+<h4>文末</h4>
+<p>萌字号的维护离不开大家的帮助，感谢一直以来在萌新交流社的风纪委员们，辛苦惹。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/03/06/%e3%80%90%e5%bc%80%e6%96%b0%e5%9d%91%e4%ba%86%e3%80%91%e8%90%8c%e5%ad%97%e5%8f%b7-%e5%8f%8c%e7%ab%af%e7%be%a4%e5%91%98%e8%bf%9d%e8%a7%84%e5%a4%87%e6%a1%88%e7%b3%bb%e7%bb%9f.html">https://imcys.com/2020/03/06/%e3%80%90%e5%bc%80%e6%96%b0%e5%9d%91%e4%ba%86%e3%80%91%e8%90%8c%e5%ad%97%e5%8f%b7-%e5%8f%8c%e7%ab%af%e7%be%a4%e5%91%98%e8%bf%9d%e8%a7%84%e5%a4%87%e6%a1%88%e7%b3%bb%e7%bb%9f.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/03/06/imcys.com-%E3%80%90%E5%BC%80%E6%96%B0%E5%9D%91%E4%BA%86%E3%80%91%E8%90%8C%E5%AD%97%E5%8F%B7%E2%80%94%E2%80%94%E5%8F%8C%E7%AB%AF%E7%BE%A4%E5%91%98%E8%BF%9D%E8%A7%84%E5%A4%87%E6%A1%88%E7%B3%BB%E7%BB%9F/" data-id="cl01oc4w3000uceoyfv3sgqxy" data-title="【开新坑了】萌字号——双端群员违规备案系统 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

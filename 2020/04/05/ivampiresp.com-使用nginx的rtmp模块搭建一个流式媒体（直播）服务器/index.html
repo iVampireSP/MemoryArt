@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>使用nginx的rtmp模块搭建一个流式媒体（直播）服务器 由 ivampiresp.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="近期在家里闲着没事干，然后和群员聊着聊着，突然想起了之前想要搭建的流式媒体服务器，但是没有搭建成功。然而在这个超长的寒假中，我成功实现了（后来发现很简单）   结构   在搭建后不久，我做了很多修改，大概是这个样子   前端：完全静态，因为是自己的流式媒体服务器，自己播着玩玩也用不到动态。   流式媒体服务器：Nginx 的rtmp模块。   后端：Nodejs，做实时评论用，关于为啥不用php等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用nginx的rtmp模块搭建一个流式媒体（直播）服务器 由 ivampiresp.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2020/04/05/ivampiresp.com-%E4%BD%BF%E7%94%A8nginx%E7%9A%84rtmp%E6%A8%A1%E5%9D%97%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%B5%81%E5%BC%8F%E5%AA%92%E4%BD%93%EF%BC%88%E7%9B%B4%E6%92%AD%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="近期在家里闲着没事干，然后和群员聊着聊着，突然想起了之前想要搭建的流式媒体服务器，但是没有搭建成功。然而在这个超长的寒假中，我成功实现了（后来发现很简单）   结构   在搭建后不久，我做了很多修改，大概是这个样子   前端：完全静态，因为是自己的流式媒体服务器，自己播着玩玩也用不到动态。   流式媒体服务器：Nginx 的rtmp模块。   后端：Nodejs，做实时评论用，关于为啥不用php等">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/04/image.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/04/image-1.png?imageMogr2/interlace/1/quality/80">
+<meta property="article:published_time" content="2020-04-05T19:27:46.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:47.666Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="ivampiresp.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/04/image.png?imageMogr2/interlace/1/quality/80">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ivampiresp.com-使用nginx的rtmp模块搭建一个流式媒体（直播）服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/05/ivampiresp.com-%E4%BD%BF%E7%94%A8nginx%E7%9A%84rtmp%E6%A8%A1%E5%9D%97%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%B5%81%E5%BC%8F%E5%AA%92%E4%BD%93%EF%BC%88%E7%9B%B4%E6%92%AD%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2020-04-05T19:27:46.000Z" itemprop="datePublished">2020-04-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      使用nginx的rtmp模块搭建一个流式媒体（直播）服务器 由 ivampiresp.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>近期在家里闲着没事干，然后和群员聊着聊着，突然想起了之前想要搭建的流式媒体服务器，但是没有搭建成功。然而在这个超长的寒假中，我成功实现了（后来发现很简单）</p>
+
+
+<h2>结构</h2>
+
+
+<p>在搭建后不久，我做了很多修改，大概是这个样子</p>
+
+
+<p>前端：完全静态，因为是自己的流式媒体服务器，自己播着玩玩也用不到动态。</p>
+
+
+<p>流式媒体服务器：Nginx 的rtmp模块。</p>
+
+
+<p>后端：Nodejs，做实时评论用，关于为啥不用php等。。我觉得nodejs来的更快。当然代码都是Ctrl+C，Ctrl+V来的</p>
+
+
+<h2>前端</h2>
+
+
+<p>这里我推荐使用hls.js，因为hls流的话很方便，就是有点延时。。。代码可以自由发挥了。</p>
+
+
+<h2>搭建</h2>
+
+
+<p>我这里建议使用Debian系的Linux系统，当然Windows也不是不可以，我都会在后面放出。</p>
+
+
+<p>为什么建议使用Debian系的Linux系统呢？因为apt一下很方便。其他可以可以自行搜索了，编译安装。</p>
+
+
+<p>请额外放行端口：1935,3000（可能）,80,443</p>
+
+
+<p>PS：树莓派也可以</p>
+
+
+<h3>安装必要的软件包</h3>
+
+
+<p>首先准备一个纯净的系统（不是纯净的自己看着改代码）</p>
+
+
+<pre class="wp-block-code"><code># 更新系统
+sudu apt update
+# 安装nginx和rtmp模块及wget（万一没有）
+sudo apt install nginx-full libnginx-mod-rtmp wget -y</code></pre>
+
+
+<h3>设置nginx.conf</h3>
+
+
+<pre class="wp-block-code"><code>sudo vim /etc/nginx/nginx.conf</code></pre>
+
+
+<p>你需要在第一个server 前加一段</p>
+
+
+<pre class="wp-block-code"><code>rtmp &#123;
+    server &#123;
+        listen 1935;
+        application live &#123;
+            live on;
+        &#125;
+        application hls &#123;
+            live on;
+            hls on;
+            hls_path /var/www/html/hls;
+            hls_fragment 2s;
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+
+<p>他看上去应该像这样：</p>
+
+
+<figure class="wp-block-image size-large"><img width="644" height="380" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/04/image.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1635"/></figure>
+
+
+<p>hls_path你可以修改，但是建议放在和前端文件同级的一个目录下。</p>
+
+
+<p>然后重启nginx</p>
+
+
+<pre class="wp-block-code"><code>sudo systemctl restart nginx</code></pre>
+
+
+<p>此时rtmp服务器你就搭建完成了</p>
+
+
+<p>就这么简单</p>
+
+
+<p>现在你可以推个流试试了，串流密钥随便写。</p>
+
+
+<p>使用OBS推流，服务器地址为：rtmp://IP:1935/live/，密钥随便</p>
+
+
+<p>拉流：rtmp://IP:1935/live/你的密钥</p>
+
+
+<p>HLS流：使用OBS推流，服务器地址为：rtmp://IP:1935/hls/，密钥随便</p>
+
+
+<p>拉流：rtmp://IP:1935/hls/你的密钥</p>
+
+
+<p>或者用浏览器播放hls的m3u8</p>
+
+
+<p>http(s)://IP/hls/密钥.m3u8</p>
+
+
+<h2>实时评论</h2>
+
+
+<p>这里就直接用nodejs实现了</p>
+
+
+<p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4"><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4"><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4"><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4"><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4"><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4"><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4"><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5539ccd8d9c4">https://www.jianshu.com/p/5539ccd8d9c4</a></a></a></a></a></a></a></a></p>
+
+
+<p>首先安装nodejs和npm以及创建目录，安装依赖</p>
+
+
+<pre class="wp-block-code"><code>sudo apt install nodejs npm -y
+cd ~
+mkdir livechat
+cd livechat
+npm install express socket.io</code></pre>
+
+
+<p>apt里的nodejs的版本是足够了的</p>
+
+
+<p>创建一个目录，然后开始安装软件，代码在上面的URL里。</p>
+
+
+<p>全部弄完后启动就行，然后试试能不能访问。能访问的话就可以配置nginx的反向代理了。</p>
+
+
+<h2>配置反向代理</h2>
+
+
+<p>为何要反向代理？因为支持https并且利用nginx的rtmp模块。</p>
+
+
+<p>那为什么不直接用nodejs搭建rtmp服务器呢？因为我没尝试过，既然nginx都跑起来了，那顺便用nginx搭建其他网站也不是问题。</p>
+
+
+<p>接下来你需要在现有的http{}中添加一个sever，你可以新建配置文件，或者直接在nginx.conf中写，如果你还要架设多个网站的话，我还是推荐新建配置文件，这里我就直接在nginx.conf中写了。</p>
+
+
+<pre class="wp-block-code"><code>vim /etc/nginx/nginx.conf</code></pre>
+
+
+<pre class="wp-block-code"><code>server &#123;
+        listen   8081;
+    server_name live.nwl.im;
+        location / &#123;
+            proxy_pass http://127.0.0.1:3000/;
+        add_header Access-Control-Allow-Origin *;
+add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+        add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+
+            if ($request_method = 'OPTIONS') &#123;
+                return 204;
+            &#125;
+        &#125;       
+        # 为什么需要下面这段呢？因为我的教程里是设置的反代，如果不加这段是直接从nodejs那里读取，但是nodejs那里是没有ts和m3u8文件的。
+        location /hls &#123;  
+            #server hls fragments  
+            types&#123;  
+                application/vnd.apple.mpegurl m3u8;  
+                video/mp2t ts;  
+            &#125;  
+            # 把下面的alias后面的目录改成和hls_path相同的目录。
+            alias temp/hls;  
+            expires -1;  
+            # 设置CORS，如果不需要将下面那一段删除
+            add_header 'Access-Control-Allow-Origin' '*'; 
+        &#125;
+    &#125;</code></pre>
+
+
+<p>他看起来应该像这样（可能会和我的不一样，<strong><em>我的配置文件也许和你的环境不符合，请按照你的实际环境修改</em></strong>），当然我这里是加了ssl的。如果你更改了nodejs的端口，你也需要在上方配置文件中修改一下proxy_pass部分。</p>
+
+
+<figure class="wp-block-image size-large"><img width="858" height="466" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/04/image-1.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1638"/></figure>
+
+
+<p>然后检查nginx的配置文件是否有误</p>
+
+
+<pre class="wp-block-code"><code>sudo nginx -t</code></pre>
+
+
+<p>如果返回类似如下消息，你的流式媒体服务器搭建完成了，接下来就是前端。</p>
+
+
+<pre class="wp-block-code"><code>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful</code></pre>
+
+
+<p>重启nginx</p>
+
+
+<pre class="wp-block-code"><code>sudo systemctl nginx restart</code></pre>
+
+
+<h2>前端</h2>
+
+
+<p>这里我推荐前端使用nodejs，因为。。需要依靠socket.io</p>
+
+
+<p>打开你按照上方URL中创建的index.html，你可以在里面加入如下视频标签和hls.js</p>
+
+
+<pre class="wp-block-code"><code>&lt;video muted="muted" preload="auto" id="video" controls>&lt;/video>
+        &lt;script src="https://cdn.bootcss.com/hls.js/0.13.2/hls.min.js">&lt;/script>
+        &lt;script>
+            var video = document.getElementById('video');
+            if (Hls.isSupported()) &#123;
+                var hls = new Hls();
+                hls.loadSource('http(s)://你的IP或者域名/密钥.m3u8');
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() &#123;
+                    video.play();
+                &#125;);
+            &#125; else if (video.canPlayType('application/vnd.apple.mpegurl')) &#123;
+                video.src = 'http(s)://你的IP或者域名/hls/密钥.m3u8';
+                video.addEventListener('loadedmetadata', function() &#123;
+                    video.play();
+                &#125;);
+            &#125;
+        &lt;/script></code></pre>
+
+
+<p>然后做些适当的修改，就完成了，接下来你可以把评论区整合进去。</p>
+
+
+<p>我这放一下我的index.html，如果你喜欢的话，可以拿去用。</p>
+
+
+<pre class="wp-block-code"><code>&lt;!DOCTYPE html>
+&lt;html>
+
+&lt;head>
+    &lt;meta charset="utf-8" />
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    &lt;meta name="renderer" content="webkit">
+    &lt;link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css" />
+    &lt;link rel="icon" href="https://ivampiresp.com/wp-content/uploads/2020/02/cropped-illust_78879291_20200207_181713-32x32.jpg" sizes="32x32" />
+    &lt;link rel="icon" href="https://ivampiresp.com/wp-content/uploads/2020/02/cropped-illust_78879291_20200207_181713-192x192.jpg" sizes="192x192" />
+    &lt;link rel="apple-touch-icon" href="https://ivampiresp.com/wp-content/uploads/2020/02/cropped-illust_78879291_20200207_181713-180x180.jpg" />
+    &lt;script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js">&lt;/script>
+    &lt;title>iVampireSPのLive&lt;/title>
+&lt;/head>
+
+&lt;body class="mdui-drawer-body-left mdui-appbar-with-toolbar  mdui-theme-primary-indigo mdui-theme-accent-pink">
+    &lt;header class="mdui-appbar mdui-appbar-fixed">
+        &lt;div class="mdui-toolbar mdui-color-theme">
+            &lt;span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-drawer="&#123;target: '#main-drawer', swipe: true&#125;">&lt;i class="mdui-icon material-icons">menu&lt;/i>&lt;/span>
+            &lt;a href="#" class="mdui-typo-headline mdui-typo-title">iVampireSPのLive&lt;/a>
+
+            &lt;div class="mdui-toolbar-spacer">&lt;/div>
+        &lt;/div>
+    &lt;/header>
+    &lt;div class="mdui-drawer" id="main-drawer">
+        &lt;div class="mdui-list" mdui-collapse="&#123;accordion: true&#125;" style="margin-bottom: 76px;">
+            &lt;div class="mdui-collapse-item ">
+                &lt;div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    &lt;i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">near_me&lt;/i>
+                    &lt;div class="mdui-list-item-content">菜单&lt;/div>
+                    &lt;i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down&lt;/i>
+                &lt;/div>
+                &lt;div class="mdui-collapse-item-body mdui-list">
+                    &lt;a href="./" class="mdui-list-item mdui-ripple ">刷新&lt;/a>
+                    &lt;a href="https://ivampiresp.com" class="mdui-list-item mdui-ripple ">博客&lt;/a>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    &lt;/div>
+    &lt;div class="mdui-container" style="float: left;">
+        &lt;br />
+        &lt;video muted="muted" preload="auto" class="mdui-video-fluid" poster="https://i.loli.net/2020/04/01/ylL1nsNXDdBxwMT.jpg" id="video" controls>&lt;/video>
+        &lt;script src="https://cdn.bootcss.com/hls.js/0.13.2/hls.min.js">&lt;/script>
+        &lt;script>
+            var video = document.getElementById('video');
+            if (Hls.isSupported()) &#123;
+                var hls = new Hls();
+                hls.loadSource('http(s)://你的IP或者域名/hls/iVampireSP.com.m3u8');
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() &#123;
+                    video.play();
+                &#125;);
+            &#125; else if (video.canPlayType('application/vnd.apple.mpegurl')) &#123;
+                video.src = 'http(s)://你的IP或者域名/hls/iVampireSP.com.m3u8';
+                video.addEventListener('loadedmetadata', function() &#123;
+                    video.play();
+                &#125;);
+            &#125;
+        &lt;/script>
+        &lt;h1 class="mdui-text-color-theme">实时评论区&lt;/h1>
+        &lt;ul id="messages">&lt;/ul>
+
+        &lt;form name="chat" action="">
+            &lt;div class="mdui-textfield">
+                &lt;label class="mdui-textfield-label">昵称&lt;/label>
+                &lt;input class="mdui-textfield-input" id="username" type="text" placeholder="昵称" oninput="getUser()" autocomplete="on" required />
+
+            &lt;/div>
+            &lt;div class="mdui-textfield">
+                &lt;label class="mdui-textfield-label">实时评论&lt;/label>
+                &lt;input class="mdui-textfield-input" id="comment" type="text" onclick="echoUser()" placeholder="请遵守格式，谢谢! 格式为：“昵称：内容”（不包括引号）" autocomplete="off" maxlength="35" required />
+                &lt;br />
+                &lt;button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">发送&lt;/button>
+            &lt;/div>
+        &lt;/form>
+
+        &lt;script src="/socket.io/socket.io.js">&lt;/script>
+        &lt;script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js">&lt;/script>
+        &lt;script type="text/javascript">
+            function getUser() &#123;
+                userName = ($("#username").val());
+            &#125;
+
+            function echoUser() &#123;
+                $("#comment").attr("value", userName + '：');
+            &#125;
+            var socket = io();
+            $('form').submit(function() &#123;
+                //点击发送按钮，提交输入的信息
+                socket.emit('chat message', $('#comment').val());
+                $('#comment').val(userName + '：');
+                return false;
+            &#125;);
+            //接收到chat message时
+            socket.on('chat message', function(msg) &#123;
+                //将chat message显示在页面
+                $('#messages').append($('&lt;li>').text(msg));
+            &#125;);
+        &lt;/script>
+
+        &lt;p>本直播页面是使用Nginx RTMP模块实现的，并且使用了hls.js和socket.io做到的接收流和实时评论，缺点是不能查看以前的评论。后端：nodejs。搭建教程：&lt;a href="https://ivampiresp.com/2020/04/05/%e4%bd%bf%e7%94%a8nginx%e7%9a%84rtmp%e6%a8%a1%e5%9d%97%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aa%e6%b5%81%e5%bc%8f%e5%aa%92%e4%bd%93%ef%bc%88%e7%9b%b4%e6%92%ad%ef%bc%89%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%b9%b6.html">点我查看&lt;/a>&lt;/p>
+    &lt;/div>
+&lt;/body>
+
+&lt;/html></code></pre>
+
+
+<p>接下来就是Windows端，Windows端nodejs部分和上面是一样的，nginx.conf少做修改也可以。</p>
+
+
+<p>带rtmp的nginx Windows端：<a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32"><a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32"><a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32"><a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32"><a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32"><a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32"><a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32"><a target="_blank" rel="noopener" href="https://github.com/illuspas/nginx-rtmp-win32">https://github.com/illuspas/nginx-rtmp-win32</a></a></a></a></a></a></a></a></p>
+
+
+<p>接下来你可以随心所欲的修改了，比如添加一些功能。</p>
+
+
+<p>希望你使用愉快~</p>
+
+
+<p>我的博客即将同步至腾讯云+社区，邀请大家一同入驻：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/support-plan?invite_code=u06zxiwvgd12">https://cloud.tencent.com/developer/support-plan?invite_code=u06zxiwvgd12</a></p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2020/04/05/%e4%bd%bf%e7%94%a8nginx%e7%9a%84rtmp%e6%a8%a1%e5%9d%97%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aa%e6%b5%81%e5%bc%8f%e5%aa%92%e4%bd%93%ef%bc%88%e7%9b%b4%e6%92%ad%ef%bc%89%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%b9%b6">https://ivampiresp.com/2020/04/05/%e4%bd%bf%e7%94%a8nginx%e7%9a%84rtmp%e6%a8%a1%e5%9d%97%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aa%e6%b5%81%e5%bc%8f%e5%aa%92%e4%bd%93%ef%bc%88%e7%9b%b4%e6%92%ad%ef%bc%89%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%b9%b6</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/04/05/ivampiresp.com-%E4%BD%BF%E7%94%A8nginx%E7%9A%84rtmp%E6%A8%A1%E5%9D%97%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%B5%81%E5%BC%8F%E5%AA%92%E4%BD%93%EF%BC%88%E7%9B%B4%E6%92%AD%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="cl01oc4xe002vceoy649hh4sf" data-title="使用nginx的rtmp模块搭建一个流式媒体（直播）服务器 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/09/imcys.com-%E3%80%90QR%E6%95%99%E7%A8%8B%E3%80%91%E6%95%99%E4%BD%A0%E7%94%A8QR%E5%AF%B9%E6%8E%A5QQ%E5%AE%98%E6%96%B9%E6%9C%BA%E5%99%A8%E4%BA%BA/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          【QR教程】教你用QR对接QQ官方机器人 由 imcys.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/01/imcys.com-%E4%B9%9F%E8%AE%B8%E4%BD%A0%E6%88%91%E5%8F%AA%E8%AE%A4%E8%AF%86%E5%88%B0%E8%BF%99%E6%98%AF%E6%84%9A%E4%BA%BA%E8%8A%82/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">也许你我只认识到这是愚人节 由 imcys.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

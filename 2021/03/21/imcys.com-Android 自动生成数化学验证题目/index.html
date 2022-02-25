@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Android 自动生成数化学验证题目 由 imcys.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言    所谓数学化学验证，就是两个简单的算法，灵感来源于QN的手性碳原子验证，于是就做了数学上的幂函数类型的求导带值的验证和甲烷同系物通过结构式写分子式的验证。    当然，我的技术有限，没办法做那么复杂，你可以在上面一段话中看到，这些题目是一个类型且有局限性，是众多类型中的一小个分支。    我们打算将这样的算法加入BILIBILI AS当缓存番剧的时候，就进行答题，当然你只需要答题一次，即">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 自动生成数化学验证题目 由 imcys.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2021/03/21/imcys.com-Android%20%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%95%B0%E5%8C%96%E5%AD%A6%E9%AA%8C%E8%AF%81%E9%A2%98%E7%9B%AE/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="前言    所谓数学化学验证，就是两个简单的算法，灵感来源于QN的手性碳原子验证，于是就做了数学上的幂函数类型的求导带值的验证和甲烷同系物通过结构式写分子式的验证。    当然，我的技术有限，没办法做那么复杂，你可以在上面一段话中看到，这些题目是一个类型且有局限性，是众多类型中的一小个分支。    我们打算将这样的算法加入BILIBILI AS当缓存番剧的时候，就进行答题，当然你只需要答题一次，即">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2021/03/image-3.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2021/03/image-2.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2021/03/ef7655a674eb56e73d9d99106359cacc.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2021/03/f6dc7856db120842c79d1ca28a478dd4.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2021/03/image.png">
+<meta property="article:published_time" content="2021-03-21T17:07:30.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:50.562Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="imcys.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imcys.com/wp-content/uploads/2021/03/image-3.png">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-imcys.com-Android 自动生成数化学验证题目" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/03/21/imcys.com-Android%20%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%95%B0%E5%8C%96%E5%AD%A6%E9%AA%8C%E8%AF%81%E9%A2%98%E7%9B%AE/" class="article-date">
+  <time class="dt-published" datetime="2021-03-21T17:07:30.000Z" itemprop="datePublished">2021-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Android 自动生成数化学验证题目 由 imcys.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+
+
+
+<p>所谓数学化学验证，就是两个简单的算法，灵感来源于QN的手性碳原子验证，于是就做了数学上的幂函数类型的求导带值的验证和甲烷同系物通过结构式写分子式的验证。</p>
+
+
+
+<p>当然，我的技术有限，没办法做那么复杂，你可以在上面一段话中看到，这些题目是一个类型且有局限性，是众多类型中的一小个分支。</p>
+
+
+
+<p>我们打算将这样的算法加入BILIBILI AS当缓存番剧的时候，就进行答题，当然你只需要答题一次，即可完成认证。</p>
+
+
+
+<h3>实现效果</h3>
+
+
+
+<p><strong>导数</strong></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="300" height="151" src="https://imcys.com/wp-content/uploads/2021/03/image-3.png" alt="" class="wp-image-406"/></figure></div>
+
+
+
+<p><strong>甲烷同系物</strong></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="https://imcys.com/wp-content/uploads/2021/03/image-2.png" alt="" class="wp-image-405" width="324" height="185" srcset="https://imcys.com/wp-content/uploads/2021/03/image-2.png 531w, https://imcys.com/wp-content/uploads/2021/03/image-2-300x172.png 300w" sizes="(max-width: 324px) 100vw, 324px" /></figure></div>
+
+
+
+<h3>实现思路</h3>
+
+
+
+<p>首先你得会求导函数，和会认有机物化学结构式</p>
+
+
+
+<h4>求导</h4>
+
+
+
+<p>在这里我简单说一下求导的过程，如果你学了这个东西，会发现初期我们是给一个数一个增量，使之相减且除以这个增量。</p>
+
+
+
+<p>对结果求极限，使得增量无限趋近于0，即视为0，最后的结果就是该函数在该点的导数。但是这样是非常麻烦的，随着学习推进，教科书给出了一些变化公式。</p>
+
+
+
+<figure class="wp-block-table"><table><tbody><tr><td class="has-text-align-center" data-align="center">原函数</td><td class="has-text-align-center" data-align="center">导函数</td></tr><tr><td class="has-text-align-center" data-align="center"><img loading="lazy" width="108" height="40" class="wp-image-400" style="width: 108px;" src="https://imcys.com/wp-content/uploads/2021/03/ef7655a674eb56e73d9d99106359cacc.png" alt=""></td><td class="has-text-align-center" data-align="center"><img loading="lazy" width="175" height="46" class="wp-image-402" style="width: 150px;" src="https://imcys.com/wp-content/uploads/2021/03/f6dc7856db120842c79d1ca28a478dd4.png" alt=""></td></tr></tbody></table></figure>
+
+
+
+<p>我想不难发现，我选的公式如果不刻意去改动n为分数，此时是不会产生分数，这样就方便计算机计算和用户的输入了。</p>
+
+
+
+<p>我们来利用一个法则 <strong><em><span class="has-inline-color has-vivid-red-color">Cf(x)</span></em></strong> 求导结果为<strong><em><span class="has-inline-color has-vivid-red-color"> Cf'(x)</span></em></strong> 这样就能实现我上面展示的效果了，并且使用代码可以快速的写出来。</p>
+
+
+
+<h4>有机物结构简式</h4>
+
+
+
+<p>首先来说一下，怎么认吧？</p>
+
+
+
+<p><strong>C-C-C</strong> 假设题目是这样的，是甲烷的同系物，要求补全碳链的氢，然后写出分子式，这个实际上比数学求导简单了许多，因为这次算法是纯文字输出的，所以很难去让代码补全这些氢即使补全，也相当的难看，所以只给出C主链。</p>
+
+
+
+<p>下面我大致画出了</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="404" height="246" src="https://imcys.com/wp-content/uploads/2021/03/image.png" alt="" class="wp-image-403" srcset="https://imcys.com/wp-content/uploads/2021/03/image.png 404w, https://imcys.com/wp-content/uploads/2021/03/image-300x183.png 300w" sizes="(max-width: 404px) 100vw, 404px" /></figure></div>
+
+
+
+<p>那么结果是C3H8，用户不需要输入下标，直接写出即可，因为没有括号限制，所以简单许多。</p>
+
+
+
+<h3>代码部分</h3>
+
+
+
+<p>姑且将这个类称作<strong><span class="has-inline-color has-vivid-cyan-blue-color">VerificationUtils</span></strong>吧！</p>
+
+
+
+<pre class="wp-block-code"><code>public class VerificationUtils &#123;
+    // TODO 逻辑算法设计 哔哩哔哩：萌新杰少
+    static String&#91;] POWER_LIST = new String&#91;]&#123;"²", "³", "⁴"&#125;;
+
+    /**
+     * 导函数代入值验证 目前只写了平方到4次方，再大用户就不好算了
+     * @return object 题目和答案的JSON
+     */
+    public static JSONObject derivatives() &#123;
+        Random rand = new Random();
+        JSONObject object = new JSONObject();
+        //次方数
+        int multiplier = rand.nextInt(3);
+        int multiplier_multiplicand = 0;
+        int cycles = 0;
+        //乘数
+        int multiplicand = rand.nextInt(10 - 1) + 1;
+        int value;
+        int derivativeValue = 0;
+        int derivatives = rand.nextInt(10 - 1) + 1;
+        if (multiplier == 0) &#123;
+            multiplier_multiplicand = 2;
+        &#125; else if (multiplier == 1) &#123;
+            //循环一次是平方
+            cycles = 1;
+            multiplier_multiplicand = 3;
+        &#125; else if (multiplier == 2) &#123;
+            //平方的基础上再乘以这个数
+            cycles = 2;
+            multiplier_multiplicand = 4;
+        &#125;
+        for (int i = 0; i &lt; cycles; i++) &#123;
+            //平方操作
+            if (derivativeValue == 0) &#123;
+                derivativeValue = derivatives * derivatives;
+            &#125; else &#123;
+                derivativeValue = derivativeValue * derivatives;
+            &#125;
+        &#125;
+        if (cycles == 0) &#123;
+            derivativeValue = derivatives;
+        &#125;
+        int multiplicandValue = multiplier_multiplicand * multiplicand;
+        derivativeValue = multiplicandValue * derivativeValue;
+        value = derivativeValue;
+        try &#123;
+            object.put("problem", "已知函数f(x)=" + multiplicand + "X" + POWER_LIST&#91;multiplier] + "，求它的导函数f'(" + derivatives + ")时的值。");
+            object.put("answer", "" + value);
+        &#125; catch (JSONException e) &#123;
+            e.printStackTrace();
+        &#125;
+        return object;
+    &#125;
+
+    /**
+     * 甲烷同系物验证
+     * @return object 题目和答案的JSON
+     */
+    public static JSONObject organicCompound() &#123;
+        Random rand = new Random();
+        JSONObject object = new JSONObject();
+        int carbonNumber = rand.nextInt(6 - 1) + 1;
+        String structural = "";
+        for (int i = 0; i &lt; carbonNumber; i++) &#123;
+            if (i == carbonNumber - 1) &#123;
+                structural = structural + "C";
+            &#125; else &#123;
+                structural = structural + "C-";
+            &#125;
+        &#125;
+        String value = null;
+        //减去两端的碳剩下的每个会连2个氢
+        if (carbonNumber == 1) &#123;
+            value = "CH4";
+        &#125; else if (carbonNumber == 2) &#123;
+            value = "C2H6";
+        &#125; else &#123;
+            int value1 = carbonNumber - 2;
+            int value2 = 2 * 3;
+            value1 = value1 * 2;
+            value1 = value1 + value2;
+            value = "C" + carbonNumber + "H" + value1;
+        &#125;
+        try &#123;
+            object.put("problem", "已知某甲烷的同系物未补全的结构式为\n" + structural + "\n请补全碳链的氢，并且写出分子式");
+            object.put("answer", value);
+        &#125; catch (JSONException e) &#123;
+            e.printStackTrace();
+        &#125;
+        return object;
+    &#125;
+&#125;
+</code></pre>
+
+
+
+<h3>文末</h3>
+
+
+
+<p>我们仍然需要一些简单的，类似于这样的，语文，生物，历史，政治算法，如果你有兴趣，欢迎帮助BILIBILI AS写这个算法。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2021/03/21/android-%e8%87%aa%e5%8a%a8%e7%94%9f%e6%88%90%e6%95%b0%e5%8c%96%e5%ad%a6%e9%aa%8c%e8%af%81%e9%a2%98%e7%9b%ae.html">https://imcys.com/2021/03/21/android-%e8%87%aa%e5%8a%a8%e7%94%9f%e6%88%90%e6%95%b0%e5%8c%96%e5%ad%a6%e9%aa%8c%e8%af%81%e9%a2%98%e7%9b%ae.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/03/21/imcys.com-Android%20%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%95%B0%E5%8C%96%E5%AD%A6%E9%AA%8C%E8%AF%81%E9%A2%98%E7%9B%AE/" data-id="cl01oc4vo0004ceoyhq2c8eiq" data-title="Android 自动生成数化学验证题目 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/03/28/imcys.com-BILIBILI%20AS_1.1.1%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          BILIBILI AS_1.1.1版本发布 由 imcys.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/18/ivampiresp.com-WireGuard%20%E4%BD%8E%E6%88%90%E6%9C%AC%E5%BC%82%E5%9C%B0%E7%BB%84%E7%BD%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">WireGuard 低成本异地组网 由 ivampiresp.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

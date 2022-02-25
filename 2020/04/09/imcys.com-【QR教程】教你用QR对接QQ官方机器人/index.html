@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>【QR教程】教你用QR对接QQ官方机器人 由 imcys.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言    最近我发现了QQ有一个代理发送消息的官方QQ群机器人，诶这有什么呢？当然是白嫖的机会，既然他能代理发送消息，是不是就可以代替我们QR机器人发送消息了呢？答案：完全OK    当然这里的消息暂时仅仅限于字符串即文本消息，也就是不能发图片语音，当然，我会持续关注的，如果有大佬知道提交什么参数可以发送图片，求在评论区留言。    接入教程    这个QQ机器人，被官方起名为HOO!K，不知道">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【QR教程】教你用QR对接QQ官方机器人 由 imcys.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2020/04/09/imcys.com-%E3%80%90QR%E6%95%99%E7%A8%8B%E3%80%91%E6%95%99%E4%BD%A0%E7%94%A8QR%E5%AF%B9%E6%8E%A5QQ%E5%AE%98%E6%96%B9%E6%9C%BA%E5%99%A8%E4%BA%BA/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="前言    最近我发现了QQ有一个代理发送消息的官方QQ群机器人，诶这有什么呢？当然是白嫖的机会，既然他能代理发送消息，是不是就可以代替我们QR机器人发送消息了呢？答案：完全OK    当然这里的消息暂时仅仅限于字符串即文本消息，也就是不能发图片语音，当然，我会持续关注的，如果有大佬知道提交什么参数可以发送图片，求在评论区留言。    接入教程    这个QQ机器人，被官方起名为HOO!K，不知道">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2020/04/image.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2020/04/image-1.png">
+<meta property="article:published_time" content="2020-04-09T20:52:05.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:50.562Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="imcys.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imcys.com/wp-content/uploads/2020/04/image.png">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-imcys.com-【QR教程】教你用QR对接QQ官方机器人" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/09/imcys.com-%E3%80%90QR%E6%95%99%E7%A8%8B%E3%80%91%E6%95%99%E4%BD%A0%E7%94%A8QR%E5%AF%B9%E6%8E%A5QQ%E5%AE%98%E6%96%B9%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="article-date">
+  <time class="dt-published" datetime="2020-04-09T20:52:05.000Z" itemprop="datePublished">2020-04-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      【QR教程】教你用QR对接QQ官方机器人 由 imcys.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+
+
+
+<p>最近我发现了QQ有一个代理发送消息的官方QQ群机器人，诶这有什么呢？当然是白嫖的机会，既然他能代理发送消息，是不是就可以代替我们QR机器人发送消息了呢？答案：完全OK</p>
+
+
+
+<p>当然这里的消息暂时仅仅限于字符串即文本消息，也就是不能发图片语音，当然，我会持续关注的，如果有大佬知道提交什么参数可以发送图片，求在评论区留言。</p>
+
+
+
+<h3>接入教程</h3>
+
+
+
+<p>这个QQ机器人，被官方起名为HOO!K，不知道是什么用意，在我发文章的时候，他似乎还是在测试，并没有被展示在QQ机器人队列里，当然粉丝在群里告诉了我引入方法，接下来看下图。</p>
+
+
+
+<h4>引入自己的群</h4>
+
+
+
+<p><span class="has-inline-color has-pale-pink-color">请将下面QQ号先发到你管理或者你创建的群</span></p>
+
+
+
+<p><strong><em><span class="has-inline-color has-pale-pink-color">2854196399</span></em></strong></p>
+
+
+
+<p><strong>如下图进行操作，将机器人添加到你的群，然后打开消息推送，并且选择推送消息那里的已设置。</strong></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="465" height="932" src="https://imcys.com/wp-content/uploads/2020/04/image.png" alt="QR对接hoo!k机器人" class="wp-image-187" srcset="https://imcys.com/wp-content/uploads/2020/04/image.png 465w, https://imcys.com/wp-content/uploads/2020/04/image-150x300.png 150w" sizes="(max-width: 465px) 100vw, 465px" /><figcaption>QR对接hoo!k机器人</figcaption></figure></div>
+
+
+
+<p>接下来选择生成接口复制 <strong><span class="has-inline-color has-vivid-red-color">key=</span></strong> 后面的参数记录保存，<strong><span class="has-inline-color has-vivid-red-color">千万不可泄露</span></strong></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="470" height="817" src="https://imcys.com/wp-content/uploads/2020/04/image-1.png" alt="接口" class="wp-image-188" srcset="https://imcys.com/wp-content/uploads/2020/04/image-1.png 470w, https://imcys.com/wp-content/uploads/2020/04/image-1-173x300.png 173w" sizes="(max-width: 470px) 100vw, 470px" /><figcaption>qr对接QQ机器人</figcaption></figure></div>
+
+
+
+<h4>后台的搭建</h4>
+
+
+
+<p>这里我们需要一个虚拟主机搭建一个简单的后台，就一个php文件，下面是代码，命名为qq.php</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;?php
+
+$key = $_GET&#91;"key"];
+$n = $_GET&#91;"n"];
+//判断是否GET传入
+if($key==""|$n=="")
+&#123;
+    $key = $_POST&#91;"key"];
+    $n = $_POST&#91;"n"];
+   //判断是否POST传入
+    if($key==""|$n=="")
+    &#123;
+      echo "失败请检查参数";
+    &#125;
+
+&#125;
+//封装好的POST提交json的函数，不要动
+function http_post_json($url, $jsonStr)
+&#123;
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonStr);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json; charset=utf-8',
+            'Content-Length: ' . strlen($jsonStr)
+        )
+    );
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+ 
+    return array($httpCode, $response);
+&#125;
+//执行函数提交数据，不返回数据
+//key的值就是你记录的key而n是QQ机器人要发送的消息
+$url = "https://app.qun.qq.com/cgi-bin/api/hookrobot_send?key=".$key;
+$jsonStr = "&#123;\"content\": &#91; &#123;\"type\":0,\"data\":\"".$n."\"&#125;]&#125;";
+$daatfh = http_post_json($url, $jsonStr);
+?></code></pre>
+
+
+
+<h4>QRDIC词库进行对接</h4>
+
+
+
+<p>下面我做一个简单的例子</p>
+
+
+
+<pre class="wp-block-code"><code>/**
+* 这里我简单的说一下，下面我们先从一个api获取ping的数据
+* 然后记录给A，再让qr机器人访问我们刚刚的接口，帮助我们完成发布消息
+* 这里我们不把访问的返回数据发出，首先如果正确没有返回数据，其次没有返回必要
+* 这个是简单的接口引用对接
+*/
+
+ping .*
+A:$访问 http://glapi.cn/ping/api.php?msg=%参数1%$
+B:$访问 http://域名地址/qq.php?key=你的key&amp;n=%A%$
+
+/**
+* 下面是一个本地词库运行的例子
+* 运算结束后，将返回文字放在一行，然后给我们的后台
+*/
+
+签到
+D:$读 签到时间/%群号%/%QQ% a 0$
+如果:%D%==%时间d%
+你今天已经签过到了
+返回
+如果尾
+A:%随机数500-2000%
+B:$读 签到好感度/%群号%/%QQ% a 0$
+C:&#91;%A%+%B%]
+$写 签到好感度/%群号%/%QQ% a %C%$
+$写 签到时间/%群号%/%QQ% a %时间d%$
+返:签到成功\r奖励你%A%好感度QwQ\r你现在有%C%的好感度\r用户：\r【%昵称%（%QQ%）】\r签到时间:%时间yy年mm月dd日yy时hh分钟%
+访:$访问 http://域名地址/qq.php?key=你的key&amp;n=%返%$</code></pre>
+
+
+
+<h3>文末</h3>
+
+
+
+<p>请不要用于其他违规，我可以告诉你，在任何机器人提交的过程，QQ都会记录IP，希望能帮到你，我会在B站发布视频教程。</p>
+
+
+
+<p>机器人就是一个工具重要的是你这么用它</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/04/09/qr%e5%af%b9%e6%8e%a5hook.html">https://imcys.com/2020/04/09/qr%e5%af%b9%e6%8e%a5hook.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/04/09/imcys.com-%E3%80%90QR%E6%95%99%E7%A8%8B%E3%80%91%E6%95%99%E4%BD%A0%E7%94%A8QR%E5%AF%B9%E6%8E%A5QQ%E5%AE%98%E6%96%B9%E6%9C%BA%E5%99%A8%E4%BA%BA/" data-id="cl01oc4w1000oceoyalw1efhy" data-title="【QR教程】教你用QR对接QQ官方机器人 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/02/ivampiresp.com-Minecraft%20BE,PE%E7%9A%84%E7%9A%84URL%20Scheme%EF%BC%8C%E4%BB%A5URL%E6%96%B9%E5%BC%8F%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8minecraft/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          Minecraft BE,PE的的URL Scheme，以URL方式快速启动minecraft 由 ivampiresp.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/05/ivampiresp.com-%E4%BD%BF%E7%94%A8nginx%E7%9A%84rtmp%E6%A8%A1%E5%9D%97%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%B5%81%E5%BC%8F%E5%AA%92%E4%BD%93%EF%BC%88%E7%9B%B4%E6%92%AD%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">使用nginx的rtmp模块搭建一个流式媒体（直播）服务器 由 ivampiresp.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

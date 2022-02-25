@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="让你的文章不再被时间长河埋没">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MemoryArt">
+<meta property="og:url" content="http://memoryart.nwl.im/page/2/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="让你的文章不再被时间长河埋没">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="MemoryArt">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-ivampiresp.com-解决Pterodactyl加载头像过慢的问题（替换Gravatar源）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/08/15/ivampiresp.com-%E8%A7%A3%E5%86%B3Pterodactyl%E5%8A%A0%E8%BD%BD%E5%A4%B4%E5%83%8F%E8%BF%87%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%88%E6%9B%BF%E6%8D%A2Gravatar%E6%BA%90%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2021-08-15T11:45:42.000Z" itemprop="datePublished">2021-08-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/15/ivampiresp.com-%E8%A7%A3%E5%86%B3Pterodactyl%E5%8A%A0%E8%BD%BD%E5%A4%B4%E5%83%8F%E8%BF%87%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%88%E6%9B%BF%E6%8D%A2Gravatar%E6%BA%90%EF%BC%89/">解决Pterodactyl加载头像过慢的问题（替换Gravatar源） 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>近期在折腾面板的时候发现的这个问题</p>
+
+
+<p><meta charset="utf-8">Pterodactyl是从Gravatar读取用户头像的，并且你还没有办法直接修改。</p>
+
+
+<p>所以这次直接上命令。</p>
+
+
+<p></p>
+
+
+<p>登录服务器，切换到Pterodactyl目录下，然后执行</p>
+
+<pre><code class="language-bash">sed -i &#039;s/www.gravatar.com/gravatar.loli.net/g&#039; `grep www.gravatar.com -rl *`</code></pre>
+
+<p>这句话的意思是替换所有<meta charset="utf-8">www.gravatar.com为<meta charset="utf-8">gravatar.loli.net，文件来自grep的结果</p>
+
+
+<p>这句话对服务器没有任何危害，仅仅是替换了Pterodactyl代码的字符串而已。</p>
+
+
+<p>其实还有一个&#8217;gravatar.com/avatar&#8217;的没有替换（于app/Transformers/Api/Client/UserTransformer.php），应该没什么大问题</p>
+
+
+<p></p>
+
+
+<figure class="wp-block-image size-full"><img width="1346" height="1020" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/08/1628999102-screenshot-2021-08-15-11-44-46-am.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-2346"/><figcaption>替换成功后</figcaption></figure>
+
+
+<p>如果还没有生效，你可以尝试清除视图缓存</p>
+
+
+<pre><code class="language-bash">php artisan view:clear</code></pre>
+
+
+<h2>附：其他Gravatar源</h2>
+
+
+<p>这里还有其他Gravatar源<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/115248957"><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/115248957"><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/115248957">https://zhuanlan.zhihu.com/p/115248957</a></a></a></p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2021/08/15/solve-the-problem-that-pterodactyl-loads-avatars-too-slowly">https://ivampiresp.com/2021/08/15/solve-the-problem-that-pterodactyl-loads-avatars-too-slowly</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/08/15/ivampiresp.com-%E8%A7%A3%E5%86%B3Pterodactyl%E5%8A%A0%E8%BD%BD%E5%A4%B4%E5%83%8F%E8%BF%87%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%88%E6%9B%BF%E6%8D%A2Gravatar%E6%BA%90%EF%BC%89/" data-id="cl01oc4xw003zceoy7t934cwi" data-title="解决Pterodactyl加载头像过慢的问题（替换Gravatar源） 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-Showerthought 开始公测" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/06/30/ivampiresp.com-Showerthought%20%E5%BC%80%E5%A7%8B%E5%85%AC%E6%B5%8B/" class="article-date">
+  <time class="dt-published" datetime="2021-06-30T22:36:44.000Z" itemprop="datePublished">2021-06-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/06/30/ivampiresp.com-Showerthought%20%E5%BC%80%E5%A7%8B%E5%85%AC%E6%B5%8B/">Showerthought 开始公测 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>过去一个月了，我带着被我砍了无数刀的Showerthought来了。移除了项目功能，直接为管理服务器</p>
+
+
+<h2>主要功能</h2>
+
+
+<p>目前实现了以下功能</p>
+
+
+<ol><li>服务器管理（包括查看服务器在线情况）</li><li>脚本管理</li><li>脚本一键保存到服务器（不运行脚本）</li><li>Frp 隧道管理（添加服务器时需要打开Frp支持，也需要安装Frp）</li><li>社区支持（正在建设）</li></ol>
+
+
+<p>先写这么多，以后慢慢补（打暑假工了，处理事情只能晚上处理了）</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2021/06/30/showerthought-begins-public-beta">https://ivampiresp.com/2021/06/30/showerthought-begins-public-beta</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/06/30/ivampiresp.com-Showerthought%20%E5%BC%80%E5%A7%8B%E5%85%AC%E6%B5%8B/" data-id="cl01oc4x30027ceoybdigg57t" data-title="Showerthought 开始公测 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-Android 整数数字格式化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/06/07/imcys.com-Android%20%E6%95%B4%E6%95%B0%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%8C%96/" class="article-date">
+  <time class="dt-published" datetime="2021-06-07T10:38:39.000Z" itemprop="datePublished">2021-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/06/07/imcys.com-Android%20%E6%95%B4%E6%95%B0%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%8C%96/">Android 整数数字格式化 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>数字格式化，提高你的数字可读性</p>
+
+
+
+<h3>前言</h3>
+
+
+
+<p>数字格式化，在最近开发中，常常因为数字太长而无法显示，或者说数字太大，读起来吃力，为了解决这些问题，我写了一个数字格式化的方法。这样极大的缩小了数字长度，同时提高了数字可读性，接着看下去吧！！！</p>
+
+
+
+<h3>实现过程</h3>
+
+
+
+<p>举个栗子</p>
+
+
+
+<pre class="wp-block-code"><code>1000 -> 1000
+10000 -> 1万
+17900 -> 1.7万</code></pre>
+
+
+
+<p>可以看到，当数字大于等于<strong>1万</strong>时，会进行格式化。这样主要是为了提高数字可读性，和减少占地，但这样也减低了精度，具体数字无法展现。当然，这里使用的转换方法有点蠢，下面我们简单看看代码。</p>
+
+
+
+<pre class="wp-block-code"><code>/**
+     * 整数数字转整数加汉字 | 整数数字格式化
+     * 10000 -> 1万
+     *目前最高精确到千万，再大自行添加
+     * @param num
+     * @return
+     */
+
+    public static String DigitalConversion(int num) &#123;
+        String OriginallyNum = num + "";
+        String result = "";
+        if (num >= 10000) &#123;
+            int count = LengthNum(num);
+            switch (count) &#123;
+                case 5:
+                    result = OriginallyNum.substring(0, 1) + "." + OriginallyNum.substring(1, 2) + "万";
+                    return result;
+                case 6:
+                    result = OriginallyNum.substring(0, 2) + "." + OriginallyNum.substring(2, 3) + "万";
+                    return result;
+                case 7:
+                    result = OriginallyNum.substring(0, 3) + "." + OriginallyNum.substring(3, 4) + "万";
+                    return result;
+                default:
+                    result = OriginallyNum.substring(0, 4) + "." + OriginallyNum.substring(4, 5) + "万";
+                    return result;
+            &#125;
+        &#125; else &#123;
+            return num + "";
+        &#125;
+    &#125;
+
+
+    public static int LengthNum(int num) &#123;
+        int count = 0; //计数
+        while (num >= 1) &#123;
+            num /= 10;
+            count++;
+        &#125;
+        return count;
+    &#125;
+</code></pre>
+
+
+
+<p>首先，我们传入整数数字，因为最后要输出的是字符串，所以我们先给他化为字符串。</p>
+
+
+
+<p>为了提高可读性，但又不对过小数字转换，我们先判断是否大于等于10000，如果小于则直接输出。</p>
+
+
+
+<p>下面我们来使用<strong><span class="has-inline-color has-pale-pink-color">LengthNum(int 待测量数字)</span></strong>这个方法来判断一下有几位数字，因为后面我们需要按照位数来一一对应这个小数点位置。</p>
+
+
+
+<p>接下来，按位来匹配，比如匹配到了6位，则代表这是个十万位数字，则先使用<strong><span class="has-inline-color has-pale-pink-color">字符串数字.substring(0, 2)</span></strong>代表获取前两位数字，也就是拿到十万位和万位数字，接下面加小数点，取千位数字，连接。</p>
+
+
+
+<p>输出，大功告成！！！</p>
+
+
+
+<h3>文末</h3>
+
+
+
+<p>当然，这将在 <a target="_blank" rel="noopener" href="https://api.misakaloli.com/app/">BILIBILI AS</a> 被体现出来</p>
+
+
+
+<p>算是对之前思路的一个整理，写的蠢，如果对你有帮助，那再好不过了。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2021/06/07/%e6%95%b0%e5%ad%97%e6%a0%bc%e5%bc%8f%e5%8c%96.html">https://imcys.com/2021/06/07/%e6%95%b0%e5%ad%97%e6%a0%bc%e5%bc%8f%e5%8c%96.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/06/07/imcys.com-Android%20%E6%95%B4%E6%95%B0%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%8C%96/" data-id="cl01oc4vl0002ceoy1t8iduqu" data-title="Android 整数数字格式化 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-有新想法：Showerthought - 一站式软件部署与服务管理平台" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/26/ivampiresp.com-%E6%9C%89%E6%96%B0%E6%83%B3%E6%B3%95%EF%BC%9AShowerthought%20-%20%E4%B8%80%E7%AB%99%E5%BC%8F%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/" class="article-date">
+  <time class="dt-published" datetime="2021-05-26T19:27:29.000Z" itemprop="datePublished">2021-05-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/26/ivampiresp.com-%E6%9C%89%E6%96%B0%E6%83%B3%E6%B3%95%EF%BC%9AShowerthought%20-%20%E4%B8%80%E7%AB%99%E5%BC%8F%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/">有新想法：Showerthought - 一站式软件部署与服务管理平台 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>最近开了个新项目：一站式软件部署与服务管理平台</p>
+
+
+<p>因在QQ空间里看到了一个说说，于是转发Mark了一下，就暂把名字取为：Showerthought</p>
+
+
+<blockquote class="wp-block-quote">Showerthought<br>浴中奇思。指的是在日常生活中做无脑无聊时候事情时候产生的有趣想法。</p><cite>来自QQ空间</cite></blockquote>
+
+
+<p>正因为我无聊的时候想出来的这个有趣的项目，所以我打算利用我的空余时间实现它。
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2021/05/26/new-idea-showerthought-one-stop-software-deployment-and">https://ivampiresp.com/2021/05/26/new-idea-showerthought-one-stop-software-deployment-and</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/05/26/ivampiresp.com-%E6%9C%89%E6%96%B0%E6%83%B3%E6%B3%95%EF%BC%9AShowerthought%20-%20%E4%B8%80%E7%AB%99%E5%BC%8F%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0/" data-id="cl01oc4xq003nceoy75qa00wo" data-title="有新想法：Showerthought - 一站式软件部署与服务管理平台 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-我想，再一次，是时候，扔下了。" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/20/ivampiresp.com-%E6%88%91%E6%83%B3%EF%BC%8C%E5%86%8D%E4%B8%80%E6%AC%A1%EF%BC%8C%E6%98%AF%E6%97%B6%E5%80%99%EF%BC%8C%E6%89%94%E4%B8%8B%E4%BA%86%E3%80%82/" class="article-date">
+  <time class="dt-published" datetime="2021-05-20T23:51:17.000Z" itemprop="datePublished">2021-05-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/20/ivampiresp.com-%E6%88%91%E6%83%B3%EF%BC%8C%E5%86%8D%E4%B8%80%E6%AC%A1%EF%BC%8C%E6%98%AF%E6%97%B6%E5%80%99%EF%BC%8C%E6%89%94%E4%B8%8B%E4%BA%86%E3%80%82/">我想，再一次，是时候，扔下了。 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>由于服务器有点贵，于是</p>
+
+
+<h2>我想，找人一起做网站。</h2>
+
+
+<p>大约2年前的样子，我发起了一次服务器合租。当时我管理并维护着服务器，让服务器稳定运行。那还是在我初中的时候。和伙伴们一起做网站真的非常快乐，虽然中途历经很多困难，但大家最后都撑了下来。直到有一天，我也忘记了因为什么原因，我停止了这个项目。在服务器到期后，大家就此解散了。</p>
+
+
+<h2>一年前，我再一次，发起了合租。</h2>
+
+
+<p>合租的服务器代号为s2，s2代表着“Server 2”的意思。</p>
+
+
+<p>那时候，我认识了很多朋友，大约有12个，虽然几个人离开了，但是当时也是合租项目最火热的时候。</p>
+
+
+<p>每个人忙着精心打理着自己的站点，而我撰写《iVampireSP的物语》的同时，还在维护着s2等多个服务器。</p>
+
+
+<p>每一次合租，我都会十分负责的维护服务器，保障所有网站和数据库的数据安全。甚至现在备份还是每日制的。在我维护的时候，只发生过一次数据库安全事件，也只发生过一次DDoS事件（打在了流量转发服务器上，对s2服务器没有影响，所以被攻击后切换线路就能很快缓解）。</p>
+
+
+<p>但是，人越是多，打理起来越困难。</p>
+
+
+<h2>是时候，扔下了。</h2>
+
+
+<p>合租的时候，我是欠着一些人的人情的，因为他们我才走到了今天。当时一个人也要做网站，于是他的费用我也帮他垫付了（我和他每个月应支付的费用合计大约18元）。我想要借此机会还清，不过人情也并不是靠帮他垫付怎么简单的事情还清的。</p>
+
+
+<p>每次向成员们要钱的时候，他们可能会拖延，不过我也不怪他们，他们也是学生，这点我能谅解。</p>
+
+
+<p>有时候，他们主动给我。有时候，我提醒他们。如果我忘了，最后的服务器的钱就由我一人全额付款（这种情况只发生过一次）。</p>
+
+
+<p>合租了近1年，学到了很多，也帮助了很多人，发生了很多事。但我的目标已经达成，我已经不需要在服务器上花一些钱了。我想把钱攒起来，干一件对于我来说的大事。</p>
+
+
+<p>所以到期前的几天，我声明了解散合租的事情。在今天中午12:00，我执行了最后一次全站备份。在2021年5月21日 00:00:00，正式解散。</p>
+
+
+<p>在这之后，我不再与s2有任何关系，正式到期之前，如果他们要重新发起合租，我会尽我最后一份力：迁移所有数据。</p>
+
+
+<h2>是时候，扔下了？</h2>
+
+
+<p>这一次的解散，并不意味着结束。合租只是为了大家一起分担服务器的费用，在享受高配置的同时，也能以相对低的价钱支付费用。</p>
+
+
+<p>当我再次有那个能力的时候，我可能会重新创建一个合租队伍。重新带领着大家，或者帮助有需要的人。</p>
+
+
+<p>谁让团队就是我梦开始地地方呢。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2021/05/20/i-think-again-its-time-to-drop-it">https://ivampiresp.com/2021/05/20/i-think-again-its-time-to-drop-it</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/05/20/ivampiresp.com-%E6%88%91%E6%83%B3%EF%BC%8C%E5%86%8D%E4%B8%80%E6%AC%A1%EF%BC%8C%E6%98%AF%E6%97%B6%E5%80%99%EF%BC%8C%E6%89%94%E4%B8%8B%E4%BA%86%E3%80%82/" data-id="cl01oc4xn003fceoy4sgthxm7" data-title="我想，再一次，是时候，扔下了。 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-一个去中心化匿名社交平台方案" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/05/17/ivampiresp.com-%E4%B8%80%E4%B8%AA%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E5%8C%BF%E5%90%8D%E7%A4%BE%E4%BA%A4%E5%B9%B3%E5%8F%B0%E6%96%B9%E6%A1%88/" class="article-date">
+  <time class="dt-published" datetime="2021-05-17T23:20:49.000Z" itemprop="datePublished">2021-05-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/05/17/ivampiresp.com-%E4%B8%80%E4%B8%AA%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E5%8C%BF%E5%90%8D%E7%A4%BE%E4%BA%A4%E5%B9%B3%E5%8F%B0%E6%96%B9%E6%A1%88/">一个去中心化匿名社交平台方案 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>这是今天经历了下午三节英语课并来自头脑风暴的方案。</p>
+
+
+<figure class="wp-block-image size-large"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2021/05/1621262257-image.png"><img width="580" height="369" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/05/1621262257-image.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-2235"/></a></figure>
+
+
+<p>参照的是Mastodon的中继。</p>
+
+
+<h2>实例相关</h2>
+
+
+<ol><li>新加入的实例只能接收新的数据。</li><li>实例可以加入不止1个中继服务器。</li><li>文章内容将存储在各个实例上，文章ID将由各个实例分配，每个实例之间互不干扰。</li><li>媒体可以由各个实例进行保存，或者从原实例获取。（双方都要设置）</li><li>用户注册时，用户名以及密码由用户自行设置（密码设置后无法更改）。由于考虑到是匿名和隐私，所以没有邮件功能，所有通知全为站内通知。注册后将发送到中继服务器，中继服务器生成唯一ID，然后进行广播。</li><li>前端应使用WebSocket实时获取时间轴中的内容。</li></ol>
+
+
+<h2>中转（中继）</h2>
+
+
+<ol><li>中继服务器将存储实例域名与交换密钥以及用户唯一ID（需要对应用户名）。</li><li>中继服务器发送数据时应该带上原服务器发送内容时的时间，避免出现时间轴混乱。</li></ol>
+
+
+<h2>特性</h2>
+
+
+<h3>注册广播</h3>
+
+
+<p>当新用户注册时，新用户会被广播到所有服务器。</p>
+
+
+<p>用户在一个实例注册时，实例会到实例所在的所有中继服务器查找用户名是否已经注册。如果已经注册，则不能再注册。</p>
+
+
+<p>也就是说，一个用户名可以登录多个实例，但是他只有一个主实例。用户可以自行设置自己的主实例，设置新的主实例时不会迁移原实例文章，也就是说如果数据不同步，那么迁移后数据依旧不同步。</p>
+
+
+<p>如果发生冲突，则用户将无法在发生冲突的服务器上登录。</p>
+
+
+<h3>恶意广播</h3>
+
+
+<p>实例与中继服务器无法判断来源是否合法，因此有些恶意实例或者恶意第三者会向广播中投放有害内容。</p>
+
+
+<p>中继服务器可能需要接入一个第三方内容识别服务器来区分是否为恶意内容，但可能会产生额外消费，但是不用担心，这个并不是强制性的。</p>
+
+
+<h3>数据修改与删除</h3>
+
+
+<p>用户可以只可以删除自己的账号，但是无法修改已发布的内容。因为内容会在时间轴中流动，在联邦宇宙中，内容不会彻底删除。</p>
+
+
+<p>账号删除后，会被标记为不可用并清楚用户名密码等，但是并不会完全删除，当下一个人注册重名账号时，会重新分配账号ID。</p>
+
+
+<p>账号也不会彻底删除，因为有些实例可能会永久保存并归档。</p>
+
+
+<h2>最后</h2>
+
+
+<p>其实今天晚自习已经开始研究了，按照最近放鸽子的情况，估计半年应该会完成（可能）。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2021/05/17/a-decentralized-anonymous-social-platform-scheme">https://ivampiresp.com/2021/05/17/a-decentralized-anonymous-social-platform-scheme</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/05/17/ivampiresp.com-%E4%B8%80%E4%B8%AA%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E5%8C%BF%E5%90%8D%E7%A4%BE%E4%BA%A4%E5%B9%B3%E5%8F%B0%E6%96%B9%E6%A1%88/" data-id="cl01oc4xb002nceoygpzrcpg2" data-title="一个去中心化匿名社交平台方案 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-JavaScript 获取 Flarum回复量最多的帖子" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/18/ivampiresp.com-JavaScript%20%E8%8E%B7%E5%8F%96%20Flarum%E5%9B%9E%E5%A4%8D%E9%87%8F%E6%9C%80%E5%A4%9A%E7%9A%84%E5%B8%96%E5%AD%90/" class="article-date">
+  <time class="dt-published" datetime="2021-04-18T20:36:15.000Z" itemprop="datePublished">2021-04-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/18/ivampiresp.com-JavaScript%20%E8%8E%B7%E5%8F%96%20Flarum%E5%9B%9E%E5%A4%8D%E9%87%8F%E6%9C%80%E5%A4%9A%E7%9A%84%E5%B8%96%E5%AD%90/">JavaScript 获取 Flarum回复量最多的帖子 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>先看效果</h2>
+
+
+<div id="awaim_forbiddenforest_hotpost_a6Bro2h">
+</div>
+
+
+<h2>原理</h2>
+
+
+<p>Flarum提供了一个API（在你选择按回复量最多排序的时候可以按F12查看）</p>
+
+
+<p>地址：<a target="_blank" rel="noopener" href="http://flarum/api/discussions?sort=-commentCount"><a target="_blank" rel="noopener" href="http://flarum/api/discussions?sort=-commentCount">http://flarum/api/discussions?sort=-commentCount</a></a></p>
+
+
+<p>这里你会得到一个JSON响应</p>
+
+
+<figure class="wp-block-image size-large"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2021/04/image-1.png"><img width="705" height="717" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/04/image-1.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-2186"/></a></figure>
+
+
+<p>由于我们要回复量最多的，也就是第0个</p>
+
+
+<p>这里就放出js吧</p>
+
+
+<h2>代码实现</h2>
+
+
+<pre class="wp-block-code"><code>const awaim_post_id = 'awaim_forbiddenforest_hotpost_a6Bro2h'; // 这里是div的id，当然不限于div
+const awaim_post_api = 'https://awa.im'; // 你的Flarum论坛地址
+var awaim_hotpost_json;
+var awaim_hotpost_html = ``;
+
+var awaim_hotpost_title;
+var awaim_hotpost_comments;
+var awaim_hotpost_slug;
+var awaim_hotpost_url;
+var awaim_hotpost_content_json;
+var awaim_hotpost_content = '“';
+
+function getAwaImHotPost() &#123;
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.withCredentials = false;
+    xmlhttp.open("GET", awaim_post_api + "/api/discussions?sort=-commentCount", false);
+    xmlhttp.send();
+    awaim_hotpost_json = JSON.parse(xmlhttp.responseText);
+
+    awaim_hotpost_title = awaim_hotpost_json.data&#91;0].attributes.title;
+    awaim_hotpost_slug = awaim_hotpost_json.data&#91;0].attributes.slug;
+    awaim_hotpost_comments = awaim_hotpost_json.data&#91;0].attributes.commentCount - 1;
+
+    xmlhttp.open("GET", awaim_post_api + "/api/discussions/" + awaim_hotpost_slug, false);
+    xmlhttp.send();
+    awaim_hotpost_content_json = JSON.parse(xmlhttp.responseText);
+    awaim_hotpost_content += awaim_hotpost_content_json.included&#91;0].attributes.contentHtml + '”';
+
+    awaim_hotpost_url = awaim_post_api + '/d/' + awaim_hotpost_slug;
+
+    awaim_hotpost_html += '来自&lt;b&gt;Flarum&lt;/b&gt;的热门主题&lt;a target="_blank" href="' + awaim_hotpost_url + '"&gt;《' + awaim_hotpost_title + '》&lt;/a&gt;&lt;div class="awaim_hotpost_htmlcontent"&gt;' + awaim_hotpost_content + '&lt;/div&gt;&lt;a target="_blank" href="' + awaim_hotpost_url + '"&gt;点此浏览&lt;/a&gt;来自&lt;b&gt;禁林(&lt;a style="color:blue;text-decoration:none" href="https://awa.im"&gt;https://awa.im&lt;/a&gt;)&lt;/b&gt;的' + awaim_hotpost_comments + '条回复。';
+
+    document.getElementById(awaim_post_id).innerHTML = awaim_hotpost_html;
+&#125;
+
+getAwaImHotPost();
+</code></pre>
+
+
+<h2>问题</h2>
+
+
+<p>不过如果你调用的域名与Flarum域名不一样的话，你会发现可能会有CORS跨域问题的错误，这是因为你没有正确设置CORS，可以参考网上的教程设置以下。</p>
+
+
+<p>(这期确实有点水了)</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2021/04/18/javascript-flarum">https://ivampiresp.com/2021/04/18/javascript-flarum</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/04/18/ivampiresp.com-JavaScript%20%E8%8E%B7%E5%8F%96%20Flarum%E5%9B%9E%E5%A4%8D%E9%87%8F%E6%9C%80%E5%A4%9A%E7%9A%84%E5%B8%96%E5%AD%90/" data-id="cl01oc4wz001wceoyalucf02e" data-title="JavaScript 获取 Flarum回复量最多的帖子 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-BILIBILI AS_1.1.1版本发布" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/03/28/imcys.com-BILIBILI%20AS_1.1.1%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83/" class="article-date">
+  <time class="dt-published" datetime="2021-03-28T15:13:30.000Z" itemprop="datePublished">2021-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/03/28/imcys.com-BILIBILI%20AS_1.1.1%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83/">BILIBILI AS_1.1.1版本发布 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>芜湖，我在最近几周完成了1.1.1版本的开发，现在前往<strong><a target="_blank" rel="noopener" href="https://api.misakaloli.com/app/">BILIBILI AS</a></strong>下载吧。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2021/03/28/bilibili-as_1-1-1%e7%89%88%e6%9c%ac%e5%8f%91%e5%b8%83.html">https://imcys.com/2021/03/28/bilibili-as_1-1-1%e7%89%88%e6%9c%ac%e5%8f%91%e5%b8%83.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/03/28/imcys.com-BILIBILI%20AS_1.1.1%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83/" data-id="cl01oc4vp0005ceoy87r20z6o" data-title="BILIBILI AS_1.1.1版本发布 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-Android 自动生成数化学验证题目" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/03/21/imcys.com-Android%20%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%95%B0%E5%8C%96%E5%AD%A6%E9%AA%8C%E8%AF%81%E9%A2%98%E7%9B%AE/" class="article-date">
+  <time class="dt-published" datetime="2021-03-21T17:07:30.000Z" itemprop="datePublished">2021-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/03/21/imcys.com-Android%20%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%95%B0%E5%8C%96%E5%AD%A6%E9%AA%8C%E8%AF%81%E9%A2%98%E7%9B%AE/">Android 自动生成数化学验证题目 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+
+
+
+<p>所谓数学化学验证，就是两个简单的算法，灵感来源于QN的手性碳原子验证，于是就做了数学上的幂函数类型的求导带值的验证和甲烷同系物通过结构式写分子式的验证。</p>
+
+
+
+<p>当然，我的技术有限，没办法做那么复杂，你可以在上面一段话中看到，这些题目是一个类型且有局限性，是众多类型中的一小个分支。</p>
+
+
+
+<p>我们打算将这样的算法加入BILIBILI AS当缓存番剧的时候，就进行答题，当然你只需要答题一次，即可完成认证。</p>
+
+
+
+<h3>实现效果</h3>
+
+
+
+<p><strong>导数</strong></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="300" height="151" src="https://imcys.com/wp-content/uploads/2021/03/image-3.png" alt="" class="wp-image-406"/></figure></div>
+
+
+
+<p><strong>甲烷同系物</strong></p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="https://imcys.com/wp-content/uploads/2021/03/image-2.png" alt="" class="wp-image-405" width="324" height="185" srcset="https://imcys.com/wp-content/uploads/2021/03/image-2.png 531w, https://imcys.com/wp-content/uploads/2021/03/image-2-300x172.png 300w" sizes="(max-width: 324px) 100vw, 324px" /></figure></div>
+
+
+
+<h3>实现思路</h3>
+
+
+
+<p>首先你得会求导函数，和会认有机物化学结构式</p>
+
+
+
+<h4>求导</h4>
+
+
+
+<p>在这里我简单说一下求导的过程，如果你学了这个东西，会发现初期我们是给一个数一个增量，使之相减且除以这个增量。</p>
+
+
+
+<p>对结果求极限，使得增量无限趋近于0，即视为0，最后的结果就是该函数在该点的导数。但是这样是非常麻烦的，随着学习推进，教科书给出了一些变化公式。</p>
+
+
+
+<figure class="wp-block-table"><table><tbody><tr><td class="has-text-align-center" data-align="center">原函数</td><td class="has-text-align-center" data-align="center">导函数</td></tr><tr><td class="has-text-align-center" data-align="center"><img loading="lazy" width="108" height="40" class="wp-image-400" style="width: 108px;" src="https://imcys.com/wp-content/uploads/2021/03/ef7655a674eb56e73d9d99106359cacc.png" alt=""></td><td class="has-text-align-center" data-align="center"><img loading="lazy" width="175" height="46" class="wp-image-402" style="width: 150px;" src="https://imcys.com/wp-content/uploads/2021/03/f6dc7856db120842c79d1ca28a478dd4.png" alt=""></td></tr></tbody></table></figure>
+
+
+
+<p>我想不难发现，我选的公式如果不刻意去改动n为分数，此时是不会产生分数，这样就方便计算机计算和用户的输入了。</p>
+
+
+
+<p>我们来利用一个法则 <strong><em><span class="has-inline-color has-vivid-red-color">Cf(x)</span></em></strong> 求导结果为<strong><em><span class="has-inline-color has-vivid-red-color"> Cf'(x)</span></em></strong> 这样就能实现我上面展示的效果了，并且使用代码可以快速的写出来。</p>
+
+
+
+<h4>有机物结构简式</h4>
+
+
+
+<p>首先来说一下，怎么认吧？</p>
+
+
+
+<p><strong>C-C-C</strong> 假设题目是这样的，是甲烷的同系物，要求补全碳链的氢，然后写出分子式，这个实际上比数学求导简单了许多，因为这次算法是纯文字输出的，所以很难去让代码补全这些氢即使补全，也相当的难看，所以只给出C主链。</p>
+
+
+
+<p>下面我大致画出了</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="404" height="246" src="https://imcys.com/wp-content/uploads/2021/03/image.png" alt="" class="wp-image-403" srcset="https://imcys.com/wp-content/uploads/2021/03/image.png 404w, https://imcys.com/wp-content/uploads/2021/03/image-300x183.png 300w" sizes="(max-width: 404px) 100vw, 404px" /></figure></div>
+
+
+
+<p>那么结果是C3H8，用户不需要输入下标，直接写出即可，因为没有括号限制，所以简单许多。</p>
+
+
+
+<h3>代码部分</h3>
+
+
+
+<p>姑且将这个类称作<strong><span class="has-inline-color has-vivid-cyan-blue-color">VerificationUtils</span></strong>吧！</p>
+
+
+
+<pre class="wp-block-code"><code>public class VerificationUtils &#123;
+    // TODO 逻辑算法设计 哔哩哔哩：萌新杰少
+    static String&#91;] POWER_LIST = new String&#91;]&#123;"²", "³", "⁴"&#125;;
+
+    /**
+     * 导函数代入值验证 目前只写了平方到4次方，再大用户就不好算了
+     * @return object 题目和答案的JSON
+     */
+    public static JSONObject derivatives() &#123;
+        Random rand = new Random();
+        JSONObject object = new JSONObject();
+        //次方数
+        int multiplier = rand.nextInt(3);
+        int multiplier_multiplicand = 0;
+        int cycles = 0;
+        //乘数
+        int multiplicand = rand.nextInt(10 - 1) + 1;
+        int value;
+        int derivativeValue = 0;
+        int derivatives = rand.nextInt(10 - 1) + 1;
+        if (multiplier == 0) &#123;
+            multiplier_multiplicand = 2;
+        &#125; else if (multiplier == 1) &#123;
+            //循环一次是平方
+            cycles = 1;
+            multiplier_multiplicand = 3;
+        &#125; else if (multiplier == 2) &#123;
+            //平方的基础上再乘以这个数
+            cycles = 2;
+            multiplier_multiplicand = 4;
+        &#125;
+        for (int i = 0; i &lt; cycles; i++) &#123;
+            //平方操作
+            if (derivativeValue == 0) &#123;
+                derivativeValue = derivatives * derivatives;
+            &#125; else &#123;
+                derivativeValue = derivativeValue * derivatives;
+            &#125;
+        &#125;
+        if (cycles == 0) &#123;
+            derivativeValue = derivatives;
+        &#125;
+        int multiplicandValue = multiplier_multiplicand * multiplicand;
+        derivativeValue = multiplicandValue * derivativeValue;
+        value = derivativeValue;
+        try &#123;
+            object.put("problem", "已知函数f(x)=" + multiplicand + "X" + POWER_LIST&#91;multiplier] + "，求它的导函数f'(" + derivatives + ")时的值。");
+            object.put("answer", "" + value);
+        &#125; catch (JSONException e) &#123;
+            e.printStackTrace();
+        &#125;
+        return object;
+    &#125;
+
+    /**
+     * 甲烷同系物验证
+     * @return object 题目和答案的JSON
+     */
+    public static JSONObject organicCompound() &#123;
+        Random rand = new Random();
+        JSONObject object = new JSONObject();
+        int carbonNumber = rand.nextInt(6 - 1) + 1;
+        String structural = "";
+        for (int i = 0; i &lt; carbonNumber; i++) &#123;
+            if (i == carbonNumber - 1) &#123;
+                structural = structural + "C";
+            &#125; else &#123;
+                structural = structural + "C-";
+            &#125;
+        &#125;
+        String value = null;
+        //减去两端的碳剩下的每个会连2个氢
+        if (carbonNumber == 1) &#123;
+            value = "CH4";
+        &#125; else if (carbonNumber == 2) &#123;
+            value = "C2H6";
+        &#125; else &#123;
+            int value1 = carbonNumber - 2;
+            int value2 = 2 * 3;
+            value1 = value1 * 2;
+            value1 = value1 + value2;
+            value = "C" + carbonNumber + "H" + value1;
+        &#125;
+        try &#123;
+            object.put("problem", "已知某甲烷的同系物未补全的结构式为\n" + structural + "\n请补全碳链的氢，并且写出分子式");
+            object.put("answer", value);
+        &#125; catch (JSONException e) &#123;
+            e.printStackTrace();
+        &#125;
+        return object;
+    &#125;
+&#125;
+</code></pre>
+
+
+
+<h3>文末</h3>
+
+
+
+<p>我们仍然需要一些简单的，类似于这样的，语文，生物，历史，政治算法，如果你有兴趣，欢迎帮助BILIBILI AS写这个算法。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2021/03/21/android-%e8%87%aa%e5%8a%a8%e7%94%9f%e6%88%90%e6%95%b0%e5%8c%96%e5%ad%a6%e9%aa%8c%e8%af%81%e9%a2%98%e7%9b%ae.html">https://imcys.com/2021/03/21/android-%e8%87%aa%e5%8a%a8%e7%94%9f%e6%88%90%e6%95%b0%e5%8c%96%e5%ad%a6%e9%aa%8c%e8%af%81%e9%a2%98%e7%9b%ae.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/03/21/imcys.com-Android%20%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%95%B0%E5%8C%96%E5%AD%A6%E9%AA%8C%E8%AF%81%E9%A2%98%E7%9B%AE/" data-id="cl01oc4vo0004ceoyhq2c8eiq" data-title="Android 自动生成数化学验证题目 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-WireGuard 低成本异地组网" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/03/18/ivampiresp.com-WireGuard%20%E4%BD%8E%E6%88%90%E6%9C%AC%E5%BC%82%E5%9C%B0%E7%BB%84%E7%BD%91/" class="article-date">
+  <time class="dt-published" datetime="2021-03-18T11:13:32.000Z" itemprop="datePublished">2021-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/03/18/ivampiresp.com-WireGuard%20%E4%BD%8E%E6%88%90%E6%9C%AC%E5%BC%82%E5%9C%B0%E7%BB%84%E7%BD%91/">WireGuard 低成本异地组网 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>来自我的突发奇想</h2>
+
+
+<p>某天训练时没有事干，看着树莓派，逛着淘宝，想买一个M.2拓展板，随后看了看银行卡，笑死，根本没有钱。</p>
+
+
+<p>于是放弃了。</p>
+
+
+<p>接着想了又想，突然想起个几年前自己多人联机（指游戏）时用过的蒲公英，所以想搞个和蒲公英差不多的。</p>
+
+
+<h2>解决方案：WireGuard</h2>
+
+
+<p>为什么选WireGuard呢？</p>
+
+
+<p>听说很好用，所以我也选了，结果真的好用。</p>
+
+
+<p>总之，是简单，真的简单，真的真的非常简单。</p>
+
+
+<p>只不过WireGuard是通过UDP通信的，可能会被运营商QoS限速。（不过是基于UDP的那是不是改个端口也能绕过校园网呢？）</p>
+
+
+<p>本文章的所有资料收集于互联网并整合本人经验撰写而成，且不会提供客户端的下载直链。</p>
+
+
+<h2>服务器配置</h2>
+
+
+<p>WireGuard<strong>好像</strong>添加到Linux 5.6内核中了，但是这不代表你不需要安装。</p>
+
+
+<h4>安装相关软件</h4>
+
+
+<p>我这里选择Ubuntu 20.04的服务器，无需添加ppa源（你也添加不上），直接apt安装即可</p>
+
+
+<pre class="wp-block-code"><code>apt install wireguard wireguard-tools resolvconf -y
+modprobe wireguard</code></pre>
+
+
+<p>如果你安装时在dkms那边报错了，试试升级系统或者内核吧。</p>
+
+
+<h4>公私钥生成</h4>
+
+
+<p>先执行一段命令，生成公私钥。From <a target="_blank" rel="noopener" href="https://gist.github.com/rmoriz/58f1768218a4fbc4b318615bfb85111d">Github Gist</a></p>
+
+
+<pre class="wp-block-code"><code>// 生成私钥
+wg genkey
+// 生成后复制它,然后生成公钥
+echo '你的私钥' | wg pubkey
+
+// 随后保存私钥和公钥</code></pre>
+
+
+<h4>撰写配置文件</h4>
+
+
+<p>随后，切换到WireGuard目录(/etc/wireguard)，创建一个配置文件，这里我命名为：wg0.conf</p>
+
+
+<pre class="wp-block-code"><code>&#91;Interface]
+PrivateKey = 你的私钥
+Address = 10.0.0.1/24 # 本机IP，24代表着255.255.255.0，当然这IP不能乱填哈
+PostUp   = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+ListenPort = 2083
+# 监听端口
+
+&#91;Peer]
+# 这是客户端的配置
+PublicKey = 客户端公钥
+AllowedIPs = 10.0.0.2/32 # 客户端的IP，不要冲突。我不是很理解/32是什么意思
+</code></pre>
+
+
+<h4>打开内核IP转发</h4>
+
+
+<p>为什么要这步呢？这东西不开Peer之间是不能互通的。</p>
+
+
+<p>来源：<a href="https://www.cnblogs.com/EasonJim/p/7595080.html" target="_blank" rel="noreferrer noopener">Linux下启用IP转发功能（主要针对Ubuntu的使用）</a></p>
+
+
+<pre class="wp-block-code"><code>echo net.ipv4.ip_forward = 1 &gt;&gt; /etc/sysctl.conf
+sysctl -p /etc/sysctl.conf
+/etc/init.d/procps restart</code></pre>
+
+
+<h4>设置开启启动</h4>
+
+
+<p>如果你不需要开机自启，可以忽略这一步。</p>
+
+
+<pre class="wp-block-code"><code>systemctl enable wg-quick@wg0 // wg0是你的配置文件名称，本文中是wg0</code></pre>
+
+
+<h4>启动WireGuard</h4>
+
+
+<pre class="wp-block-code"><code>systemctl start wg-quick@wg0 // wg0是你的配置文件名称，本文中是wg0</code></pre>
+
+
+<p>顺便一提，WirdGuard似乎不支持reload （热加载），实测每次重启后，客户端都会断连一会儿</p>
+
+
+<h2>客户端配置</h2>
+
+
+<h4>生成公私钥</h4>
+
+
+<p>客户端生成公私钥也可以执行下面的命令。Windows客户端会自动生成公私钥，其余客户端没有试过。</p>
+
+
+<pre class="wp-block-code"><code>// 生成私钥
+wp genkey
+// 生成后复制它,然后生成公钥
+echo '你的私钥' | wg pubkey
+
+// 随后保存私钥和公钥</code></pre>
+
+
+<h4>配置文件</h4>
+
+
+<p>创建一个conf文件，名称随意，这里我用Windows当作客户端。你可以在客户端内新建空白配置文件（隧道）。</p>
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2021/03/image.png"><img width="609" height="492" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/03/image.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-2164"/></a><figcaption>WireGuard客户端</figcaption></figure></div>
+
+
+<p>PublicKey是公钥，需要填到服务器的Peer中，PrivateKey是私钥，不用给任何人，也不要修改。</p>
+
+
+<p>然后参考一下格式修补配置文件</p>
+
+
+<pre class="wp-block-code"><code>&#91;Interface]
+PrivateKey = 4ML2bxeApulYMfV24DFVr+vivh6ZCZokQSzO5fCBzmU= # 你的私钥
+Address = 10.0.0.2/24 # 客户端IP，和在服务端Peer中的IP保持一致
+DNS = 114.114.114.114 # 如果你要绕过校园网的话，可能还要再指定一个上游DNS
+
+&#91;Peer] 
+PublicKey = 1fCduxAW1ilmeQqNzMF13qudRPjbc1aDpOG8GrJ2Bmc= # 服务器的公钥
+AllowedIPs = 10.0.0.0/24, ::/1, 8000::/1 # 允许的IP，这里10.0.0.0/24是只允许这个网段的IP走WireGuard，其余的直连。
+Endpoint = 服务器IP:端口</code></pre>
+
+
+<h2>多客户端</h2>
+
+
+<p>如果要创建多客户端，则每个客户端公私钥，IP不能相同，然后在服务端上增加Peer即可。只需要修改PublicKey。</p>
+
+
+<p>下面是服务器端多Peer例子</p>
+
+
+<pre class="wp-block-code"><code>&#91;Interface]
+PrivateKey = 你的私钥
+Address = 10.0.0.1/24 # 本机IP，24代表着255.255.255.0，当然这IP不能乱填哈
+PostUp   = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+ListenPort = 2083
+# 监听端口
+
+&#91;Peer]
+# 这是客户端的配置
+PublicKey = 客户端公钥
+AllowedIPs = 10.0.0.2/32 # 客户端的IP，不要冲突。我不是很理解/32是什么意思
+
+&#91;Peer]
+# 这是客户端2的配置
+PublicKey = 客户端2的公钥
+AllowedIPs = 10.0.0.3/32 # 客户端的IP，不要冲突。
+</code></pre>
+
+
+<p>可以看到，只需要增加一个Peer即可。增加客户端不需要修改原有客户端的配置。</p>
+
+
+<p>完成后，重启WireGuard，不过可能会造成其余客户端的几秒钟连接中断。</p>
+
+
+<pre class="wp-block-code"><code>systemctl restart wg-quick@wg0</code></pre>
+
+
+<h2>Cheers!</h2>
+
+
+<figure class="wp-block-image size-large is-style-default" id="cheers-img"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2021/03/WireGuard-Cheers.png"><img width="1920" height="1032" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/03/WireGuard-Cheers.png?imageMogr2/interlace/1/quality/80" alt="成功异地组网" class="wp-image-2165" srcset="https://ivampiresp.com/wp-content/uploads/2021/03/WireGuard-Cheers.png 1920w, https://ivampiresp.com/wp-content/uploads/2021/03/WireGuard-Cheers-1536x826.png 1536w" sizes="(max-width: 1920px) 100vw, 1920px" /></a></figure>
+
+
+<p>此时，多增加一些客户端，来试试能否互相ping通。如果还有一些疑问，欢迎评论。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2021/03/18/wireguard">https://ivampiresp.com/2021/03/18/wireguard</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/03/18/ivampiresp.com-WireGuard%20%E4%BD%8E%E6%88%90%E6%9C%AC%E5%BC%82%E5%9C%B0%E7%BB%84%E7%BD%91/" data-id="cl01oc4x5002bceoy7jk0fkig" data-title="WireGuard 低成本异地组网 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

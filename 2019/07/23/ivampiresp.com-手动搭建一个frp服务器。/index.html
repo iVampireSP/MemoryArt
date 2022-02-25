@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>手动搭建一个frp服务器。 由 ivampiresp.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="这个文章呢。。其实我去年写过。。   但就是因为原博客删除了所以啥都没有。   PS：图片这事，我随便找了个，23333      所以呢，我打算补一下文章（其实是有人来找我的，所以我就顺便补下文章）   服务器要求：任何Linux&#x2F;Windows操作系统。   教程中 Ubuntu 18.04 64位。FRP版本： v0.27.1    FRP Releases： https:&#x2F;&#x2F;github.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手动搭建一个frp服务器。 由 ivampiresp.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2019/07/23/ivampiresp.com-%E6%89%8B%E5%8A%A8%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAfrp%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%82/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="这个文章呢。。其实我去年写过。。   但就是因为原博客删除了所以啥都没有。   PS：图片这事，我随便找了个，23333      所以呢，我打算补一下文章（其实是有人来找我的，所以我就顺便补下文章）   服务器要求：任何Linux&#x2F;Windows操作系统。   教程中 Ubuntu 18.04 64位。FRP版本： v0.27.1    FRP Releases： https:&#x2F;&#x2F;github.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/0072Vf1pgy1foxk751epdj31kw0w07qt.jpg?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/image-3.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/image-4.png?imageMogr2/interlace/1/quality/80">
+<meta property="article:published_time" content="2019-07-23T20:51:40.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:47.666Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="ivampiresp.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/0072Vf1pgy1foxk751epdj31kw0w07qt.jpg?imageMogr2/interlace/1/quality/80">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ivampiresp.com-手动搭建一个frp服务器。" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/23/ivampiresp.com-%E6%89%8B%E5%8A%A8%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAfrp%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%82/" class="article-date">
+  <time class="dt-published" datetime="2019-07-23T20:51:40.000Z" itemprop="datePublished">2019-07-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      手动搭建一个frp服务器。 由 ivampiresp.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>这个文章呢。。其实我去年写过。。</p>
+
+
+<p>但就是因为原博客删除了所以啥都没有。</p>
+
+
+<p>PS：图片这事，我随便找了个，23333</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/0072Vf1pgy1foxk751epdj31kw0w07qt.jpg?imageMogr2/interlace/1/quality/80" alt=""/></figure>
+
+
+<p>所以呢，我打算补一下文章（其实是有人来找我的，所以我就顺便补下文章）</p>
+
+
+<p>服务器要求：任何Linux/Windows操作系统。</p>
+
+
+<p>教程中 Ubuntu 18.04 64位。FRP版本： <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases/tag/v0.27.1">v0.27.1</a> </p>
+
+
+<p>FRP Releases： <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases"><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a></a> </p>
+
+
+<p>FRP是一个高性能的反向代理工具，可以帮你穿透NAT网络并且绕过防火墙。</p>
+
+
+<h2>服务器</h2>
+
+
+<h4>下载&amp;配置</h4>
+
+
+<p>wget并解压最新版frp，请将命令替换为适合你当前环境的，如果不知道，可以评论区留言。 </p>
+
+
+<pre class="wp-block-code"><code>apt install wget screen -y
+wget https://github.com/fatedier/frp/releases/download/v0.27.1/frp_0.27.1_linux_amd64.tar.gz
+tar -zxvf frp_0.27.1_linux_amd64.tar.gz
+cd frp_0.27.1_linux_amd64
+rm -rf frpc*</code></pre>
+
+
+<h4>配置文件</h4>
+
+
+<p>下面来解析下frps.ini文件，你可以ssh或者sftp编辑它。原文件没有这么多，你可以根据下面示例添加。完整的配置的文件在frps_full.ini</p>
+
+
+<pre class="wp-block-code"><code>[common]
+bind_port = 7000   ## 绑定端口
+vhost_http_port = 80 ## 虚拟主机http协议的端口
+vhost_https_port = 443 ## 虚拟主机https协议的端口
+dashboard_port = 7500 ## dashboard端口
+# dashboard 用户名密码，默认都为 admin
+dashboard_user = admin
+dashboard_pwd = admin</code></pre>
+
+
+<h2>客户端</h2>
+
+
+<h4>下载&amp;配置</h4>
+
+
+<p>wget并解压最新版frp，请将命令替换为适合你当前环境的，如果不知道，可以评论区留言。</p>
+
+
+<pre class="wp-block-code"><code>apt install wget screen -y
+wget https://github.com/fatedier/frp/releases/download/v0.27.1/frp_0.27.1_linux_amd64.tar.gz
+tar -zxvf frp_0.27.1_linux_amd64.tar.gz
+cd frp_0.27.1_linux_amd64
+rm -rf frps*</code></pre>
+
+
+<h4>配置文件</h4>
+
+
+<p>下面来解析下frpc.ini文件，你可以ssh或者sftp编辑它。原文件没有这么多，你可以根据下面示例添加。  完整的配置的文件在frpc_full.ini </p>
+
+
+<pre class="wp-block-code"><code>[common]
+server_addr = 0.0.0.0   ## frps服务器地址
+server_port = 7000 ## frps服务器端口
+admin_addr = 127.0.0.1 ## frpc admin地址
+admin_port = 7400 ## frpc admin端口
+
+[ssh]  ## 代理名称
+type = tcp ## 代理协议
+local_port = 22 ## 代理本地端口
+remote_port = 6000 ## 代理远程端口（frps开放的端口）
+use_encryption = true ## 加密
+use_compression = true ## 压缩</code></pre>
+
+
+<h2>运行</h2>
+
+
+<h4>frps</h4>
+
+
+
+
+<p>现在，运行你的<strong>frps服务端</strong>。</p>
+
+
+<pre class="wp-block-code"><code>screen -S frps ./frps -c frps.ini</code></pre>
+
+
+<p>如果<strong><em>没有错误提示</em></strong>，他<strong>运行起来应该是<em>类似</em>这样</strong>：</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/image-3.png?imageMogr2/interlace/1/quality/80" alt=""/></figure>
+
+
+
+
+<h4>frpc</h4>
+
+
+<p>同时按住<strong><em>Ctrl+A+D</em></strong>挂起screen。接着，连接到需要映射的服务器并运行你的<strong>frpc客户端</strong>。</p>
+
+
+<pre class="wp-block-code"><code>screen -S frpc ./frpc -c frpc.ini</code></pre>
+
+
+<p>如果<strong><em>没有错误提示</em></strong>，他<strong>运行起来应该是<em>类似</em>这样</strong>： </p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2019/07/image-4.png?imageMogr2/interlace/1/quality/80" alt=""/><figcaption>frpc</figcaption></figure>
+
+
+<p>同时按住<strong><em>Ctrl+A+</em></strong>D挂起screen。这样你的frpc和frps都能后台运行了。如果你需要开机启动，可以使用service方式或者rc.local。</p>
+
+
+<h2>搭建完成</h2>
+
+
+<p>好了，本次教程就到这里结束了。</p>
+
+
+<p>FRP中文文档： <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/blob/master/README_zh.md"><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/blob/master/README_zh.md">https://github.com/fatedier/frp/blob/master/README_zh.md</a></a> </p>
+
+
+<p>FRP发行版： <a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases"><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases">https://github.com/fatedier/frp/releases</a></a></p>
+
+
+<p>有何不懂的可以看上面的，原作者的更详细~ :huaji:</p>
+
+
+<p>如果教程有错误，欢迎指正！</p>
+
+
+<p>享受吧~</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/23/%e6%89%8b%e5%8a%a8%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aafrp%e6%9c%8d%e5%8a%a1%e5%99%a8%e3%80%82">https://ivampiresp.com/2019/07/23/%e6%89%8b%e5%8a%a8%e6%90%ad%e5%bb%ba%e4%b8%80%e4%b8%aafrp%e6%9c%8d%e5%8a%a1%e5%99%a8%e3%80%82</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/07/23/ivampiresp.com-%E6%89%8B%E5%8A%A8%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAfrp%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%82/" data-id="cl01oc4xo003hceoy7qhtd5ih" data-title="手动搭建一个frp服务器。 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/07/ivampiresp.com-%E6%BC%AB%E5%B1%95%E9%82%A3%E4%BA%9B%E4%BA%8B&amp;#038;%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%B0%E4%BA%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          漫展那些事&amp;#038;服务器到了 由 ivampiresp.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/17/ivampiresp.com-Menhera%E9%85%B1%E8%A1%A8%E6%83%85%E5%8C%85API%E5%B7%B2%E4%B8%8A%E7%BA%BF%EF%BC%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">Menhera酱表情包API已上线！ 由 ivampiresp.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

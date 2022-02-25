@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Frp 自定义认证 由 ivampiresp.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="最近要重构 Light App Engine的Frp这一块，记录一下Frp自定义认证过程。    相关链接    Frp Server Plugin（重要）    LAE TunnelController（实现）    Frps 服务端配置    &amp;#91;common] bind_port &#x3D; 7000 token &#x3D; your_token  &amp;#91;common] dashboard_por">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Frp 自定义认证 由 ivampiresp.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="最近要重构 Light App Engine的Frp这一块，记录一下Frp自定义认证过程。    相关链接    Frp Server Plugin（重要）    LAE TunnelController（实现）    Frps 服务端配置    &amp;#91;common] bind_port &#x3D; 7000 token &#x3D; your_token  &amp;#91;common] dashboard_por">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-23T20:22:21.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:47.666Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="ivampiresp.com">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ivampiresp.com-Frp 自定义认证" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/" class="article-date">
+  <time class="dt-published" datetime="2021-12-23T20:22:21.000Z" itemprop="datePublished">2021-12-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Frp 自定义认证 由 ivampiresp.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>最近要重构 Light App Engine的Frp这一块，记录一下Frp自定义认证过程。</p>
+
+
+
+<h2>相关链接</h2>
+
+
+
+<p><a href="https://github.com/fatedier/frp/blob/master/doc/server_plugin.md" target="_blank" rel="noreferrer noopener">Frp Server Plugin</a>（重要）</p>
+
+
+
+<p><a href="https://github.com/loliart-lae/lae/blob/main/app/Http/Controllers/TunnelController.php" target="_blank" rel="noreferrer noopener">LAE TunnelController</a>（实现）</p>
+
+
+
+<h2>Frps 服务端配置</h2>
+
+
+
+<pre class="wp-block-code"><code>&#91;common]
+bind_port = 7000
+token = your_token
+
+&#91;common]
+dashboard_port =7500
+dashboard_user = admin
+dashboard_pwd = admin
+
+#&#91;plugin.user-manager]
+#addr = http://tunnel.test/
+#path = handler
+#ops = Login
+
+&#91;plugin.port-manager]
+addr = <meta charset="utf-8">http://tunnel.test/
+path = <meta charset="utf-8">handler
+ops = NewProxy, Ping</code></pre>
+
+
+
+<p>别看有两个plugin，实际上我们只需要用到下面的&#8221;port-manager&#8221;，&#8221;user-manager&#8221;如果你有需要，可以加上。</p>
+
+
+
+<p>&#8220;ops&#8221;代表这个插件要发送的&#8221;握手(?&#8221;，当发生NewProxy时，将<strong><em>POST</em></strong>数据到<meta charset="utf-8"><em><strong><a target="_blank" rel="noopener" href="http://tunnel.test/handler">http://tunnel.test/handler</a></strong></em>(addr+path)</p>
+
+
+
+<p>获取数据</p>
+
+
+
+<p>我们先来看一个基本的请求。</p>
+
+
+
+<p>当 NewProxy 发生时，后端将收到一个类似下方的请求：</p>
+
+
+
+<pre class="wp-block-code"><code>&#123;
+    "content": &#123;
+        "user": &#123;
+            "user": &lt;string&gt;,
+            "metas": map&lt;string&gt;string
+            "run_id": &lt;string&gt;
+        &#125;,
+        "proxy_name": &lt;string&gt;,
+        "proxy_type": &lt;string&gt;,
+        "use_encryption": &lt;bool&gt;,
+        "use_compression": &lt;bool&gt;,
+        "group": &lt;string&gt;,
+        "group_key": &lt;string&gt;,
+
+        // tcp and udp only
+        "remote_port": &lt;int&gt;,
+
+        // http and https only
+        "custom_domains": &#91;]&lt;string&gt;,
+        "subdomain": &lt;string&gt;,
+        "locations": &lt;string&gt;,
+        "http_user": &lt;string&gt;,
+        "http_pwd": &lt;string&gt;,
+        "host_header_rewrite": &lt;string&gt;,
+        "headers": map&lt;string&gt;string,
+
+        // stcp only
+        "sk": &lt;string&gt;,
+
+        // tcpmux only
+        "multiplexer": &lt;string&gt;
+
+        "metas": map&lt;string&gt;string
+    &#125;
+&#125;</code></pre>
+
+
+
+<p>不用管那么多，我们只需要下面的这些请求，其余请求我们可以暂时忽略。</p>
+
+
+
+<ul><li>op // 用于判断是什么类型的请求</li><li>content[&#8216;user&#8217;] // 代理的用户</li><li>content[&#8216;proxy_name&#8217;] // 代理的名称</li><li>content[&#8216;proxy_type&#8217;] // 代理协议(tcp/udp之类的)</li></ul>
+
+
+
+<h2>逻辑与处理</h2>
+
+
+
+<p>在本质上，我们只需要<strong><em>content[&#8216;proxy_name&#8217;]</em></strong>就可以分辨出隧道在哪个服务器，属于哪个用户之类的，因为Frp的隧道名称支持部分符号，比如“server1|user1|tunnel_token”。这样你就可以通过分割字符串，来判断隧道是属于哪个服务器，哪个用户，并且查找隧道的ID来鉴权。</p>
+
+
+
+<h3>但是</h3>
+
+
+
+<p>他也是有缺陷的。</p>
+
+
+
+<p>如果你要精确到每个用户的流量，包括隧道的心跳(Ping)，你需要user字段。</p>
+
+
+
+<h2>示例客户端配置文件</h2>
+
+
+
+<pre class="wp-block-code"><code># 这是你的配置文件，请将它填入frpc.ini
+&#91;common]
+server_addr = server.test
+server_port = 7000
+user = 1ec2698b-1080-6a08-af80-5525f8d9c476
+token = test_config
+
+# Test项目 的 123 于服务器 <meta charset="utf-8">server.test
+&#91;3|5|1ec2698b-1080-6a08-af80-5525f8d9c476]
+type = udp
+local_ip = 127.0.0.1
+local_port = 80
+remote_port = 12415</code></pre>
+
+
+
+<p>可能细心的你已经发现了。如果还没有，请看下方。</p>
+
+
+
+<ul><li>&#8220;3&#8221; 代表 服务器ID</li><li>&#8220;5&#8221; 代表 平台用户ID</li><li>&#8220;1ec2698b-1080-6a08-af80-5525f8d9c476&#8221; 代表 代理ID</li></ul>
+
+
+
+<p>在实战时，你不必遵循示例配置文件的格式，而是可以自由发挥（不要坑了自己）。</p>
+
+
+
+<h2>实战代码</h2>
+
+
+
+<p>完整代码看这里：<a href="https://github.com/loliart-lae/lae/blob/main/app/Http/Controllers/TunnelController.php" target="_blank" rel="noreferrer noopener">LAE TunnelController</a></p>
+
+
+
+<p>我将在这里使用Laravel框架，并且<strong>假设服务器和模型都存在且正常工作</strong>。</p>
+
+
+
+<h3>获取 op</h3>
+
+
+
+<p>我们要先通过op来判断是什么类型的请求，这里我们只需要一个<em><strong>NewProxy</strong></em>。</p>
+
+
+
+<pre class="wp-block-code"><code>if ($request-&gt;op == 'NewProxy') &#123;
+     // code here
+&#125;</code></pre>
+
+
+
+<p>我建议加一个判断，防止发生除NewProxy之外的情况，比如恶意请求。</p>
+
+
+
+<h3>查询代理 ID 是否存在</h3>
+
+
+
+<pre class="wp-block-code"><code>try &#123;
+                // 分割字符串 // proxy_type // $request-&gt;user&#91;'user]
+                $client = explode('|', $request-&gt;content&#91;'proxy_name']);
+                // 0: 服务器ID 1: 代理ID
+                // $sid = explode('.', $client&#91;0])&#91;1];
+                $tid = $client&#91;1];
+                $token = $client&#91;2];
+  &#125; catch (Exception $e) &#123;
+                unset($e);
+                return response()-&gt;json(&#91;
+                    "reject" =&gt; true,
+                    "reject_reason" =&gt; "不要啦，这不是正确的信息！",
+                    "unchange" =&gt; true,
+                ]);
+&#125;
+</code></pre>
+
+
+
+<p>首先，我们先尝试分割<strong>proxy_name</strong>，因为当用户随意输入时，他将无法解析并抛出异常。</p>
+
+
+
+<p>然后依次赋值给变量，方便我们接下来处理。</p>
+
+
+
+<p>你可以清晰的看见，当解析失败的时候，将返回一个 JSON 响应，其中 <strong>REJECT</strong> 为 true，这代表拒绝用户连接隧道，随后frps将会拒绝frpc的连接。</p>
+
+
+
+<p><strong>REJECT REASON</strong> 是拒绝原因。你可以在这里填写拒绝的理由。</p>
+
+
+
+<p><strong>UNCHANGE </strong>一般情况下都要设置为<strong>true</strong>，这代表不修改用户传入的配置。如果为<strong>false</strong>，你需要给出修改后的配置。</p>
+
+
+
+<h2>检查代理信息是否正确</h2>
+
+
+
+<p>接下来，我们将从数据库中检查信息，并核对frps给出的信息，然后返回结果，最后再决定是否拒绝还是同意客户端连接。</p>
+
+
+
+<pre class="wp-block-code"><code>
+            // 检查是否存在
+            $tunnel_where = $tunnel-&gt;where('server_id', $request-&gt;route('id'))-&gt;where('id', $tid)-&gt;with(&#91;'project']);
+            if ($tunnel_where-&gt;where('client_token', $token)-&gt;exists()) &#123;
+                // 检查端口之类的是否相等
+                $tunnel_info = $tunnel_where-&gt;firstOrFail();
+
+                if ($request-&gt;content&#91;'proxy_type'] == 'tcp' || $request-&gt;content&#91;'proxy_type'] == 'udp') &#123;
+                    if ($request-&gt;content&#91;'proxy_type'] == $tunnel_info-&gt;proxy_type || $request-&gt;content&#91;'remote_port'] != $tunnel_info-&gt;remote_port || $tunnel_info-&gt;remote_port &lt; 1024) &#123;
+                        return response()-&gt;json(array(
+                            "reject" =&gt; true,
+                            "reject_reason" =&gt; '配置文件错了，请检查配置文件或者到我们的平台重新下载一份。',
+                            "unchange" =&gt; true,
+                        ));
+                    &#125;
+                &#125; elseif ($request-&gt;content&#91;'proxy_type'] == 'http' || $request-&gt;content&#91;'proxy_type'] == 'https') &#123;
+                    if ($request-&gt;content&#91;'proxy_type'] == $tunnel_info-&gt;proxy_type || $request-&gt;content&#91;'custom_domains']&#91;0] != $tunnel_info-&gt;custom_domain) &#123;
+                        return response()-&gt;json(array(
+                            "reject" =&gt; true,
+                            "reject_reason" =&gt; '可能域名填写错误。',
+                            "unchange" =&gt; true,
+                        ));
+                    &#125;
+                &#125;
+
+
+                return response()-&gt;json(array(
+                    "reject" =&gt; false,
+                    "unchange" =&gt; true,
+                ));
+            &#125; else &#123;
+                return response()-&gt;json(array(
+                    "reject" =&gt; true,
+                    "reject_reason" =&gt; "代理不存在",
+                    "unchange" =&gt; true,
+                ));
+            &#125;</code></pre>
+
+
+
+<p>想必到这边，你可能清楚了整个流程。</p>
+
+
+
+<h2>总结</h2>
+
+
+
+<p>验证其实并不是很难，所以我就先写到这里了（要下课了）</p>
+
+
+
+<p>这篇文章还没有完善，如有任何问题，你可以在下方评论，我会尽我所能的回复。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2021/12/23/frp-custom-authentication">https://ivampiresp.com/2021/12/23/frp-custom-authentication</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/" data-id="cl01oc4wu001pceoycy7k7wk0" data-title="Frp 自定义认证 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/12/31/ivampiresp.com-/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+           由 ivampiresp.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

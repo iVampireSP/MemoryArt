@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>QR机器人教程|识别图片文字 由 imcys.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言    在今天的文章中，我公开自己写的一个QR机器人识别图片文字的词库，并且教大家这里的原理，其实这个也是我突然发现的，按照自己的想法写了一下，没想到实现了，所以，现在开源出去。虽然不知到这个for循环的办法是不是全网第一个，但是我之前见到的词库都没有这样的写法。    教程    首先我们需要知道的是JSON的操作，在萌新交流社文章中写到了JSON数据解析的方法，为了高效率的实现，我们必须按">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QR机器人教程|识别图片文字 由 imcys.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2020/05/23/imcys.com-QR%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%95%99%E7%A8%8B|%E8%AF%86%E5%88%AB%E5%9B%BE%E7%89%87%E6%96%87%E5%AD%97/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="前言    在今天的文章中，我公开自己写的一个QR机器人识别图片文字的词库，并且教大家这里的原理，其实这个也是我突然发现的，按照自己的想法写了一下，没想到实现了，所以，现在开源出去。虽然不知到这个for循环的办法是不是全网第一个，但是我之前见到的词库都没有这样的写法。    教程    首先我们需要知道的是JSON的操作，在萌新交流社文章中写到了JSON数据解析的方法，为了高效率的实现，我们必须按">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-23T22:52:59.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:50.562Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="imcys.com">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-imcys.com-QR机器人教程|识别图片文字" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/05/23/imcys.com-QR%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%95%99%E7%A8%8B%7C%E8%AF%86%E5%88%AB%E5%9B%BE%E7%89%87%E6%96%87%E5%AD%97/" class="article-date">
+  <time class="dt-published" datetime="2020-05-23T22:52:59.000Z" itemprop="datePublished">2020-05-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      QR机器人教程|识别图片文字 由 imcys.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+
+
+
+<p>在今天的文章中，我公开自己写的一个QR机器人识别图片文字的词库，并且教大家这里的原理，其实这个也是我突然发现的，按照自己的想法写了一下，没想到实现了，所以，现在开源出去。<br>虽然不知到这个for循环的办法是不是全网第一个，但是我之前见到的词库都没有这样的写法。</p>
+
+
+
+<h3>教程</h3>
+
+
+
+<p>首先我们需要知道的是JSON的操作，在<a rel="noreferrer noopener" href="https://www.lolichan.vip/threads/qr-json-qr.151/#post-501" target="_blank"><span class="has-inline-color has-pale-pink-color">萌新交流社</span></a>文章中写到了JSON数据解析的方法，为了高效率的实现，我们必须按照这个写法规范数据。本次也借鉴了我们论坛的一位大佬的项目<a rel="noreferrer noopener" href="https://www.lolichan.vip/threads/qr.128/#post-477" target="_blank"><span class="has-inline-color has-pale-pink-color">点击观看</span></a>。</p>
+
+
+
+<p>并且，因为我们的QR机器人没有for语句，只能靠简单命令循环起来，这里我简单说一下思路，首先，我们需要储存待循环分解的数据，其次，我们可以先记录一次循环次数。接下来我们需要对数据进行判断，看看是否满足条件，不满足就进入循环体，并且每一次按对象抽出，抽出的对象的组数，是由我们在第一次记录的循环次数。，加上每一次记录的循环次数</p>
+
+
+
+<p><strong><span class="has-inline-color has-vivid-red-color">$写 用户/%群号%/%QQ%/插件/腾讯/文字识别1 a [%x%+1]$</span></strong></p>
+
+
+
+<p>就是将循环次数记录并且自增。</p>
+
+
+
+<p><strong><span class="has-inline-color has-pale-pink-color">for(i=0  ;  i&lt;100  ; i++){                                                                                                              }</span></strong></p>
+
+
+
+<pre class="wp-block-code"><code>//这里我们首先编写命令
+文字监测 ?(.*)
+//过滤数据
+b:$替换 Э %IMG0%Э.jpgЭ$
+b:$替换 Э %b%Э.gifЭ$
+b:$替换 Э %b%Э.pngЭ$
+b:$替换 Э %b%Э-Э$
+b:$替换 Э %b%Э&#123;Э$
+b:$替换 Э %b%Э&#125;Э$
+$写 用户/%群号%/%QQ%/插件/腾讯/文字识别1 a 0$
+x:$读 用户/%群号%/%QQ%/插件/腾讯/文字识别1 a 0$
+//组合图片地址
+c:http://gchat.qpic.cn/gchatpic_new/3318666086/530077417-1234567890-%b%/0
+//向目标接口请求
+d:$访问 POST https://ai.qq.com/cgi-bin/appdemo_generalocr?g_tk=1840808235 image_url=%c%$
+//收集返回数据
+$写 用户/%群号%/%QQ%/插件/腾讯/文字识别 a %d%$
+//解析判断
+p:@d&#91;data]&#91;item_list]
+//如果是空肯定是没有数据
+如果:%p%==&#91;]
+yb.echo 没有检测到文字
+返回
+如果尾
+//反之有数据，所以我们需要去解析下
+p:@d&#91;data]&#91;item_list]&#91;0]&#91;itemstring]
+//这里可以先判断一次是否抓到空数据，也就是最后一次的数据
+如果:%p%==
+//如果是则发送并且清空返回数据
+f:$读 用户/%群号%/%QQ%/插件/腾讯/文字识别2 a 0$
+$写 用户/%群号%/%QQ%/插件/腾讯/文字识别2 a 0$
+yb.echo\n
+%f%
+返回
+如果尾
+//如果不是则储存第一条对象数据
+p:@d&#91;data]&#91;item_list]&#91;0]&#91;itemstring]
+k:$读 用户/%群号%/%QQ%/插件/腾讯/文字识别2 a 0$
+//储存记录
+$写 用户/%群号%/%QQ%/插件/腾讯/文字识别2 a %k%\n%p%$
+$写 用户/%群号%/%QQ%/插件/腾讯/文字识别1 a &#91;%x%+1]$
+$调用 10 for循环$
+
+//因为QR自身没有for循环的方法，这里我们可以自己写一个for循环
+//下面就是for循环实例，基本大意和上面一样
+
+for循环
+x:$读 用户/%群号%/%QQ%/插件/腾讯/文字识别1 a 0$
+d:$读 用户/%群号%/%QQ%/插件/腾讯/文字识别 a 0$
+p:@d&#91;data]&#91;item_list]
+如果:%p%==&#91;]
+yb.echo 没有检测到文字
+返回
+如果尾
+p:@d&#91;data]&#91;item_list]&#91;%x%]&#91;itemstring]
+如果:%p%==
+f:$读 用户/%群号%/%QQ%/插件/腾讯/文字识别2 a 0$
+$写 用户/%群号%/%QQ%/插件/腾讯/文字识别2 a 0$
+yb.echo\n
+%f%
+返回
+如果尾
+p:@d&#91;data]&#91;item_list]&#91;%x%]&#91;itemstring]
+k:$读 用户/%群号%/%QQ%/插件/腾讯/文字识别2 a 0$
+$写 用户/%群号%/%QQ%/插件/腾讯/文字识别2 a %k%\n%p%$
+$写 用户/%群号%/%QQ%/插件/腾讯/文字识别1 a &#91;%x%+1]$
+$调用 10 for循环$</code></pre>
+
+
+
+<p>上面的方法基本上还原了for循环的过程</p>
+
+
+
+<p>把每一次得到的数据拼接组合，得到的将会是最后的结果。</p>
+
+
+
+<h3>文末</h3>
+
+
+
+<p>其实这个文章没有什么要多说的，最重要的是理解，理解很重要。</p>
+
+
+
+<blockquote class="wp-block-mdx-warning mdx-warning"><p><i class="mdui-icon material-icons"></i> 注意事项<br/><strong>本文及其伪代码由萌新杰少原创，转载请先联系！！！</strong></p></blockquote>
+
+
+
+<p></p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/05/23/qr%e6%9c%ba%e5%99%a8%e4%ba%ba%e6%95%99%e7%a8%8b%e8%af%86%e5%88%ab%e5%9b%be%e7%89%87%e6%96%87%e5%ad%97.html">https://imcys.com/2020/05/23/qr%e6%9c%ba%e5%99%a8%e4%ba%ba%e6%95%99%e7%a8%8b%e8%af%86%e5%88%ab%e5%9b%be%e7%89%87%e6%96%87%e5%ad%97.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/05/23/imcys.com-QR%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%95%99%E7%A8%8B|%E8%AF%86%E5%88%AB%E5%9B%BE%E7%89%87%E6%96%87%E5%AD%97/" data-id="cl01oc4vu000bceoy7gq01kyx" data-title="QR机器人教程|识别图片文字 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/06/07/imcys.com-%E3%80%90%E6%95%99%E7%A8%8B%E3%80%91Android%E7%A8%8B%E5%BA%8FUI%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          【教程】Android程序UI设计规范 由 imcys.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/10/imcys.com-%E3%80%90Android%E6%95%99%E7%A8%8B%E3%80%91Java%E7%9A%84GET%E8%AF%B7%E6%B1%82%E4%B9%8Bxutils%E6%A1%86%E6%9E%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">【Android教程】Java的GET请求之xutils框架 由 imcys.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

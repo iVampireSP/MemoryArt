@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>失败笔记，希望对你有用：Ubuntu 18.04安装KVM并配置硬件直通 由 ivampiresp.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="由于近期比较折腾，另外也找不到好的虚拟化方案，于是就把目光留在了Ubuntu+KVM上。   之前尝试过的ESXi和Proxmox VE，发现ESXi不能直通宿主机的USB键鼠，但能完美直通N卡，Proxmox VE可以直通任何宿主机的USB设备，但是直通显卡后问题就来了，把直通了显卡的虚拟机电源关闭，然后再打开，系统当场奔溃。分析了大半天日志都没找到原因，也尝试过升级，切换方式等，都是相同结果，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="失败笔记，希望对你有用：Ubuntu 18.04安装KVM并配置硬件直通 由 ivampiresp.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2020/03/04/ivampiresp.com-%E5%A4%B1%E8%B4%A5%E7%AC%94%E8%AE%B0%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%AF%B9%E4%BD%A0%E6%9C%89%E7%94%A8%EF%BC%9AUbuntu%2018.04%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E9%85%8D%E7%BD%AE%E7%A1%AC%E4%BB%B6%E7%9B%B4%E9%80%9A/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="由于近期比较折腾，另外也找不到好的虚拟化方案，于是就把目光留在了Ubuntu+KVM上。   之前尝试过的ESXi和Proxmox VE，发现ESXi不能直通宿主机的USB键鼠，但能完美直通N卡，Proxmox VE可以直通任何宿主机的USB设备，但是直通显卡后问题就来了，把直通了显卡的虚拟机电源关闭，然后再打开，系统当场奔溃。分析了大半天日志都没找到原因，也尝试过升级，切换方式等，都是相同结果，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-1.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-2.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-3.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-4.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-5.png?imageMogr2/interlace/1/quality/80">
+<meta property="article:published_time" content="2020-03-04T15:49:58.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:47.666Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="ivampiresp.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22.png?imageMogr2/interlace/1/quality/80">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ivampiresp.com-失败笔记，希望对你有用：Ubuntu 18.04安装KVM并配置硬件直通" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/04/ivampiresp.com-%E5%A4%B1%E8%B4%A5%E7%AC%94%E8%AE%B0%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%AF%B9%E4%BD%A0%E6%9C%89%E7%94%A8%EF%BC%9AUbuntu%2018.04%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E9%85%8D%E7%BD%AE%E7%A1%AC%E4%BB%B6%E7%9B%B4%E9%80%9A/" class="article-date">
+  <time class="dt-published" datetime="2020-03-04T15:49:58.000Z" itemprop="datePublished">2020-03-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      失败笔记，希望对你有用：Ubuntu 18.04安装KVM并配置硬件直通 由 ivampiresp.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>由于近期比较折腾，另外也找不到好的虚拟化方案，于是就把目光留在了Ubuntu+KVM上。</p>
+
+
+<p>之前尝试过的ESXi和Proxmox VE，发现ESXi不能直通宿主机的USB键鼠，但能完美直通N卡，Proxmox VE可以直通任何宿主机的USB设备，但是直通显卡后问题就来了，把直通了显卡的虚拟机电源关闭，然后再打开，系统当场奔溃。分析了大半天日志都没找到原因，也尝试过升级，切换方式等，都是相同结果，Google了一圈也没找到解决方法，我的R710前面板还报PCI-E错误，佛了。</p>
+
+
+<p>但Proxmox VE是用KVM虚拟化的，所以还是上Ubuntu吧（？？？</p>
+
+
+<p>下面步骤是我从网络上各大站点整理而来，如有疏忽或疑问，请评论区留言。</p>
+
+
+<p>本教程中的Ubuntu版本为Ubuntu Server 18.04 LTS</p>
+
+
+<h2>配置iommu以支持PCI硬件直通</h2>
+
+
+<p><strong><em>AMD和Intel的方法都一样</em></strong>，<strong><em>只是添加的内容不同</em></strong>，如果你不想进行硬件直通，可以忽略这一步。</p>
+
+
+<p>编辑grub</p>
+
+
+<pre class="wp-block-code"><code>sudo vim /etc/default/grub</code></pre>
+
+
+<p>找到<strong>GRUB_CMDLINE_LINUX_DEFAULT=&quot;&quot;</strong>这一行，并往里面添加值，如<strong>Intel</strong>，<strong><em>AMD看下方代码框中</em></strong>：</p>
+
+
+<pre class="wp-block-code"><code>添加：intel_iommu=on
+最终的结果为：GRUB_CMDLINE_LINUX_DEFAULT="intel_iommu=on"
+AMD则将"intel_iommu=on"改为"amd_iommu=on"
+如这行里面有其他值，网后面添加即可。</code></pre>
+
+
+<figure class="wp-block-image size-large"><img width="476" height="174" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1391"/></figure>
+
+
+<p>配置完成后，运行<strong>sudo update-grub</strong>更新一下，然后reboot服务器。</p>
+
+
+<p>重启后输入命令 &quot;<strong>dmesg | grep -i iommu</strong> &quot;查看是否有反馈，如果有<strong>类似</strong>以下输出，说明成功。</p>
+
+
+<figure class="wp-block-image size-large"><img width="762" height="292" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-1.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1392"/></figure>
+
+
+<p>来源： <a target="_blank" rel="noopener" href="http://aspirer.wang/?p=1266"><a target="_blank" rel="noopener" href="http://aspirer.wang/?p=1266">http://aspirer.wang/?p=1266</a></a> </p>
+
+
+<h2>安装KVM等软件包</h2>
+
+
+<p>验证是否支持虚拟化和KVM</p>
+
+
+<p>验证虚拟化&quot;egrep -c &#8216;(vmx|svm)&#8217; /proc/cpuinfo&quot;，如反馈出CPU核心数说明支持</p>
+
+
+<p>验证KVM硬件加速</p>
+
+
+<pre class="wp-block-code"><code>sudo apt install cpu-checker
+sudo kvm-ok</code></pre>
+
+
+<p>如果反馈中有“KVM acceleration can be used”说明支持。</p>
+
+
+<p>执行以下命令安装KVM并启动服务</p>
+
+
+<pre class="wp-block-code"><code>sudo apt update
+sudo apt install qemu qemu-kvm libvirt-bin bridge-utils virtinst
+sudo service libvirtd start
+sudo update-rc.d libvirtd enable</code></pre>
+
+
+<p>编辑 /etc/netplan/50-cloud-init.yaml 配置网桥，比如我的eno4配置了静态IP，那就把dhcp4和6关掉。</p>
+
+
+<pre class="wp-block-code"><code>network:
+        version: 2
+        ethernets:
+                eno4:
+                        dhcp4: no
+                        dhcp6: no
+        bridges:
+                br0:
+                        interfaces: &#91;eno4]
+                        dhcp4: no
+                        addresses: &#91;192.168.2.189/24]
+                        gateway4: 192.168.2.1
+                        nameservers:
+                                addresses: &#91;192.168.2.1]
+</code></pre>
+
+
+<p>请按照自己的实际环境修改。</p>
+
+
+<p>使用下面命令查看网桥状态</p>
+
+
+<pre class="wp-block-code"><code>sudo networkctl status -a
+ifconfig</code></pre>
+
+
+<figure class="wp-block-image size-large"><img width="501" height="439" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-2.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1395"/></figure>
+
+
+<figure class="wp-block-image size-large"><img width="543" height="150" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-3.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1396"/></figure>
+
+
+<p>可以使用上下按键或者其他功能键翻页。</p>
+
+
+<p>来源： <a target="_blank" rel="noopener" href="https://www.linuxtechi.com/install-configure-kvm-ubuntu-18-04-server/"><a target="_blank" rel="noopener" href="https://www.linuxtechi.com/install-configure-kvm-ubuntu-18-04-server/">https://www.linuxtechi.com/install-configure-kvm-ubuntu-18-04-server/</a></a> </p>
+
+
+<p><a target="_blank" rel="noopener" href="https://www.sysgeek.cn/install-configure-kvm-ubuntu-18-04/"><a target="_blank" rel="noopener" href="https://www.sysgeek.cn/install-configure-kvm-ubuntu-18-04/">https://www.sysgeek.cn/install-configure-kvm-ubuntu-18-04/</a></a></p>
+
+
+<h2>直通准备</h2>
+
+
+<p>如果你已启用了IOMMU并配置好了KVM，那可以到这一步了。</p>
+
+
+<h3>配置Vfio</h3>
+
+
+<p>使用“ <strong>lspci -nnk</strong> ”查找你要直通的设备ID，注意是-nnk并非原文中的&#8211;nnk，&#8211;nnk不被识别。</p>
+
+
+<p>比如我要直通的设备ID如下：</p>
+
+
+<pre class="wp-block-code"><code>06:00.0 VGA compatible controller &#91;0300]: NVIDIA Corporation GF119 &#91;GeForce GT 610] &#91;10de:104a] (rev a1)
+    Kernel driver in use: nouveau
+    Kernel modules: nvidiafb, nouveau
+06:00.1 Audio device &#91;0403]: NVIDIA Corporation GF119 HDMI Audio Controller &#91;10de:0e08] (rev a1)
+    Kernel driver in use: snd_hda_intel
+    Kernel modules: snd_hda_intel
+</code></pre>
+
+
+<p>然后将设备的驱动加入黑名单：</p>
+
+
+<pre class="wp-block-code"><code>echo "blacklist radeon" >> /etc/modprobe.d/blacklist.conf 
+echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf 
+echo "blacklist nvidia" >> /etc/modprobe.d/blacklist.conf </code></pre>
+
+
+<p>启用modules：编辑/etc/modules然后加入以下内容</p>
+
+
+<pre class="wp-block-code"><code>vfio
+vfio_iommu_type1
+vfio_pci
+vfio_virqfd</code></pre>
+
+
+<p>将你的显卡ID加入vfio.conf中</p>
+
+
+<p>执行下面命令</p>
+
+
+<pre class="wp-block-code"><code>lspci -nn | grep -i nvidia
+反馈：
+06:00.0 VGA compatible controller &#91;0300]: NVIDIA Corporation GF119 &#91;GeForce GT 610] &#91;10de:104a] (rev a1)
+06:00.1 Audio device &#91;0403]: NVIDIA Corporation GF119 HDMI Audio Controller &#91;10de:0e08] (rev a1)</code></pre>
+
+
+<p>可见我的设备ID是10de:104a和10de:0e08，用下列命令添加。</p>
+
+
+<pre class="wp-block-code"><code>echo "options vfio-pci ids=10de:104a,10de:0e08" > /etc/modprobe.d/vfio.conf</code></pre>
+
+
+<p>重新生成initrd</p>
+
+
+<pre class="wp-block-code"><code>update-initramfs -u</code></pre>
+
+
+<p>重启服务器：reboot</p>
+
+
+<p>来源： <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/60389508"><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/60389508">https://zhuanlan.zhihu.com/p/60389508</a></a> </p>
+
+
+<p><a target="_blank" rel="noopener" href="https://pve.proxmox.com/wiki/Pci_passthrough#Intel_CPU"><a target="_blank" rel="noopener" href="https://pve.proxmox.com/wiki/Pci_passthrough#Intel_CPU">https://pve.proxmox.com/wiki/Pci_passthrough#Intel_CPU</a></a></p>
+
+
+<h2>新建虚拟机</h2>
+
+
+<p>创建虚拟机磁盘，容量随意，格式要为raw，如我的如下，请按照自己的实际情况修改：</p>
+
+
+<pre class="wp-block-code"><code>qemu-img create -f raw /home/ssd/ssd-2019.raw 40G // SSD 系统盘
+qemu-img create -f raw /home/kvm-disks/2019-data.raw 80G // HDD 数据盘</code></pre>
+
+
+<p>安装虚拟机，请按照自己的实际情况修改。</p>
+
+
+<pre class="wp-block-code"><code>virt-install 
+--name WinServer2019 
+--memory 12288 
+--cpu host 
+--vcpus 8 
+--disk path=/home/ssd/ssd-2019.raw 
+--network bridge=br0,model='e1000' 
+--cdrom=/home/kvm-disks/ISO/cn_windows_server_2019_updated_march_2019_x64_dvd_c1ffb46c.iso 
+--boot cdrom 
+--virt-type kvm 
+--vnc 
+--vncport=5902 
+--vnclisten=0.0.0.0 
+--os-type=windows 
+--features kvm_hidden=on 
+--machine q35</code></pre>
+
+
+<p>上述指令：name指定名称，memory指定内存（单位MB），vcpus指定虚拟核心数，disk指定磁盘位置，network指定网络，后面指定我们创建的网桥及虚拟网卡，cdrom指定镜像位置，boot指定启动方式，vnc部分指定了端口等。</p>
+
+
+<p>来源： <a target="_blank" rel="noopener" href="https://blog.acesheep.com/index.php/archives/720/"><a target="_blank" rel="noopener" href="https://blog.acesheep.com/index.php/archives/720/">https://blog.acesheep.com/index.php/archives/720/</a></a> </p>
+
+
+<blockquote class="wp-block-quote"> 特别需要注意的参数 <code>--machine q35</code> <code>--features kvm_hidden=on</code> </p><cite> <a target="_blank" rel="noopener" href="https://blog.acesheep.com/index.php/archives/720/">https://blog.acesheep.com/index.php/archives/720/</a> </cite></blockquote>
+
+
+<p>如果机器有防火墙的话，还需要开放在上面指定的vnc端口。
+
+
+
+<p>在运行命令后，会弹出X窗口，你可以安装xmanager，如果没有的话，那虚拟机任然会被创建。（理论是这样</p>
+<figure class="wp-block-image size-large"><img width="1040" height="708" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-4.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1397"/></figure>
+
+
+
+<h2>直通USB设备和直通显卡</h2>
+
+
+
+<h3>直通USB </h3>
+
+
+
+<p>限制：USB协议&lt;&#x3D; 2.0 </p>
+<p>使用lsusb查看usb的id</p>
+<figure class="wp-block-image size-large"><img width="538" height="176" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-5.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1400"/></figure>
+
+
+
+<p>我要直通的USB设备的ID是1a40:0101，可以用以下命令进行编辑。</p>
+<pre class="wp-block-code"><code>virsh edit WinServer2019 //改成你的虚拟机名字</code></pre>
+
+
+
+<p>在&lt;devices&gt;和&lt;&#x2F;devices&gt;之间添加如下代码</p>
+<pre class="wp-block-code"><code>  &lt;devices>
+    &lt;hostdev mode='subsystem' type='usb'>
+      &lt;source>
+        &lt;vendor id='0x1a40'/>
+        &lt;product id='0x0101'/>
+      &lt;/source>
+    &lt;/hostdev>
+  &lt;/devices></code></pre>
+
+
+
+<p>添加完成后需要重新定义虚拟机 </p>
+<pre class="wp-block-code"><code>virsh define /etc/libvirt/qemu/WinServer2019.xml //改成你的虚拟机名字.xml</code></pre>
+
+
+
+<p>还有其他方法，如热添加，请参考如下：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.acesheep.com/index.php/archives/720">https://blog.acesheep.com/index.php/archives/720</a></p>
+<p><a target="_blank" rel="noopener" href="https://help.ubuntu.com/community/KVM/Managing#Adding_USB_Device_Pass-through">https://help.ubuntu.com/community/KVM/Managing#Adding_USB_Device_Pass-through</a></p>
+<h3>直通显卡</h3>
+
+
+
+<pre class="wp-block-code"><code>lspci -nn | grep -i nvidia
+01:00.0 VGA compatible controller &#91;0300]: NVIDIA Corporation TU102 &#91;GeForce RTX 2080 Ti Rev. A] &#91;10de:1e07] (rev a1)
+01:00.1 Audio device &#91;0403]: NVIDIA Corporation Device &#91;10de:10f7] (rev a1)
+01:00.2 USB controller &#91;0c03]: NVIDIA Corporation Device &#91;10de:1ad6] (rev a1)
+01:00.3 Serial bus controller &#91;0c80]: NVIDIA Corporation Device &#91;10de:1ad7] (rev a1)</code></pre>
+
+
+
+<blockquote class="wp-block-quote"> 这里列出的PCI 设备序号 <code>01:00.0</code> <code>01:00.1</code> <code>01:00.2</code> <code>01:00.3</code>
+
+<p><code>01:00.0</code> 这里需要对应配置文件的 <code>&lt;source></code> 节点里面 <code>&lt;address domain='0x0000' bus='0x01' slot='0x00' function='0x0'/></code></p>
+<p><code>&lt;hostdev></code> 里面是直通一个PCI 设备, 例如我这里有4个需要穿透到里面,就要有4个<code>&lt;hostdev></code> </p><cite> <a target="_blank" rel="noopener" href="https://blog.acesheep.com/index.php/archives/720/">https://blog.acesheep.com/index.php/archives/720/</a> </cite></blockquote></p>
+<pre class="wp-block-code"><code>    &lt;hostdev mode='subsystem' type='pci' managed='yes'>
+      &lt;driver name='vfio'/>
+      &lt;source>
+        &lt;address domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
+      &lt;/source>
+      &lt;address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+    &lt;/hostdev></code></pre>
+
+
+
+<p>解释一下：bus对于的是 01:00.3 的第一串数字，后门以此类推
+
+
+
+<p>完成后需要重新定义虚拟机</p>
+<pre class="wp-block-code"><code>virsh define /etc/libvirt/qemu/WinServer2019.xml //改成你的虚拟机名字.xml</code></pre>
+
+
+
+<p><a target="_blank" rel="noopener" href="https://blog.acesheep.com/index.php/archives/720/">https://blog.acesheep.com/index.php/archives/720/</a></p>
+<h2>添加数据盘</h2>
+
+
+
+<p>可见上面我还创建了一个数据盘，我们只要按照xml照葫芦画瓢就行</p>
+<pre class="wp-block-code"><code>    &lt;disk type='file' device='disk'>
+      &lt;driver name='qemu' type='raw'/>
+      &lt;source file='/home/kvm-disks/2019-data.raw'/>
+      &lt;target dev='sdc' bus='sata'/>
+      &lt;address type='drive' controller='0' bus='0' target='0' unit='3'/>
+    &lt;/disk></code></pre>
+
+
+
+<p>将上面按照实际情况修改，下载完后重新定义。</p>
+<h2>End</h2>
+
+
+
+<p>既然写到这了，为何说是失败笔记呢？</p>
+<p>因为时间不够了，也有些其他问题，但是到这步不出意外是可以成功的了。希望对你有用。</p>
+<p>感谢本文中提到的所有链接的作者。</p>
+<p>引用最多的是 <a target="_blank" rel="noopener" href="https://blog.acesheep.com/index.php/archives/720/">https://blog.acesheep.com/index.php/archives/720/</a> ，并已取得授权</p>
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2020/03/04/%e5%a4%b1%e8%b4%a5%e7%ac%94%e8%ae%b0%ef%bc%8c%e5%b8%8c%e6%9c%9b%e5%af%b9%e4%bd%a0%e6%9c%89%e7%94%a8%ef%bc%9aubuntu-18-04%e5%ae%89%e8%a3%85kvm%e5%b9%b6%e9%85%8d%e7%bd%ae%e7%a1%ac%e4%bb%b6%e7%9b%b4">https://ivampiresp.com/2020/03/04/%e5%a4%b1%e8%b4%a5%e7%ac%94%e8%ae%b0%ef%bc%8c%e5%b8%8c%e6%9c%9b%e5%af%b9%e4%bd%a0%e6%9c%89%e7%94%a8%ef%bc%9aubuntu-18-04%e5%ae%89%e8%a3%85kvm%e5%b9%b6%e9%85%8d%e7%bd%ae%e7%a1%ac%e4%bb%b6%e7%9b%b4</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/03/04/ivampiresp.com-%E5%A4%B1%E8%B4%A5%E7%AC%94%E8%AE%B0%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%AF%B9%E4%BD%A0%E6%9C%89%E7%94%A8%EF%BC%9AUbuntu%2018.04%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E9%85%8D%E7%BD%AE%E7%A1%AC%E4%BB%B6%E7%9B%B4%E9%80%9A/" data-id="cl01oc4xk0039ceoyhkcugwrv" data-title="失败笔记，希望对你有用：Ubuntu 18.04安装KVM并配置硬件直通 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/06/imcys.com-%E3%80%90%E5%BC%80%E6%96%B0%E5%9D%91%E4%BA%86%E3%80%91%E8%90%8C%E5%AD%97%E5%8F%B7%E2%80%94%E2%80%94%E5%8F%8C%E7%AB%AF%E7%BE%A4%E5%91%98%E8%BF%9D%E8%A7%84%E5%A4%87%E6%A1%88%E7%B3%BB%E7%BB%9F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          【开新坑了】萌字号——双端群员违规备案系统 由 imcys.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/02/27/imcys.com-%E3%80%90%E6%BA%90%E7%A0%81%E5%BC%80%E6%94%BE%E3%80%91B%E8%90%8C%E2%80%94B%E7%AB%99%E5%B0%81%E9%9D%A2%E4%B8%8B%E8%BD%BD%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">【源码开放】B萌—B站封面下载器 由 imcys.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

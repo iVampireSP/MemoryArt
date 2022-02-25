@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Telegram机器人搭建教程 由 imcys.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言    按照惯例，我会写个前言，阐述为何来写本篇文章。今天目的也很明确，今天，大多数QQ机器人停止运营，因为腾讯应该是要维护本家机器人，霸占国内市场。但是实际上使用第三方QQ机器人，也是不合适的。为此，如果腾讯的机器人不如Telegram的接口这样方便，那我打算去搞Telegram的机器人。    教程    机器人的创建        你可以给你的Telegram官方或者收藏夹发送@BotF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Telegram机器人搭建教程 由 imcys.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2020/08/02/imcys.com-Telegram%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="前言    按照惯例，我会写个前言，阐述为何来写本篇文章。今天目的也很明确，今天，大多数QQ机器人停止运营，因为腾讯应该是要维护本家机器人，霸占国内市场。但是实际上使用第三方QQ机器人，也是不合适的。为此，如果腾讯的机器人不如Telegram的接口这样方便，那我打算去搞Telegram的机器人。    教程    机器人的创建        你可以给你的Telegram官方或者收藏夹发送@BotF">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2020/08/image-1024x636.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2020/08/image-1.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2020/08/image-2.png">
+<meta property="article:published_time" content="2020-08-02T22:42:51.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:50.562Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="imcys.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imcys.com/wp-content/uploads/2020/08/image-1024x636.png">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-imcys.com-Telegram机器人搭建教程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/08/02/imcys.com-Telegram%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2020-08-02T22:42:51.000Z" itemprop="datePublished">2020-08-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Telegram机器人搭建教程 由 imcys.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+
+
+
+<p>按照惯例，我会写个前言，阐述为何来写本篇文章。今天目的也很明确，今天，大多数QQ机器人停止运营，因为腾讯应该是要维护本家机器人，霸占国内市场。但是实际上使用第三方QQ机器人，也是不合适的。为此，如果腾讯的机器人不如Telegram的接口这样方便，那我打算去搞Telegram的机器人。</p>
+
+
+
+<h3>教程</h3>
+
+
+
+<h4>机器人的创建</h4>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="636" src="https://imcys.com/wp-content/uploads/2020/08/image-1024x636.png" alt="" class="wp-image-287" srcset="https://imcys.com/wp-content/uploads/2020/08/image-1024x636.png 1024w, https://imcys.com/wp-content/uploads/2020/08/image-300x186.png 300w, https://imcys.com/wp-content/uploads/2020/08/image-768x477.png 768w, https://imcys.com/wp-content/uploads/2020/08/image.png 1060w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>你可以给你的Telegram官方或者收藏夹发送<strong><span class="has-inline-color has-pale-pink-color">@BotFather</span></strong></p>
+
+
+
+<p>然后点击这个艾特，就会被拉入官方QQ机器人，你可以用它来创建和管理你的机器人账号。入下图</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="806" height="624" src="https://imcys.com/wp-content/uploads/2020/08/image-1.png" alt="" class="wp-image-288" srcset="https://imcys.com/wp-content/uploads/2020/08/image-1.png 806w, https://imcys.com/wp-content/uploads/2020/08/image-1-300x232.png 300w, https://imcys.com/wp-content/uploads/2020/08/image-1-768x595.png 768w" sizes="(max-width: 806px) 100vw, 806px" /></figure>
+
+
+
+<p>按照提示你就可以搞了，当基本信息填写完成时，切记这里</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="479" height="387" src="https://imcys.com/wp-content/uploads/2020/08/image-2.png" alt="" class="wp-image-289" srcset="https://imcys.com/wp-content/uploads/2020/08/image-2.png 479w, https://imcys.com/wp-content/uploads/2020/08/image-2-300x242.png 300w" sizes="(max-width: 479px) 100vw, 479px" /></figure>
+
+
+
+<p>复制token码，保存下来，接下来，我们来做一个回调获取机器人受到用户的信息</p>
+
+
+
+<h4>回调设置 反射信息</h4>
+
+
+
+<p>现在去给机器人发消息，访问下面的链接，就可以获取到</p>
+
+
+
+<pre class="wp-block-verse">https://api.telegram.org/bot<strong><span class="has-inline-color has-pale-pink-color">【token】</span></strong>/getUpdates</pre>
+
+
+
+<p>【思考】猜猜为什么需要设置反射？？？？我们能不能不设置它？不设置它怎么样才能获取用户发送的内容？？设置它比不设置有什么好处？？？</p>
+
+
+
+<p>下面我们 <strong>注册webhook</strong> 设置回调地址</p>
+
+
+
+<pre class="wp-block-verse">https://api.telegram.org/bot<strong><span class="has-inline-color has-pale-pink-color">【token】</span></strong>/setWebhook?url=回调地址</pre>
+
+
+
+<p>把参数填入，然后访问，即可注册回调地址，这里你自己来规定。反射是指可以通过反射【类】的路径【名称】可以获取这个信息【类的信息】。</p>
+
+
+
+<h4>处理回调 并发运行</h4>
+
+
+
+<p>怎么样？想到为什么需要进行回调获取获取反射信息了吗？</p>
+
+
+
+<p>没错，并发运行就是我们需要的能力，正常情况下，不可能是一个人接着一个人去发送信息，那么此时，我们如果不唤醒回调，而是用循环上面第一个接口，获取信息，那么不但造成了资源浪费，还可能漏掉消息。那么通过设置回调地址，也就是<strong><strong>webhook</strong></strong>，当机器人受到消息后立即请求该地址。该地址反射获取信息，马上就可以处理进行返回。</p>
+
+
+
+<p>来看下面代码</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;?php
+//设置连接根
+$url = "https://api.telegram.org/bot【token】/";
+//获取反射信息
+$update = json_decode(file_get_contents('php://input'), true);
+$chat_id = $update&#91;'message']&#91;'chat']&#91;'id'];
+$name = $update&#91;'message']&#91;'from']&#91;'first_name'];
+//发送给用户
+file_get_contents($url . "sendmessage?text=你好，世界" . $name ."&amp;chat_id=" . $chat_id);
+?></code></pre>
+
+
+
+<h3>文末</h3>
+
+
+
+<p>这样简单的自动回复就实现了，怎么样，学会了吗？明天我更新视频教学。</p>
+
+
+
+<p>这次腾讯的做为更是突如其来，当然这也符合现实，既然不能用QQ的了，我们为何不去使用合法tg机器人呢？</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/08/02/telegram%e6%9c%ba%e5%99%a8%e4%ba%ba%e6%90%ad%e5%bb%ba%e6%95%99%e7%a8%8b.html">https://imcys.com/2020/08/02/telegram%e6%9c%ba%e5%99%a8%e4%ba%ba%e6%90%ad%e5%bb%ba%e6%95%99%e7%a8%8b.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/08/02/imcys.com-Telegram%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/" data-id="cl01oc4vv000eceoyenv9c04o" data-title="Telegram机器人搭建教程 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/08/06/ivampiresp.com-WordPress%E4%B8%AA%E6%80%A7%E5%8C%96%E7%9A%84%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          WordPress个性化的登录界面 由 ivampiresp.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/31/ivampiresp.com-%E3%80%8A%E8%B4%A4%E6%83%A0%E5%B9%BC%E5%A6%BB%E4%BB%99%E7%8B%90%E5%B0%8F%E5%A7%90%E3%80%8B%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">《贤惠幼妻仙狐小姐》随机图片 由 ivampiresp.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

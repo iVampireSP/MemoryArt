@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>【教程】Android程序UI设计规范 由 imcys.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言    一个程序能否博人眼球，让体验舒适，在于程序的UI界面，当一个程序的UI符合大众审美适中标准，那么用户就会觉得这是个花了很多心思的程序，更愿意去使用它，如果两个程序功能差不多，那么那个UI好看的，肯定是用户首先保留的对象。    人靠脸，树靠皮，程序靠UI    当然，这样并不是绝对对的，一般开发者，可能对于功能更优秀的程序会选择优先保留。    Material Design设计规范">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【教程】Android程序UI设计规范 由 imcys.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2020/06/07/imcys.com-%E3%80%90%E6%95%99%E7%A8%8B%E3%80%91Android%E7%A8%8B%E5%BA%8FUI%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="前言    一个程序能否博人眼球，让体验舒适，在于程序的UI界面，当一个程序的UI符合大众审美适中标准，那么用户就会觉得这是个花了很多心思的程序，更愿意去使用它，如果两个程序功能差不多，那么那个UI好看的，肯定是用户首先保留的对象。    人靠脸，树靠皮，程序靠UI    当然，这样并不是绝对对的，一般开发者，可能对于功能更优秀的程序会选择优先保留。    Material Design设计规范">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2020/06/image-2.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2020/06/image-4.png">
+<meta property="og:image" content="https://mdui-aliyun.cdn.w3cbus.com/design/static/media/layout/principles/layout_principles_papercraft_paper2.png">
+<meta property="og:image" content="https://mdui-aliyun.cdn.w3cbus.com/design/static/media/components/toolbars/layout_principles_papercraft_toolbars4.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2020/06/image-5.png">
+<meta property="og:image" content="https://mdui-aliyun.cdn.w3cbus.com/design/static/media/components/cards/components_cards2.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2020/06/image-8.png">
+<meta property="article:published_time" content="2020-06-07T21:00:18.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:50.562Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="imcys.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imcys.com/wp-content/uploads/2020/06/image-2.png">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-imcys.com-【教程】Android程序UI设计规范" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/06/07/imcys.com-%E3%80%90%E6%95%99%E7%A8%8B%E3%80%91Android%E7%A8%8B%E5%BA%8FUI%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/" class="article-date">
+  <time class="dt-published" datetime="2020-06-07T21:00:18.000Z" itemprop="datePublished">2020-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      【教程】Android程序UI设计规范 由 imcys.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>前言</h3>
+
+
+
+<p>一个程序能否博人眼球，让体验舒适，在于程序的UI界面，当一个程序的UI符合大众审美适中标准，那么用户就会觉得这是个花了很多心思的程序，更愿意去使用它，如果两个程序功能差不多，那么那个UI好看的，肯定是用户首先保留的对象。</p>
+
+
+
+<p><strong><span class="has-inline-color has-pale-pink-color">人靠脸，树靠皮，程序靠UI</span></strong></p>
+
+
+
+<p>当然，这样并不是绝对对的，一般开发者，可能对于功能更优秀的程序会选择优先保留。</p>
+
+
+
+<h3><strong>Material Design</strong>设计规范</h3>
+
+
+
+<p>我写的程序，一直选择模仿，或者按照<strong><a rel="noreferrer noopener" href="https://www.mdui.org/design/" target="_blank"><span class="has-inline-color has-pale-pink-color">Material Design</span></a></strong>的设计规范来设计UI，但其实一开始我并不知道这个规范，只是单纯喜欢层次感和卡片拟态。知道了后我开始大量的学习使用这种方式。</p>
+
+
+
+<p>我认为<strong>Material Design</strong>在强调这样的几点</p>
+
+
+
+<ul><li>层次感</li><li>沉浸式</li><li>对比感</li><li>格式/框架化</li><li>控件的位置</li></ul>
+
+
+
+<p>注重了上面的几点来设计程序，你的UI将有许多的改变。这样会给用户更舒服的视觉体验，他们甚至可以推出你的一些功能会在哪里。规范的去设计控件位置，就可以让用户做到上面说的，反之，如果随意使用，按自己意图来会导致一些用户不知到这些功能怎么操作，尽管你可能有说明。</p>
+
+
+
+<h3>简单教程</h3>
+
+
+
+<h4>层次感的体现</h4>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="https://imcys.com/wp-content/uploads/2020/06/image-2.png" alt="" class="wp-image-223" width="255" height="440" srcset="https://imcys.com/wp-content/uploads/2020/06/image-2.png 492w, https://imcys.com/wp-content/uploads/2020/06/image-2-173x300.png 173w" sizes="(max-width: 255px) 100vw, 255px" /></figure></div>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="https://imcys.com/wp-content/uploads/2020/06/image-4.png" alt="" class="wp-image-225" width="285" height="503" srcset="https://imcys.com/wp-content/uploads/2020/06/image-4.png 477w, https://imcys.com/wp-content/uploads/2020/06/image-4-170x300.png 170w" sizes="(max-width: 285px) 100vw, 285px" /></figure></div>
+
+
+
+<p>我们来看看，这张图的对比，你喜欢哪一个？？？是的，第一张，第二张很单调，但你是不是会想问，第一个比第二个多了一个线性布局控件，其实没有，后者只是透明，我想说的，就是当控件数量一致，有层次感，和无层次感的UI差距。</p>
+
+
+
+<figure class="wp-block-image"><img src="https://mdui-aliyun.cdn.w3cbus.com/design/static/media/layout/principles/layout_principles_papercraft_paper2.png" alt=""/></figure>
+
+
+
+<p>层次感会让你的程序不再单调，所以，我们可以适当的去加这样一些东西</p>
+
+
+
+<h4>沉浸式设计</h4>
+
+
+
+<figure class="wp-block-image"><img src="https://mdui-aliyun.cdn.w3cbus.com/design/static/media/components/toolbars/layout_principles_papercraft_toolbars4.png" alt=""/></figure>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="https://imcys.com/wp-content/uploads/2020/06/image-5.png" alt="" class="wp-image-226" width="223" height="393" srcset="https://imcys.com/wp-content/uploads/2020/06/image-5.png 579w, https://imcys.com/wp-content/uploads/2020/06/image-5-170x300.png 170w" sizes="(max-width: 223px) 100vw, 223px" /></figure></div>
+
+
+
+<p>工具栏尤其可以展现，好比工具栏是蓝色，那么我们可以改变状态栏颜色，达到沉浸式，你会发现，这样的UI看着也会很舒服，如果不这么做，那么状态栏是黑色，或者其他和主题鲜明对比颜色，就很不好看。</p>
+
+
+
+<figure class="wp-block-image"><img src="https://mdui-aliyun.cdn.w3cbus.com/design/static/media/components/cards/components_cards2.png" alt=""/></figure>
+
+
+
+<p>同时卡片会带来更好的视觉观，但是请小心，这些卡片会分散用户注意力，我们需要正确使用，因为在之前我是乱用的，所以这里强调。</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="832" height="796" src="https://imcys.com/wp-content/uploads/2020/06/image-8.png" alt="" class="wp-image-229" srcset="https://imcys.com/wp-content/uploads/2020/06/image-8.png 832w, https://imcys.com/wp-content/uploads/2020/06/image-8-300x287.png 300w, https://imcys.com/wp-content/uploads/2020/06/image-8-768x735.png 768w" sizes="(max-width: 832px) 100vw, 832px" /></figure></div>
+
+
+
+<h3>文末</h3>
+
+
+
+<p>今天就介绍到这里了，你可以去看看<strong>Material Design</strong>的设计规范，如果喜欢请持续关注本博客，快去试试吧！！！！</p>
+
+
+
+<p></p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/06/07/android%e5%b8%83%e5%b1%80%e8%ae%be%e8%ae%a1%e8%a7%84%e8%8c%83.html">https://imcys.com/2020/06/07/android%e5%b8%83%e5%b1%80%e8%ae%be%e8%ae%a1%e8%a7%84%e8%8c%83.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/06/07/imcys.com-%E3%80%90%E6%95%99%E7%A8%8B%E3%80%91Android%E7%A8%8B%E5%BA%8FUI%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/" data-id="cl01oc4w6000yceoycqzqg24k" data-title="【教程】Android程序UI设计规范 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/06/09/ivampiresp.com-%E4%BD%BF%E7%94%A8OpenVPN%E7%BB%95%E8%BF%87%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%AE%A4%E8%AF%81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          使用OpenVPN绕过校园网认证 由 ivampiresp.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/23/imcys.com-QR%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%95%99%E7%A8%8B%7C%E8%AF%86%E5%88%AB%E5%9B%BE%E7%89%87%E6%96%87%E5%AD%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">QR机器人教程|识别图片文字 由 imcys.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>抓取WordPress文章转为Hexo并自动发布 由 ivampiresp.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="起因   由于最近填坑时没有什么好点子，也算是填累了。然后看了看我的树莓派，打算整点活。   很快啊，我就想起了Hexo。于是立马新建文件夹，开始了这个简单的项目   流程   分析WordPress的REST API   具体看这：https:&#x2F;&#x2F;developer.wordpress.org&#x2F;rest-api&#x2F;   我们这里只要用到这种API就行：   xxx.com&#x2F;wp-json&#x2F;wp&#x2F;v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抓取WordPress文章转为Hexo并自动发布 由 ivampiresp.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2021/01/31/ivampiresp.com-%E6%8A%93%E5%8F%96WordPress%E6%96%87%E7%AB%A0%E8%BD%AC%E4%B8%BAHexo%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="起因   由于最近填坑时没有什么好点子，也算是填累了。然后看了看我的树莓派，打算整点活。   很快啊，我就想起了Hexo。于是立马新建文件夹，开始了这个简单的项目   流程   分析WordPress的REST API   具体看这：https:&#x2F;&#x2F;developer.wordpress.org&#x2F;rest-api&#x2F;   我们这里只要用到这种API就行：   xxx.com&#x2F;wp-json&#x2F;wp&#x2F;v">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/01/image.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/01/image-1.png?imageMogr2/interlace/1/quality/80">
+<meta property="og:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/01/image-2.png?imageMogr2/interlace/1/quality/80">
+<meta property="article:published_time" content="2021-01-31T15:34:29.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:47.666Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="ivampiresp.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/01/image.png?imageMogr2/interlace/1/quality/80">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ivampiresp.com-抓取WordPress文章转为Hexo并自动发布" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/31/ivampiresp.com-%E6%8A%93%E5%8F%96WordPress%E6%96%87%E7%AB%A0%E8%BD%AC%E4%B8%BAHexo%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/" class="article-date">
+  <time class="dt-published" datetime="2021-01-31T15:34:29.000Z" itemprop="datePublished">2021-01-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      抓取WordPress文章转为Hexo并自动发布 由 ivampiresp.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>起因</h2>
+
+
+<p>由于最近填坑时没有什么好点子，也算是填累了。然后看了看我的树莓派，打算整点活。</p>
+
+
+<p>很快啊，我就想起了Hexo。于是立马新建文件夹，开始了这个简单的项目</p>
+
+
+<h2>流程</h2>
+
+
+<h3>分析WordPress的REST API</h3>
+
+
+<p>具体看这：<a href="https://developer.wordpress.org/rest-api/" target="_blank" rel="noreferrer noopener"><a target="_blank" rel="noopener" href="https://developer.wordpress.org/rest-api/"><a target="_blank" rel="noopener" href="https://developer.wordpress.org/rest-api/">https://developer.wordpress.org/rest-api/</a></a></a></p>
+
+
+<p>我们这里只要用到这种API就行：</p>
+
+
+<pre id="block-44cbc40d-0f1f-4b5d-8f34-9f6b17f45594" class="wp-block-preformatted">xxx.com/wp-json/wp/v2/posts?per_page=10&amp;page=1</pre>
+
+
+<p>意为：获取第一页，每页10篇。</p>
+
+
+<p>接着分析一下JSON</p>
+
+
+<figure class="wp-block-image size-large"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2021/01/image.png"><img width="1894" height="919" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/01/image.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-2125" srcset="https://ivampiresp.com/wp-content/uploads/2021/01/image.png 1894w, https://ivampiresp.com/wp-content/uploads/2021/01/image-1536x745.png 1536w" sizes="(max-width: 1894px) 100vw, 1894px" /></a></figure>
+
+
+<figure class="wp-block-table"><table><tbody><tr><td>id</td><td>文章ID</td></tr><tr><td>date</td><td>发布时间</td></tr><tr><td>slug</td><td>固定链接名称（？）</td></tr><tr><td>link</td><td>原文链接</td></tr><tr><td>title.rendered</td><td>文章标题</td></tr><tr><td>content.rendered</td><td>文章内容</td></tr><tr><td>excerpt.rendered</td><td>文章概要</td></tr></tbody></table></figure>
+
+
+<p>大概我们就用到这么多，接下来我们来分析一下<strong><em>hexo new &quot;Post&quot;</em></strong>时生成的文件</p>
+
+
+<pre class="wp-block-preformatted">---
+title:&nbsp;Post # 文章标题
+date:&nbsp;2021-01-30&nbsp;23:09:20 # 发布时间
+tags: # 标签
+---
+# 正文
+</pre>
+
+
+<p>由于标签名称的获取方法比较复杂，可能会调用到很多的API。所以这里就不做这个功能了，可能会被防火墙gank。</p>
+
+
+<h2>代码: PHP</h2>
+
+
+<h3>获取文章并写入到文件</h3>
+
+
+<p>这里我就简单粗暴的解决一下获取并解析JSON</p>
+
+
+<pre class="wp-block-code"><code>// 获取并解析JSON
+$json = json_decode(file_get_contents('https://ivampiresp.com/wp-json/wp/v2/posts?per_page=10&amp;page=1'), true);</code></pre>
+
+
+<p>然后使用foreach遍历数组，在将内容输入到文件即可</p>
+
+
+<pre class="wp-block-code"><code>
+foreach ($json as $array) &#123;
+    $title = $array&#91;'title']&#91;'rendered'];
+    $date = str_replace("T", " ", $array&#91;'date']);
+    $content = $array&#91;'content']&#91;'rendered'];
+    $write_content = &lt;&lt;&lt;EOF
+---
+title: $title
+date: $date
+tags: Fetch
+---
+$content
+EOF;
+    file_put_contents("_posts/$title.md", $write_content);
+&#125;
+</code></pre>
+
+
+<p>这是最终的代码</p>
+
+
+<pre class="wp-block-code"><code>&lt;?php
+/**
+ * 抓取WordPress文章转为hexo
+ * Author iVampireSP.com
+ * Blog iVampireSP.com
+ */
+
+// 获取并解析JSON
+$json = json_decode(file_get_contents('json.json'), true);
+foreach ($json as $array) &#123;
+    $title = $array&#91;'title']&#91;'rendered'];
+    $date = str_replace("T", " ", $array&#91;'date']);
+    $content = $array&#91;'content']&#91;'rendered'];
+    $write_content = &lt;&lt;&lt;EOF
+---
+title: $title
+date: $date
+tags: Fetch
+---
+$content
+EOF;
+    file_put_contents("_posts/$title.md", $write_content);
+&#125;
+</code></pre>
+
+
+<p>如果你仔细看我的代码的话，你会发现获取json从文件中获取了。因为这样在开发时可以更快点。</p>
+
+
+<h3>自动部署</h3>
+
+
+<p>将该文件置于hexo同级目录或上级目录下（路径不同，代码也不同）。这里我置于了上级目录，Hexo 的文件夹名称为“Hexo”</p>
+
+
+<p>其实自动部署非常简单，因为也就是一句命令的事，加个exec函数就行。</p>
+
+
+<pre class="wp-block-code"><code>// 部署
+exec("cd Hexo &amp;&amp; hexo g");</code></pre>
+
+
+<h2>完成</h2>
+
+
+<p>至此几乎已经完成了，接下来只要做亿些优化即可</p>
+
+
+<pre class="wp-block-code"><code>&lt;?php
+
+/**
+ * 抓取WordPress文章转为hexo
+ * Author iVampireSP.com
+ * Blog iVampireSP.com
+ */
+
+# Hexo 目录
+$hexo_path = "Hexo";
+
+/* 站点列表 */
+$site_list = json_decode(file_get_contents('sites.json'), true);
+
+echo '本次要抓取' . count($site_list) . "个站点。\n";
+foreach ($site_list as $site_list) &#123;
+    echo "正在抓取: $site_list ...\n";
+    $json = json_decode(file_get_contents("https://$site_list/wp-json/wp/v2/posts?per_page=20&amp;page=1"), true);
+    foreach ($json as $array) &#123;
+        $title = str_replace("|", "-", $array&#91;'title']&#91;'rendered']);
+        $date = str_replace("T", " ", $array&#91;'date']);
+        $content = $array&#91;'content']&#91;'rendered'];
+        $link = $array&#91;'link'];
+        $filename = md5($site_list) . '-' . md5($title) . '.md';
+        $write_content = &lt;&lt;&lt;EOF
+---
+title: $title 由 $site_list
+date: $date
+tags: $site_list
+---
+$content
+
+**该文章来自&#91;$link]($link)**
+
+**原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。**
+EOF;
+        echo &lt;&lt;&lt;EOF
+-------------------------------------
+             操作文件
+    $site_list  -&gt; $title
+                ↓
+$filename \n
+EOF;
+        file_put_contents("$hexo_path/source/_posts/$filename", $write_content);
+    &#125;
+&#125;
+
+/* 全部完成后开始部署 */
+echo "#####################################\n抓取写入完成，正在生成Hexo静态文件中... \n";
+exec("cd $hexo_path &amp;&amp; hexo g");
+echo "全部完成！\n";
+</code></pre>
+
+
+<figure class="wp-block-image size-large"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2021/01/image-1.png"><img width="698" height="785" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/01/image-1.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-2132"/></a></figure>
+
+
+<figure class="wp-block-image size-large"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2021/01/image-2.png"><img width="1261" height="926" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2021/01/image-2.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-2133"/></a></figure>
+
+
+<p>这些站点都是我熟人的站点，并且也和他们说过了。大家千万不能随意爬取别人站点的文章。</p>
+
+
+<p>Github: <a href="https://github.com/iVampireSP/Fetch_WordPress_To_Hexo" target="_blank" rel="noreferrer noopener"><a target="_blank" rel="noopener" href="https://github.com/iVampireSP/Fetch_WordPress_To_Hexo"><a target="_blank" rel="noopener" href="https://github.com/iVampireSP/Fetch_WordPress_To_Hexo">https://github.com/iVampireSP/Fetch_WordPress_To_Hexo</a></a></a></p>
+
+
+<p>这是我的新项目：<a href="http://memoryart.nwl.im"><a href="http://memoryart.nwl.im">http://memoryart.nwl.im</a></a></p>
+
+
+<p>尽快代码还有一些不完善的地方，这里就需要大家自由发挥啦</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2021/01/31/grab-wordpress-articles-turn-them-into-hexo-and-publish">https://ivampiresp.com/2021/01/31/grab-wordpress-articles-turn-them-into-hexo-and-publish</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/01/31/ivampiresp.com-%E6%8A%93%E5%8F%96WordPress%E6%96%87%E7%AB%A0%E8%BD%AC%E4%B8%BAHexo%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/" data-id="cl01oc4xp003jceoy9q9thx1d" data-title="抓取WordPress文章转为Hexo并自动发布 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/02/19/imcys.com-B%E7%AB%99%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AD%E5%BB%BA%20LastOrderBot/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          B站机器人搭建 LastOrderBot 由 imcys.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/31/sakurapuare.com-%E3%80%90%E4%B8%80%E3%80%91%E4%BD%BF%E7%94%A8OpenCV%E3%80%81Pillow%E5%BA%93%E5%88%86%E7%B1%BB%E5%9B%BE%E7%89%87%E3%80%90Python%E3%80%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">【一】使用OpenCV、Pillow库分类图片【Python】 由 sakurapuare.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

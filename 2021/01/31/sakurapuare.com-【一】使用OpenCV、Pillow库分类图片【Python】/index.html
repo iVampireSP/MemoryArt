@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>【一】使用OpenCV、Pillow库分类图片【Python】 由 sakurapuare.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="目录1 「论一个随机图片api的养成计划」1.1 序言2 分类2.1 思路2.2 算法2.3 代码3 测试4 总结5 参考资料 「论一个随机图片api的养成计划」    前段时间，书樱用Python稍微抓取了 Pixiv 的图片，总共大概有三万张左右。因为爬取时的爬虫只负责下载了，出现了很多重复的图片以及图片缩略图。最近想搞个图片api，正好可以用上这些二次元图片，所以这个系列暂且叫做「论一个随机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【一】使用OpenCV、Pillow库分类图片【Python】 由 sakurapuare.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2021/01/31/sakurapuare.com-%E3%80%90%E4%B8%80%E3%80%91%E4%BD%BF%E7%94%A8OpenCV%E3%80%81Pillow%E5%BA%93%E5%88%86%E7%B1%BB%E5%9B%BE%E7%89%87%E3%80%90Python%E3%80%91/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="目录1 「论一个随机图片api的养成计划」1.1 序言2 分类2.1 思路2.2 算法2.3 代码3 测试4 总结5 参考资料 「论一个随机图片api的养成计划」    前段时间，书樱用Python稍微抓取了 Pixiv 的图片，总共大概有三万张左右。因为爬取时的爬虫只负责下载了，出现了很多重复的图片以及图片缩略图。最近想搞个图片api，正好可以用上这些二次元图片，所以这个系列暂且叫做「论一个随机">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/Hc784f57058ed4c4f8187461c3d5a999aE.png">
+<meta property="article:published_time" content="2021-01-31T00:00:57.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:52.390Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="sakurapuare.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ae01.alicdn.com/kf/Hc784f57058ed4c4f8187461c3d5a999aE.png">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-sakurapuare.com-【一】使用OpenCV、Pillow库分类图片【Python】" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/31/sakurapuare.com-%E3%80%90%E4%B8%80%E3%80%91%E4%BD%BF%E7%94%A8OpenCV%E3%80%81Pillow%E5%BA%93%E5%88%86%E7%B1%BB%E5%9B%BE%E7%89%87%E3%80%90Python%E3%80%91/" class="article-date">
+  <time class="dt-published" datetime="2021-01-31T00:00:57.000Z" itemprop="datePublished">2021-01-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      【一】使用OpenCV、Pillow库分类图片【Python】 由 sakurapuare.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <div id="toc_container" class="toc_transparent no_bullets"><p class="toc_title">目录</p><ul class="toc_list"><li><a href="#api"><span class="toc_number toc_depth_1">1</span> 「论一个随机图片api的养成计划」</a><ul><li><a href="#i"><span class="toc_number toc_depth_2">1.1</span> 序言</a></li></ul></li><li><a href="#i-2"><span class="toc_number toc_depth_1">2</span> 分类</a><ul><li><a href="#i-3"><span class="toc_number toc_depth_2">2.1</span> 思路</a></li><li><a href="#i-4"><span class="toc_number toc_depth_2">2.2</span> 算法</a></li><li><a href="#i-5"><span class="toc_number toc_depth_2">2.3</span> 代码</a></li></ul></li><li><a href="#i-6"><span class="toc_number toc_depth_1">3</span> 测试</a></li><li><a href="#i-7"><span class="toc_number toc_depth_1">4</span> 总结</a></li><li><a href="#i-8"><span class="toc_number toc_depth_1">5</span> 参考资料</a></li></ul></div>
+<h2><span id="api">「论一个随机图片api的养成计划」</span></h2>
+<blockquote><p>
+  前段时间，书樱用Python稍微抓取了 Pixiv 的图片，总共大概有三万张左右。因为爬取时的爬虫只负责下载了，出现了很多重复的图片以及图片缩略图。最近想搞个图片api，正好可以用上这些二次元图片，所以这个系列暂且叫做「论一个随机图片api的养成计划，于是便有了这篇文章。
+</p></blockquote>
+<div class="mdui-panel mdui-panel-gapless" mdui-panel>
+    <div class="mdui-panel-item mdui-panel-item-open">
+      <div class="mdui-panel-item-header">
+        <div class="mdui-panel-item-title">提示</div>
+        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-panel-item-body">
+        <p>您正在阅读的是一个系列文章，此系列书樱将会持续更新，敬请关注。</p>
+      </div>
+    </div>
+  </div>
+<p>如果您觉得我写的东西对您有所帮助的话，不妨请我喝杯咖啡。=> <a class="wp-editor-md-post-content-link" href="/support" title="赞助">赞助</a></p>
+<h3><span id="i">序言</span></h3>
+<p>这是这个系列文章的第一篇，因为下一篇涉及的内容会非常多，信息量太大（完全不是因为想水文章），今天把相对简单的内容单独列成一篇，作为开胃小菜。</p>
+<p>话不宜迟，进入正题。</p>
+<blockquote class="mdx-warning"><p><i class="mdui-icon material-icons">&#xe002;</i> 温馨提示<br><strong>由于个人水平及能力有限，通常书樱只会分享思路和讲述原理，如因此造成的眩晕、头痛、恶心等不适症状概不负责，如果您有更好的建议或者想法，欢迎联系我。</strong></p></blockquote>
+<h2><span id="i-2">分类</span></h2>
+<h3><span id="i-3">思路</span></h3>
+<p>图片分类，顾名思义，就是根据各自在图像信息中所反映的不同特征，把不同类别的目标区分开来的图像处理方法。它利用计算机对图像进行定量分析，把图像或图像中的每个像元或区域划归为若干个类别中的某一种，以代替人的视觉判读。<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/5199331" title="图像分类_百度百科">[1]</a> 所以，自然而然，能供我们分类的信息也有很多。</p>
+<p><del>有机会用DL写一个识别天依的程序</del></p>
+<p>当然，和广泛定义中的图片分类不一样，这将近三万张图片的分类呢，书樱只想按照长宽比来分类，原因很简单。首先，因为都是来自 Pixiv 的图片，所以不需要对图片内容进行分类。其次，不同设备屏幕长宽比不同，所需要显示图片的长宽比也不同，书樱希望在 api 中设置一个参数，来规范图片返回的长宽比，以适应不同的设备。因此，按尺寸分类图片也就顺理成章了。</p>
+<h3><span id="i-4">算法</span></h3>
+<p>很好，现在想法有了，让我们来构思下这个小程序。</p>
+<ul>
+<li>首先，我们需要从一个文件夹里读取出图片。</li>
+<li>接着，读取出图片的长宽信息并计算出长宽比。</li>
+<li>然后，再按照长宽比对图片进行分类。</li>
+<li>最后，把分类好的图片转移到新文件夹，按照长宽比分类。</li>
+</ul>
+<h3><span id="i-5">代码</span></h3>
+<p>下面是根据我们想法写代码。</p>
+<p>分类图片中，书樱使用到了<code>os</code>、<code>shutil</code>和<code>Opencv/Pillow</code>这两（三）个模块。</p>
+<p><code>os</code>（多种操作系统接口）这个模块不用多说，<code>os</code>提供了非常丰富的方法用来处理文件和目录，功能可以说是非常强大。<a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/os.html" title="os --- 多种操作系统接口 — Python 3.10.2 文档">[2]</a></p>
+<p><code>shutil</code>（高阶文件操作）模块提供了一系列对文件和文件集合的高阶操作。特别是提供了一些支持文件拷贝和删除的函数。<a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/shutil.html" title="shutil --- 高阶文件操作 — Python 3.10.2 文档">[3]</a></p>
+<p>关于<code>Opencv</code>和<code>Pillow (PIL)</code>，这里我选择的是<code>Opencv</code>，因为<code>Opencv</code>在各方面速度都比<code>PIL</code>要快上不少，对于庞大数量的图片，这可以给我们省下很多时间，不过对于单线程读取来说，瓶颈在这，当然我也留下<code>PIL</code>的代码。<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30383580" title="0.伏笔：图像读取方式以及效率对比 - 知乎">[4]</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/91078855" title="Python Pillow 和 cv2 图片 resize 速度的比较 - 知乎">[5]</a></p>
+<p><code>Opencv</code>和<code>PIL</code>本身就是非常强大的媒体处理库，这方面的内容可谓是相当丰富，特别是在深度学习方面。书樱在这里也只是使用了一些非常简单的功能，只是“冰山半角”，如果有兴趣的朋友可以Google搜索相关文档阅读。</p>
+<p>下面是导入 Python 模块，<code>import cv2</code>是导入<code>Opencv</code>模块。如果是使用<code>PIL</code>，因为我们使用的函数在<code>Image</code>中，则需要<code>from PIL import Image</code>从<code>PIL</code>库中导入我们需要的<code>Image</code>模块（可选）。</p>
+<pre><code class="language-python line-numbers"># 导入模块
+import os
+import cv2
+import shutil
+# from PIL import Image
+</code></pre>
+<p>请根据你使用的图片处理库导入相应的模块。</p>
+<p>导入了我们所需要的模块之后，是时候来处理图片了。</p>
+<p>首先，我们需要让Python从文件夹中读取图片。</p>
+<pre><code class="language-python line-numbers"># 修改这里的路径
+path = 'path\to\pic'
+# 对于 path 里的每一个 file 文件
+for file in os.listdir(path):
+    print(file)
+    os.chdir(path) # 此处的os.chdir()是必要的
+</code></pre>
+<p>我们使用<code>os.listdir()</code>这个函数，传递一个路径<code>path</code>，程序将会依次输出当前目录下的所有文件（夹）。</p>
+<div class="mdui-panel mdui-panel-gapless" mdui-panel>
+    <div class="mdui-panel-item">
+      <div class="mdui-panel-item-header">
+        <div class="mdui-panel-item-title">提示</div>
+        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-panel-item-body">
+        <p>对于os.listdir()本身是无法区分文件和文件夹的，必须使用os.path.isdir()判断是否为文件夹或使用os.path.isfile()判断是否是文件。为了代码的简便，建议您将待分类的图片单独放在一个文件夹中。</p>
+      </div>
+    </div>
+  </div>
+<p>首先，定义一个<code>path</code>，用来存储我们待分类的图片的路径。</p>
+<pre><code class="language-python line-numbers"># 修改这里的路径，此路径为绝对路径
+path = 'path\to\pic'
+</code></pre>
+<p>利用<code>for</code>可以依次将读取出文件名存入<code>file</code>中</p>
+<pre><code class="language-python line-numbers"># 对于 path 里的每一个 file 文件
+for file in os.listdir(path):
+    print(file)
+    os.chdir(path) # 此处的os.chdir()是必要的
+</code></pre>
+<p>我们先打印出文件名，以便让我们知道系统当前处理的文件。</p>
+<p>我们使用了<code>os.chdir()</code>改变当前Python的工作目录，此处的<code>os.chdir()</code>是必要的，原因我会在后文讲到。</p>
+<p><strong>注意</strong>：<code>os.chdir()</code>中的路径必须存在，否则会丢出<code>FileNotFoundError</code>错误。</p>
+<p>有了文件名，现在可以让Opencv读取图片了。</p>
+<pre><code class="language-python line-numbers"># 修改这里的路径
+path = 'path\to\pic'
+# 对于 path 里的每一个 file 文件
+for file in os.listdir(path):
+    print(file)
+    os.chdir(path) # 此处的os.chdir()是必要的
+    im = cv2.imread(file)   # Opencv代码
+    h, w = im.shape[0:2]
+    # im = Image.open(file) # Pillow代码
+    # h, w = im.size[0:2]
+</code></pre>
+<p>使用<code>cv2.imread(file)</code>让Opencv读取图片为对象并保存到<code>im</code>中。</p>
+<p><code>im.shape[0:2]</code>读取出该文件的图片信息，并返回一个元组。我们将返回的数据存入h,w变量中。</p>
+<div class="mdui-panel mdui-panel-gapless" mdui-panel>
+    <div class="mdui-panel-item">
+      <div class="mdui-panel-item-header">
+        <div class="mdui-panel-item-title">cv2.shape</div>
+        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-panel-item-body">
+        <p>cv.shape操作返回的是一个元组，(h, w, c)，三个参数分别是图片的高度、图片的宽度、颜色通道数，所以在这里我们只需要前两个参数即可</p>
+      </div>
+    </div>
+  </div>
+<p>对于<code>PIL</code>，只需要把<code>cv2.imread()</code>改成<code>Image.open()</code>，<code>im.shape</code>改成<code>im.size</code>。原理不变。</p>
+<p>接着是计算长宽比。所谓长宽比，即一个影像的宽度除以高度的比例。<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%95%B7%E5%AF%AC%E6%AF%94_(%E5%BD%B1%E5%83%8F)" title="长宽比 (影像) - 维基百科，自由的百科全书">[6]</a></p>
+<p>所以，很自然的，长宽比就是<code>w/h</code>。不过大部分长宽比都是无限小数，所以书樱用了<code>round()</code>函数四舍五入，此函数基本用法为：<code>round (数字,保留位数)</code>。</p>
+<p>当然<code>round()</code>保留之后输出的是浮点数，所以还需要用<code>str()</code>转化成字符串。</p>
+<pre><code class="language-python line-numbers"># 修改这里的路径
+path = 'path\to\pic'
+# 对于 path 里的每一个 file 文件
+for file in os.listdir(path):
+    print(file)
+    os.chdir(path) # 此处的os.chdir()是必要的
+    im = cv2.imread(file)   # Opencv代码
+    h, w = im.shape[0:2]
+    # im = Image.open(file) # Pillow代码
+    # h, w = im.size[0:2]
+    size = str(round(w/h, 1)) # 计算长宽比并保留一位小数
+</code></pre>
+<p>对于分类好的图片，我们需要让 Python 自动创建文件夹并把图片复制进来。</p>
+<p>所以我们定义一个函数<code>mkdir()</code>，传递一个参数<code>name</code>作为文件夹名，让Python自动创建文件夹。</p>
+<p>这里书樱直接使用图片长宽比<code>size</code>做为文件夹名。</p>
+<p><code>os.path.exists()</code>用于判断路径是否存在并返回布尔值。</p>
+<pre><code class="language-python line-numbers">def mkdir(name):
+    # 修改这里的路径，为保存分类后图片的路径
+    os.chdir('path\to\save\pic')
+    if os.path.exists(name):
+        os.chdir(name)
+    else:
+        os.mkdir(name)
+        os.chdir(name)
+</code></pre>
+<p>我们先用<code>os.chdir()</code>切换到我们保存图片的路径，请修改此路径为你自己的路径。</p>
+<p>如果传入的<code>name</code>目录存在，我们则直接切换到该路径下；如果传入的<code>name</code>路径不存在，Python将会使用<code>os.mkdir()</code>创建名为<code>name</code>的文件夹，并用<code>os.chdir()</code>切换到该路径下。</p>
+<div class="mdui-panel mdui-panel-gapless" mdui-panel>
+    <div class="mdui-panel-item mdui-panel-item-open">
+      <div class="mdui-panel-item-header">
+        <div class="mdui-panel-item-title">还记得吗？</div>
+        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-panel-item-body">
+        <p>上文提到「os.chdir()是必要的」的原因是：我们在mkdir()函数中切换了文件路径到我们保存分类后图片的文件夹路径，若在程序一开始不切换路径，那么在下一次循环的开始就会出现因为路径不对而读取不到图片导致的错误。不过为了规避这个问题，您也可以使用绝对路径。</p>
+      </div>
+    </div>
+  </div>
+<p>函数创建好了，我们直接调用并创建一个名字为size的文件夹，不过注意此函数要在程序入口之前定义。</p>
+<pre><code class="language-python line-numbers"># 修改这里的路径
+path = 'path\to\pic'
+# 对于 path 里的每一个 file 文件
+for file in os.listdir(path):
+    print(file)
+    os.chdir(path) # 此处的os.chdir()是必要的
+    im = cv2.imread(file)   # Opencv代码
+    h, w = im.shape[0:2]
+    # im = Image.open(file) # Pillow代码
+    # h, w = im.size[0:2]
+    size = str(round(w/h, 1)) # 计算并保留一位小数
+    mkdir(size)
+</code></pre>
+<p>最后则将图片按长宽比分类，这里使用的是<code>shutil.copy()</code>复制图片，此函数的用法是<code>shutil.copy(路径前, 路径后)</code>，把<code>copy</code>方法替换成<code>move</code>则是移动此图片。</p>
+<pre><code class="language-python line-numbers">import shutil
+import os
+import cv2
+
+
+<h1 id="修改这里的路径"><a href="#修改这里的路径" class="headerlink" title="修改这里的路径"></a>修改这里的路径</h1><p>path &#x3D; ‘path\to\pic’</p>
+<h1 id="对于-path-里的每一个-file-文件"><a href="#对于-path-里的每一个-file-文件" class="headerlink" title="对于 path 里的每一个 file 文件"></a>对于 path 里的每一个 file 文件</h1><p>for file in os.listdir(path):<br>    print(file)<br>    os.chdir(path) # 此处的os.chdir()是必要的<br>    im &#x3D; cv2.imread(file)   # Opencv代码<br>    h, w &#x3D; im.shape[0:2]<br>    # im &#x3D; Image.open(file) # Pillow代码<br>    # h, w &#x3D; im.size[0:2]<br>    size &#x3D; str(round(w&#x2F;h, 1)) # 计算并保留一位小数<br>    mkdir(size)<br>    shutil.copy(path + ‘\‘ + file, file)<br>    # 当操作为移动是此处为shutil.move<br></code></pre></p>
+<p>大功告成！程序会在目标文件夹下生成一系列文件夹。</p>
+<p>下面是完整的代码</p>
+<pre><code class="language-python line-numbers"># 导入模块
+# from PIL import Image
+
+
+<p>def mkdir(name):<br>    # 修改这里的路径，为保存分类后图片的路径<br>    os.chdir(‘path\to\save\pic’)<br>    if os.path.exists(name):<br>        os.chdir(name)<br>    else:<br>        os.mkdir(name)<br>        os.chdir(name)</p>
+<p>path &#x3D; ‘path\to\pic’</p>
+<h1 id="对于-path-里的每一个-file-文件-1"><a href="#对于-path-里的每一个-file-文件-1" class="headerlink" title="对于 path 里的每一个 file 文件"></a>对于 path 里的每一个 file 文件</h1><p>for file in os.listdir(path):<br>    print(file)<br>    os.chdir(path)  # 此处的os.chdir()是必要的<br>    im &#x3D; cv2.imread(file)   # Opencv代码<br>    h, w &#x3D; im.shape[0:2]<br>    # im &#x3D; Image.open(file) # Pillow代码<br>    # h, w &#x3D; im.size[0:2]<br>    size &#x3D; str(round(w&#x2F;h, 1))  # 计算并保留一位小数<br>    mkdir(size)<br>    shutil.copy(path + ‘\‘ + file, file)<br>    # 当操作为移动是此处为shutil.move<br></code></pre></p>
+<h2><span id="i-6">测试</span></h2>
+<p>关于<code>PIL</code>和<code>Opencv</code>对于图片的处理速度，书樱做了个简单的测试，此为测试图片，来自Pixiv，画师id：<a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://www.pixiv.net/users/418969">418969</a>，作品：<a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://www.pixiv.net/artworks/82910218">#VOCALOIDCHINA Espejo</a><a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://www.pixiv.net/artworks/82910218"><img src="https://ae01.alicdn.com/kf/Hc784f57058ed4c4f8187461c3d5a999aE.png" alt="" /></a></p>
+<p>图片放置在内存盘中，所以应该不存在所谓的读取瓶颈，测试十次，每次读取图片100次，求得平均值。</p>
+<p>下面是<code>Opencv</code>的测试代码</p>
+<pre><code class="language-python line-numbers">import time
+import cv2
+import numpy
+
+<p>times &#x3D; 100<br>data &#x3D; []<br>for i in range(0, 10):<br>    start &#x3D; time.time()<br>    for j in range(0, times):<br>        cv2.imread(‘Z:\0.png’)<br>    t &#x3D; times &#x2F; (time.time() - start)<br>    data.append(t)<br>    print(f”第&#123;i+1&#125;次测试,时间:&#123;t&#125;”)<br>print(numpy.average(data))<br></code></pre></p>
+<p>输出如下：</p>
+<pre><code class="line-numbers">第1次测试,时间:11.179286012576398
+第2次测试,时间:11.03766301872993
+第3次测试,时间:10.768910462691446
+第4次测试,时间:11.260747744295276
+第5次测试,时间:11.387417728544236
+第6次测试,时间:11.409427301319251
+第7次测试,时间:11.391379203206606
+第8次测试,时间:11.386520601823856
+第9次测试,时间:11.26953684781443
+第10次测试,时间:11.196677950982393
+11.228756687198382
+</code></pre>
+<p>所以对于<code>Opencv</code>来说，每秒读取了11.2张图片，此测试图片像素为2048*1152，所以<code>Opencv</code>，每秒读取了大约26,491,960个像素。</p>
+<p>再来看看<code>Pillow</code>的测试，以下为<code>Pillow</code>的测试代码</p>
+<pre><code class="language-python line-numbers">import time
+from PIL import Image
+import numpy
+
+<p>times &#x3D; 100<br>data &#x3D; []<br>for i in range(0, 10):<br>    start &#x3D; time.time()<br>    for j in range(0, times):<br>        Image.open(‘Z:\0.png’)<br>    t &#x3D; times &#x2F; (time.time() - start)<br>    data.append(t)<br>    print(f”第&#123;i+1&#125;次测试,时间:&#123;t&#125;”)<br>print(numpy.average(data))<br></code></pre></p>
+<p>输出如下：</p>
+<pre><code class="line-numbers">第1次测试,时间:968.2477463439408
+第2次测试,时间:1785.6384450660094
+第3次测试,时间:1886.9801508035055
+第4次测试,时间:1724.1211483442403
+第5次测试,时间:1886.7255044848093
+第6次测试,时间:1850.8501202479977
+第7次测试,时间:1814.4200030281402
+第8次测试,时间:1818.2426662158236
+第9次测试,时间:1886.8358427840733
+第10次测试,时间:1886.8867725058146
+1750.8948399824355
+</code></pre>
+<p>所以对于<code>Pillow</code>来说，每秒读取了1750张图片，所以<code>Pillow</code>，每秒读取了大约4,130,879,192个像素。</p>
+<p>结果让人有点出乎意料，看来<code>Pillow</code>完胜<code>Opencv</code>啊，不过这个数据有点太离谱了，数据大约差了一千倍。这部分内容待定，欢迎纠正。</p>
+<h2><span id="i-7">总结</span></h2>
+<p>总结一下，简单来说，运行顺序如下：</p>
+<ul>
+<li>程序从文件夹里读取出文件名如<code>114514.png</code>，存入<code>file</code>中，并打印出来。</li>
+<li>切换工作目录至<code>path</code>下，使用<code>cv2.imread()</code>让<code>Opencv</code>读取图片，此时的<code>im</code>是个类。</li>
+<li>使用<code>im.shape[0:2]</code>将<code>Opencv</code>读取出<code>cv2.shape</code>元组赋值到<code>h</code>，<code>w</code>。</li>
+<li>计算出图片长宽比（宽度/高度）<code>size</code>，使用<code>round()</code>保留一位小数，并用<code>str()</code>转化为字符串，此时的<code>size</code>是个字符串。</li>
+<li>调用函数<code>mkdir()</code>创建并切换至<code>size</code>文件夹，将图片复制(移动)到新文件夹。</li>
+<li>循环以上步骤直到所有文件都被处理完成。</li>
+</ul>
+<p>这样一个分类的小程序算是写好了，还算是比较简单的一个Python程序。因为需要进行IO操作，为了能简单一点，所以书樱在这里也没有使用多线程运行，不过以上操作的速度还是很快的，除非是巨量图片，否则多线程的提升应该也不会很大，那时候瓶颈应该是在IO读写上了而不是CPU上了。</p>
+<div class="mdui-panel mdui-panel-gapless" mdui-panel>
+    <div class="mdui-panel-item mdui-panel-item-open">
+      <div class="mdui-panel-item-header">
+        <div class="mdui-panel-item-title">提示</div>
+        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-panel-item-body">
+        <p>代码运行过程中，可能会出现libpng warning: iCCP: known incorrect sRGB profile提示。此提示对于程序没有任何影响，可以忽略。</p>
+      </div>
+    </div>
+  </div>
+<h2><span id="i-8">参考资料</span></h2>
+<ol>
+<li><a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/5199331" title="图像分类_百度百科">图像分类_百度百科</a></li>
+<li><a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/os.html">os &#8212; 多种操作系统接口 — Python 3.10.2 文档</a></li>
+<li><a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/shutil.html">shutil &#8212; 高阶文件操作 — Python 3.10.2 文档</a></li>
+<li><a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30383580">0.伏笔：图像读取方式以及效率对比 &#8211; 知乎</a></li>
+<li><a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/91078855">Python Pillow 和 cv2 图片 resize 速度的比较 &#8211; 知乎</a></li>
+<li><a class="wp-editor-md-post-content-link" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%95%B7%E5%AF%AC%E6%AF%94_(%E5%BD%B1%E5%83%8F)">长宽比 (影像) &#8211; 维基百科，自由的百科全书</a></li>
+</ol>
+<p>To be continue -></p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://sakurapuare.com/archives/2021/01/resort-pic-with-opencv-and-pillow/">https://sakurapuare.com/archives/2021/01/resort-pic-with-opencv-and-pillow/</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/01/31/sakurapuare.com-%E3%80%90%E4%B8%80%E3%80%91%E4%BD%BF%E7%94%A8OpenCV%E3%80%81Pillow%E5%BA%93%E5%88%86%E7%B1%BB%E5%9B%BE%E7%89%87%E3%80%90Python%E3%80%91/" data-id="cl01oc4y40048ceoy81s90jq1" data-title="【一】使用OpenCV、Pillow库分类图片【Python】 由 sakurapuare.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/31/ivampiresp.com-%E6%8A%93%E5%8F%96WordPress%E6%96%87%E7%AB%A0%E8%BD%AC%E4%B8%BAHexo%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          抓取WordPress文章转为Hexo并自动发布 由 ivampiresp.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/01/ivampiresp.com-2020%20%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">2020 年度总结 由 ivampiresp.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

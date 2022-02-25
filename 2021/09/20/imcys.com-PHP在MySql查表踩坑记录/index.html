@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>PHP在MySql查表踩坑记录 由 imcys.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="问题    我正在对数据库进行一个查表，但是对查询结果循环输出时，却出现了两个表里的内容，并且我认为查表的代码没问题，它的确只查一个表，这就非常离谱。    查询代码    输出结果    思考原因    查表命令写错了（MySql可视化管理工具执行命令后发现是正常的）有其他代码混入，导致中间出了问题。（仔细阅读后并没有）表里存在2个数据（查表后只有一个，并且问题是来自两个表）变量名冲突，导致查表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP在MySql查表踩坑记录 由 imcys.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2021/09/20/imcys.com-PHP%E5%9C%A8MySql%E6%9F%A5%E8%A1%A8%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="问题    我正在对数据库进行一个查表，但是对查询结果循环输出时，却出现了两个表里的内容，并且我认为查表的代码没问题，它的确只查一个表，这就非常离谱。    查询代码    输出结果    思考原因    查表命令写错了（MySql可视化管理工具执行命令后发现是正常的）有其他代码混入，导致中间出了问题。（仔细阅读后并没有）表里存在2个数据（查表后只有一个，并且问题是来自两个表）变量名冲突，导致查表">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2021/09/image-1024x218.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2021/09/NVYVDL50MYCID8P@R71.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2021/09/NVYVDL50MYCID8P@R71.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2021/09/?森萝财团-?花里胡哨的民宿?0.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2021/09/?森萝财团-?花里胡哨的民宿?1.png">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2021/09/?森萝财团-?花里胡哨的民宿?2-1.png">
+<meta property="article:published_time" content="2021-09-20T18:01:47.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:50.562Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="imcys.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imcys.com/wp-content/uploads/2021/09/image-1024x218.png">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-imcys.com-PHP在MySql查表踩坑记录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/09/20/imcys.com-PHP%E5%9C%A8MySql%E6%9F%A5%E8%A1%A8%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time class="dt-published" datetime="2021-09-20T18:01:47.000Z" itemprop="datePublished">2021-09-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      PHP在MySql查表踩坑记录 由 imcys.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>问题</h2>
+
+
+
+<p>我正在对数据库进行一个查表，但是对查询结果循环输出时，却出现了两个表里的内容，并且我认为查表的代码没问题，它的确只查一个表，这就非常离谱。</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="218" src="https://imcys.com/wp-content/uploads/2021/09/image-1024x218.png" alt="" class="wp-image-424" srcset="https://imcys.com/wp-content/uploads/2021/09/image-1024x218.png 1024w, https://imcys.com/wp-content/uploads/2021/09/image-300x64.png 300w, https://imcys.com/wp-content/uploads/2021/09/image-768x164.png 768w, https://imcys.com/wp-content/uploads/2021/09/image.png 1064w" sizes="(max-width: 1024px) 100vw, 1024px" /><figcaption>查询代码</figcaption></figure>
+
+
+
+<figure class="wp-block-image size-full"><img loading="lazy" width="535" height="234" src="https://imcys.com/wp-content/uploads/2021/09/NVYVDL50MYCID8P@R71.png" alt="" class="wp-image-425" srcset="https://imcys.com/wp-content/uploads/2021/09/NVYVDL50MYCID8P@R71.png 535w, https://imcys.com/wp-content/uploads/2021/09/NVYVDL50MYCID8P@R71-300x131.png 300w" sizes="(max-width: 535px) 100vw, 535px" /><figcaption>输出结果</figcaption></figure>
+
+
+
+<h2>思考原因</h2>
+
+
+
+<ol><li>查表命令写错了（MySql可视化管理工具执行命令后发现是正常的）</li><li>有其他代码混入，导致中间出了问题。（仔细阅读后并没有）</li><li>表里存在2个数据（查表后只有一个，并且问题是来自两个表）</li><li>变量名冲突，导致查表异常（找了很久才发现问题）</li></ol>
+
+
+
+<h2>问题原因</h2>
+
+
+
+<p>在我仔细查看变量后我发现了下面的奇葩问题。</p>
+
+
+
+<pre class="wp-block-code"><code>&lt;?php
+            $sql = "SELECT * FROM `xxxx`.`xxxxx` WHERE `Email` LIKE '$Email'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) &#123;
+                while ($row = $result->fetch_assoc()) &#123;
+                    if ($row&#91;'Verification'] == $_POST&#91;'verification']) &#123;
+                        $sql = "SELECT * FROM `misaka_api`.`app_bilibilias_user` WHERE `Email` LIKE '$Email'";
+                        $result = $conn->query($sql);
+                        if ($resul->num_rows > 0) &#123;
+                            //邮箱重复
+                            //改变用户的密码
+                            $sql = "update `xxxx`.`xxxx` set `PassWord`='$PassWord' where `Email` LIKE '$Email'";
+                            if ($conn->query($sql) === TRUE) &#123;
+                                $array = &#91;
+                                    'code' => 0,
+                                    'msg' => "更改成功，快去登录吧"
+                                ];
+                                echo json_encode($array, JSON_UNESCAPED_UNICODE);
+                            &#125; else &#123;
+                                echo  Url500();
+                            &#125;
+                        &#125; else &#123;
+                            echo Url403("该邮箱未被注册");
+                        &#125;
+                    &#125; else &#123;
+                        echo Url403("邮箱验证码错误啦");
+                    &#125;
+                &#125;
+            &#125; else &#123;
+                echo Url403("请先完成邮箱验证");
+            &#125;</code></pre>
+
+
+
+<p>首先在第一个判断后就是 while  循环，循环里判断了 Verification ，一个来自用户，另一个来自数据库</p>
+
+
+
+<p>一样的时候则向下进行，也就是输出  <em>更改成功，快去登录吧 </em> ，反之则 <em>该邮箱未被注册 </em></p>
+
+
+
+<figure class="wp-block-image size-full"><img loading="lazy" width="535" height="234" src="https://imcys.com/wp-content/uploads/2021/09/NVYVDL50MYCID8P@R71.png" alt="" class="wp-image-425" srcset="https://imcys.com/wp-content/uploads/2021/09/NVYVDL50MYCID8P@R71.png 535w, https://imcys.com/wp-content/uploads/2021/09/NVYVDL50MYCID8P@R71-300x131.png 300w" sizes="(max-width: 535px) 100vw, 535px" /><figcaption>输出结果</figcaption></figure>
+
+
+
+<p>从这里看出，的确是更改成功了，但是下面它又执行了一次代码，这次则没有修改密码，而是因为压根没有 Verification  ，导致输出了这个查询结果。</p>
+
+
+
+<p>很离谱，即使是他们来自同一个语句，也不可能分开输出结果，第一个结果是来自判断正确，而第二次则是来自判断错误，我表里只有一个数据，不可能会这样。</p>
+
+
+
+<p>后来我发现  <strong><span class="has-inline-color has-vivid-red-color">while ($row = $result->fetch_assoc()) </span></strong> 里面有  <strong><span class="has-inline-color has-vivid-red-color">$result</span></strong>  我仔细一看代码，我  <strong><span class="has-inline-color has-vivid-red-color">while</span></strong>  循环下面也有数据库执行的代码，并且，正好是第二次错误输出的结果的表，那么我认为可能是下面的代码有问题。</p>
+
+
+
+<p>仔细查看，发现里面也有用<strong><span class="has-inline-color has-vivid-red-color"> $sql </span></strong>和 <strong><span class="has-inline-color has-vivid-red-color">$result</span></strong> 这导致覆盖了  <strong><span class="has-inline-color has-vivid-red-color">while</span></strong> 循环前的查询命令</p>
+
+
+
+<h2>解决</h2>
+
+
+
+<p>当我尝试改变 <strong><span class="has-inline-color has-vivid-red-color">while</span></strong> 循环里的变量名称，果不其然，这个问题被解决了</p>
+
+
+
+<h2>图片来源</h2>
+
+
+
+<p>最后送大家几个好看的图片，来自<strong>loibus</strong>的<strong><span class="has-inline-color has-vivid-cyan-blue-color">森萝财团</span></strong>，我之前爬虫爬的，可以在GitHub看到项目</p>
+
+
+
+<figure class="wp-block-image size-full"><img src="https://imcys.com/wp-content/uploads/2021/09/?森萝财团-?花里胡哨的民宿?0.png" alt="" class="wp-image-429"/></figure>
+
+
+
+<figure class="wp-block-image size-full is-style-default"><img src="https://imcys.com/wp-content/uploads/2021/09/?森萝财团-?花里胡哨的民宿?1.png" alt="" class="wp-image-430"/></figure>
+
+
+
+<figure class="wp-block-image size-full is-style-default"><img src="https://imcys.com/wp-content/uploads/2021/09/?森萝财团-?花里胡哨的民宿?2-1.png" alt="" class="wp-image-431"/></figure>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2021/09/20/php%e5%9c%a8mysql%e6%9f%a5%e8%a1%a8%e8%b8%a9%e5%9d%91%e8%ae%b0%e5%bd%95.html">https://imcys.com/2021/09/20/php%e5%9c%a8mysql%e6%9f%a5%e8%a1%a8%e8%b8%a9%e5%9d%91%e8%ae%b0%e5%bd%95.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2021/09/20/imcys.com-PHP%E5%9C%A8MySql%E6%9F%A5%E8%A1%A8%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" data-id="cl01oc4vs0009ceoydbzp7jgu" data-title="PHP在MySql查表踩坑记录 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/22/ivampiresp.com-Zabbix%20%E9%80%9A%E7%9F%A5%E5%8F%91%E9%80%81%E5%88%B0%20QQ%20%E7%BE%A4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          Zabbix 通知发送到 QQ 群 由 ivampiresp.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/09/12/ivampiresp.com-%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%89%8B%E5%8A%9E/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">第一个手办 由 ivampiresp.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

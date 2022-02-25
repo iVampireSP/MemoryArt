@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>自学Python爬取P站图片 由 imcys.com | MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前言    emmm，学了一点点，啊不对，乱摸索了下python，写了一个简单的爬P站图片的脚本，哈哈最近也没什么可以发的教程视频，欸嘿嘿嘿嘿，就用它吧，这里我简单的文字描述一下爬取过程。    接口爬取    首先，我们来说一下F12工具抓包，这个东西非常重要，也是我们筛选接口的必要工具。    搜索接口爬取    按F12，搜索内容，注意右边抓获的数据内容，利用它，我们就可以的抓到P站的数据接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自学Python爬取P站图片 由 imcys.com">
+<meta property="og:url" content="http://memoryart.nwl.im/2020/08/24/imcys.com-%E8%87%AA%E5%AD%A6Python%E7%88%AC%E5%8F%96P%E7%AB%99%E5%9B%BE%E7%89%87/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="前言    emmm，学了一点点，啊不对，乱摸索了下python，写了一个简单的爬P站图片的脚本，哈哈最近也没什么可以发的教程视频，欸嘿嘿嘿嘿，就用它吧，这里我简单的文字描述一下爬取过程。    接口爬取    首先，我们来说一下F12工具抓包，这个东西非常重要，也是我们筛选接口的必要工具。    搜索接口爬取    按F12，搜索内容，注意右边抓获的数据内容，利用它，我们就可以的抓到P站的数据接">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imcys.com/wp-content/uploads/2020/08/image-3-1024x498.png">
+<meta property="article:published_time" content="2020-08-24T14:51:08.000Z">
+<meta property="article:modified_time" content="2022-02-25T00:25:50.562Z">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="imcys.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imcys.com/wp-content/uploads/2020/08/image-3-1024x498.png">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-imcys.com-自学Python爬取P站图片" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/08/24/imcys.com-%E8%87%AA%E5%AD%A6Python%E7%88%AC%E5%8F%96P%E7%AB%99%E5%9B%BE%E7%89%87/" class="article-date">
+  <time class="dt-published" datetime="2020-08-24T14:51:08.000Z" itemprop="datePublished">2020-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      自学Python爬取P站图片 由 imcys.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>前言</h2>
+
+
+
+<p>emmm，学了一点点，啊不对，乱摸索了下python，写了一个简单的爬P站图片的脚本，哈哈最近也没什么可以发的教程视频，欸嘿嘿嘿嘿，就用它吧，这里我简单的文字描述一下爬取过程。</p>
+
+
+
+<h2>接口爬取</h2>
+
+
+
+<p>首先，我们来说一下F12工具抓包，这个东西非常重要，也是我们筛选接口的必要工具。</p>
+
+
+
+<h4>搜索接口爬取</h4>
+
+
+
+<p>按F12，搜索内容，注意右边抓获的数据内容，利用它，我们就可以的抓到P站的数据接口。</p>
+
+
+
+<p>搜索接口 <strong><span class="has-inline-color has-vivid-cyan-blue-color">https://www.pixiv.net/ajax/search/top/内容?lang=zh</span></strong></p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="498" src="https://imcys.com/wp-content/uploads/2020/08/image-3-1024x498.png" alt="" class="wp-image-324" srcset="https://imcys.com/wp-content/uploads/2020/08/image-3-1024x498.png 1024w, https://imcys.com/wp-content/uploads/2020/08/image-3-300x146.png 300w, https://imcys.com/wp-content/uploads/2020/08/image-3-768x373.png 768w, https://imcys.com/wp-content/uploads/2020/08/image-3-1536x746.png 1536w, https://imcys.com/wp-content/uploads/2020/08/image-3.png 1920w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>有了简单的接口，我们就可以定位我们需要的数据位置</p>
+
+
+
+<p><strong><span class="has-inline-color has-vivid-red-color">[&#8216;body&#8217;][&#8216;illust&#8217;][&#8216;data&#8217;]</span></strong></p>
+
+
+
+<p>这个就是我们需要定位的数组，它下面有许多的搜索接口内容，我们通过它来递归循环获取每一组ID。</p>
+
+
+
+<h4>接口分析</h4>
+
+
+
+<p>我们发现上面接口的图片不能直接使用，因为他是缩略图，我们现在需要找到正式图片的接口返回地址，因为我们通过上接口可以获取ID，那么我们就先保留ID获取。</p>
+
+
+
+<p>个人作品信息接口<strong><span class="has-inline-color has-vivid-cyan-blue-color"> https://www.pixiv.net/ajax/illust/ID?lang=zh</span></strong></p>
+
+
+
+<p>有了这个接口我们就可以获取一下这个作品的图片链接</p>
+
+
+
+<p><strong><span class="has-inline-color has-vivid-red-color">[&#8216;body&#8217;][&#8216;urls&#8217;][&#8216;original&#8217;]</span></strong></p>
+
+
+
+<p>上面的对象就是我们需要的链接，有了链接我们现在就要应对反爬，P站也有爬虫检测，需要传入几个特殊的请求头才能获取到图片，否则403禁止访问。</p>
+
+
+
+<blockquote class="wp-block-quote"><p><strong>request.add_header(&#8216;referer&#8217;,&#8217;https://www.pixiv.net/tags/%E7%BA%B1%E9%9B%BE&#8217;)</strong></p><cite>添加<strong>referer</strong>信息</cite></blockquote>
+
+
+
+<p>只要有它，代表我是从P站内部来的，我要下载，这样就可以正常下载，下面代码里展示了这个函数。</p>
+
+
+
+<p>接下来我们万事俱备，就可以直接编写代码了，我们直接看下面。</p>
+
+
+
+<h2>代码展示</h2>
+
+
+
+<pre class="wp-block-code"><code>import urllib.request, urllib.error, urllib.parse
+import urllib
+import demjson
+import json
+import requests
+import time
+import socket
+
+
+
+def SaveImage(url, path):   # 传入的url是图片url地址
+    request = urllib.request.Request(url)   # 模拟浏览器头部信息
+    request.add_header('accept','image/webp,image/apng,*/*;q=0.8')
+    request.add_header('accept-encoding','gzip, deflate, br')
+    request.add_header('accept-language','zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-TW;q=0.6')
+    request.add_header('sec-fetch-dest','image')
+    request.add_header('sec-fetch-mode','no-cors')
+    request.add_header('sec-fetch-site','cross-site')
+    request.add_header('referer','https://www.pixiv.net/tags/%E7%BA%B1%E9%9B%BE')
+    request.add_header('user-agent','Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; InfoPath.3)')
+    try:
+        response = urllib.request.urlopen(request)  # 打开该url得到响应
+        img = response.read()   # read读取出来
+        f = open(path, 'wb')    # 以二进制写入的格式打开
+        f.write(img)    # 写入
+        f.close()       # 关闭
+    except urllib.error.URLError as ue:  # 捕获urlerror
+        if hasattr(ue, 'code'):  # 如果ue中包含'code'字段, 则打印出来
+            print(ue.code)
+        if hasattr(ue, "reason"):# 如果ue中包含'reason'字段, 则打印出来
+            print(ue.reason)
+    except IOError as ie:
+        print(ie)
+
+
+    return 
+
+
+if __name__ == "__main__":
+    word = input('输入搜索内容')
+    p = input('输入抓取页码')
+    s = requests.session()
+    headers = &#123;
+        'User-Agent' : 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; InfoPath.3)'
+    &#125;
+    res = s.get("https://www.pixiv.net/ajax/search/illustrations/"+word+"?word="+word+"&amp;p="+p+"&amp;lang=zh",headers=headers)
+    string = res.text
+    list1 = demjson.decode(string)
+    i = 0
+    while i &lt; len(list1&#91;'body']&#91;'illust']&#91;'data']) - 1:
+        id = list1&#91;'body']&#91;'illust']&#91;'data']&#91;i]&#91;'id']
+        headers = &#123;
+            'User-Agent' : 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; InfoPath.3)'
+        &#125;
+        s.keep_alive = False # 关闭多余连接
+        Str = s.get("https://www.pixiv.net/ajax/illust/"+id+"?lang=zh",headers=headers)
+        string = Str.text
+        Strjson = demjson.decode(string)
+        imgurl = Strjson&#91;'body']&#91;'urls']&#91;'original']
+        print(imgurl)
+        name = list1&#91;'body']&#91;'illust']&#91;'data']&#91;i]&#91;'title']+id
+        print(name)
+        path = "F:\下载文件\图片\大马明文版\\"+ name + ".png"
+        SaveImage(imgurl, path)
+        i= i + 1
+        print(i)
+        time.sleep(5)</code></pre>
+
+
+
+<h2>文末</h2>
+
+
+
+<p>其实我写的这也是微不足道的，没有很大的参考价值，发文文章和视频也是为了鼓励一下自己学习，展示一下成果而已，当然，我也希望这篇文章和视频可以帮助到你。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/08/24/%e8%87%aa%e5%ad%a6python%e7%88%ac%e5%8f%96p%e7%ab%99%e5%9b%be%e7%89%87.html">https://imcys.com/2020/08/24/%e8%87%aa%e5%ad%a6python%e7%88%ac%e5%8f%96p%e7%ab%99%e5%9b%be%e7%89%87.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/08/24/imcys.com-%E8%87%AA%E5%AD%A6Python%E7%88%AC%E5%8F%96P%E7%AB%99%E5%9B%BE%E7%89%87/" data-id="cl01oc4wr001gceoyet5zfujf" data-title="自学Python爬取P站图片 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/11/17/ivampiresp.com-JavaScript%20%E6%9C%97%E8%AF%BB%E6%96%87%E6%9C%AC%EF%BC%8C%E6%92%AD%E6%94%BE%E5%A3%B0%E9%9F%B3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript 朗读文本，播放声音 由 ivampiresp.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/08/06/ivampiresp.com-WordPress%E4%B8%AA%E6%80%A7%E5%8C%96%E7%9A%84%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">WordPress个性化的登录界面 由 ivampiresp.com</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

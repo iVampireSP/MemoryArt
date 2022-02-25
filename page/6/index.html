@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>MemoryArt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="让你的文章不再被时间长河埋没">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MemoryArt">
+<meta property="og:url" content="http://memoryart.nwl.im/page/6/index.html">
+<meta property="og:site_name" content="MemoryArt">
+<meta property="og:description" content="让你的文章不再被时间长河埋没">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="博主们">
+<meta property="article:tag" content="MemoryArt">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="MemoryArt" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">MemoryArt</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">回忆归档</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://memoryart.nwl.im"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-ivampiresp.com-失败笔记，希望对你有用：Ubuntu 18.04安装KVM并配置硬件直通" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/03/04/ivampiresp.com-%E5%A4%B1%E8%B4%A5%E7%AC%94%E8%AE%B0%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%AF%B9%E4%BD%A0%E6%9C%89%E7%94%A8%EF%BC%9AUbuntu%2018.04%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E9%85%8D%E7%BD%AE%E7%A1%AC%E4%BB%B6%E7%9B%B4%E9%80%9A/" class="article-date">
+  <time class="dt-published" datetime="2020-03-04T15:49:58.000Z" itemprop="datePublished">2020-03-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/03/04/ivampiresp.com-%E5%A4%B1%E8%B4%A5%E7%AC%94%E8%AE%B0%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%AF%B9%E4%BD%A0%E6%9C%89%E7%94%A8%EF%BC%9AUbuntu%2018.04%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E9%85%8D%E7%BD%AE%E7%A1%AC%E4%BB%B6%E7%9B%B4%E9%80%9A/">失败笔记，希望对你有用：Ubuntu 18.04安装KVM并配置硬件直通 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>由于近期比较折腾，另外也找不到好的虚拟化方案，于是就把目光留在了Ubuntu+KVM上。</p>
+
+
+<p>之前尝试过的ESXi和Proxmox VE，发现ESXi不能直通宿主机的USB键鼠，但能完美直通N卡，Proxmox VE可以直通任何宿主机的USB设备，但是直通显卡后问题就来了，把直通了显卡的虚拟机电源关闭，然后再打开，系统当场奔溃。分析了大半天日志都没找到原因，也尝试过升级，切换方式等，都是相同结果，Google了一圈也没找到解决方法，我的R710前面板还报PCI-E错误，佛了。</p>
+
+
+<p>但Proxmox VE是用KVM虚拟化的，所以还是上Ubuntu吧（？？？</p>
+
+
+<p>下面步骤是我从网络上各大站点整理而来，如有疏忽或疑问，请评论区留言。</p>
+
+
+<p>本教程中的Ubuntu版本为Ubuntu Server 18.04 LTS</p>
+
+
+<h2>配置iommu以支持PCI硬件直通</h2>
+
+
+<p><strong><em>AMD和Intel的方法都一样</em></strong>，<strong><em>只是添加的内容不同</em></strong>，如果你不想进行硬件直通，可以忽略这一步。</p>
+
+
+<p>编辑grub</p>
+
+
+<pre class="wp-block-code"><code>sudo vim /etc/default/grub</code></pre>
+
+
+<p>找到<strong>GRUB_CMDLINE_LINUX_DEFAULT=&quot;&quot;</strong>这一行，并往里面添加值，如<strong>Intel</strong>，<strong><em>AMD看下方代码框中</em></strong>：</p>
+
+
+<pre class="wp-block-code"><code>添加：intel_iommu=on
+最终的结果为：GRUB_CMDLINE_LINUX_DEFAULT="intel_iommu=on"
+AMD则将"intel_iommu=on"改为"amd_iommu=on"
+如这行里面有其他值，网后面添加即可。</code></pre>
+
+
+<figure class="wp-block-image size-large"><img width="476" height="174" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1391"/></figure>
+
+
+<p>配置完成后，运行<strong>sudo update-grub</strong>更新一下，然后reboot服务器。</p>
+
+
+<p>重启后输入命令 &quot;<strong>dmesg | grep -i iommu</strong> &quot;查看是否有反馈，如果有<strong>类似</strong>以下输出，说明成功。</p>
+
+
+<figure class="wp-block-image size-large"><img width="762" height="292" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-1.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1392"/></figure>
+
+
+<p>来源： <a target="_blank" rel="noopener" href="http://aspirer.wang/?p=1266"><a target="_blank" rel="noopener" href="http://aspirer.wang/?p=1266">http://aspirer.wang/?p=1266</a></a> </p>
+
+
+<h2>安装KVM等软件包</h2>
+
+
+<p>验证是否支持虚拟化和KVM</p>
+
+
+<p>验证虚拟化&quot;egrep -c &#8216;(vmx|svm)&#8217; /proc/cpuinfo&quot;，如反馈出CPU核心数说明支持</p>
+
+
+<p>验证KVM硬件加速</p>
+
+
+<pre class="wp-block-code"><code>sudo apt install cpu-checker
+sudo kvm-ok</code></pre>
+
+
+<p>如果反馈中有“KVM acceleration can be used”说明支持。</p>
+
+
+<p>执行以下命令安装KVM并启动服务</p>
+
+
+<pre class="wp-block-code"><code>sudo apt update
+sudo apt install qemu qemu-kvm libvirt-bin bridge-utils virtinst
+sudo service libvirtd start
+sudo update-rc.d libvirtd enable</code></pre>
+
+
+<p>编辑 /etc/netplan/50-cloud-init.yaml 配置网桥，比如我的eno4配置了静态IP，那就把dhcp4和6关掉。</p>
+
+
+<pre class="wp-block-code"><code>network:
+        version: 2
+        ethernets:
+                eno4:
+                        dhcp4: no
+                        dhcp6: no
+        bridges:
+                br0:
+                        interfaces: &#91;eno4]
+                        dhcp4: no
+                        addresses: &#91;192.168.2.189/24]
+                        gateway4: 192.168.2.1
+                        nameservers:
+                                addresses: &#91;192.168.2.1]
+</code></pre>
+
+
+<p>请按照自己的实际环境修改。</p>
+
+
+<p>使用下面命令查看网桥状态</p>
+
+
+<pre class="wp-block-code"><code>sudo networkctl status -a
+ifconfig</code></pre>
+
+
+<figure class="wp-block-image size-large"><img width="501" height="439" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-2.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1395"/></figure>
+
+
+<figure class="wp-block-image size-large"><img width="543" height="150" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-3.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1396"/></figure>
+
+
+<p>可以使用上下按键或者其他功能键翻页。</p>
+
+
+<p>来源： <a target="_blank" rel="noopener" href="https://www.linuxtechi.com/install-configure-kvm-ubuntu-18-04-server/"><a target="_blank" rel="noopener" href="https://www.linuxtechi.com/install-configure-kvm-ubuntu-18-04-server/">https://www.linuxtechi.com/install-configure-kvm-ubuntu-18-04-server/</a></a> </p>
+
+
+<p><a target="_blank" rel="noopener" href="https://www.sysgeek.cn/install-configure-kvm-ubuntu-18-04/"><a target="_blank" rel="noopener" href="https://www.sysgeek.cn/install-configure-kvm-ubuntu-18-04/">https://www.sysgeek.cn/install-configure-kvm-ubuntu-18-04/</a></a></p>
+
+
+<h2>直通准备</h2>
+
+
+<p>如果你已启用了IOMMU并配置好了KVM，那可以到这一步了。</p>
+
+
+<h3>配置Vfio</h3>
+
+
+<p>使用“ <strong>lspci -nnk</strong> ”查找你要直通的设备ID，注意是-nnk并非原文中的&#8211;nnk，&#8211;nnk不被识别。</p>
+
+
+<p>比如我要直通的设备ID如下：</p>
+
+
+<pre class="wp-block-code"><code>06:00.0 VGA compatible controller &#91;0300]: NVIDIA Corporation GF119 &#91;GeForce GT 610] &#91;10de:104a] (rev a1)
+    Kernel driver in use: nouveau
+    Kernel modules: nvidiafb, nouveau
+06:00.1 Audio device &#91;0403]: NVIDIA Corporation GF119 HDMI Audio Controller &#91;10de:0e08] (rev a1)
+    Kernel driver in use: snd_hda_intel
+    Kernel modules: snd_hda_intel
+</code></pre>
+
+
+<p>然后将设备的驱动加入黑名单：</p>
+
+
+<pre class="wp-block-code"><code>echo "blacklist radeon" >> /etc/modprobe.d/blacklist.conf 
+echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf 
+echo "blacklist nvidia" >> /etc/modprobe.d/blacklist.conf </code></pre>
+
+
+<p>启用modules：编辑/etc/modules然后加入以下内容</p>
+
+
+<pre class="wp-block-code"><code>vfio
+vfio_iommu_type1
+vfio_pci
+vfio_virqfd</code></pre>
+
+
+<p>将你的显卡ID加入vfio.conf中</p>
+
+
+<p>执行下面命令</p>
+
+
+<pre class="wp-block-code"><code>lspci -nn | grep -i nvidia
+反馈：
+06:00.0 VGA compatible controller &#91;0300]: NVIDIA Corporation GF119 &#91;GeForce GT 610] &#91;10de:104a] (rev a1)
+06:00.1 Audio device &#91;0403]: NVIDIA Corporation GF119 HDMI Audio Controller &#91;10de:0e08] (rev a1)</code></pre>
+
+
+<p>可见我的设备ID是10de:104a和10de:0e08，用下列命令添加。</p>
+
+
+<pre class="wp-block-code"><code>echo "options vfio-pci ids=10de:104a,10de:0e08" > /etc/modprobe.d/vfio.conf</code></pre>
+
+
+<p>重新生成initrd</p>
+
+
+<pre class="wp-block-code"><code>update-initramfs -u</code></pre>
+
+
+<p>重启服务器：reboot</p>
+
+
+<p>来源： <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/60389508"><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/60389508">https://zhuanlan.zhihu.com/p/60389508</a></a> </p>
+
+
+<p><a target="_blank" rel="noopener" href="https://pve.proxmox.com/wiki/Pci_passthrough#Intel_CPU"><a target="_blank" rel="noopener" href="https://pve.proxmox.com/wiki/Pci_passthrough#Intel_CPU">https://pve.proxmox.com/wiki/Pci_passthrough#Intel_CPU</a></a></p>
+
+
+<h2>新建虚拟机</h2>
+
+
+<p>创建虚拟机磁盘，容量随意，格式要为raw，如我的如下，请按照自己的实际情况修改：</p>
+
+
+<pre class="wp-block-code"><code>qemu-img create -f raw /home/ssd/ssd-2019.raw 40G // SSD 系统盘
+qemu-img create -f raw /home/kvm-disks/2019-data.raw 80G // HDD 数据盘</code></pre>
+
+
+<p>安装虚拟机，请按照自己的实际情况修改。</p>
+
+
+<pre class="wp-block-code"><code>virt-install 
+--name WinServer2019 
+--memory 12288 
+--cpu host 
+--vcpus 8 
+--disk path=/home/ssd/ssd-2019.raw 
+--network bridge=br0,model='e1000' 
+--cdrom=/home/kvm-disks/ISO/cn_windows_server_2019_updated_march_2019_x64_dvd_c1ffb46c.iso 
+--boot cdrom 
+--virt-type kvm 
+--vnc 
+--vncport=5902 
+--vnclisten=0.0.0.0 
+--os-type=windows 
+--features kvm_hidden=on 
+--machine q35</code></pre>
+
+
+<p>上述指令：name指定名称，memory指定内存（单位MB），vcpus指定虚拟核心数，disk指定磁盘位置，network指定网络，后面指定我们创建的网桥及虚拟网卡，cdrom指定镜像位置，boot指定启动方式，vnc部分指定了端口等。</p>
+
+
+<p>来源： <a target="_blank" rel="noopener" href="https://blog.acesheep.com/index.php/archives/720/"><a target="_blank" rel="noopener" href="https://blog.acesheep.com/index.php/archives/720/">https://blog.acesheep.com/index.php/archives/720/</a></a> </p>
+
+
+<blockquote class="wp-block-quote"> 特别需要注意的参数 <code>--machine q35</code> <code>--features kvm_hidden=on</code> </p><cite> <a target="_blank" rel="noopener" href="https://blog.acesheep.com/index.php/archives/720/">https://blog.acesheep.com/index.php/archives/720/</a> </cite></blockquote>
+
+
+<p>如果机器有防火墙的话，还需要开放在上面指定的vnc端口。
+
+
+
+<p>在运行命令后，会弹出X窗口，你可以安装xmanager，如果没有的话，那虚拟机任然会被创建。（理论是这样</p>
+<figure class="wp-block-image size-large"><img width="1040" height="708" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-4.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1397"/></figure>
+
+
+
+<h2>直通USB设备和直通显卡</h2>
+
+
+
+<h3>直通USB </h3>
+
+
+
+<p>限制：USB协议&lt;&#x3D; 2.0 </p>
+<p>使用lsusb查看usb的id</p>
+<figure class="wp-block-image size-large"><img width="538" height="176" loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/03/d2b5ca33bd970f64a6301fa75ae2eb22-5.png?imageMogr2/interlace/1/quality/80" alt="" class="wp-image-1400"/></figure>
+
+
+
+<p>我要直通的USB设备的ID是1a40:0101，可以用以下命令进行编辑。</p>
+<pre class="wp-block-code"><code>virsh edit WinServer2019 //改成你的虚拟机名字</code></pre>
+
+
+
+<p>在&lt;devices&gt;和&lt;&#x2F;devices&gt;之间添加如下代码</p>
+<pre class="wp-block-code"><code>  &lt;devices>
+    &lt;hostdev mode='subsystem' type='usb'>
+      &lt;source>
+        &lt;vendor id='0x1a40'/>
+        &lt;product id='0x0101'/>
+      &lt;/source>
+    &lt;/hostdev>
+  &lt;/devices></code></pre>
+
+
+
+<p>添加完成后需要重新定义虚拟机 </p>
+<pre class="wp-block-code"><code>virsh define /etc/libvirt/qemu/WinServer2019.xml //改成你的虚拟机名字.xml</code></pre>
+
+
+
+<p>还有其他方法，如热添加，请参考如下：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.acesheep.com/index.php/archives/720">https://blog.acesheep.com/index.php/archives/720</a></p>
+<p><a target="_blank" rel="noopener" href="https://help.ubuntu.com/community/KVM/Managing#Adding_USB_Device_Pass-through">https://help.ubuntu.com/community/KVM/Managing#Adding_USB_Device_Pass-through</a></p>
+<h3>直通显卡</h3>
+
+
+
+<pre class="wp-block-code"><code>lspci -nn | grep -i nvidia
+01:00.0 VGA compatible controller &#91;0300]: NVIDIA Corporation TU102 &#91;GeForce RTX 2080 Ti Rev. A] &#91;10de:1e07] (rev a1)
+01:00.1 Audio device &#91;0403]: NVIDIA Corporation Device &#91;10de:10f7] (rev a1)
+01:00.2 USB controller &#91;0c03]: NVIDIA Corporation Device &#91;10de:1ad6] (rev a1)
+01:00.3 Serial bus controller &#91;0c80]: NVIDIA Corporation Device &#91;10de:1ad7] (rev a1)</code></pre>
+
+
+
+<blockquote class="wp-block-quote"> 这里列出的PCI 设备序号 <code>01:00.0</code> <code>01:00.1</code> <code>01:00.2</code> <code>01:00.3</code>
+
+<p><code>01:00.0</code> 这里需要对应配置文件的 <code>&lt;source></code> 节点里面 <code>&lt;address domain='0x0000' bus='0x01' slot='0x00' function='0x0'/></code></p>
+<p><code>&lt;hostdev></code> 里面是直通一个PCI 设备, 例如我这里有4个需要穿透到里面,就要有4个<code>&lt;hostdev></code> </p><cite> <a target="_blank" rel="noopener" href="https://blog.acesheep.com/index.php/archives/720/">https://blog.acesheep.com/index.php/archives/720/</a> </cite></blockquote></p>
+<pre class="wp-block-code"><code>    &lt;hostdev mode='subsystem' type='pci' managed='yes'>
+      &lt;driver name='vfio'/>
+      &lt;source>
+        &lt;address domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
+      &lt;/source>
+      &lt;address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+    &lt;/hostdev></code></pre>
+
+
+
+<p>解释一下：bus对于的是 01:00.3 的第一串数字，后门以此类推
+
+
+
+<p>完成后需要重新定义虚拟机</p>
+<pre class="wp-block-code"><code>virsh define /etc/libvirt/qemu/WinServer2019.xml //改成你的虚拟机名字.xml</code></pre>
+
+
+
+<p><a target="_blank" rel="noopener" href="https://blog.acesheep.com/index.php/archives/720/">https://blog.acesheep.com/index.php/archives/720/</a></p>
+<h2>添加数据盘</h2>
+
+
+
+<p>可见上面我还创建了一个数据盘，我们只要按照xml照葫芦画瓢就行</p>
+<pre class="wp-block-code"><code>    &lt;disk type='file' device='disk'>
+      &lt;driver name='qemu' type='raw'/>
+      &lt;source file='/home/kvm-disks/2019-data.raw'/>
+      &lt;target dev='sdc' bus='sata'/>
+      &lt;address type='drive' controller='0' bus='0' target='0' unit='3'/>
+    &lt;/disk></code></pre>
+
+
+
+<p>将上面按照实际情况修改，下载完后重新定义。</p>
+<h2>End</h2>
+
+
+
+<p>既然写到这了，为何说是失败笔记呢？</p>
+<p>因为时间不够了，也有些其他问题，但是到这步不出意外是可以成功的了。希望对你有用。</p>
+<p>感谢本文中提到的所有链接的作者。</p>
+<p>引用最多的是 <a target="_blank" rel="noopener" href="https://blog.acesheep.com/index.php/archives/720/">https://blog.acesheep.com/index.php/archives/720/</a> ，并已取得授权</p>
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2020/03/04/%e5%a4%b1%e8%b4%a5%e7%ac%94%e8%ae%b0%ef%bc%8c%e5%b8%8c%e6%9c%9b%e5%af%b9%e4%bd%a0%e6%9c%89%e7%94%a8%ef%bc%9aubuntu-18-04%e5%ae%89%e8%a3%85kvm%e5%b9%b6%e9%85%8d%e7%bd%ae%e7%a1%ac%e4%bb%b6%e7%9b%b4">https://ivampiresp.com/2020/03/04/%e5%a4%b1%e8%b4%a5%e7%ac%94%e8%ae%b0%ef%bc%8c%e5%b8%8c%e6%9c%9b%e5%af%b9%e4%bd%a0%e6%9c%89%e7%94%a8%ef%bc%9aubuntu-18-04%e5%ae%89%e8%a3%85kvm%e5%b9%b6%e9%85%8d%e7%bd%ae%e7%a1%ac%e4%bb%b6%e7%9b%b4</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/03/04/ivampiresp.com-%E5%A4%B1%E8%B4%A5%E7%AC%94%E8%AE%B0%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%AF%B9%E4%BD%A0%E6%9C%89%E7%94%A8%EF%BC%9AUbuntu%2018.04%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E9%85%8D%E7%BD%AE%E7%A1%AC%E4%BB%B6%E7%9B%B4%E9%80%9A/" data-id="cl01oc4xk0039ceoyhkcugwrv" data-title="失败笔记，希望对你有用：Ubuntu 18.04安装KVM并配置硬件直通 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-【源码开放】B萌—B站封面下载器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/02/27/imcys.com-%E3%80%90%E6%BA%90%E7%A0%81%E5%BC%80%E6%94%BE%E3%80%91B%E8%90%8C%E2%80%94B%E7%AB%99%E5%B0%81%E9%9D%A2%E4%B8%8B%E8%BD%BD%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2020-02-27T14:33:00.000Z" itemprop="datePublished">2020-02-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/02/27/imcys.com-%E3%80%90%E6%BA%90%E7%A0%81%E5%BC%80%E6%94%BE%E3%80%91B%E8%90%8C%E2%80%94B%E7%AB%99%E5%B0%81%E9%9D%A2%E4%B8%8B%E8%BD%BD%E5%99%A8/">【源码开放】B萌—B站封面下载器 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4>前言</h4>
+<p>B萌，是我用结绳开发的第一个app，是一款B站封面下载APP。</p>
+<p>你可能会说，没有用，我电脑右键一下，手机长按一下就保存了，但是我认为，这是给我自己练手。</p>
+<p>所以我将项目开源出来，UI写的很难看，如果大佬想改，就自己再美化一下。</p>
+<p>如果你使用我的源码二开，那么我建议你自己也开源，造福更多开发者。</p>
+<p>APP壁纸下载路径 测试目录/a.jpg</p>
+<h4>使用的方法</h4>
+<ul>
+<li>网络操作</li>
+<li>文本操作</li>
+<li>线程</li>
+<li>JSON操作</li>
+</ul>
+<h4>界面截图</h4>
+<p><img loading="lazy" class="" src="https://www.lolichan.vip/attachments/1582783069562-png.12/" width="279" height="454" /><img loading="lazy" class="" src="https://www.lolichan.vip/attachments/1582783733993-png.15/" width="279" height="453" /></p>
+<h4>下载地址</h4>
+<p><a target="_blank" rel="noopener" href="https://www.lolichan.vip/resources/b.3/">点击跳转项目地址</a></p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/02/27/%e3%80%90%e6%ba%90%e7%a0%81%e5%bc%80%e6%94%be%e3%80%91b%e8%90%8c-b%e7%ab%99%e5%b0%81%e9%9d%a2%e4%b8%8b%e8%bd%bd%e5%99%a8.html">https://imcys.com/2020/02/27/%e3%80%90%e6%ba%90%e7%a0%81%e5%bc%80%e6%94%be%e3%80%91b%e8%90%8c-b%e7%ab%99%e5%b0%81%e9%9d%a2%e4%b8%8b%e8%bd%bd%e5%99%a8.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/02/27/imcys.com-%E3%80%90%E6%BA%90%E7%A0%81%E5%BC%80%E6%94%BE%E3%80%91B%E8%90%8C%E2%80%94B%E7%AB%99%E5%B0%81%E9%9D%A2%E4%B8%8B%E8%BD%BD%E5%99%A8/" data-id="cl01oc4w60010ceoyd6t2033d" data-title="【源码开放】B萌—B站封面下载器 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-【结绳】新语言的开始" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/02/25/imcys.com-%E3%80%90%E7%BB%93%E7%BB%B3%E3%80%91%E6%96%B0%E8%AF%AD%E8%A8%80%E7%9A%84%E5%BC%80%E5%A7%8B/" class="article-date">
+  <time class="dt-published" datetime="2020-02-25T22:34:00.000Z" itemprop="datePublished">2020-02-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/02/25/imcys.com-%E3%80%90%E7%BB%93%E7%BB%B3%E3%80%91%E6%96%B0%E8%AF%AD%E8%A8%80%E7%9A%84%E5%BC%80%E5%A7%8B/">【结绳】新语言的开始 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4>初识</h4>
+<p>昨天我又接触到了一个编程APP——结绳，因为是手机端的，和之前裕3一样，上手程度还是比较简单的。</p>
+<h4>优势</h4>
+<p>结绳目前来看有一些优势，先不说它可以免费，开源，可以自己导入jar和so库，就自身打包后安装包体积，以及中文化的代码，就对新手很友好。</p>
+<p>可以让你快速开发APP，满足个人小型app完全可以，当然如果要做特别高级的，还是建议去学高级的，将来团队合作。</p>
+<p>可视化界面，以及自适应布局，这让你可以快速编辑布局，而自适应布局就很舒服。</p>
+<h4>待优化</h4>
+<p>结绳基层是Java，也就是你所做的代码会被转换为Java，这也是鸡肋的地方，报错携带一部分Java，这就让人很迷，找错不容易。</p>
+<p>控件是支持拖动的，我不认为这是一个好习惯，但拖动被应用到了自适应布局，所以我仍然习惯线性布局和相对布局。</p>
+<p>结绳做完需要自己做个简单的加密/加固，因为结绳的类全是中文，这就造成很容易被篡改的可能。</p>
+<p>开发者要注意这里哦，虽然没有测试过类内容被篡改的app还能不能用，但是我估计是可以的，所以需要自己手动加固下。</p>
+<h4>我第一天开发的APP</h4>
+<p>B萌——B站视频封面下载系统</p>
+<p><a target="_blank" rel="noopener" href="https://www.lanzous.com/i9ofqkj">点击下载</a></p>
+<h4>APP截图</h4>
+<p><a target="_blank" rel="noopener" href="https://imcys.com/wp-content/uploads/2020/02/QQ截图20200225214723.png"><img loading="lazy" class="size-full wp-image-99 aligncenter" src="https://imcys.com/wp-content/uploads/2020/02/QQ截图20200225214723.png" alt="截图" width="556" height="984" srcset="https://imcys.com/wp-content/uploads/2020/02/QQ截图20200225214723.png 556w, https://imcys.com/wp-content/uploads/2020/02/QQ截图20200225214723-170x300.png 170w" sizes="(max-width: 556px) 100vw, 556px" /></a></p>
+<p><a target="_blank" rel="noopener" href="https://imcys.com/wp-content/uploads/2020/02/QQ截图20200225215023.png"><img loading="lazy" class="aligncenter size-full wp-image-100" src="https://imcys.com/wp-content/uploads/2020/02/QQ截图20200225215023.png" alt="" width="558" height="988" srcset="https://imcys.com/wp-content/uploads/2020/02/QQ截图20200225215023.png 558w, https://imcys.com/wp-content/uploads/2020/02/QQ截图20200225215023-169x300.png 169w" sizes="(max-width: 558px) 100vw, 558px" /></a></p>
+<p>&nbsp;</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/02/25/%e3%80%90%e7%bb%93%e7%bb%b3%e3%80%91%e6%96%b0%e8%af%ad%e8%a8%80%e7%9a%84%e5%bc%80%e5%a7%8b.html">https://imcys.com/2020/02/25/%e3%80%90%e7%bb%93%e7%bb%b3%e3%80%91%e6%96%b0%e8%af%ad%e8%a8%80%e7%9a%84%e5%bc%80%e5%a7%8b.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/02/25/imcys.com-%E3%80%90%E7%BB%93%E7%BB%B3%E3%80%91%E6%96%B0%E8%AF%AD%E8%A8%80%E7%9A%84%E5%BC%80%E5%A7%8B/" data-id="cl01oc4w70012ceoyf8jjekt8" data-title="【结绳】新语言的开始 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-【QR】IDC基本语法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/02/23/imcys.com-%E3%80%90QR%E3%80%91IDC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2020-02-23T18:51:44.000Z" itemprop="datePublished">2020-02-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/02/23/imcys.com-%E3%80%90QR%E3%80%91IDC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">【QR】IDC基本语法 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4>基本语法</h4>
+<p>本文章需要搭配我B站视频学习，主要表述QR基本的语法，变量，参数，利用这些你可以轻松写自己的词库，点击下面的超链接，进入主页学习吧。</p>
+<p>视频晚点更新过来。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://space.bilibili.com/351201307">点击访问我的B站主页</a></strong></p>
+<p>在下面这些，可能是你们未来要用到的，信息采集网络，并非我编写的【实际上就是懒】。</p>
+<h4>变量篇</h4>
+<blockquote><p>%QQ%</p>
+<p>%群号%</p>
+<p>%Code%</p>
+<p>%Uin%</p>
+<p>%UinName%</p>
+<p>%Title%</p>
+<p>%群号%</p>
+<p>%Groupid%</p>
+<p>%GroupName%</p>
+<p>%参数1%</p>
+<p>%括号1%</p>
+<p>%主人%</p>
+<p>%管理员%</p>
+<p>%Robot%</p>
+<p>%AT0%</p>
+<p>%Time%</p>
+<p>%随机数x-X%</p>
+<p>%%随机数x-X%%</p>
+<p>%时间yyyy%</p></blockquote>
+<h4>语法篇</h4>
+<blockquote><p>$访问 网页$</p>
+<p>$点赞 %QQ% 10$</p>
+<p>$调用 1000 内容$</p>
+<p>$回调 内容$</p>
+<p>$禁 %群号% %QQ% 时间$</p>
+<p>$改 %群号% %QQ% 名片$</p>
+<p>$踢 %群号% %QQ%$</p>
+<p>$URLEncoder %括号1%$</p>
+<p>$URLDecoder %括号1%$</p>
+<p>$替换 € 原内容€内容1€内容2$</p>
+<p>$取中间 Э 原内容Э开头Э结尾$</p>
+<p>$写 文件路径 a 数据$</p>
+<p>$读 文件路径 a 0$</p>
+<p>//判断代码</p>
+<p>如果</p>
+<p>伪代码</p>
+<p>返回</p>
+<p>如果尾</p>
+<p>伪代码</p></blockquote>
+<h4>变量解释：</h4>
+<blockquote><p>%QQ%&#8212;&#8212;&#8212;&#8211;【获取发言者的QQ号】推荐</p>
+<p>%Code%&#8212;&#8212;&#8212;&#8211;【获取发言者的QQ号】如上，获取失败用这个</p>
+<p>%Uin%&#8212;&#8212;&#8212;&#8211;【获取发言者的QQ号】如上，获取失败用这个</p>
+<p>%UinName%&#8212;&#8212;&#8212;&#8211;【获取发言者的昵称】</p>
+<p>%Title%&#8212;&#8212;&#8212;&#8211;【获取发言者的头衔】</p>
+<p>%群号%&#8212;&#8212;&#8212;&#8211;【获取本群的群号】推荐</p>
+<p>%Groupid%&#8212;&#8212;&#8212;&#8211;【获取本群的群号】如上</p>
+<p>%GroupName%&#8212;&#8212;&#8212;&#8211;【获取本群的名字】</p>
+<p>%参数1%&#8212;&#8212;&#8212;&#8211;【获取发言参数1，带空格的】例如：测 梦星，参数0就是测，参数1就是梦星。以空格为线</p>
+<p>%括号1%&#8212;&#8212;&#8212;&#8211;【获取发言括号1，可不带空格】已括号为线，无括号1。更多请看(括号解释)<br />
+例如：<br />
+点歌(.*)<br />
+%括号1%</p>
+<p>%主人%&#8212;&#8212;&#8212;&#8211;【获取软件里的主人】</p>
+<p>%管理员%&#8212;&#8212;&#8212;&#8211;【获取软件里的管理员】</p>
+<p>%Robot%&#8212;&#8212;&#8212;&#8211;【获取本机器人QQ号】</p>
+<p>%AT0%&#8212;&#8212;&#8212;&#8211;【获取艾特的QQ号】</p>
+<p>%Time%&#8212;&#8212;&#8212;&#8211;【获取当前的时间戳】</p>
+<p>%随机数x-X%&#8212;&#8212;&#8212;&#8211;【获取随机数，x至X，假设1-10，就从1-10取个数学出来】例如：%随机数1-100%</p>
+<p>%%随机数x-X%%&#8212;&#8212;&#8212;&#8211;【获取随机文本数，带上面的字】</p>
+<p>%时间yyyy%&#8212;&#8212;&#8212;&#8212;&#8212;-yyyy（年）MM（月）dd（日） HH（24小时制）hh(12小时制)mm(分钟)ss(秒)</p>
+<p>$访问 网址$&#8212;&#8212;&#8212;&#8211;【获取访问网址的内容】</p>
+<p>$点赞 %QQ% 10$&#8212;&#8212;&#8212;&#8211;【机器人自动赞10下】</p>
+<p>$调用 1000 内容$&#8212;&#8212;&#8212;&#8211;【调用一个文字(2条信息)】1000是延迟，单位毫秒，1秒=1000毫秒。后面的内容是调用的指令，格式如下<br />
+例如：$调用 1000 复$</p>
+<p>复<br />
+第2条回复的内容</p>
+<p>$回调 内容$&#8212;&#8212;&#8212;&#8211;【回调一个文字(1条信息)】没有延迟，也就是2段文字合在一起执行。被回调的文字前面还要加[内部]。<br />
+例如：$回调 回$</p>
+<p>[内部]回<br />
+回调的内容</p>
+<p>$禁 %群号% %QQ% 时间$&#8212;&#8212;&#8212;&#8211;【机器人禁言】时间单位秒</p>
+<p>$改 %群号% %QQ% 名片$&#8212;&#8212;&#8212;&#8211;【机器人改名片】</p>
+<p>$踢 %群号% %QQ%$&#8212;&#8212;&#8212;&#8211;【机器人踢人】</p>
+<p>$URLEncoder %括号1%$&#8212;&#8212;&#8212;&#8211;【URL转码】不懂请不要使用，用于接口提交符号</p>
+<p>$URLDecoder %括号1%$&#8212;&#8212;&#8212;&#8211;【URL解码】不懂请不要使用</p>
+<p>$替换 € 原内容€内容1€内容2$&#8212;&#8212;&#8212;&#8211;【替换文本，从原内容替换内容1成内容2】</p>
+<p>$取中间 Э 原内容Э开头Э结尾$&#8212;&#8212;&#8212;&#8211;【取中间，从原内容截取开头到结尾内容】</p>
+<p>$写 教程/%群号%/测试 m 0$&#8212;&#8212;&#8212;&#8211;【写入文本到/教程/%群号%/测试里】</p>
+<p>$读 教程/%群号%/测试 m 0$&#8212;&#8212;&#8212;&#8211;【取文本：从/教程/%群号%/测试里取】</p>
+<p>金:$读 教程/%群号%/金币 %QQ% 0$<br />
+$写 教程/%群号%/金币 %QQ% [%金%+1]$</p>
+<p>&#8212;&#8212;&#8212;&#8211;【这是加金币】读全部金币+1</p>
+<p>金:$读 教程/%群号%/金币 %QQ% 0$<br />
+$写 教程/%群号%/金币 %QQ% [%金%-1]$</p>
+<p>&#8212;&#8212;&#8212;&#8211;【这是减金币】读全部金币-1</p>
+<p>&#8212;&#8212;&#8212;&#8211;读写目录在:根目录/Android/datacom.QR.QRDic/cache/QRDic/data/</p>
+<p>括号解释：<br />
+点歌(.*) &#8212;&#8212;&#8212;&#8211; 如果中间加空格不符合条件，括号里可以加空格，而.*不可以<br />
+%括号1%</p>
+<p>点歌 ?(.*) &#8212;&#8212;&#8212;&#8211; 中间加不加空格都符合<br />
+%括号1%</p>
+<p>(功能|菜单) ?(.*) &#8212;&#8212;&#8212;&#8211; 这种的也算括号<br />
+%括号2%</p>
+<p>(功能|菜单)? ?(.*) &#8212;&#8212;&#8212;&#8211; 变量大全作者也不懂，只有作者软件开发者知道，应该和上面的一样<br />
+%括号2%</p>
+<p>(?i)menu ?(.*) &#8212;&#8212;&#8212;&#8211; (?i)忽略大小写，是正则，不记入括号<br />
+%括号1%</p>
+<p>其他变量：</p>
+<p>文字换行：\r或\n或\r\n</p>
+<p>卡片换行：&amp;#010;或&amp;#013;</p>
+<p>卡片前缀：card:1或card:2或card:3 &#8212;&#8212;&#8212;&#8211; 后面数字随便都可以</p>
+<p>图片前后缀：±img=图片链接±</p>
+<p>json前缀：json:</p></blockquote>
+<h4>就到这里啦</h4>
+<p>教程感谢大佬们对视频的观看，有不懂的可以去论坛  <a target="_blank" rel="noopener" href="http://www.mxjs.xyz">萌新交流社</a></p>
+<p>发帖描述，或者在下方评论。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/02/23/%e3%80%90qr%e3%80%91idc%e5%9f%ba%e6%9c%ac%e8%af%ad%e6%b3%95.html">https://imcys.com/2020/02/23/%e3%80%90qr%e3%80%91idc%e5%9f%ba%e6%9c%ac%e8%af%ad%e6%b3%95.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/02/23/imcys.com-%E3%80%90QR%E3%80%91IDC%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" data-id="cl01oc4w0000mceoycgbz33ao" data-title="【QR】IDC基本语法 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-【声之形】以声之色,塑以花之形,将你之名,刻于我心" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/02/21/imcys.com-%E3%80%90%E5%A3%B0%E4%B9%8B%E5%BD%A2%E3%80%91%E4%BB%A5%E5%A3%B0%E4%B9%8B%E8%89%B2,%E5%A1%91%E4%BB%A5%E8%8A%B1%E4%B9%8B%E5%BD%A2,%E5%B0%86%E4%BD%A0%E4%B9%8B%E5%90%8D,%E5%88%BB%E4%BA%8E%E6%88%91%E5%BF%83/" class="article-date">
+  <time class="dt-published" datetime="2020-02-21T20:11:10.000Z" itemprop="datePublished">2020-02-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/02/21/imcys.com-%E3%80%90%E5%A3%B0%E4%B9%8B%E5%BD%A2%E3%80%91%E4%BB%A5%E5%A3%B0%E4%B9%8B%E8%89%B2,%E5%A1%91%E4%BB%A5%E8%8A%B1%E4%B9%8B%E5%BD%A2,%E5%B0%86%E4%BD%A0%E4%B9%8B%E5%90%8D,%E5%88%BB%E4%BA%8E%E6%88%91%E5%BF%83/">【声之形】以声之色,塑以花之形,将你之名,刻于我心 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote><p>声之形&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 男主:<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%9F%B3%E7%94%B0%E5%B0%86%E4%B9%9F/16372530?fr=aladdin">石田将野&nbsp;</a> &nbsp; 女主:<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%A5%BF%E5%AE%AB%E7%A1%9D%E5%AD%90/13477940?fr=aladdin">西宫硝子</a></p></blockquote>
+<p><iframe loading="lazy" src="//music.163.com/outchain/player?type=2&amp;id=454935870&amp;auto=1&amp;height=66" width="330" height="86" frameborder="no" marginwidth="0" marginheight="0"></iframe><br />
+<img loading="lazy" class="size-large wp-image-80" src="https://imcys.com/wp-content/uploads/2020/02/QQ图片20200221195238-1024x576.png" alt="" width="1024" height="576" srcset="https://imcys.com/wp-content/uploads/2020/02/QQ图片20200221195238-1024x576.png 1024w, https://imcys.com/wp-content/uploads/2020/02/QQ图片20200221195238-300x169.png 300w, https://imcys.com/wp-content/uploads/2020/02/QQ图片20200221195238-768x432.png 768w, https://imcys.com/wp-content/uploads/2020/02/QQ图片20200221195238-1536x864.png 1536w, https://imcys.com/wp-content/uploads/2020/02/QQ图片20200221195238.png 1920w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<h4>大致内容/寓意</h4>
+<p>番剧讲述了，男主和女主小学相遇，因为女主几乎听不到声音就欺负女主，后来和朋友友情破裂，被他人孤立失去自信。</p>
+<p>后来又因为和女主的相遇，改变了男主，也改变了女主，找回了友情，找到了自信。</p>
+<p>女主对于男主的感情，也是刻画的无微不至电，丰富多彩的内心感情，将气氛渲染到高潮，女主听不到声音，发音也不标准，很多时候用手语。</p>
+<p>而当女主想极力解释，就会发声，恰巧是这种声音，就可以引人入胜，内心戏很强，而两人相互的喜欢就是在这里体现。</p>
+<p>作者极力想表达对友情的定义，从男主一开始被大家疏远，到男主重新找到自信直面大家，找回失去的友情，做了很多铺垫，终于在最后爆发而出，可以说安排的是很巧妙，只是镜头的切换可能给大家留下许多疑惑。</p>
+<h4>内容概述</h4>
+<p>事情要从将野小学6年级的时候说起，将野那时非常喜欢气氛人，恰巧硝子刚来也遭到了将野的欺负，直到被硝子家长发现。</p>
+<p>当老师询问时却遭到自己朋友的出卖，久而久之，将野就成为了被孤立的对象。</p>
+<p>高中的将野不敢直面同学，没有朋友，心里还想对硝子道歉，终于他迈出脚步学习了手语，在手语班找到了硝子，硝子却想躲着将野，将野找到硝子后交还了笔记本【交流用】。</p>
+<p>这之后将野开始有了第一个朋友，当他知道将野的苦恼后，就打算帮助将野，之后找硝子时却遭到硝子妹妹装成硝子男朋友被拒绝。</p>
+<p>机缘巧合下，硝子妹妹——结弦说出真相，并在之后逐渐和将野一起活动，逐渐的将野小学同学，走入了将野的生活，因为彼此一些矛盾，打乱了原本和谐的他们。</p>
+<p>硝子觉得是自己才导致这一后果的，便想自杀，恰好将野发现，千钧一发之际，将野把硝子拉了回来自己跌入湖中。</p>
+<p>硝子也终于明白，自己应该做的是找回失去的友情，在硝子努力下，大家再次和睦聚集，他们也担心着将野。</p>
+<p>一天晚上，硝子在之前喂鱼的桥上大喊，如医学奇迹一般的，唤醒了将野。将野从病床下来马上赶到硝子身边，告诉硝子鼓励他活下去。</p>
+<p>这之后大家带着将野，重新直面面对同学，之前连头都不敢抬的将野终于敢直面同学，故事到这里就结束了。</p>
+<p>乌拉乌拉，虽然已经在空间发过啦，但还是想让自己博客也有声之形的推荐呢</p>
+<blockquote><p>如果你喜欢我推荐的动漫，那么请持续关注<a target="_blank" rel="noopener" href="https://imcys.com/">萌新杰少の秘密基地</a></p></blockquote>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/02/21/%e4%bb%a5%e5%a3%b0%e4%b9%8b%e8%89%b2%e5%a1%91%e4%bb%a5%e8%8a%b1%e4%b9%8b%e5%bd%a2%e5%b0%86%e4%bd%a0%e4%b9%8b%e5%90%8d%e5%88%bb%e4%ba%8e%e6%88%91%e5%bf%83.html">https://imcys.com/2020/02/21/%e4%bb%a5%e5%a3%b0%e4%b9%8b%e8%89%b2%e5%a1%91%e4%bb%a5%e8%8a%b1%e4%b9%8b%e5%bd%a2%e5%b0%86%e4%bd%a0%e4%b9%8b%e5%90%8d%e5%88%bb%e4%ba%8e%e6%88%91%e5%bf%83.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/02/21/imcys.com-%E3%80%90%E5%A3%B0%E4%B9%8B%E5%BD%A2%E3%80%91%E4%BB%A5%E5%A3%B0%E4%B9%8B%E8%89%B2,%E5%A1%91%E4%BB%A5%E8%8A%B1%E4%B9%8B%E5%BD%A2,%E5%B0%86%E4%BD%A0%E4%B9%8B%E5%90%8D,%E5%88%BB%E4%BA%8E%E6%88%91%E5%BF%83/" data-id="cl01oc4w3000sceoy5kw2913y" data-title="【声之形】以声之色,塑以花之形,将你之名,刻于我心 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-imcys.com-梦开始的地方——IMCYS" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/02/18/imcys.com-%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9%E2%80%94%E2%80%94IMCYS/" class="article-date">
+  <time class="dt-published" datetime="2020-02-18T20:23:05.000Z" itemprop="datePublished">2020-02-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/02/18/imcys.com-%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9%E2%80%94%E2%80%94IMCYS/">梦开始的地方——IMCYS 由 imcys.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4>前言</h4>
+<p><iframe loading="lazy" src="//music.163.com/outchain/player?type=2&amp;id=544920644&amp;auto=1&amp;height=66" width="330" height="86" frameborder="no" marginwidth="0" marginheight="0"></iframe><br />
+如你看到的一般,博客被重新搭建了，我选择了简洁的主题，但我没有丧铁对此热爱的心。</p>
+<p>被二次元拯救的人?听起来有点荒谬,但，的确是这样的，如果我没有遇到b站，或许生活也会很美好，但是我敢保证，绝对没有现在好!因此，我想搭建博客,给自己一个可以去分享动漫带给人美好的地方。</p>
+<p>我一直在看恋爱，萝莉/日常，热血番，我觉得，动漫带给人的不仅仅是视觉上，心灵上的体验,教会的却是人生，动漫讲述了故事，让你学到东西，我觉得这是-部很成功的番剧。</p>
+<p>这大概就是动漫带给人不一样的体验吧!我感谢二次元，感谢B站。</p>
+<p>是这些动漫，让我对生活重新燃起斗志，找到自己存在的意义，换一种角度看世界，这大概就是为什么我一直爱笑的原因吧。</p>
+<p>对我而言博客就是我分享这些感悟的地方，我希望让更多人也能开心的面对生活，不争不抢，安逸无比。</p>
+<p>请明白，开心是最重要的，你要考虑的是利弊，当你失望时，请想想，你有没有亏损？重要吗？永远记住</p>
+<blockquote><p>你可能很赚，但我永远不亏。</p></blockquote>
+<p>所以当你仔细考虑就会发现，好像我没啥损失哈，所以开心点，接下来的文章我会推荐一些动漫哟。</p>
+<h4>为什么换域名？重新搭建博客？</h4>
+<p>这就要从一只蝙蝠，呸，从一个星期前说起，我的博客莫名其妙在QQ报红,显示被大量人员举报，有违规信息。</p>
+<p>那天之后即使我域名是https，大量的浏览器显示危险，我不知道发生了什么，终于，在大家的建议下，我打算换域名，并且删除之前博客所以的内容。</p>
+<h4>域名为什么是IMCYS？</h4>
+<p>这个问题问的恰到好处，说出来你可能不信，为了域名我取名字花了1个小时，大家都有自己的英文标签,有的是因为自身经历，有的是因为从小就用，而我，我不知道用什么来代表自己，大佬们建议了许多域名其中IM我采用了。</p>
+<p>域名展开为I&#8217;m CYS,意思为我是CYS，emmm,说出来你可能不信，我英语每次<br />
+都在20分徘徊。</p>
+<h4>以后博客更新内容</h4>
+<p>这是一个为我自己搭建的博客，分享动漫，编程教学，日常感悟，也希望大佬们能时不时过来看几眼哟！</p>
+<h4></h4>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://imcys.com/2020/02/18/%e6%a2%a6%e5%bc%80%e5%a7%8b%e7%9a%84%e5%9c%b0%e6%96%b9-imcys.html">https://imcys.com/2020/02/18/%e6%a2%a6%e5%bc%80%e5%a7%8b%e7%9a%84%e5%9c%b0%e6%96%b9-imcys.html</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/02/18/imcys.com-%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9%E2%80%94%E2%80%94IMCYS/" data-id="cl01oc4wq001eceoy0evo36lt" data-title="梦开始的地方——IMCYS 由 imcys.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-你给我的全都于十年之约。" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/02/06/ivampiresp.com-%E4%BD%A0%E7%BB%99%E6%88%91%E7%9A%84%E5%85%A8%E9%83%BD%E4%BA%8E%E5%8D%81%E5%B9%B4%E4%B9%8B%E7%BA%A6%E3%80%82/" class="article-date">
+  <time class="dt-published" datetime="2020-02-06T00:40:18.000Z" itemprop="datePublished">2020-02-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/02/06/ivampiresp.com-%E4%BD%A0%E7%BB%99%E6%88%91%E7%9A%84%E5%85%A8%E9%83%BD%E4%BA%8E%E5%8D%81%E5%B9%B4%E4%B9%8B%E7%BA%A6%E3%80%82/">你给我的全都于十年之约。 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>开始时间：2020/2/5 23:56</p>
+
+
+<iframe loading="lazy" frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&amp;id=22817139&amp;auto=1&amp;height=66"></iframe>
+
+
+<p>23：30多分，我在那边写作业。戴着耳机，听着音乐。播放的云村日推的歌单。写着作业的同时享受着。但有一首是我从来没听过的secret base。在MV的评论区，我发现他才是真正的secret base原唱。</p>
+
+
+<p>不知道是时间的问题，还是版本的问题，每次听不同版本的secret base都有不同的感触。尤其是这首，我觉得渲染力比番剧的还要强。</p>
+
+
+<p>也许是乐队的关系吧。看评论区说是：“2005年 最后一首歌 唱完这首歌 四个女孩就各奔东西”</p>
+
+
+<p>这让我不禁想起了番剧中的面码。</p>
+
+
+<p>仔细想了想，其实每个人都有不同的故事，所谓长久，究竟是多久呢？我觉得永远的概率非常非常小。</p>
+
+
+<p>当看到歌词“给我一份最美的回忆吧&#8230;”时，我想到了《Rewrite》，《可塑性记忆》。他们的剧情都带有回忆，但又想到了现实。我在想，会不会真到了对一个人/物的记忆里只剩下美好/残酷回忆的那一天呢？</p>
+
+
+<blockquote class="wp-block-quote"><p> 【也曾有伤心寂寞 也曾有口角争执】 </p><cite> <em>secret base ~君がくれたもの~</em> </cite></blockquote>
+
+
+<p>那一天也许总要到来的。也许就在几十年后，或者自己先离去。</p>
+
+
+<p></p>
+
+
+<p>再听听BGM，我非常喜欢高潮和结尾部分的旋律。从低到高再到低。是遗憾？还是不舍？还是。。。</p>
+
+
+<p></p>
+
+
+<p>我觉得在不同年龄段，不同时间，听不同的音乐，看不同的番剧，欣赏不同的美景/事物就会有不同的情感吧。</p>
+
+
+<p></p>
+
+
+<p>每年春季看一次CLANNAD，夏季Air，冬季Kanon。或许都有不同的感受吧。</p>
+
+
+<p></p>
+
+
+<p>我觉得在一个人的世界里，没有什么是比戴上耳机享受更幸福的事情了。</p>
+
+
+<p></p>
+
+
+<p>我想起了歌词中 【十年之后的八月】 。又想到了十年之约和今年的八月要做的一件事情。</p>
+
+
+<p></p>
+
+
+<p>冰砚炽的博客于2020/2/4完成创建。十年之约其中一项需要博客创建至少6个月及以上。而六个月后，正好是八月。</p>
+
+
+<p></p>
+
+
+<p>十年过去后，我们是否还在呢？</p>
+
+
+<p></p>
+
+
+<p>我希望是如此，如果博客真能永远运行下去，我会非常幸福。因为我一直把博客当作家，就算没有人看，也能写给自己看，可以当作秘密花园，也可以是永恒花园。这里可以记录着自己的一切，生活的点点滴滴，由自己亲手敲出。仔细想想也是一种幸福呢。</p>
+
+
+<p></p>
+
+
+<blockquote class="wp-block-quote"><p>【十年之后的八月】<br>【请相信我们一定能再见】<br>【给我一份最美的回忆吧&#8230;】 </p><cite> <em>secret base ~君がくれたもの~</em> </cite></blockquote>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2020/02/06/%e4%bd%a0%e7%bb%99%e6%88%91%e7%9a%84%e5%85%a8%e9%83%bd%e4%ba%8e%e5%8d%81%e5%b9%b4%e4%b9%8b%e7%ba%a6%e3%80%82">https://ivampiresp.com/2020/02/06/%e4%bd%a0%e7%bb%99%e6%88%91%e7%9a%84%e5%85%a8%e9%83%bd%e4%ba%8e%e5%8d%81%e5%b9%b4%e4%b9%8b%e7%ba%a6%e3%80%82</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/02/06/ivampiresp.com-%E4%BD%A0%E7%BB%99%E6%88%91%E7%9A%84%E5%85%A8%E9%83%BD%E4%BA%8E%E5%8D%81%E5%B9%B4%E4%B9%8B%E7%BA%A6%E3%80%82/" data-id="cl01oc4xc002rceoygm2ualqc" data-title="你给我的全都于十年之约。 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-开新坑啦：LoliDay 开源，简单，高度自定义，快速的浏览器主页" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/01/30/ivampiresp.com-%E5%BC%80%E6%96%B0%E5%9D%91%E5%95%A6%EF%BC%9ALoliDay%20%E5%BC%80%E6%BA%90%EF%BC%8C%E7%AE%80%E5%8D%95%EF%BC%8C%E9%AB%98%E5%BA%A6%E8%87%AA%E5%AE%9A%E4%B9%89%EF%BC%8C%E5%BF%AB%E9%80%9F%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%BB%E9%A1%B5/" class="article-date">
+  <time class="dt-published" datetime="2020-01-30T21:28:01.000Z" itemprop="datePublished">2020-01-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/01/30/ivampiresp.com-%E5%BC%80%E6%96%B0%E5%9D%91%E5%95%A6%EF%BC%9ALoliDay%20%E5%BC%80%E6%BA%90%EF%BC%8C%E7%AE%80%E5%8D%95%EF%BC%8C%E9%AB%98%E5%BA%A6%E8%87%AA%E5%AE%9A%E4%B9%89%EF%BC%8C%E5%BF%AB%E9%80%9F%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%BB%E9%A1%B5/">开新坑啦：LoliDay 开源，简单，高度自定义，快速的浏览器主页 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2>起因</h2>
+
+
+<p>该怎么说呢。。。</p>
+
+
+<p>瘟疫爆发太无聊，并且放假时间又延长了，作业又不想写。于是就出来了这个项目。</p>
+
+
+<h2>目的</h2>
+
+
+<p>做这个项目其实是为了网页设计大赛，毕竟闲着没事，那就先提前干。</p>
+
+
+<p>（当然也不完全是</p>
+
+
+<p>现在每个计算机系统上都会安装1个或者更多浏览器，如Chrome，Firefox等。每个浏览器都有一个主页，可以是浏览器自带，可以是其他网页，如2345.</p>
+
+
+<p>但是除了浏览器自带的主页，如2345等。页面虽然在上方有个一半大的搜索框，下面地下则是各种导航，还有些广告。会让人感到不干净，内容过于混乱。</p>
+
+
+<p>所以Loliday（洛丽日常）就诞生了。为什么会用这个名字呢？因为我就这一个闲置的loli域名。</p>
+
+
+<h2>功能</h2>
+
+
+<p>我预计了如下功能：</p>
+
+
+<ol><li>自定义LOGO</li><li>自定义ICO</li><li>自定义title</li><li>自定义部分CSS</li><li>自定义背景</li><li>快速搜索</li><li>同一页面快速搜索</li><li>高级搜索</li><li>密码保护设置</li><li>数据完全保存在浏览器，服务器不会收集且不追踪任何有关用户的一切信息。</li><li>简单，方便，快速，易用。</li></ol>
+
+
+<p>这是洛丽柔可团队上的页面：</p>
+
+
+<p><a target="_blank" rel="noopener" href="https://www.loli.rocks/p/22.html"><a target="_blank" rel="noopener" href="https://www.loli.rocks/p/22.html"><a target="_blank" rel="noopener" href="https://www.loli.rocks/p/22.html"><a target="_blank" rel="noopener" href="https://www.loli.rocks/p/22.html">https://www.loli.rocks/p/22.html</a></a></a></a></p>
+
+
+<p>项目已经开发好的页面：<a target="_blank" rel="noopener" href="https://www.loliday.cn"><a target="_blank" rel="noopener" href="https://www.loliday.cn"><a target="_blank" rel="noopener" href="https://www.loliday.cn"><a target="_blank" rel="noopener" href="https://www.loliday.cn">https://www.loliday.cn</a></a></a></a></p>
+
+
+<p>Github仓库链接：<a target="_blank" rel="noopener" href="https://github.com/ivampiresp/loliday"><a target="_blank" rel="noopener" href="https://github.com/ivampiresp/loliday"><a target="_blank" rel="noopener" href="https://github.com/ivampiresp/loliday"><a target="_blank" rel="noopener" href="https://github.com/ivampiresp/loliday">https://github.com/ivampiresp/loliday</a></a></a></a></p>
+
+
+<figure class="wp-block-image size-large"><a target="_blank" rel="noopener" href="https://ivampiresp.com/wp-content/uploads/2020/01/image-6.png"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/01/image-6.png?imageMogr2/interlace/1/quality/80" alt=""/></a></figure>
+
+
+<p>希望大家喜欢。</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2020/01/30/%e5%bc%80%e6%96%b0%e5%9d%91%e5%95%a6%ef%bc%9aloliday-%e5%bc%80%e6%ba%90%ef%bc%8c%e7%ae%80%e5%8d%95%ef%bc%8c%e9%ab%98%e5%ba%a6%e8%87%aa%e5%ae%9a%e4%b9%89%ef%bc%8c%e5%bf%ab%e9%80%9f%e7%9a%84%e6%b5%8f">https://ivampiresp.com/2020/01/30/%e5%bc%80%e6%96%b0%e5%9d%91%e5%95%a6%ef%bc%9aloliday-%e5%bc%80%e6%ba%90%ef%bc%8c%e7%ae%80%e5%8d%95%ef%bc%8c%e9%ab%98%e5%ba%a6%e8%87%aa%e5%ae%9a%e4%b9%89%ef%bc%8c%e5%bf%ab%e9%80%9f%e7%9a%84%e6%b5%8f</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/01/30/ivampiresp.com-%E5%BC%80%E6%96%B0%E5%9D%91%E5%95%A6%EF%BC%9ALoliDay%20%E5%BC%80%E6%BA%90%EF%BC%8C%E7%AE%80%E5%8D%95%EF%BC%8C%E9%AB%98%E5%BA%A6%E8%87%AA%E5%AE%9A%E4%B9%89%EF%BC%8C%E5%BF%AB%E9%80%9F%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%BB%E9%A1%B5/" data-id="cl01oc4xl003dceoyfrbmchmw" data-title="开新坑啦：LoliDay 开源，简单，高度自定义，快速的浏览器主页 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-IIS下搭建h5ai方法（包括常见的一些坑）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/01/16/ivampiresp.com-IIS%E4%B8%8B%E6%90%AD%E5%BB%BAh5ai%E6%96%B9%E6%B3%95%EF%BC%88%E5%8C%85%E6%8B%AC%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2020-01-16T21:44:01.000Z" itemprop="datePublished">2020-01-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/01/16/ivampiresp.com-IIS%E4%B8%8B%E6%90%AD%E5%BB%BAh5ai%E6%96%B9%E6%B3%95%EF%BC%88%E5%8C%85%E6%8B%AC%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%EF%BC%89/">IIS下搭建h5ai方法（包括常见的一些坑） 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>咕咕咕了好久了，这次来更一期。</p>
+
+
+<p>话不多说，步入正题。</p>
+
+
+<p>首先你得在IIS上部署好PHP（废话），我这里部署了php7.4。这里推荐一个php快速部署工具：<a target="_blank" rel="noopener" href="https://www.iis.net/downloads/community/2018/05/php-manager-150-for-iis-10">点击下载PHPManager</a>。</p>
+
+
+<p>下载后双击安装，然后就可以在IIS界面看到了</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/01/image.png?imageMogr2/interlace/1/quality/80" alt=""/><figcaption>PHP管理器</figcaption></figure>
+
+
+<p>然后，你还需要一个IIS URL重写模块，<a target="_blank" rel="noopener" href="https://www.iis.net/downloads/microsoft/url-rewrite">点击下载</a></p>
+
+
+<p>如果你两个都部署好了，那可以下一步了。</p>
+
+
+<h2>首先创建一个站点，名字，任意。</h2>
+
+
+<h2>2，将h5ai解压到你的站点根目录，注意解压后的文件夹名字为_h5ai</h2>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/01/image-1.png?imageMogr2/interlace/1/quality/80" alt=""/><figcaption>_h5ai</figcaption></figure>
+
+
+<h2>3：返回到IIS面板</h2>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/01/image-2.png?imageMogr2/interlace/1/quality/80" alt=""/><figcaption>打开默认文档</figcaption></figure>
+
+
+<p>打开默认文档，点击右边-操作-添加</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/01/image-3.png?imageMogr2/interlace/1/quality/80" alt=""/></figure>
+
+
+<p>内容填写_h5ai/public/index.php，确认，并将他移动到第一项.</p>
+
+
+<h2>4.修改web.config</h2>
+
+
+<p>为什么要执行这一步呢？按道理来说其实应该部署好了，可是因为一些原因，这样会让h5ai读取时显示空文件夹，即使权限配置正确</p>
+
+
+<p>（我就是踩的这个坑</p>
+
+
+<p>这里解决方案来自<a target="_blank" rel="noopener" href="https://github.com/lrsjng/h5ai/issues/617">Github</a></p>
+
+
+<p>编辑<strong>web.config</strong>，在<strong><em>&lt;/system.webServer&gt;</em>结束前</strong>插入以下代码</p>
+
+
+<pre class="wp-block-code"><code>&lt;rewrite>
+            &lt;rules>
+                &lt;rule name="RewriteAll" stopProcessing="true">
+                    &lt;match url="^(.*)$" ignoreCase="false" />
+                    &lt;conditions logicalGrouping="MatchAll">
+                        &lt;add input="&#123;REQUEST_FILENAME&#125;" matchType="IsFile" negate="true" />
+                    &lt;/conditions>
+                    &lt;action type="Rewrite" url="_h5ai/public/index.php" appendQueryString="true" />
+                &lt;/rule>
+            &lt;/rules>
+        &lt;/rewrite></code></pre>
+
+
+<p>这时才是真正的部署完成！</p>
+
+
+<p>如果你想要隐藏web.config的话，可以到_h5ai/private/conf/options.json中配置隐藏的文件/文件夹。</p>
+
+
+<h2>5.其他问题</h2>
+
+
+<p>如果你发现有些文件，如iso后缀的文件提示404，无法下载的话，请看这里。</p>
+
+
+<p>这是应为没有给这些文件设置一个mine类型，到IIS后台设置下就行了</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/01/image-4.png?imageMogr2/interlace/1/quality/80" alt=""/><figcaption>打开MINE类型 页面</figcaption></figure>
+
+
+<p>打开MINE类型页面，增加如下配置</p>
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" src="https://ivampiresp-com-1302216700.file.myqcloud.com/wp-content/uploads/2020/01/image-5.png?imageMogr2/interlace/1/quality/80" alt=""/></figure>
+
+
+<p>application/octet-stream是其他mine类型，浏览器对待此类文件时会非常小心！</p>
+
+
+<p>设置这类方法后，不影响web.config，访问web.config还是会404，请放心增加！</p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2020/01/16/iis%e4%b8%8b%e6%90%ad%e5%bb%bah5ai%e6%96%b9%e6%b3%95%ef%bc%88%e5%8c%85%e6%8b%ac%e5%b8%b8%e8%a7%81%e7%9a%84%e4%b8%80%e4%ba%9b%e5%9d%91%ef%bc%89">https://ivampiresp.com/2020/01/16/iis%e4%b8%8b%e6%90%ad%e5%bb%bah5ai%e6%96%b9%e6%b3%95%ef%bc%88%e5%8c%85%e6%8b%ac%e5%b8%b8%e8%a7%81%e7%9a%84%e4%b8%80%e4%ba%9b%e5%9d%91%ef%bc%89</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2020/01/16/ivampiresp.com-IIS%E4%B8%8B%E6%90%AD%E5%BB%BAh5ai%E6%96%B9%E6%B3%95%EF%BC%88%E5%8C%85%E6%8B%AC%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91%EF%BC%89/" data-id="cl01oc4wx001rceoyc0h52qd3" data-title="IIS下搭建h5ai方法（包括常见的一些坑） 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ivampiresp.com-《埃罗芒阿老师》-随机图片API接口上线!" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/10/20/ivampiresp.com-%E3%80%8A%E5%9F%83%E7%BD%97%E8%8A%92%E9%98%BF%E8%80%81%E5%B8%88%E3%80%8B-%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87API%E6%8E%A5%E5%8F%A3%E4%B8%8A%E7%BA%BF!/" class="article-date">
+  <time class="dt-published" datetime="2019-10-20T21:06:43.000Z" itemprop="datePublished">2019-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/10/20/ivampiresp.com-%E3%80%8A%E5%9F%83%E7%BD%97%E8%8A%92%E9%98%BF%E8%80%81%E5%B8%88%E3%80%8B-%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87API%E6%8E%A5%E5%8F%A3%E4%B8%8A%E7%BA%BF!/">《埃罗芒阿老师》-随机图片API接口上线! 由 ivampiresp.com</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="wp-block-image size-large"><img src="https://api.lo-li.art/ailuomanga/" alt=""/></figure>
+
+
+<p>由于在家里什么是也不想干甚至觉得还有点无聊，另外再加上刚刚看完《埃罗芒阿老师》，所以。。。<br>肝API！<br>埃罗芒阿老师官网：<a target="_blank" rel="noopener" href="https://eromanga-sensei.com"><a target="_blank" rel="noopener" href="https://eromanga-sensei.com">https://eromanga-sensei.com</a></a><br>这次不仅恢复了《可塑性记忆》的API并且还用了新域名<br><a target="_blank" rel="noopener" href="https://api.lo-li.art/"><a target="_blank" rel="noopener" href="https://api.lo-li.art/">https://api.lo-li.art/</a></a><br>花了94，很值也很心疼，因为我也是有loli域名的人了！<br>另外不知道对你们来说是不是好消息，就是随机二次元图片.萝莉酱.我爱你这个域名停用了，并且番名全部使用中文（以前的文件夹名不会改）。<br>API地址：<a target="_blank" rel="noopener" href="https://api.lo-li.art/情色漫画老师/index.php"><a target="_blank" rel="noopener" href="https://api.lo-li.art">https://api.lo-li.art</a></a><a target="_blank" rel="noopener" href="https://api.lo-li.art/https://api.lo-li.art/ailuomanga/index.php/index.php">/</a><a target="_blank" rel="noopener" href="https://api.lo-li.art/ailuomanga/index.php">ailuomanga</a><a target="_blank" rel="noopener" href="https://api.lo-li.art/https://api.lo-li.art/ailuomanga/index.php/index.php">/index.php</a><br>随机图片：<a target="_blank" rel="noopener" href="https://api.lo-li.art/index.php"><a target="_blank" rel="noopener" href="https://api.lo-li.art/index.php">https://api.lo-li.art/index.php</a></a><br><br>其他API如下<br><a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/03/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e3%80%8a%e5%a4%a9%e4%bd%bf%e9%99%8d%e4%b8%b4%e5%88%b0%e6%88%91%e8%ba%ab%e8%be%b9%e3%80%8b%e7%9a%84%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api.html">天使降临到我身边</a><br><a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/06/27/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e9%82%bb%e5%ae%b6%e7%b4%a2%e8%8f%b2%ef%bc%88%e9%9a%94%e5%a3%81%e7%9a%84%e5%90%b8%e8%a1%80%e9%ac%bc%e7%be%8e%e7%9c%89%ef%bc%89%e7%9a%84%e9%9a%8f.html">邻家索菲</a><br><a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/07/04/%e5%88%b6%e4%bd%9c%e4%b8%80%e4%b8%aa%e7%9b%be%e4%b9%8b%e5%8b%87%e8%80%85%e6%88%90%e5%90%8d%e5%bd%95%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api.html">盾之勇者成名录</a><br><a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/09/06/%e3%80%8a%e5%8f%af%e5%a1%91%e6%80%a7%e8%ae%b0%e5%bf%86%e3%80%8b%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87%e6%8e%a5%e5%8f%a3%e4%b8%8a%e7%ba%bf.html">可塑性记忆</a></p>
+
+
+<p><strong>该文章来自<a target="_blank" rel="noopener" href="https://ivampiresp.com/2019/10/20/%e3%80%8a%e5%9f%83%e7%bd%97%e8%8a%92%e9%98%bf%e8%80%81%e5%b8%88%e3%80%8b%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api%e6%8e%a5%e5%8f%a3%e4%b8%8a%e7%ba%bf">https://ivampiresp.com/2019/10/20/%e3%80%8a%e5%9f%83%e7%bd%97%e8%8a%92%e9%98%bf%e8%80%81%e5%b8%88%e3%80%8b%e9%9a%8f%e6%9c%ba%e5%9b%be%e7%89%87api%e6%8e%a5%e5%8f%a3%e4%b8%8a%e7%ba%bf</a></strong></p>
+<p><strong>原作者同意后，MemoryArt将会拉取文章，但是请不要刻意的爬取本站。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://memoryart.nwl.im/2019/10/20/ivampiresp.com-%E3%80%8A%E5%9F%83%E7%BD%97%E8%8A%92%E9%98%BF%E8%80%81%E5%B8%88%E3%80%8B-%E9%9A%8F%E6%9C%BA%E5%9B%BE%E7%89%87API%E6%8E%A5%E5%8F%A3%E4%B8%8A%E7%BA%BF!/" data-id="cl01oc4x9002jceoy1qn8408j" data-title="《埃罗芒阿老师》-随机图片API接口上线! 由 ivampiresp.com" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/imcys-com/" rel="tag">imcys.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ivampiresp-com/" rel="tag">ivampiresp.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sakurapuare-com/" rel="tag">sakurapuare.com</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/imcys-com/" style="font-size: 15px;">imcys.com</a> <a href="/tags/ivampiresp-com/" style="font-size: 20px;">ivampiresp.com</a> <a href="/tags/sakurapuare-com/" style="font-size: 10px;">sakurapuare.com</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/README/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/09/ivampiresp.com-%E8%BF%99%E5%87%A0%E5%A4%A9%E6%95%B4%E7%9A%84Home%20Assistant/">这几天整的Home Assistant 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/ivampiresp.com-/"> 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/23/ivampiresp.com-Frp%20%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%A4%E8%AF%81/">Frp 自定义认证 由 ivampiresp.com</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/19/imcys.com-%E3%80%90%E5%BF%AB%E6%89%8BAPI%E3%80%91%E5%BF%AB%E6%89%8B%E7%99%BB%E5%BD%95%E4%B8%8ECookie%E8%8E%B7%E5%8F%96%E6%8E%A5%E5%8F%A3%E8%A7%A3%E6%9E%90%E6%80%9D%E8%B7%AF%E7%AF%87/">【快手API】快手登录与Cookie获取接口解析思路篇 由 imcys.com</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 博主们<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
